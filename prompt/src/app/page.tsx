@@ -1,4 +1,5 @@
 // app/page.tsx
+import { Cpu, Gem, Pencil, SquareUser } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
 
@@ -46,19 +47,19 @@ export default function Home() {
 
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
               <Link href="/prompts/profile-picture" className="flex flex-col items-center bg-[#1e1e1e] border border-[#2a2a2a] rounded-2xl p-6 hover:border-[#8A2BE2] transition">
-                <i className="bi bi-person-square text-4xl text-[#8A2BE2]" />
+                <SquareUser className="bi bi-person-square text-4xl text-[#8A2BE2]" />
                 <h6 className="mt-4 font-bold">پرامپت پروفایل</h6>
               </Link>
               <Link href="/workflows" className="flex flex-col items-center bg-[#1e1e1e] border border-[#2a2a2a] rounded-2xl p-6 hover:border-[#8A2BE2] transition">
-                <i className="bi bi-cpu text-4xl text-[#8A2BE2]" />
+                <Cpu className="bi bi-cpu text-4xl text-[#8A2BE2]" />
                 <h6 className="mt-4 font-bold">ورک‌فلوهای n8n</h6>
               </Link>
               <Link href="/blog" className="flex flex-col items-center bg-[#1e1e1e] border border-[#2a2a2a] rounded-2xl p-6 hover:border-[#8A2BE2] transition">
-                <i className="bi bi-pencil-square text-4xl text-[#8A2BE2]" />
+                <Pencil className="bi bi-pencil-square text-4xl text-[#8A2BE2]" />
                 <h6 className="mt-4 font-bold">مقالات آموزشی</h6>
               </Link>
               <Link href="/prompts/design" className="flex flex-col items-center bg-[#1e1e1e] border border-[#2a2a2a] rounded-2xl p-6 hover:border-[#8A2BE2] transition">
-                <i className="bi bi-gem text-4xl text-[#8A2BE2]" />
+                <Gem className="bi bi-gem text-4xl text-[#8A2BE2]" />
                 <h6 className="mt-4 font-bold">طراحی لوگو</h6>
               </Link>
             </div>
