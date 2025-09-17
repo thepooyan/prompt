@@ -5,7 +5,6 @@ import Latest from "@/components/landing/Latest"
 import LatestBlogs from "@/components/landing/LatestBlogs"
 import Footer from "@/components/layout/Footer"
 import { Cpu, Gem, Pencil, SquareUser } from "lucide-react"
-import Image from "next/image"
 import Link from "next/link"
 
 export default function Home() {
@@ -16,19 +15,19 @@ export default function Home() {
         <div className="container mx-auto flex items-center justify-between p-4">
           <Link href="#home" className="font-bold text-xl">پرامپت بازار</Link>
           <nav className="hidden md:flex gap-6">
-            <Link href="#home" className="hover:text-[#8A2BE2]">خانه</Link>
-            <Link href="/prompt" target="_blank" className="hover:text-[#8A2BE2] flex items-center gap-1">
+            <Link href="#home" className="hover:text-primary">خانه</Link>
+            <Link href="/prompt" target="_blank" className="hover:text-primary flex items-center gap-1">
               راهنمای جامع <i className="bi bi-box-arrow-up-right text-sm" />
             </Link>
-            <Link href="#blog" className="hover:text-[#8A2BE2]">وبلاگ</Link>
-            <Link href="/prompts" target="_blank" className="hover:text-[#8A2BE2] flex items-center gap-1">
+            <Link href="#blog" className="hover:text-primary">وبلاگ</Link>
+            <Link href="/prompts" target="_blank" className="hover:text-primary flex items-center gap-1">
               کتابخانه کامل <i className="bi bi-box-arrow-up-right text-sm" />
             </Link>
           </nav>
           <div className="flex items-center gap-3">
-            <Link href="#" className="hover:text-[#8A2BE2] text-lg"><i className="bi bi-headset" /></Link>
-            <Link href="#" className="hover:text-[#8A2BE2] text-lg"><i className="bi bi-cart3" /></Link>
-            <Link href="#" className="bg-[#8A2BE2] px-4 py-2 rounded-lg font-medium">ثبت‌نام / ورود</Link>
+            <Link href="#" className="hover:text-primary text-lg"><i className="bi bi-headset" /></Link>
+            <Link href="#" className="hover:text-primary text-lg"><i className="bi bi-cart3" /></Link>
+            <Link href="#" className="bg-primary px-4 py-2 rounded-lg font-medium">ثبت‌نام / ورود</Link>
           </div>
         </div>
       </header>
@@ -37,13 +36,13 @@ export default function Home() {
       <section id="home" className="min-h-screen flex items-center justify-center pt-28">
         <div className="container mx-auto grid lg:grid-cols-[2.5fr,1fr] gap-6">
           <div className="grid gap-6">
-            <div className="flex flex-col md:flex-row gap-6 bg-[#1e1e1e] border border-[#2a2a2a] rounded-2xl p-8 hover:border-[#8A2BE2] transition">
+            <div className="flex flex-col md:flex-row gap-6 bg-[#1e1e1e] border border-[#2a2a2a] rounded-2xl p-8 hover:border-primary transition">
               <div>
                 <h1 className="text-3xl font-extrabold">آکادمی پرامپت بازار</h1>
                 <p className="mt-3 text-[#a0a0a0]">
                   مرجع تخصصی دانلود پرامپت‌های آماده و ورک‌فلوهای اتوماسیون. خلاقیت و کسب‌وکار خود را با ابزارهای حرفه‌ای هوش مصنوعی متحول کنید.
                 </p>
-                <Link href="/prompts" target="_blank" className="mt-4 inline-block bg-[#8A2BE2] px-5 py-3 rounded-lg font-bold">
+                <Link href="/prompts" target="_blank" className="mt-4 inline-block bg-primary px-5 py-3 rounded-lg font-bold">
                   ورود به کتابخانه پرامپت‌ها
                 </Link>
               </div>
@@ -51,20 +50,20 @@ export default function Home() {
             </div>
 
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
-              <Link href="/prompts/profile-picture" className="flex flex-col items-center bg-[#1e1e1e] border border-[#2a2a2a] rounded-2xl p-6 hover:border-[#8A2BE2] transition">
-                <SquareUser className="bi bi-person-square text-4xl text-[#8A2BE2]" />
+              <Link href="/prompts/profile-picture" className="flex flex-col items-center bg-[#1e1e1e] border border-[#2a2a2a] rounded-2xl p-6 hover:border-primary transition">
+                <SquareUser className="bi bi-person-square text-4xl text-primary" />
                 <h6 className="mt-4 font-bold">پرامپت پروفایل</h6>
               </Link>
-              <Link href="/workflows" className="flex flex-col items-center bg-[#1e1e1e] border border-[#2a2a2a] rounded-2xl p-6 hover:border-[#8A2BE2] transition">
-                <Cpu className="bi bi-cpu text-4xl text-[#8A2BE2]" />
+              <Link href="/workflows" className="flex flex-col items-center bg-[#1e1e1e] border border-[#2a2a2a] rounded-2xl p-6 hover:border-primary transition">
+                <Cpu className="bi bi-cpu text-4xl text-primary" />
                 <h6 className="mt-4 font-bold">ورک‌فلوهای n8n</h6>
               </Link>
-              <Link href="/blog" className="flex flex-col items-center bg-[#1e1e1e] border border-[#2a2a2a] rounded-2xl p-6 hover:border-[#8A2BE2] transition">
-                <Pencil className="bi bi-pencil-square text-4xl text-[#8A2BE2]" />
+              <Link href="/blog" className="flex flex-col items-center bg-[#1e1e1e] border border-[#2a2a2a] rounded-2xl p-6 hover:border-primary transition">
+                <Pencil className="bi bi-pencil-square text-4xl text-primary" />
                 <h6 className="mt-4 font-bold">مقالات آموزشی</h6>
               </Link>
-              <Link href="/prompts/design" className="flex flex-col items-center bg-[#1e1e1e] border border-[#2a2a2a] rounded-2xl p-6 hover:border-[#8A2BE2] transition">
-                <Gem className="bi bi-gem text-4xl text-[#8A2BE2]" />
+              <Link href="/prompts/design" className="flex flex-col items-center bg-[#1e1e1e] border border-[#2a2a2a] rounded-2xl p-6 hover:border-primary transition">
+                <Gem className="bi bi-gem text-4xl text-primary" />
                 <h6 className="mt-4 font-bold">طراحی لوگو</h6>
               </Link>
             </div>
