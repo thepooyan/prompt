@@ -1,38 +1,8 @@
-// app/page.tsx
-import Benefits from "@/components/landing/Benefits"
-import FAQSection from "@/components/landing/FaqSection"
-import Latest from "@/components/landing/Latest"
-import LatestBlogs from "@/components/landing/LatestBlogs"
-import Footer from "@/components/layout/Footer"
 import { Cpu, Gem, Pencil, SquareUser } from "lucide-react"
 import Link from "next/link"
 
-export default function Home() {
+const Hero = () => {
   return (
-    <main dir="rtl" className="bg-[#121212] text-[#e0e0e0] font-[Vazirmatn]">
-      {/* Navbar */}
-      <header className="fixed top-0 w-full bg-[#1e1e1e]/85 backdrop-blur-md z-50">
-        <div className="container mx-auto flex items-center justify-between p-4">
-          <Link href="#home" className="font-bold text-xl">پرامپت بازار</Link>
-          <nav className="hidden md:flex gap-6">
-            <Link href="#home" className="hover:text-primary">خانه</Link>
-            <Link href="/prompt" target="_blank" className="hover:text-primary flex items-center gap-1">
-              راهنمای جامع <i className="bi bi-box-arrow-up-right text-sm" />
-            </Link>
-            <Link href="#blog" className="hover:text-primary">وبلاگ</Link>
-            <Link href="/prompts" target="_blank" className="hover:text-primary flex items-center gap-1">
-              کتابخانه کامل <i className="bi bi-box-arrow-up-right text-sm" />
-            </Link>
-          </nav>
-          <div className="flex items-center gap-3">
-            <Link href="#" className="hover:text-primary text-lg"><i className="bi bi-headset" /></Link>
-            <Link href="#" className="hover:text-primary text-lg"><i className="bi bi-cart3" /></Link>
-            <Link href="#" className="bg-primary px-4 py-2 rounded-lg font-medium">ثبت‌نام / ورود</Link>
-          </div>
-        </div>
-      </header>
-
-      {/* Hero */}
       <section id="home" className="min-h-screen flex items-center justify-center pt-28">
         <div className="container mx-auto grid lg:grid-cols-[2.5fr,1fr] gap-6">
           <div className="grid gap-6">
@@ -77,13 +47,7 @@ export default function Home() {
           </Link>
         </div>
       </section>
-
-      <Benefits/>
-      <Latest/>
-      <LatestBlogs/>
-      <FAQSection/>
-      <Footer/>
-
-    </main>
   )
 }
+
+export default Hero
