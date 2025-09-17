@@ -1,5 +1,6 @@
 // app/page.tsx
 import Benefits from "@/components/landing/Benefits"
+import FAQSection from "@/components/landing/FaqSection"
 import Latest from "@/components/landing/Latest"
 import LatestBlogs from "@/components/landing/LatestBlogs"
 import { Cpu, Gem, Pencil, SquareUser } from "lucide-react"
@@ -80,6 +81,7 @@ export default function Home() {
       <Benefits/>
       <Latest/>
       <LatestBlogs/>
+      <FAQSection/>
 
       {/* Footer */}
       <footer className="bg-black py-8 text-center text-[#a0a0a0]">
