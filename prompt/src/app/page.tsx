@@ -1,4 +1,5 @@
 // app/page.tsx
+import Benefits from "@/components/landing/Benefits"
 import { Cpu, Gem, Pencil, SquareUser } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
@@ -73,6 +74,8 @@ export default function Home() {
           </Link>
         </div>
       </section>
+
+      <Benefits/>
 
       {/* Footer */}
       <footer className="bg-black py-8 text-center text-[#a0a0a0]">
