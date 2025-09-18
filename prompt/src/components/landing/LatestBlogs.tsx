@@ -39,7 +39,7 @@ export default function LatestBlogs() {
               />
               <div className="p-6">
                 <h5 className="text-lg font-bold text-white mb-2">
-                  معرفی ۵ ابزار هوش مصنوعی که هر تولیدکننده محتوایی باید بشناسد
+                  معرفی 6 ابزار هوش مصنوعی که هر تولیدکننده محتوایی باید بشناسد
                 </h5>
                 <p className="text-gray-400">
                   با بهترین و جدیدترین ابزارهای هوش مصنوعی برای تولید محتوای متنی و تصویری آشنا شوید.
