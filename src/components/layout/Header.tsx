@@ -7,12 +7,12 @@ const Header = () => {
         <div className="container mx-auto flex items-center justify-between p-4">
           <Link href="/" className="font-bold text-xl">پرامپت بازار</Link>
           <nav className="hidden md:flex gap-6">
-            <Link href="#home" className="hover:text-primary">خانه</Link>
+            <Link href="/" className="hover:text-primary">خانه</Link>
             <Link href="/Guide" className="hover:text-primary flex items-center gap-1">
               راهنمای جامع <i className="bi bi-box-arrow-up-right text-sm" />
             </Link>
-            <Link href="#blog" className="hover:text-primary">وبلاگ</Link>
-            <Link href="/prompts" target="_blank" className="hover:text-primary flex items-center gap-1">
+            <Link href="/Blog" className="hover:text-primary">وبلاگ</Link>
+            <Link href="/Library" className="hover:text-primary flex items-center gap-1">
               کتابخانه کامل <i className="bi bi-box-arrow-up-right text-sm" />
             </Link>
           </nav>
