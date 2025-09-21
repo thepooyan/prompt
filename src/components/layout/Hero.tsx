@@ -3,7 +3,7 @@ import Link from "next/link"
 
 const Hero = () => {
   return (
-      <section id="home" className="flex min-h-screen items-center justify-center pt-28">
+      <section id="home" className="flex items-center justify-center py-10">
         <div className="container mx-auto grid grid-cols-1 gap-6 lg:grid-cols-3">
           <div className="col-span-1 flex flex-col gap-6 rounded-2xl border border-[#2a2a2a] bg-[#1e1e1e] p-8 transition hover:border-primary md:flex-row lg:col-span-2">
             <div>
