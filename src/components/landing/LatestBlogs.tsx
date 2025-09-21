@@ -1,6 +1,6 @@
 export default function LatestBlogs() {
   return (
-    <section id="blog" className="py-16 bg-gray-900">
+    <section id="blog" className="py-16 bg-zinc-900">
       <div className="container mx-auto px-6">
         <div className="text-center mb-12">
           <h2 className="text-3xl font-bold text-white">
