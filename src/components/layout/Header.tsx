@@ -8,7 +8,7 @@ const Header = () => {
           <Link href="#home" className="font-bold text-xl">پرامپت بازار</Link>
           <nav className="hidden md:flex gap-6">
             <Link href="#home" className="hover:text-primary">خانه</Link>
-            <Link href="/prompt" target="_blank" className="hover:text-primary flex items-center gap-1">
+            <Link href="/Guide" className="hover:text-primary flex items-center gap-1">
               راهنمای جامع <i className="bi bi-box-arrow-up-right text-sm" />
             </Link>
             <Link href="#blog" className="hover:text-primary">وبلاگ</Link>
