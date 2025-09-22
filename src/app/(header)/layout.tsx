@@ -4,7 +4,7 @@ import { ReactNode } from "react"
 
 const layout = ({children}:{children: ReactNode}) => {
   return (
-    <main dir="rtl" className="bg-[#121212] text-[#e0e0e0] font-[Vazirmatn] ">
+    <main dir="rtl" className="bg-[#121212] text-[#e0e0e0] font-[Vazirmatn] min-h-dvh pt-18">
         <Header/>
         {children}
         <Footer/>
