@@ -2,7 +2,7 @@ import { CheckCheck, Library, History, Headphones } from "lucide-react"
 
 export default function Benefits() {
   return (
-    <section id="benefits" className="bg-gray-900 py-16">
+    <section id="benefits" className=" bg-zinc-900 py-16">
       <div className="container mx-auto px-6">
         <div className="text-center mb-12">
           <h2 className="text-3xl font-bold text-white">چرا پرامپت بازار؟</h2>

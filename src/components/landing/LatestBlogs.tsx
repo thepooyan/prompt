@@ -1,11 +1,13 @@
-export default function Latest() {
+export default function LatestBlogs() {
   return (
-    <section id="latest" className="py-16 bg-gray-900">
+    <section id="blog" className="py-16 bg-zinc-900">
       <div className="container mx-auto px-6">
         <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold text-white">جدیدترین پرامپت‌های آماده</h2>
+          <h2 className="text-3xl font-bold text-white">
+            آخرین مقالات از وبلاگ پرامپت بازار
+          </h2>
           <p className="text-lg text-gray-400 mt-4">
-            نمونه‌ای از آخرین پرامپت‌های اضافه شده به کتابخانه پرامپت بازار.
+            دانش خود را در دنیای هوش مصنوعی و مهندسی پرامپت به‌روز نگه دارید.
           </p>
         </div>
 
@@ -13,16 +15,16 @@ export default function Latest() {
           <div className="bg-gray-800 rounded-2xl overflow-hidden shadow-lg">
             <a href="#" className="block">
               <img
-                src="https://placehold.co/600x400/1e1e1e/8A2BE2?text=Instagram"
-                alt="پرامپت اینستاگرام"
+                src="https://placehold.co/600x400/1e1e1e/8A2BE2?text=Blog+Post+1"
+                alt="اشتباهات پرامپت نویسی"
                 className="w-full h-48 object-cover"
               />
               <div className="p-6">
                 <h5 className="text-lg font-bold text-white mb-2">
-                  پرامپت تولید محتوای اینستاگرام
+                  ۵ اشتباه رایج در پرامپت نویسی که باید از آنها دوری کنید
                 </h5>
                 <p className="text-gray-400">
-                  مجموعه‌ای از پرامپت‌های خلاقانه برای نوشتن کپشن و ایده‌پردازی پست‌های وایرال.
+                  یاد بگیرید چگونه با پرهیز از چند خطای ساده، کیفیت خروجی هوش مصنوعی را چندین برابر کنید.
                 </p>
               </div>
             </a>
@@ -31,16 +33,16 @@ export default function Latest() {
           <div className="bg-gray-800 rounded-2xl overflow-hidden shadow-lg">
             <a href="#" className="block">
               <img
-                src="https://placehold.co/600x400/1e1e1e/8A2BE2?text=Photo+Restore"
-                alt="پرامپت ترمیم عکس"
+                src="https://placehold.co/600x400/1e1e1e/8A2BE2?text=Blog+Post+2"
+                alt="ابزارهای هوش مصنوعی"
                 className="w-full h-48 object-cover"
               />
               <div className="p-6">
                 <h5 className="text-lg font-bold text-white mb-2">
-                  پرامپت ترمیم عکس قدیمی
+                  معرفی 6 ابزار هوش مصنوعی که هر تولیدکننده محتوایی باید بشناسد
                 </h5>
                 <p className="text-gray-400">
-                  عکس‌های آسیب‌دیده و خاطره‌انگیز خود را با قدرت هوش مصنوعی بازسازی کنید.
+                  با برترین و جدیدترین ابزارهای هوش مصنوعی برای تولید محتوای متنی و تصویری آشنا شوید.
                 </p>
               </div>
             </a>
@@ -49,16 +51,16 @@ export default function Latest() {
           <div className="bg-gray-800 rounded-2xl overflow-hidden shadow-lg">
             <a href="#" className="block">
               <img
-                src="https://placehold.co/600x400/1e1e1e/8A2BE2?text=Anime+Style"
-                alt="پرامپت انیمه"
+                src="https://placehold.co/600x400/1e1e1e/8A2BE2?text=Blog+Post+3"
+                alt="پرامپت نویسی برای لوگو"
                 className="w-full h-48 object-cover"
               />
               <div className="p-6">
                 <h5 className="text-lg font-bold text-white mb-2">
-                  پرامپت تبدیل عکس به انیمه
+                  راهنمای قدم به قدم پرامپت نویسی برای طراحی لوگو
                 </h5>
                 <p className="text-gray-400">
-                  شخصیت‌ها و تصاویر مورد علاقه خود را به سبک انیمه‌های محبوب ژاپنی خلق کنید.
+                  چگونه پرامپت‌هایی بنویسیم که لوگوهای حرفه‌ای و خلاقانه برای کسب‌وکار شما تولید کنند.
                 </p>
               </div>
             </a>
