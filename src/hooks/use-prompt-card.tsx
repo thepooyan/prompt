@@ -42,10 +42,10 @@ export function usePromptCard(prompt: Prompt) {
   const handleLike = () => {
     setIsLiked(!isLiked)
     setLikeCount((prev) => (isLiked ? prev - 1 : prev + 1))
-    toast({
-      title: isLiked ? "لایک برداشته شد" : "لایک شد!",
-      description: isLiked ? "پرامپت از لیست علاقه‌مندی‌ها حذف شد" : "پرامپت به لیست علاقه‌مندی‌ها اضافه شد",
-    })
+    if (isLiked)
+        toast.success("پرامپت به لیست علاقه‌مندی‌ها اضافه شد")
+    else 
+        toast.success("پرامپت از لیست علاقه‌مندی‌ها حذف شد" )
   }
 
   const parsedTags = prompt.tags
