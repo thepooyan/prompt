@@ -1,3 +1,4 @@
+import { InferInsertModel, InferSelectModel } from "drizzle-orm";
 import { boolean, integer, pgTable, text, varchar } from "drizzle-orm/pg-core";
 
 // export const promptsTable = pgTable("prompts", {
@@ -16,3 +17,6 @@ export const promptsTable = pgTable("prompts", {
   isFree: boolean().notNull().default(false),
   description: text().notNull(),
 });
+
+export type Prompt = InferSelectModel<typeof promptsTable>
+export type NewPrompt = InferInsertModel<typeof promptsTable>
