@@ -1,6 +1,13 @@
-const page = () => {
+import LibraryClient from "@/components/LibraryClient"
+import { db } from "@/db"
+import { promptsTable } from "@/db/schema"
+
+const page = async () => {
+
+    let p = await db.select().from(promptsTable)
+
   return (
-    <div>lib</div>
+    <LibraryClient prompts={p}/>
   )
 }
 
