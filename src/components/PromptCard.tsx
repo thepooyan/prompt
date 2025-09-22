@@ -18,7 +18,7 @@ export function PromptCard({ prompt, className }: PromptCardProps) {
   const { isLiked, likeCount, parsedTags, handleCopy, handleShare, handleLike } = usePromptCard(prompt)
 
   return (
-    <Link href={`/prompt/${prompt.slug}`}>
+    <Link href={`/Prompt/${prompt.slug}`}>
       <Card className={cn("w-full max-w-md overflow-hidden transition-all hover:shadow-lg", className)} dir="rtl">
         <CardHeader className="p-0">
           <div className="relative">
