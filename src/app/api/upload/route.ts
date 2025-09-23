@@ -1,20 +1,23 @@
-// app/api/upload/route.ts
-import { NextResponse } from "next/server"
-import { writeFile } from "fs/promises"
-import path from "path"
+import { NextRequest, NextResponse } from "next/server"
+import { PutObjectCommand } from "@aws-sdk/client-s3"
+import { s3 } from "@/s3"
 
-export async function POST(req: Request) {
+export async function POST(req: NextRequest) {
   const formData = await req.formData()
-  const file = formData.get("file") as File | null
+  const file = formData.get("file") as File
+  if (!file) return NextResponse.json({ error: "No file" }, { status: 400 })
 
-  if (!file) {
-    return NextResponse.json({ error: "No file provided" }, { status: 400 })
-  }
+  const arrayBuffer = await file.arrayBuffer()
+  const buffer = Buffer.from(arrayBuffer)
 
-  const bytes = Buffer.from(await file.arrayBuffer())
-  const filePath = path.join(process.cwd(), "public" ,"uploads", file.name)
+  const key = `uploads/${Date.now()}-${file.name}`
 
-  await writeFile(filePath, bytes)
+  await s3.send(new PutObjectCommand({
+    Bucket: undefined,
+    Key: key,
+    Body: buffer,
+    ContentType: file.type
+  }))
 
-  return NextResponse.json({ success: true, path: `/uploads/${file.name}` })
+  return NextResponse.json({ url: `https://${process.env.BUCKET_URL}/${key}` })
 }
