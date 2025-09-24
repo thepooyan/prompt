@@ -7,7 +7,7 @@ const Hero = () => {
         <div className="container mx-auto grid grid-cols-1 gap-6 lg:grid-cols-3">
           <div className="col-span-1 flex flex-col gap-6 rounded-2xl border border-[#2a2a2a] bg-[#1e1e1e] p-8 transition hover:border-primary md:flex-row lg:col-span-2">
             <div>
-              <h1 className="text-3xl font-extrabold">آکادمی پرامپت بازار</h1>
+              <h1 className="text-3xl font-extrabold">آکادمی پرامپت و اتوماسیون n8n</h1>
               <p className="mt-3 text-[#a0a0a0]">
                 مرجع تخصصی دانلود پرامپت‌های آماده و ورک‌فلوهای اتوماسیون. خلاقیت و کسب‌وکار خود را با ابزارهای حرفه‌ای هوش مصنوعی متحول کنید.
               </p>
