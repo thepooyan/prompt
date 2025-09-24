@@ -161,9 +161,12 @@ export default function NewPromptPage() {
                     placeholder="آدرس تصویر را وارد کنید"
                     className="text-right"
                   />
-                  <Button type="button" variant="outline" size="sm">
-                    <Upload className="h-4 w-4" />
-                  </Button>
+                    <Button type="button" variant="outline" size="sm" asChild>
+                      <label htmlFor="file" className="cursor-pointer">
+                        <Upload className="h-4 w-4" />
+                      </label>
+                    </Button>
+                  <input type="file" className="hidden" id="file"/>
                 </div>
                 {formData.picture && (
                   <div className="mt-2">
