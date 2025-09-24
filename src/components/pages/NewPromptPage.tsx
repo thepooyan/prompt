@@ -13,6 +13,7 @@ import { Badge } from "@/components/ui/badge"
 import { X, Upload, Plus } from "lucide-react"
 import Link from "next/link"
 import { toast } from "sonner"
+import UploadBtn from "../parts/UploadBtn"
 
 export default function NewPromptPage() {
   const [formData, setFormData] = useState({
@@ -161,12 +162,7 @@ export default function NewPromptPage() {
                     placeholder="آدرس تصویر را وارد کنید"
                     className="text-right"
                   />
-                    <Button type="button" variant="outline" size="sm" asChild>
-                      <label htmlFor="file" className="cursor-pointer">
-                        <Upload className="h-4 w-4" />
-                      </label>
-                    </Button>
-                  <input type="file" className="hidden" id="file"/>
+                  <UploadBtn onUploaded={url => setFormData(prev => ({...prev, picture: url}))}/>
                 </div>
                 {formData.picture && (
                   <div className="mt-2">
