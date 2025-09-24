@@ -19,7 +19,9 @@ const Box = ({href, Icon, title, p}:p) => {
 
 const Hero = () => {
   return (
-      <section id="home" className="flex items-center justify-center py-10">
+      <section id="home" className="py-10 flex flex-col justify-center items-center">
+        <h1 className="text-5xl font-bold mb-5">تیتر اول</h1>
+        <p className="text-zinc-400 mb-10">توضیحات تیتر اول</p>
         <div className="container mx-auto grid grid-cols-1 gap-6 lg:grid-cols-3">
           <Box title="تیتر اول" p="تیتر اول توضیح هم دارد" Icon={Lamp} href="/" />
           <Box title="" p="" Icon={CpuIcon} href="/"/>
