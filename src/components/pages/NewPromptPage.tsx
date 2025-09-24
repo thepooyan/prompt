@@ -187,7 +187,7 @@ export default function NewPromptPage() {
                     {formData.isFree ? "این پرامپت رایگان است" : "این پرامپت پریمیوم است"}
                   </p>
                 </div>
-                <div className="flex items-center gap-2">
+                <div className="flex items-center gap-2 ltr">
                   <span className="text-sm">پریمیوم</span>
                   <Switch
                     checked={formData.isFree}
