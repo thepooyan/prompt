@@ -10,7 +10,7 @@ export async function uploadToS3(file: File) {
   const key = `${Date.now()}-${file.name}`
 
   await s3.send(new PutObjectCommand({
-    Bucket: "pooyan",
+    Bucket: process.env.BUCKET_NAME!,
     Key: key,
     Body: buffer,
     ContentType: file.type,
