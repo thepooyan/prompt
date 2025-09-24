@@ -10,15 +10,17 @@ import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
 import { Switch } from "@/components/ui/switch"
 import { Badge } from "@/components/ui/badge"
-import { X, Upload, Plus } from "lucide-react"
+import { X, Plus } from "lucide-react"
 import Link from "next/link"
 import { toast } from "sonner"
 import UploadBtn from "../parts/UploadBtn"
+import { uploadNewPrompt } from "@/server/actions"
 
 export default function NewPromptPage() {
   const [formData, setFormData] = useState({
     title: "",
     description: "",
+    slug: "",
     prompt: "",
     tags: "",
     picture: "",
@@ -46,7 +48,7 @@ export default function NewPromptPage() {
     setFormData((prev) => ({ ...prev, tags: newTags.join(",") }))
   }
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
 
     if (!formData.title || !formData.description || !formData.prompt) {
@@ -56,6 +58,9 @@ export default function NewPromptPage() {
 
     // Here you would typically send the data to your backend
     console.log("Creating prompt:", formData)
+    let result = await uploadNewPrompt(formData)
+    if (result.ok) {
+      toast.success("ثبت شد!")
 
     toast.success("پرامپت جدید با موفقیت ایجاد شد")
 
@@ -64,11 +69,15 @@ export default function NewPromptPage() {
       title: "",
       description: "",
       prompt: "",
+      slug: "",
       tags: "",
       picture: "",
       isFree: true,
     })
     setParsedTags([])
+    } else {
+      toast.error("خطا")
+    }
   }
 
   return (

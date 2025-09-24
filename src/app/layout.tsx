@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Vazirmatn } from "next/font/google";
 import "@/styles/global.css";
+import { Toaster } from "sonner";
 
 const vazirmatn = Vazirmatn({
   variable: "--font-vazirmatn",
@@ -23,6 +24,7 @@ export default function RootLayout({
         className={`${vazirmatn.variable} antialiased dark`}
       >
         {children}
+        <Toaster/>
       </body>
     </html>
   );
