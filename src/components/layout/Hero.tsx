@@ -9,7 +9,9 @@ const Hero = () => {
             <div>
               <h1 className="text-3xl font-extrabold">آکادمی پرامپت و اتوماسیون n8n</h1>
               <p className="mt-3 text-[#a0a0a0]">
-                مرجع تخصصی دانلود پرامپت‌های آماده و ورک‌فلوهای اتوماسیون. خلاقیت و کسب‌وکار خود را با ابزارهای حرفه‌ای هوش مصنوعی متحول کنید.
+              از آموزش‌های جامع ما برای تسلط بر مهندسی پرامپت و n8n استفاده کنید و با دانلود پرامپت‌ها و ورک‌فلوهای آماده، کسب‌وکار خود را متحول کنید.
+
+
               </p>
               <Link href="/prompts" target="_blank" className="mt-4 inline-block rounded-lg bg-primary px-5 py-3 font-bold">
                 ورود به کتابخانه پرامپت‌ها
@@ -39,7 +41,7 @@ const Hero = () => {
               className="flex flex-col items-center rounded-2xl border border-[#2a2a2a] bg-[#1e1e1e] p-6 transition hover:border-primary"
             >
               <SquareUser className="bi bi-person-square text-4xl text-primary" />
-              <h6 className="mt-4 font-bold">پرامپت پروفایل</h6>
+              <h6 className="mt-4 font-bold"> دانلود پرامپت پروفایل</h6>
             </Link>
             <Link href="/workflows" className="flex flex-col items-center rounded-2xl border border-[#2a2a2a] bg-[#1e1e1e] p-6 transition hover:border-primary">
               <Cpu className="bi bi-cpu text-4xl text-primary" />
