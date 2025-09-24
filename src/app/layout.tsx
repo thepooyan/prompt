@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Vazirmatn } from "next/font/google";
-import "./globals.css";
+import { Vazirmatn } from "next/font/google";
+import "@/styles/global.css";
 
 const vazirmatn = Vazirmatn({
   variable: "--font-vazirmatn",
@@ -21,7 +21,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${vazirmatn.variable} antialiased`}
+        className={`${vazirmatn.variable} antialiased dark`}
       >
         {children}
       </body>
