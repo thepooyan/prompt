@@ -11,7 +11,29 @@ const vazirmatn = Vazirmatn({
 export const metadata: Metadata = {
   title: "پرامپت بازار - مرجع پرامپت آماده و آموزش n8nپرامت بازار",
   description: "در پرامپت بازار، با آموزش‌های تخصصی ما برای پرامپت نویسی و n8n، به یک متخصص هوش مصنوعی تبدیل شوید و به بزرگترین کتابخانه پرامپت‌های آماده و ورک‌فلوها دسترسی پیدا کنید.",
-  keywords: "پرامپت, n8n, پرامپت چیست, آموزش n8n, پرامپت نویسی چیست, دانلود پرامپت, دانلود n8n"
+  keywords: "پرامپت, n8n, پرامپت چیست, آموزش n8n, پرامپت نویسی چیست, oانلود پرامپت, دانلود n8n",
+  openGraph: {
+    title: "پرامپت بازار - مرجع پرامپت آماده و آموزش n8n",
+    description: "در پرامپت بازار، با آموزش‌های تخصصی ما برای پرامپت نویسی و n8n، به یک متخصص هوش مصنوعی تبدیل شوید و به بزرگترین کتابخانه پرامپت‌های آماده و ورک‌فلوها دسترسی پیدا کنید.",
+  
+
+  },
+   robots: {
+    index: true,
+    follow: true,
+  },
+  structuredData: {
+    '@context': 'http://schema.org',
+    '@type': 'WebPage',
+    name: 'پرامپت بازار',
+    description: 'پرامپت بازار یک پلتفرم آنلاین است که بهترین پرامپت‌ها برای مدل‌های هوش مصنوعی را ارائه می‌دهد.',
+    url: 'https://promptbazar.ir',
+    publisher: {
+      '@type': 'Organization',
+      name: 'پرامپت بازار',
+      logo: 'https://yourwebsite.com/logo.png',
+    },
+  },
 };
 
 export default function RootLayout({
