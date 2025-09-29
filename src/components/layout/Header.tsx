@@ -11,7 +11,7 @@ const Header = () => {
             <Link href="/Guide" className="hover:text-primary flex items-center gap-1">
               راهنمای جامع <i className="bi bi-box-arrow-up-right text-sm" />
             </Link>
-            <Link href="/Blog" className="hover:text-primary">وبلاگ</Link>
+            <Link href="#" className="hover:text-primary">وبلاگ</Link>
             <Link href="/Library" className="hover:text-primary flex items-center gap-1">
               کتابخانه کامل <i className="bi bi-box-arrow-up-right text-sm" />
             </Link>
