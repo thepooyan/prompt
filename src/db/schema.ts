@@ -30,6 +30,7 @@ export const blogsTable = pgTable("blogs", {
   picture: varchar({ length: 255 }).notNull(),
   excerpt: text().notNull(),
   description: text().notNull(),
+  //to add: og {title, secs, image, url, site_name}, seo: {title, des}, canonical, schema, author: {name, image, id, socials}
 });
 
 export type Blog = InferSelectModel<typeof blogsTable>
