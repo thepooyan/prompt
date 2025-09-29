@@ -16,6 +16,7 @@ export const promptsTable = pgTable("prompts", {
   picture: varchar({ length: 255 }).notNull(),
   isFree: boolean().notNull().default(false),
   description: text().notNull(),
+  prompt: text().notNull(),
 });
 
 export type Prompt = InferSelectModel<typeof promptsTable>

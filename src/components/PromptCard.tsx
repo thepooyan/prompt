@@ -44,6 +44,7 @@ export function PromptCard({ prompt, className }: PromptCardProps) {
             <h3 className="text-lg font-semibold text-card-foreground line-clamp-2">{prompt.title}</h3>
 
             <p className="text-sm text-muted-foreground line-clamp-3 leading-relaxed">{prompt.description}</p>
+            <p className="bg-zinc-800 ltr p-4 rounded text-muted-foreground">{prompt.prompt}</p>
 
             {parsedTags.length > 0 && (
               <div className="flex flex-wrap gap-1">
