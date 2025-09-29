@@ -9,7 +9,7 @@ export async function uploadToS3(file: File) {
   const arrayBuffer = await file.arrayBuffer()
   const buffer = Buffer.from(arrayBuffer)
 
-  const key = `${Date.now()}-${file.name}`
+  const key = `/prompt/${Date.now()}-${file.name}`
 
   await s3.send(new PutObjectCommand({
     Bucket: process.env.BUCKET_NAME!,
