@@ -20,17 +20,14 @@ const Box = ({href, Icon, title, p}:p) => {
 const Hero = () => {
   return (
       <section id="home" className="py-10 flex flex-col justify-center items-center">
-        <h1 className="text-5xl font-bold mb-5">تیتر اول</h1>
-        <p className="text-zinc-400 mb-10">توضیحات تیتر اول</p>
-        <div className="container mx-auto grid grid-cols-1 gap-6 lg:grid-cols-3">
-           {/* متون بالای گریدها */}
-        <div className="mb-6">
-          <h1 className="text-4xl font-bold text-center mb-4">آکادمی پرامپت و اتوماسیون n8n
-          </h1>
-          <p className="text-center">از آموزش‌های جامع ما برای تسلط بر مهندسی پرامپت و n8n استفاده کنید و با دانلود پرامپت‌ها و ورک‌فلوهای آماده، کسب‌وکار خود را متحول کنید.
-
+          {/* متون بالای گریدها */}
+        <h1 className="text-5xl font-bold mb-10 my-20">
+          آکادمی پرامپت و اتوماسیون n8n
+        </h1>
+        <p className="text-zinc-500 mb-15">
+          از آموزش‌های جامع ما برای تسلط بر مهندسی پرامپت و n8n استفاده کنید و با دانلود پرامپت‌ها و ورک‌فلوهای آماده، کسب‌وکار خود را متحول کنید.
         </p>
-        </div>
+        <div className="container mx-auto grid grid-cols-1 gap-6 lg:grid-cols-3">
           <Box title="پرامپت و پرامپت نویسی چیست؟" p="یاد بگیرید که پرامپت نویسی چیست و چگونه می‌توانید از آن برای تولید نتایج دقیق و کارآمد در هوش مصنوعی استفاده کنید. مفاهیم پایه و کاربردهای پرامپت نویسی در این بخش توضیح داده می‌شود." Icon={Lamp} href="/" />
           <Box title="آموزش n8n" p="آموزش n8n به شما کمک می‌کند تا از این ابزار اتوماسیون قدرتمند برای خودکارسازی فرآیندها و تسهیل کارهای روزمره استفاده کنید. یاد بگیرید که چگونه با n8n کارهای پیچیده را ساده و اتوماتیک کنید." Icon={CpuIcon} href="/"/>
           <Box title="دانلود n8n" p="به راحتی نرم‌افزار n8n را دانلود کنید و از قابلیت‌های آن برای اتوماسیون فرآیندها در کسب‌وکار خود استفاده کنید. n8n به شما این امکان را می‌دهد که کارهای پیچیده را به سادگی انجام دهید." Icon={Download} href="/"/>
