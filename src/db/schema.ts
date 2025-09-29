@@ -21,3 +21,16 @@ export const promptsTable = pgTable("prompts", {
 
 export type Prompt = InferSelectModel<typeof promptsTable>
 export type NewPrompt = InferInsertModel<typeof promptsTable>
+
+export const blogsTable = pgTable("blogs", {
+  id: integer().primaryKey().generatedAlwaysAsIdentity(),
+  title: varchar({ length: 255 }).notNull(),
+  slug: varchar({ length: 255 }).notNull(),
+  tags: text().notNull(),
+  picture: varchar({ length: 255 }).notNull(),
+  excerpt: text().notNull(),
+  description: text().notNull(),
+});
+
+export type Blog = InferSelectModel<typeof blogsTable>
+export type NewBlog = InferInsertModel<typeof blogsTable>
