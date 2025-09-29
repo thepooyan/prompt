@@ -1,5 +1,7 @@
 "use client"
+import { blogs } from "@/data/temp";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "../ui/carousel";
+import BlogCard from "../parts/BlogCard";
 
 export default function LatestBlogs() {
   return (
@@ -17,97 +19,11 @@ export default function LatestBlogs() {
         <>
         <Carousel className="ltr">
           <CarouselContent>
-            <CarouselItem className="basis-1/3">
-              {/* پست 1 */}
-              <div className="bg-gray-800 rounded-2xl overflow-hidden shadow-lg">
-                <a href="#" className="block">
-                  <img
-                    src="https://placehold.co/600x400/1e1e1e/8A2BE2?text=Blog+Post+1"
-                    alt="اشتباهات پرامپت نویسی"
-                    className="w-full h-48 object-cover"
-                  />
-                  <div className="p-6">
-                    <h5 className="text-lg font-bold text-white mb-2">
-                      ۵ اشتباه وحشتناک در پرامپت نویسی که ممکنه کیفیت کار شما رو نابود کنه!
-                    </h5>
-                    <p className="text-gray-400">
-    مطمئناً نمی‌خواهید پرامپت نویسی اشتباهی انجام بدید که کارتون رو به فنا بده! توی این مقاله با ۵ اشتباه وحشتناک در پرامپت نویسی آشنا می‌شید که می‌تونند کیفیت خروجی مدل‌های هوش مصنوعی شما رو پایین بیارند. این اشتباهات رو برطرف کنید و یه گام به جلو بردارید!                </p>
-                  </div>
-                </a>
-              </div>
-            </CarouselItem>
-            <CarouselItem className="basis-1/3">
-              {/* پست 2 */}
-              <div className="bg-gray-800 rounded-2xl overflow-hidden shadow-lg">
-                <a href="#" className="block">
-                  <img
-                    src="https://placehold.co/600x400/1e1e1e/8A2BE2?text=Blog+Post+2"
-                    alt="ابزارهای هوش مصنوعی"
-                    className="w-full h-48 object-cover"
-                  />
-                  <div className="p-6">
-                    <h5 className="text-lg font-bold text-white mb-2">
-    ۶ ابزار هوش مصنوعی که اگر ازشون استفاده نکنید، عقب می‌افتید!                </h5>
-                    <p className="text-gray-400">
-    همه چیز به ابزارهای هوش مصنوعی بستگی داره! این مقاله ۶ ابزار هوش مصنوعی رو به شما معرفی می‌کنه که اگر استفاده نکنید، از بقیه عقب می‌افتید! این ابزارها می‌تونند تولید محتوای شما رو به یه سطح دیگه ببرند و شما رو یک سر و گردن از رقبا بالاتر بذارند.                </p>
-                  </div>
-                </a>
-              </div>
-            </CarouselItem>
-            <CarouselItem className="basis-1/3">
-              {/* پست 3 */}
-              <div className="bg-gray-800 rounded-2xl overflow-hidden shadow-lg">
-                <a href="#" className="block">
-                  <img
-                    src="https://placehold.co/600x400/1e1e1e/8A2BE2?text=Blog+Post+3"
-                    alt="پرامپت نویسی برای لوگو"
-                    className="w-full h-48 object-cover"
-                  />
-                  <div className="p-6">
-                    <h5 className="text-lg font-bold text-white mb-2">
-    چطور با پرامپت نویسی، یک لوگو حرفه‌ای برای کسب‌وکارتون طراحی کنید؟                </h5>
-                    <p className="text-gray-400">
-    همه می‌خوان لوگوهای حرفه‌ای و خلاقانه برای برندشون بسازن، اما آیا شما می‌دونید چطور با پرامپت نویسی می‌تونید یک لوگو به سبک هوش مصنوعی طراحی کنید؟ در این مقاله، راهکارهایی معرفی می‌کنیم که به شما کمک می‌کنن تا لوگوهایی بسازید که همه رو شگفت‌زده کنه.                </p>
-                  </div>
-                </a>
-              </div>
-            </CarouselItem>
-            <CarouselItem className="basis-1/3">
-              {/* پست 3 */}
-              <div className="bg-gray-800 rounded-2xl overflow-hidden shadow-lg">
-                <a href="#" className="block">
-                  <img
-                    src="https://placehold.co/600x400/1e1e1e/8A2BE2?text=Blog+Post+4"
-                    alt="پرامپت نویسی برای لوگو"
-                    className="w-full h-48 object-cover"
-                  />
-                  <div className="p-6">
-                    <h5 className="text-lg font-bold text-white mb-2">
-    چطور با پرامپت نویسی، یک لوگو حرفه‌ای برای کسب‌وکارتون طراحی کنید؟                </h5>
-                    <p className="text-gray-400">
-    همه می‌خوان لوگوهای حرفه‌ای و خلاقانه برای برندشون بسازن، اما آیا شما می‌دونید چطور با پرامپت نویسی می‌تونید یک لوگو به سبک هوش مصنوعی طراحی کنید؟ در این مقاله، راهکارهایی معرفی می‌کنیم که به شما کمک می‌کنن تا لوگوهایی بسازید که همه رو شگفت‌زده کنه.                </p>
-                  </div>
-                </a>
-              </div>
-            </CarouselItem>
-            <CarouselItem className="basis-1/3">
-              {/* پست 3 */}
-              <div className="bg-gray-800 rounded-2xl overflow-hidden shadow-lg">
-                <a href="#" className="block">
-                  <img
-                    src="https://placehold.co/600x400/1e1e1e/8A2BE2?text=Blog+Post+5"
-                    alt="پرامپت نویسی برای لوگو"
-                    className="w-full h-48 object-cover"
-                  />
-                  <div className="p-6">
-                    <h5 className="text-lg font-bold text-white mb-2">
-    چطور با پرامپت نویسی، یک لوگو حرفه‌ای برای کسب‌وکارتون طراحی کنید؟                </h5>
-                    <p className="text-gray-400">
-    همه می‌خوان لوگوهای حرفه‌ای و خلاقانه برای برندشون بسازن، اما آیا شما می‌دونید چطور با پرامپت نویسی می‌تونید یک لوگو به سبک هوش مصنوعی طراحی کنید؟ در این مقاله، راهکارهایی معرفی می‌کنیم که به شما کمک می‌کنن تا لوگوهایی بسازید که همه رو شگفت‌زده کنه.                </p>
-                  </div>
-                </a>
-              </div>
-            </CarouselItem>
+            {blogs.map(b => <>
+              <CarouselItem className="basis-1/3">
+                <BlogCard blog={b}/>
+              </CarouselItem>
+            </>)}
           </CarouselContent>
           <CarouselPrevious />
           <CarouselNext />
