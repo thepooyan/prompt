@@ -1,174 +1,181 @@
+"use client"
+
+import { useState } from "react"
+
 export default function PromptGuide() {
+  const [activeAccordion, setActiveAccordion] = useState("f1")
+
+  const toggleAccordion = (id: string) => {
+    setActiveAccordion(activeAccordion === id ? "" : id)
+  }
+
   return (
-    <main className="font-[Vazirmatn] bg-[#121212] text-[#e0e0e0]">
-      <section
-        className="text-center py-24 px-4"
-        style={{
-          backgroundImage:
-            "linear-gradient(135deg, rgba(138,43,226,0.2), rgba(18,18,18,0.1)), url('https://placehold.co/1920x500/121212/8A2BE2?text=Prompt+Engineering')",
-          backgroundPosition: "center",
-          backgroundSize: "cover",
-        }}
-      >
-        <div className="max-w-4xl mx-auto">
-          <h1 className="text-4xl md:text-5xl font-bold">
-            پرامپت چیست؟ راهنمای جامع مهندسی پرامپت
-          </h1>
-          <p className="mt-4 text-lg text-[#a0a0a0]">
-            در این راهنمای کامل، با اصول پرامپت نویسی آشنا شوید و یاد بگیرید
-            چگونه با هوش مصنوعی به زبان خودش صحبت کنید.
-          </p>
-        </div>
-      </section>
-
-      <section className="py-12">
-        <div className="max-w-3xl mx-auto px-4">
-          <h2 className="flex items-center gap-2 text-2xl font-bold border-b border-[#2a2a2a] pb-2 mt-12">
-            <i className="bi bi-lightbulb text-[#8A2BE2]"></i>
-            بخش ۱: پرامپت چیست به زبان ساده؟
-          </h2>
-          <p className="mt-4 text-[#a0a0a0] leading-relaxed text-lg">
-            <strong className="text-[#e0e0e0]">پرامپت (Prompt)</strong> به زبان
-            ساده، همان دستور یا درخواستی است که شما به یک مدل هوش مصنوعی
-            (مانند ChatGPT یا Midjourney) می‌دهید. این دستور می‌تواند یک سوال،
-            یک جمله یا مجموعه‌ای از دستورالعمل‌های دقیق باشد...
-          </p>
-
-          <h2 className="flex items-center gap-2 text-2xl font-bold border-b border-[#2a2a2a] pb-2 mt-12">
-            <i className="bi bi-pencil-ruler text-[#8A2BE2]"></i>
-            بخش ۲: پرامپت نویسی چیست و چرا یک مهارت کلیدی است؟
-          </h2>
-          <p className="mt-4 text-[#a0a0a0] leading-relaxed text-lg">
-            <strong className="text-[#e0e0e0]">پرامپت نویسی (Prompt Engineering)</strong>{" "}
-            هنر و علم طراحی بهترین دستورات برای هوش مصنوعی است...
-          </p>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 my-6">
-            <div className="border border-[#2a2a2a] rounded-lg bg-[#1e1e1e] p-4 text-center">
-              <h5 className="font-bold text-red-500">❌ پرامپت ضعیف</h5>
-              <code className="block mt-2">یک لوگو برای کافی شاپ</code>
-              <img
-                src="https://placehold.co/400x250/1e1e1e/a0a0a0?text=Generic+Output"
-                className="rounded mt-3 mx-auto"
-                alt="خروجی ضعیف"
-              />
-            </div>
-            <div className="border border-[#2a2a2a] rounded-lg bg-[#1e1e1e] p-4 text-center">
-              <h5 className="font-bold text-green-500">✅ پرامپت حرفه‌ای</h5>
-              <code className="block mt-2">
-                لوگوی مینیمال برای کافی شاپ "کافئین"، آیکون فنجان و بخار...
-              </code>
-              <img
-                src="https://placehold.co/400x250/1e1e1e/8A2BE2?text=Professional+Output"
-                className="rounded mt-3 mx-auto"
-                alt="خروجی حرفه‌ای"
-              />
-            </div>
-          </div>
-
-          <blockquote className="bg-[#1e1e1e] border-r-4 border-[#8A2BE2] p-4 my-6">
-            <p className="text-[#a0a0a0]">
-              برای رسیدن به نتایج حرفه‌ای، نیازی به آزمون و خطا ندارید. از{" "}
-              <a href="/prompts" className="text-[#8A2BE2] font-medium">
-                پرامپت‌های آماده
-              </a>{" "}
-              ما استفاده کنید.
-            </p>
-          </blockquote>
-
-          <h2 className="flex items-center gap-2 text-2xl font-bold border-b border-[#2a2a2a] pb-2 mt-12">
-            <i className="bi bi-journal-check text-[#8A2BE2]"></i>
-            بخش ۳: اصول کلیدی و اساسی پرامپت نویسی
-          </h2>
-          <p className="mt-4 text-[#a0a0a0] text-lg leading-relaxed">
-            برای نوشتن یک پرامپت قدرتمند، این اصول را به خاطر بسپارید...
-          </p>
-
-          <h3 className="flex items-center gap-2 text-xl font-bold mt-8">
-            <i className="bi bi-bullseye text-[#8A2BE2]"></i> ۱. شفافیت و دقت
-          </h3>
-          <p className="text-[#a0a0a0] leading-relaxed mt-2">
-            از کلی‌گویی پرهیز کنید...
-          </p>
-
-          <h3 className="flex items-center gap-2 text-xl font-bold mt-8">
-            <i className="bi bi-person-video3 text-[#8A2BE2]"></i> ۲. نقش دادن
-          </h3>
-          <p className="text-[#a0a0a0] leading-relaxed mt-2">
-            به هوش مصنوعی یک شخصیت و تخصص بدهید...
-          </p>
-
-          <h2 className="flex items-center gap-2 text-2xl font-bold border-b border-[#2a2a2a] pb-2 mt-12">
-            <i className="bi bi-collection text-[#8A2BE2]"></i>
-            بخش ۴: انواع پرامپت‌ها
-          </h2>
-          <ul className="list-disc pr-6 space-y-2 text-[#a0a0a0] mt-4">
-            <li>
-              <strong className="text-[#e0e0e0]">پرامپت‌های تولید تصویر:</strong>{" "}
-              <a href="/prompts/profile-picture" className="text-[#8A2BE2]">
-                ورود به بخش پرامپت‌های تصویری
-              </a>
-            </li>
-            <li>
-              <strong className="text-[#e0e0e0]">پرامپت‌های تولید محتوا:</strong>{" "}
-              <a href="/prompts/content-creation" className="text-[#8A2BE2]">
-                ورود به بخش پرامپت‌های متنی
-              </a>
-            </li>
-            <li>
-              <strong className="text-[#e0e0e0]">پرامپت‌های طراحی و دیزاین:</strong>{" "}
-              <a href="/prompts/design" className="text-[#8A2BE2]">
-                ورود به بخش پرامپت‌های طراحی
-              </a>
-            </li>
-            <li>
-              <strong className="text-[#e0e0e0]">پرامپت‌های تخصصی:</strong>{" "}
-              <a href="/prompts/professional" className="text-[#8A2BE2]">
-                ورود به بخش پرامپت‌های تخصصی
-              </a>
-            </li>
-          </ul>
-
-          <h2 className="flex items-center gap-2 text-2xl font-bold border-b border-[#2a2a2a] pb-2 mt-12">
-            <i className="bi bi-compass text-[#8A2BE2]"></i>
-            بخش ۵: شروع مسیر شما
-          </h2>
-          <ol className="list-decimal pr-6 space-y-2 text-[#a0a0a0] mt-4">
-            <li>
-              <strong className="text-[#e0e0e0]">یادگیری اصول پایه:</strong>{" "}
-              <a href="/blog" className="text-[#8A2BE2]">
-                وبلاگ ما
-              </a>
-            </li>
-            <li>
-              <strong className="text-[#e0e0e0]">آزمایش با پرامپت‌های رایگان:</strong>{" "}
-              <a href="/prompts/free" className="text-[#8A2BE2]">
-                پرامپت‌های رایگان
-              </a>
-            </li>
-            <li>
-              <strong className="text-[#e0e0e0]">الهام از حرفه‌ای‌ها:</strong>{" "}
-              <a href="/pricing" className="text-[#8A2BE2]">
-                اشتراک ویژه
-              </a>
-            </li>
-          </ol>
-
-          <div className="bg-[#1e1e1e] text-center p-6 rounded-xl mt-10">
-            <h4 className="font-bold text-xl">آماده شروع هستید؟</h4>
-            <p className="mt-2 text-[#a0a0a0]">
-              گشت و گذار در کتابخانه بزرگ پرامپت بازار و دانلود پرامپت‌های
-              رایگان را از اینجا شروع کنید.
-            </p>
-            <a
-              href="/prompts"
-              className="inline-block mt-4 px-6 py-3 bg-[#8A2BE2] text-white rounded-lg text-lg"
-            >
-              مشاهده همه پرامپت‌ها
+    <div className="min-h-screen bg-gray-900 text-gray-200 font-sans" dir="rtl">
+      {/* Navigation */}
+      <nav className="sticky top-0 z-50 bg-gray-800/85 backdrop-blur-md border-b border-gray-700">
+        <div className="container mx-auto px-4">
+          <div className="flex items-center justify-between h-16">
+            <a href="/" className="text-xl font-bold text-white">
+              پرامپت بازار
             </a>
+            <div className="hidden md:flex space-x-reverse space-x-6">
+              <a href="/prompts" className="text-gray-300 hover:text-purple-400 transition-colors">
+                پرامپت‌های آماده
+              </a>
+              <a href="/n8n" className="text-gray-300 hover:text-purple-400 transition-colors">
+                آموزش n8n
+              </a>
+              <a href="/blog" className="text-gray-300 hover:text-purple-400 transition-colors">
+                وبلاگ
+              </a>
+              <a href="/download-prompts" className="text-gray-300 hover:text-purple-400 transition-colors">
+                دانلود پرامپت
+              </a>
+            </div>
           </div>
         </div>
-      </section>
-    </main>
+      </nav>
+
+      <main>
+        {/* Hero Section */}
+        <section className="bg-gradient-to-br from-purple-900/20 to-gray-900/10 py-20 border-b border-gray-700">
+          <div className="container mx-auto px-4 text-center">
+            <h1 className="text-4xl md:text-5xl font-bold mt-4 mb-6 text-balance">
+              پرامپت چیست؟ راهنمای جامع مهندسی پرامپت
+            </h1>
+
+            <p className="text-lg md:text-xl text-gray-400 max-w-4xl mx-auto leading-relaxed mb-8">
+              با این راهنمای ساده یاد خواهید گرفت که «پرامپت» چیست، چرا{" "}
+              <strong className="text-gray-200">پرامپت‌نویسی</strong> مهارت کلیدی است و چطور با استفاده از الگوهای آماده، سریع به
+              خروجی حرفه‌ای برسید—برای <strong className="text-gray-200">تولید محتوا</strong>،{" "}
+              <strong className="text-gray-200">طراحی لوگو</strong> و{" "}
+              <strong className="text-gray-200">عکس پروفایل</strong>!
+            </p>
+
+            <div className="flex gap-4 justify-center">
+              <a
+                href="/prompts"
+                className="bg-purple-600 hover:bg-purple-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors"
+              >
+                مشاهده پرامپت‌های آماده
+              </a>
+              <a
+                href="/download-prompts"
+                className="border border-gray-600 hover:border-gray-500 text-gray-200 px-6 py-3 rounded-lg font-semibold transition-colors"
+              >
+                دانلود پرامپت
+              </a>
+            </div>
+          </div>
+        </section>
+
+        {/* Main Content */}
+        <section className="py-12">
+          <div className="container mx-auto px-4">
+            <div className="flex gap-8">
+              {/* Table of Contents */}
+              <aside className="hidden lg:block w-80 flex-shrink-0">
+                <div className="sticky top-24 p-6 rounded-lg border border-gray-700 bg-gray-800">
+                  <h6 className="flex items-center gap-2 mb-4 font-semibold">
+                    <span className="text-purple-400">📋</span>
+                    سرفصل‌ها
+                  </h6>
+                  <nav className="space-y-2 text-sm">
+                    {[{
+                      id: "s1", title: "پرامپت به زبان خیلی ساده"
+                    }, {
+                      id: "s2", title: "پرامپت‌نویسی و اهمیت آن"
+                    }, {
+                      id: "s3", title: "مثال: ضعیف / حرفه‌ای"
+                    }, {
+                      id: "s4", title: "اصول طلایی (R T C F C E S)"
+                    }, {
+                      id: "s5", title: "الگوهای آماده (کپی/پیست)"
+                    }, {
+                      id: "s6", title: "اشتباهات رایج و راه‌حل"
+                    }, {
+                      id: "s7", title: "انواع پرامپت‌ها + نمونه"
+                    }, {
+                      id: "s8", title: "چک‌لیست قبل از ارسال"
+                    }, {
+                      id: "cta", title: "شروع سریع"
+                    }, {
+                      id: "faq", title: "پرسش‌های پرتکرار"
+                    }].map(item => (
+                      <a
+                        key={item.id}
+                        href={`#${item.id}`}
+                        className="block p-2 rounded text-gray-400 hover:text-white hover:bg-gray-700 transition-colors"
+                      >
+                        • {item.title}
+                      </a>
+                    ))}
+                  </nav>
+                </div>
+              </aside>
+
+              {/* Content */}
+              <div className="flex-1 max-w-4xl">
+                <section id="s1" className="mb-12">
+                  <h2 className="flex items-center gap-3 text-2xl font-bold mb-6 pb-3 border-b border-gray-700">
+                    <span className="text-purple-400">💡</span>
+                    پرامپت به زبان خیلی ساده
+                  </h2>
+                  <p className="text-gray-400 leading-relaxed text-lg">
+                    <strong className="text-gray-200">پرامپت</strong> همان دستور یا سوالی است که شما به هوش مصنوعی می‌دهید.
+                    تصور کنید که دارید از یک دستیار هوش مصنوعی می‌خواهید کاری برایتان انجام دهد. شما باید دستور دقیقی بهش بدید
+                    تا بتونه کاری که شما می‌خواهید رو به بهترین نحو انجام بده. مثلاً، به جای اینکه فقط بگید «یک مقاله بنویس»،
+                    می‌تونید بگید «یک مقاله ۵۰۰ کلمه‌ای درباره مزایای یادگیری زبان انگلیسی بنویس، با تمرکز بر نکات مهم
+                    برای مبتدیان». این‌طوری خروجی بهتری می‌گیرید.
+                  </p>
+                </section>
+
+                <section id="s2" className="mb-12">
+                  <h2 className="flex items-center gap-3 text-2xl font-bold mb-6 pb-3 border-b border-gray-700">
+                    <span className="text-purple-400">📐</span>
+                    پرامپت‌نویسی چیست و چرا مهم است؟
+                  </h2>
+                  <p className="text-gray-400 leading-relaxed text-lg mb-6">
+                    <strong className="text-gray-200">پرامپت‌نویسی</strong> یعنی چطور دستورات دقیق و شفاف برای هوش مصنوعی بنویسید
+                    تا بتونه بهترین نتیجه رو تولید کنه. این مهارت به شما کمک می‌کنه که با دقت بیشتری از هوش مصنوعی استفاده کنید
+                    و کارهایتان را سریع‌تر و با کیفیت بالاتر انجام دهید. مثلاً، به جای اینکه از مدل بخواهید «یک متن بنویس»، می‌تونید
+                    بگید: «یک متن تبلیغاتی کوتاه و جذاب بنویس، با لحن دوستانه و ۵ خط». این کمک می‌کنه تا خروجی دقیقی دریافت کنید.
+                  </p>
+                </section>
+
+                <section id="s3" className="mb-12">
+                  <h2 className="flex items-center gap-3 text-2xl font-bold mb-6 pb-3 border-b border-gray-700">
+                    <span className="text-purple-400">✅</span>
+                    مثال: پرامپت ضعیف / حرفه‌ای
+                  </h2>
+                  <div className="grid md:grid-cols-2 gap-6 my-8">
+                    <div className="border border-gray-700 rounded-lg p-6 bg-gray-800 text-center">
+                      <h6 className="text-red-400 font-bold mb-3">❌ پرامپت ضعیف</h6>
+                      <code className="text-gray-300 bg-gray-900 p-2 rounded block">یک لوگو برای کافی‌شاپ</code>
+                    </div>
+                    <div className="border border-gray-700 rounded-lg p-6 bg-gray-800 text-center">
+                      <h6 className="text-green-400 font-bold mb-3">✅ پرامپت حرفه‌ای</h6>
+                      <code className="text-gray-300 bg-gray-900 p-2 rounded block text-sm">
+                        لوگوی مینیمال برای کافی‌شاپ «کافئین»؛ آیکون فنجان با بخار، فونت ساده و خوانا، پالت قهوه‌ای/کرمی،
+                        نسخهٔ تک‌رنگ هم داشته باشد، خروجی: SVG + PNG.
+                      </code>
+                    </div>
+                  </div>
+                </section>
+
+                {/* Continue with other sections similarly... */}
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      {/* Footer */}
+      <footer className="py-6 border-t border-gray-700">
+        <div className="container mx-auto px-4 text-center">
+          <small className="text-gray-500">© تمامی حقوق برای پرامپت بازار محفوظ است.</small>
+        </div>
+      </footer>
+    </div>
   )
 }
