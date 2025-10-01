@@ -1,9 +1,12 @@
 "use client"
-import { blogs } from "@/data/temp";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "../ui/carousel";
 import BlogCard from "../parts/BlogCard";
+import { Blog } from "@/db/schema";
 
-export default function LatestBlogs() {
+interface p {
+  blogs: Blog[]
+}
+export default function LatestBlogs({blogs}:p) {
   return (
     <section id="blog" className="py-16 bg-zinc-900">
       <div className="container mx-auto px-6">
