@@ -1,8 +1,16 @@
+import BlogCard from "@/components/parts/BlogCard";
+import { db } from "@/db";
+import { blogsTable } from "@/db/schema";
 import { Metadata } from "next";
 
-const page = () => {
+const page = async () => {
+
+  let posts = await db.select().from(blogsTable)
+
   return (
-    <div>blog</div>
+    <div className="grid grid-cols-3 gap-10 max-w-7xl m-auto py-20 ">
+      {posts.map(p => <BlogCard blog={p} key={p.id}/>)}
+    </div>
   )
 }
 export const metadata: Metadata = {
