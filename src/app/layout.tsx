@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Vazirmatn } from "next/font/google";
 import "@/styles/global.css";
 import { Toaster } from "sonner";
+import { GoogleTagManager } from '@next/third-parties/google';
 
 const vazirmatn = Vazirmatn({
   variable: "--font-vazirmatn",
@@ -47,6 +48,7 @@ export default function RootLayout({
         className={`${vazirmatn.variable} antialiased dark`}
       >
         {children}
+        <GoogleTagManager gtmId={process.env.NEXT_PUBLIC_GTM_ID!}/>
         <Toaster/>
       </body>
     </html>
