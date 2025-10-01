@@ -7,6 +7,7 @@ interface p {
   blogs: Blog[]
 }
 export default function LatestBlogs({blogs}:p) {
+  console.log(blogs)
   return (
     <section id="blog" className="py-16 bg-zinc-900">
       <div className="container mx-auto px-6">
@@ -23,7 +24,7 @@ export default function LatestBlogs({blogs}:p) {
         <Carousel className="ltr">
           <CarouselContent>
             {blogs.map(b => <>
-              <CarouselItem className="basis-1/3">
+              <CarouselItem className="basis-1/3" key={b.id}>
                 <BlogCard blog={b}/>
               </CarouselItem>
             </>)}

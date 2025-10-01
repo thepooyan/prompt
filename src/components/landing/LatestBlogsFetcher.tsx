@@ -4,7 +4,7 @@ import "server-only"
 import LatestBlogs from "./LatestBlogs"
 
 const LatestBlogsFetcher = async () => {
-    let data = await db.select().from(blogsTable)
+    let data = await db.select().from(blogsTable).limit(5)
   return (
     <LatestBlogs blogs={data}/>
   )
