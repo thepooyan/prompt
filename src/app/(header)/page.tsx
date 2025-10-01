@@ -2,7 +2,7 @@
 import Benefits from "@/components/landing/Benefits"
 import FAQSection from "@/components/landing/FaqSection"
 import Latest from "@/components/landing/Latest"
-import LatestBlogs from "@/components/landing/LatestBlogs"
+import LatestBlogsFetcher from "@/components/landing/LatestBlogsFetcher"
 import Hero from "@/components/layout/Hero"
 
 export default function Home() {
@@ -11,7 +11,7 @@ export default function Home() {
       <Hero/>
       <Benefits/>
       <Latest/>
-      <LatestBlogs/>
+      <LatestBlogsFetcher/>
       <FAQSection/>
     </>
   )

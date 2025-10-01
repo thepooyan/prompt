@@ -1,26 +1,53 @@
-import { Blog } from "@/db/schema"
+import Image from "next/image"
+import Link from "next/link"
+import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card"
 
-interface p {
-    blog: Blog
+type Blog = {
+  id: number
+  title: string
+  slug: string
+  tags: string
+  picture: string
+  excerpt: string
+  description: string
+  canonical: string | null
 }
-const BlogCard = ({blog}:p) => {
+
+interface BlogCardProps {
+  blog: Blog
+}
+
+export default function BlogCard({ blog }: BlogCardProps) {
+  const tags = blog.tags.split(",").map((tag) => tag.trim())
+
   return (
-    <a className="bg-gray-800 rounded-2xl overflow-hidden shadow-lg rtl block h-90 rtl" href="#">
-        <img
-            src={blog.picture}
-            alt={blog.title}
-            className="w-full h-48 object-cover"
-        />
-        <div className="p-6">
-            <h5 className="text-lg font-bold text-white mb-2">
-                {blog.title}
-            </h5>
-            <p className="text-gray-400">
-                {blog.excerpt}
-            </p>
-        </div>
-    </a>
+    <Link href={`/blog/${blog.slug}`} className="block group rtl">
+      <Card className="overflow-hidden h-full transition-all duration-300 hover:shadow-lg hover:bg-secondary/50">
+        <CardHeader className="p-0">
+          <div className="relative w-full aspect-video overflow-hidden">
+            <img
+              src={blog.picture || "/placeholder.svg"}
+              alt={blog.title}
+              className="object-cover transition-transform duration-300 group-hover:scale-105"
+            />
+          </div>
+        </CardHeader>
+        <CardContent className="p-6">
+          <h3 className="  text-2xl font-bold text-card-foreground mb-3 line-clamp-2 text-balance">
+            {blog.title}
+          </h3>
+          <p className="text-muted-foreground leading-relaxed line-clamp-3">{blog.excerpt}</p>
+        </CardContent>
+        <CardFooter className="px-6 pb-6 pt-0">
+          <div className="flex flex-wrap gap-2">
+            {tags.map((tag, index) => (
+              <span key={index} className="px-3 py-1 text-sm font-medium bg-accent text-accent-foreground rounded-full">
+                {tag}
+              </span>
+            ))}
+          </div>
+        </CardFooter>
+      </Card>
+    </Link>
   )
 }
-
-export default BlogCard

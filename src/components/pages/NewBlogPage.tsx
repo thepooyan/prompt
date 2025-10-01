@@ -13,17 +13,20 @@ import { X, Plus } from "lucide-react"
 import Link from "next/link"
 import { toast } from "sonner"
 import UploadBtn from "../parts/UploadBtn"
-import { uploadNewPrompt } from "@/server/actions"
+import { uploadNewBlog, uploadNewPrompt } from "@/server/actions"
+import { NewBlog } from "@/db/schema"
 
 export default function NewBlogPage() {
-  const [formData, setFormData] = useState({
+  const empty = {
+    slug: "",
     title: "",
     description: "",
-    slug: "",
-    prompt: "",
     tags: "",
     picture: "",
-  })
+    excerpt: "",
+    canonical: null
+  }
+  const [formData, setFormData] = useState<NewBlog>({...empty})
   const [tagInput, setTagInput] = useState("")
   const [parsedTags, setParsedTags] = useState<string[]>([])
 
@@ -49,28 +52,21 @@ export default function NewBlogPage() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
 
-    if (!formData.title || !formData.description || !formData.prompt) {
+    if (!formData.title || !formData.description ) {
       toast.error("لطفاً تمام فیلدهای اجباری را پر کنید")
       return
     }
 
     // Here you would typically send the data to your backend
     console.log("Creating prompt:", formData)
-    let result = await uploadNewPrompt(formData)
+    let result = await uploadNewBlog(formData)
     if (result.ok) {
       toast.success("ثبت شد!")
 
     toast.success("بلاگ جدید با موفقیت ایجاد شد")
 
     // Reset form
-    setFormData({
-      title: "",
-      description: "",
-      prompt: "",
-      slug: "",
-      tags: "",
-      picture: "",
-    })
+    setFormData({...empty})
     setParsedTags([])
     } else {
       toast.error("خطا")
@@ -115,18 +111,6 @@ export default function NewBlogPage() {
                   onChange={(e) => handleInputChange("description", e.target.value)}
                   placeholder="توضیح مختصری از بلاگ ارائه دهید"
                   className="text-right min-h-[100px]"
-                />
-              </div>
-
-              {/* Prompt Content */}
-              <div className="space-y-2">
-                <Label htmlFor="prompt">محتوای بلاگ *</Label>
-                <Textarea
-                  id="prompt"
-                  value={formData.prompt}
-                  onChange={(e) => handleInputChange("prompt", e.target.value)}
-                  placeholder="متن کامل بلاگ را وارد کنید"
-                  className="text-right min-h-[150px] font-mono"
                 />
               </div>
 
