@@ -21,7 +21,7 @@ export default function BlogCard({ blog }: BlogCardProps) {
   const tags = blog.tags.split(",").map((tag) => tag.trim())
 
   return (
-    <Link href={`/blog/${blog.slug}`} className="block group rtl">
+    <Link href={`/Blog/${blog.slug}`} className="block group rtl">
       <Card className="overflow-hidden h-full transition-all duration-300 hover:shadow-lg hover:bg-secondary/50">
         <CardHeader className="p-0">
           <div className="relative w-full aspect-video overflow-hidden">
