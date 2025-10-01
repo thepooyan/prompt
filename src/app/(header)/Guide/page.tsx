@@ -11,20 +11,7 @@ export default function PromptGuide() {
 
   return (
     <div className="min-h-screen bg-gray-900 text-gray-200 font-sans" dir="rtl">
-      {/* Navigation */}
-      <nav className="sticky top-0 z-50 bg-gray-800/85 backdrop-blur-md border-b border-gray-700">
-        <div className="container mx-auto px-4">
-          <div className="flex items-center justify-between h-16">
-            <a href="/" className="text-xl font-bold text-white">پرامپت بازار</a>
-            <div className="hidden md:flex space-x-reverse space-x-6">
-              <a href="/prompts" className="text-gray-300 hover:text-purple-400 transition-colors">پرامپت‌های آماده</a>
-              <a href="/download-prompts" className="text-gray-300 hover:text-purple-400 transition-colors">دانلود پرامپت</a>
-              <a href="/n8n" className="text-gray-300 hover:text-purple-400 transition-colors">آموزش n8n</a>
-              <a href="/blog" className="text-gray-300 hover:text-purple-400 transition-colors">وبلاگ</a>
-            </div>
-          </div>
-        </div>
-      </nav>
+   
 
       <main>
         {/* Hero */}
