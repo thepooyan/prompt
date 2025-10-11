@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import React from 'react'
+import LoginButton from './LoginButton'
 
 const Header = () => {
   return (
@@ -16,11 +17,7 @@ const Header = () => {
               کتابخانه کامل <i className="bi bi-box-arrow-up-right text-sm" />
             </Link>
           </nav>
-          <div className="flex items-center gap-3">
-            <Link href="#" className="hover:text-primary text-lg"><i className="bi bi-headset" /></Link>
-            <Link href="#" className="hover:text-primary text-lg"><i className="bi bi-cart3" /></Link>
-            <Link href="/Login" className="bg-primary px-4 py-2 rounded-lg font-medium">ثبت‌نام / ورود</Link>
-          </div>
+          <LoginButton/>
         </div>
       </header>
   )
