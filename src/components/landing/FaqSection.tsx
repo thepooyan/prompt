@@ -34,16 +34,16 @@ export default function FAQSection() {
 
         <div className="max-w-3xl mx-auto space-y-4">
           {faqs.map((faq, i) => (
-            <div key={i} className="border border-gray-700 rounded-xl overflow-hidden">
+            <div key={i} className="border border-zinc-700 rounded-xl overflow-hidden">
               <button
-                className="w-full text-right px-6 py-4 bg-gray-800 text-white font-medium flex justify-between items-center"
+                className="w-full text-right px-6 py-4 bg-zinc-800/40 cursor-pointer text-white font-medium flex justify-between items-center"
                 onClick={() => setOpenIndex(openIndex === i ? -1 : i)}
               >
                 {faq.question}
                 <span>{openIndex === i ? "−" : "+"}</span>
               </button>
               {openIndex === i && (
-                <div className="px-6 py-4 bg-gray-700 text-gray-300">
+                <div className="px-6 py-4 bg-zinc-700 text-gray-300">
                   {faq.answer}
                 </div>
               )}
