@@ -8,8 +8,8 @@ export const auth = betterAuth({
     }),
   socialProviders: {
     google: {
-      enabled: true,
-      clientId: ""
+      clientId: process.env.googleClientId!,
+      clientSecret: process.env.googleClientSecret!
     },
   }
 });
