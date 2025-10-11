@@ -3,7 +3,7 @@ import React from 'react'
 
 const Header = () => {
   return (
-      <header className="fixed top-0 w-full bg-[#1e1e1e]/85 backdrop-blur-md z-50">
+      <header className="fixed top-0 w-full bg-zinc-900/60 backdrop-blur-md z-50">
         <div className="container mx-auto flex items-center justify-between p-4">
           <Link href="/" className="font-bold text-xl">پرامپت بازار</Link>
           <nav className="hidden md:flex gap-6">

@@ -1,5 +1,4 @@
 // app/page.tsx
-import Benefits from "@/components/landing/Benefits"
 import FAQSection from "@/components/landing/FaqSection"
 import Latest from "@/components/landing/Latest"
 import LatestBlogsFetcher from "@/components/landing/LatestBlogsFetcher"
@@ -11,7 +10,6 @@ export default function Home() {
     <>
       <Hero/>
       <BentoGrid/>
-      <Benefits/>
       <Latest/>
       <LatestBlogsFetcher/>
       <FAQSection/>

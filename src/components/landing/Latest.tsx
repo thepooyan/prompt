@@ -4,10 +4,10 @@ import { PromptCard } from "../PromptCard"
 
 export default async function Latest() {
 
-  let posts = await db.select().from(promptsTable).limit(3)
+  const posts = await db.select().from(promptsTable).limit(3)
 
   return (
-    <section id="latest" className="py-16">
+    <section id="latest" className="py-16 bg-zinc-900">
       <div className="container mx-auto px-6">
         <div className="text-center mb-12">
           <h3 className="text-3xl font-bold text-white">جدیدترین پرامپت‌های آماده</h3>

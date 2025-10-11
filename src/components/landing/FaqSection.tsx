@@ -23,7 +23,7 @@ export default function FAQSection() {
   const [openIndex, setOpenIndex] = useState(0)
 
   return (
-    <section id="faq" className="py-16">
+    <section id="faq" className="py-16 bg-zinc-900">
       <div className="container mx-auto px-6">
         <div className="text-center mb-12">
           <h2 className="text-3xl font-bold text-white">سوالات پرتکرار</h2>
