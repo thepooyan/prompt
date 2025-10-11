@@ -1,103 +1,48 @@
-import type { LucideIcon } from "lucide-react"
-import { CpuIcon, Download, DownloadCloud, Edit, GraduationCap, Lamp } from "lucide-react"
-import Link from "next/link"
-
-interface BoxProps {
-  href: string
-  Icon: LucideIcon
-  title: string
-  p: string
-}
-
-const Box = ({ href, Icon, title, p }: BoxProps) => {
+export default function Hero() {
   return (
-    <Link
-      href={href}
-      className="group rounded-[20px] bg-gradient-to-b from-zinc-900 to-black p-6 shadow ring-1 ring-zinc-700 hover:-translate-y-0.5 hover:shadow-lg transition"
-      aria-label={title}
-    >
-      <div className="flex items-center gap-3">
-        <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-zinc-950 shadow ring-1 ring-zinc-700">
-          <Icon className="h-6 w-6 text-violet-400" aria-hidden="true" />
-        </span>
-        <div>
-          <h2 className="text-lg font-extrabold text-white">{title}</h2>
-        </div>
+    <section className="relative pt-32 pb-20 px-4 sm:px-6 lg:px-8 overflow-hidden bg-zinc-900">
+      {/* Background Effects */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-1/4 right-1/4 w-96 h-96 bg-[#8a2be2]/5 rounded-full blur-[120px] animate-pulse" />
+        <div className="absolute bottom-1/4 left-1/4 w-96 h-96 bg-[#6a1bb2]/5 rounded-full blur-[120px] animate-pulse delay-1000" />
       </div>
-      <p className="mt-3 text-sm leading-7 text-zinc-400">{p}</p>
-      <div className="mt-3 text-sm font-bold text-violet-400">مشاهده</div>
-    </Link>
-  )
-}
 
-const Hero = () => {
-  return (
-    <section id="home" dir="rtl" className="py-18 bg-zinc-950 text-white">
-      <div className="container mx-auto px-4 max-w-7xl">
-        <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
-          <a
-            href="/blog"
-            className="relative overflow-hidden rounded-[22px] bg-zinc-950 shadow-md ring-1 ring-zinc-800"
-          >
-            <img
-              src="https://images.unsplash.com/photo-1581090464777-f3220bbe1b8b?q=80&w=1600&auto=format&fit=crop"
-              alt="پوستر معرفی"
-              className="h-[420px] w-full object-cover transition group-hover:scale-[1.02]"
-            />
-          </a>
-
-          <div className="col-span-2 relative overflow-hidden rounded-[22px] bg-zinc-950 shadow-md ring-1 ring-zinc-800 p-8">
-            <div className="pointer-events-none absolute inset-0 -z-10 bg-gradient-to-br from-violet-950 via-zinc-900 to-black" />
-            <h1 className="text-3xl md:text-4xl font-extrabold mb-4 text-white">
-              آکادمی پرامپت و اتوماسیون n8n
-            </h1>
-            <p className="text-zinc-400 max-w-3xl">
-              از آموزش‌های جامع ما برای تسلط بر مهندسی پرامپت و n8n استفاده کنید و با دانلود پرامپت‌ها و ورک‌فلوهای آماده، کسب‌وکار خود را متحول کنید.
-            </p>
+      <div className="container mx-auto relative z-10">
+        <div className="max-w-4xl mx-auto text-center">
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-zinc-800/80 border border-zinc-700/50 mb-8 backdrop-blur-sm">
+            <span className="relative flex h-2 w-2">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#8a2be2] opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-[#8a2be2]"></span>
+            </span>
+            <span className="text-sm text-zinc-400">بازار پرامپت‌های هوش مصنوعی</span>
           </div>
-        </div>
 
-        <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          <Box
-            href="/what-is-prompt"
-            Icon={Lamp}
-            title="پرامپت و پرامپت نویسی چیست؟"
-            p="یاد بگیرید که پرامپت نویسی چیست و چگونه می‌توانید از آن برای تولید نتایج دقیق و کارآمد در هوش مصنوعی استفاده کنید. مفاهیم پایه و کاربردهای پرامپت نویسی در این بخش توضیح داده می‌شود."
-          />
-          <Box
-            href="/n8n"
-            Icon={CpuIcon}
-            title="آموزش n8n"
-            p="آموزش n8n به شما کمک می‌کند تا از این ابزار اتوماسیون قدرتمند برای خودکارسازی فرآیندها و تسهیل کارهای روزمره استفاده کنید. یاد بگیرید که چگونه با n8n کارهای پیچیده را ساده و اتوماتیک کنید."
-          />
-          <Box
-            href="/download-n8n"
-            Icon={Download}
-            title="دانلود n8n"
-            p="به راحتی نرم‌افزار n8n را دانلود کنید و از قابلیت‌های آن برای اتوماسیون فرآیندها در کسب‌وکار خود استفاده کنید. n8n به شما این امکان را می‌دهد که کارهای پیچیده را به سادگی انجام دهید."
-          />
-          <Box
-            href="/download-prompts"
-            Icon={DownloadCloud}
-            title="دانلود پرامپت"
-            p="دانلود پرامپت‌های آماده برای استفاده سریع و راحت در پروژه‌های هوش مصنوعی. به راحتی پرامپت‌های هوش مصنوعی را از سایت ما دریافت کنید و در پروژه‌های خود به کار ببرید."
-          />
-          <Box
-            href="/courses"
-            Icon={GraduationCap}
-            title="دوره پرامپت و n8n"
-            p="دوره‌های آموزشی پرامپت نویسی و n8n به شما کمک می‌کند تا به متخصص در این حوزه‌ها تبدیل شوید. این دوره‌ها شامل آموزش گام به گام و پروژه‌های عملی است تا مهارت‌های خود را تقویت کنید."
-          />
-          <Box
-            href="/blog"
-            Icon={Edit}
-            title="وبلاگ پرامپت بازار"
-            p="در وبلاگ پرامپت بازار مقالات آموزشی و اخبار مرتبط با پرامپت‌ها، n8n و هوش مصنوعی را پیدا کنید. از جدیدترین مطالب و منابع آموزشی ما بهره‌مند شوید."
-          />
+          <h2 className="text-5xl sm:text-6xl lg:text-7xl font-bold mb-6 leading-tight text-balance">
+            <span className="text-zinc-100">دنیای</span>{" "}
+            <span className="bg-gradient-to-l from-[#8a2be2] to-[#b47eff] bg-clip-text text-transparent">
+              پرامپت‌های
+            </span>
+            <br />
+            <span className="text-zinc-100">حرفه‌ای را کشف کنید</span>
+          </h2>
+
+          <p className="text-lg sm:text-xl text-zinc-400 mb-12 max-w-2xl mx-auto leading-relaxed text-pretty">
+            با بهترین مجموعه پرامپت‌های هوش مصنوعی، کار خود را سریع‌تر و حرفه‌ای‌تر انجام دهید. از تولید محتوا تا طراحی و
+            برنامه‌نویسی.
+          </p>
+
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <button className="group relative px-8 py-4 bg-gradient-to-l from-[#8a2be2] to-[#6a1bb2] text-white rounded-xl font-medium transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-[#8a2be2]/20">
+              <span className="relative z-10">شروع کنید</span>
+              <div className="absolute inset-0 rounded-xl bg-gradient-to-l from-[#9a3bf2] to-[#7a2bc2] opacity-0 group-hover:opacity-100 transition-opacity" />
+            </button>
+            <button className="px-8 py-4 bg-zinc-800/80 backdrop-blur-sm text-zinc-100 rounded-xl font-medium border border-zinc-700/50 hover:border-zinc-600 transition-all duration-300 hover:bg-zinc-800">
+              مشاهده نمونه‌ها
+            </button>
+          </div>
         </div>
       </div>
     </section>
   )
 }
 
-export default Hero
