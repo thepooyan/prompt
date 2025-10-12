@@ -27,7 +27,7 @@ const LoginButton = () => {
       {user !== null ? 
         `welcome! ${user.email}`
         :
-        <Link href="/Login" className="bg-primary px-4 py-2 rounded-lg font-medium">ثبت‌نام / ورود</Link>
+        <Link href="/#" className="bg-primary px-4 py-2 rounded-lg font-medium">ثبت‌نام / ورود</Link>
       }
     </div>
   )
