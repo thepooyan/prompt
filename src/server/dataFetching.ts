@@ -9,14 +9,14 @@ enum cacheTags {
     singleBlog
 }
 
-export const cacheTag = (tag: cacheTags) => {
-    return unstable_cacheTag(tag.toString())
+export const cacheTag = async (tag: cacheTags) => {
+    return await unstable_cacheTag(tag.toString())
 }
 
 type arg = (tags: typeof cacheTags) => cacheTags
-export const revalidateTag = (arg: arg) => {
+export const revalidateTag = async (arg: arg) => {
     let a = arg(cacheTags)
-    return r(a.toString())
+    return await r(a.toString(), )
 }
 
 export const fetchBlogs = async () => {
