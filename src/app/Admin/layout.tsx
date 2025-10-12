@@ -37,7 +37,7 @@ export default function AdminLayout({children}:{children: ReactNode}) {
           <nav className="p-4">
             <div className="space-y-1">
               <Link
-                href="BlogManagment"
+                href="/Admin/BlogManagment"
                 // activeclassName="!bg-primary text-primary-foreground"
                 
                 className={`flex w-full items-center gap-3 rounded-lg px-4 py-3 text-sm font-medium transition-colors text-muted-foreground hover:bg-accent hover:text-accent-foreground`}>
@@ -45,7 +45,7 @@ export default function AdminLayout({children}:{children: ReactNode}) {
                 وبلاگ
               </Link>
               <Link
-                href="BlogManagment"
+                href="/Admin/PromptManagment"
                 // activeclassName="!bg-primary text-primary-foreground"
                 
                 className={`flex w-full items-center gap-3 rounded-lg px-4 py-3 text-sm font-medium transition-colors text-muted-foreground hover:bg-accent hover:text-accent-foreground`}>
