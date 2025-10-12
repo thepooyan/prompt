@@ -2,7 +2,7 @@ import { notFound } from "next/navigation"
 import { Prompt, promptsTable } from "@/db/schema"
 import { db } from "@/db"
 import { eq } from "drizzle-orm"
-import PromptPageClient from "@/components/pages/PromptPage"
+import PromptPageClient from "@/components/pages/PromptPageClient"
 
 async function getPrompt(slug: string): Promise<Prompt | undefined> {
   // Replace with your actual data fetching logic

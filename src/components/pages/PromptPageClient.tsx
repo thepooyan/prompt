@@ -64,35 +64,35 @@ export default function PromptPageClient({ prompt }:p ) {
         {/* Prompt Display */}
         <div className="rounded-lg border bg-card">
           <div className="flex items-center justify-between border-b px-6 py-4">
-            <h2 className="text-xl font-semibold">Prompt</h2>
+            <h2 className="text-xl font-semibold">پرامپت</h2>
             <CopyButton text={prompt.prompt} />
           </div>
           <div className="p-6">
-            <pre className="whitespace-pre-wrap font-mono text-sm leading-relaxed">{prompt.prompt}</pre>
+            <pre className="ltr whitespace-pre-wrap font-mono text-sm leading-relaxed">{prompt.prompt}</pre>
           </div>
         </div>
 
         {/* Usage Tips */}
         <div className="mt-12 rounded-lg border bg-muted/50 p-6">
-          <h3 className="mb-3 text-lg font-semibold">How to Use</h3>
-          <ul className="space-y-2 text-sm leading-relaxed text-muted-foreground">
-            <li className="flex gap-2">
-              <span className="text-primary">•</span>
-              <span>Copy the prompt using the button above and paste it into your AI assistant</span>
-            </li>
-            <li className="flex gap-2">
-              <span className="text-primary">•</span>
-              <span>Fill in the bracketed sections with your specific information</span>
-            </li>
-            <li className="flex gap-2">
-              <span className="text-primary">•</span>
-              <span>Adjust the tone and parameters to match your needs</span>
-            </li>
-            <li className="flex gap-2">
-              <span className="text-primary">•</span>
-              <span>Experiment with different variations to get the best results</span>
-            </li>
-          </ul>
+        <h3 className="mb-3 text-lg font-semibold">نحوه استفاده</h3>
+        <ul className="space-y-2 text-sm leading-relaxed text-muted-foreground">
+          <li className="flex gap-2">
+            <span className="text-primary">•</span>
+            <span>پرامپت را با دکمه بالا کپی کرده و در دستیار هوش مصنوعی خود پیست کنید </span>
+          </li>
+          <li className="flex gap-2">
+            <span className="text-primary">•</span>
+            <span>بخش‌های داخل براکت را با اطلاعات مخصوص خودتان پر کنید</span>
+          </li>
+          <li className="flex gap-2">
+            <span className="text-primary">•</span>
+            <span>لحن و پارامترها را متناسب با نیاز خود تنظیم کنید</span>
+          </li>
+          <li className="flex gap-2">
+            <span className="text-primary">•</span>
+            <span>با نسخه‌های مختلف آزمایش کنید تا بهترین نتیجه را بگیرید</span>
+          </li>
+        </ul>
         </div>
       </div>
     </article>
@@ -109,16 +109,16 @@ function CopyButton({ text }: { text: string }) {
   }
 
   return (
-    <Button onClick={handleCopy} variant="outline" size="sm" className="gap-2 bg-transparent">
+    <Button onClick={handleCopy} variant="outline" size="sm" className="gap-2 bg-transparent cursor-pointer">
       {copied ? (
         <>
           <Check className="h-4 w-4" />
-          Copied!
+          کپی شد!
         </>
       ) : (
         <>
           <Copy className="h-4 w-4" />
-          Copy Prompt
+          کپی پرامپت
         </>
       )}
     </Button>
