@@ -7,7 +7,7 @@ import { eq } from "drizzle-orm"
 // import Image from "next/image"
 
 async function getBlogPost(slug: string): Promise<Blog | null> {
-  const [blog] = await db.select().from(blogsTable).where(eq(blogsTable.slug, decodeURIComponent(slug)))
+  const [blog] = await db.select().from(blogsTable).where(eq(blogsTable.slug, decodeURIComponent(slug))).limit(1)
   return blog
 }
 

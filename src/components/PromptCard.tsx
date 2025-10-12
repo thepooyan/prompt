@@ -2,10 +2,11 @@
 import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
-import { Copy, Share2, Heart } from "lucide-react"
+import { Copy, Share2, Heart, ArrowLeft } from "lucide-react"
 import { cn } from "@/lib/utils"
 import type { Prompt } from "@/db/schema"
 import { usePromptCard } from "@/hooks/use-prompt-card"
+import Link from "next/link"
 
 interface PromptCardProps {
   prompt: Prompt
@@ -44,7 +45,6 @@ export function PromptCard({ prompt, className }: PromptCardProps) {
             <h3 className="text-lg font-semibold text-card-foreground line-clamp-2">{prompt.title}</h3>
 
             <p className="text-sm text-muted-foreground line-clamp-3 leading-relaxed">{prompt.description}</p>
-            <p className="bg-zinc-800 ltr p-4 rounded text-muted-foreground">{prompt.prompt}</p>
 
             {parsedTags.length > 0 && (
               <div className="flex flex-wrap gap-1">
@@ -63,14 +63,9 @@ export function PromptCard({ prompt, className }: PromptCardProps) {
           </div>
         </CardContent>
 
-        <CardFooter className="p-4 pt-0">
-          <div className="flex items-center justify-between w-full">
+        <CardFooter className="p-4 pt-0 flex items-center justify-between mt-auto">
+          <div className=" w-full">
             <div className="flex items-center gap-2">
-              <Button variant="ghost" size="sm" onClick={handleCopy} className="h-8 px-2">
-                <Copy className="h-4 w-4 ml-1" />
-                کپی
-              </Button>
-
               <Button variant="ghost" size="sm" onClick={handleShare} className="h-8 px-2">
                 <Share2 className="h-4 w-4 ml-1" />
                 اشتراک
@@ -87,6 +82,12 @@ export function PromptCard({ prompt, className }: PromptCardProps) {
               <span className="text-xs">{likeCount}</span>
             </Button>
           </div>
+          <Button className="cursor-pointer" asChild>
+            <Link href={`/Prompt/${encodeURIComponent(prompt.slug)}`}>
+              مشاهده
+              <ArrowLeft/>
+            </Link>
+          </Button>
         </CardFooter>
       </Card>
     </>
