@@ -45,7 +45,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${vazirmatn.variable} antialiased dark`}
+        className={`${vazirmatn.className} antialiased dark`}
       >
         {children}
         <GoogleTagManager gtmId={process.env.NEXT_PUBLIC_GTM_ID!}/>
