@@ -10,13 +10,13 @@ enum cacheTags {
 }
 
 export const cacheTag = async (tag: cacheTags) => {
-    return await unstable_cacheTag(tag.toString())
+    return unstable_cacheTag(tag.toString())
 }
 
 type arg = (tags: typeof cacheTags) => cacheTags
 export const revalidateTag = async (arg: arg) => {
     let a = arg(cacheTags)
-    return await r(a.toString(), )
+    return r(a.toString(), "max")
 }
 
 export const fetchBlogs = async () => {
