@@ -45,7 +45,7 @@ export default function AdminLayout({children}:{children: ReactNode}) {
               </Link>
               <Link
                 href="/Admin/PromptManagment"
-                // activeclassName="!bg-primary text-primary-foreground"
+                activeClassName="!bg-primary text-primary-foreground"
                 
                 className={`flex w-full items-center gap-3 rounded-lg px-4 py-3 text-sm font-medium transition-colors text-muted-foreground hover:bg-accent hover:text-accent-foreground`}>
                 <FileText className="h-5 w-5" />
