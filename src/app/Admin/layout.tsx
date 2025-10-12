@@ -8,7 +8,7 @@ export default function AdminLayout({children}:{children: ReactNode}) {
   return (
     <>
     <style>{`html {overflow: hidden}`}</style>
-    <div className="dark min-h-screen bg-background text-foreground  ">
+    <div className="dark min-h-screen bg-background text-foreground rtl  ">
       {/* Header */}
       <header className="border-b border-border bg-card">
         <div className="flex h-16 items-center justify-between px-6">
@@ -43,6 +43,14 @@ export default function AdminLayout({children}:{children: ReactNode}) {
                 className={`flex w-full items-center gap-3 rounded-lg px-4 py-3 text-sm font-medium transition-colors text-muted-foreground hover:bg-accent hover:text-accent-foreground`}>
                 <FileText className="h-5 w-5" />
                 وبلاگ
+              </Link>
+              <Link
+                href="BlogManagment"
+                // activeclassName="!bg-primary text-primary-foreground"
+                
+                className={`flex w-full items-center gap-3 rounded-lg px-4 py-3 text-sm font-medium transition-colors text-muted-foreground hover:bg-accent hover:text-accent-foreground`}>
+                <FileText className="h-5 w-5" />
+                پرامپت
               </Link>
             </div>
           </nav>
