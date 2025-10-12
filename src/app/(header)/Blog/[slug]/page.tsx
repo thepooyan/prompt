@@ -1,15 +1,8 @@
 import { notFound } from "next/navigation"
 import { Badge } from "@/components/ui/badge"
 import { Calendar, Clock } from "lucide-react"
-import { Blog, blogsTable } from "@/db/schema"
-import { db } from "@/db"
-import { eq } from "drizzle-orm"
+import { fetchSinglePost } from "@/server/dataFetching"
 // import Image from "next/image"
-
-async function getBlogPost(slug: string): Promise<Blog | null> {
-  const [blog] = await db.select().from(blogsTable).where(eq(blogsTable.slug, decodeURIComponent(slug))).limit(1)
-  return blog
-}
 
 export default async function BlogPostPage({
   params,
@@ -17,7 +10,7 @@ export default async function BlogPostPage({
   params: Promise<{ slug: string }>
 }) {
   const { slug } = await params
-  const blog = await getBlogPost(slug)
+  const blog = await fetchSinglePost(slug)
 
   if (!blog) {
     notFound()
