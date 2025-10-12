@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation"
 import { Badge } from "@/components/ui/badge"
 import { Calendar, Clock } from "lucide-react"
-import { fetchSinglePost } from "@/server/dataFetching"
+import { fetchSingleBlog } from "@/server/dataFetching"
 // import Image from "next/image"
 
 export default async function BlogPostPage({
@@ -10,7 +10,7 @@ export default async function BlogPostPage({
   params: Promise<{ slug: string }>
 }) {
   const { slug } = await params
-  const blog = await fetchSinglePost(slug)
+  const blog = await fetchSingleBlog(slug)
 
   if (!blog) {
     notFound()

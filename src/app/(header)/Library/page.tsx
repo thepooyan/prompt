@@ -1,10 +1,11 @@
 import LibraryClient from "@/components/LibraryClient"
 import { db } from "@/db"
 import { promptsTable } from "@/db/schema"
+import { fetchPrompts } from "@/server/dataFetching"
 
 const page = async () => {
 
-    let p = await db.select().from(promptsTable)
+    let p = await fetchPrompts()
 
   return (
     <LibraryClient prompts={p}/>

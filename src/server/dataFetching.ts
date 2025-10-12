@@ -1,12 +1,14 @@
 "use server"
 import { revalidateTag as r, unstable_cacheTag } from 'next/cache'
 import { db } from "@/db"
-import { Blog, blogsTable } from "@/db/schema"
+import { Blog, blogsTable, promptsTable } from "@/db/schema"
 import { eq } from 'drizzle-orm'
 
 enum cacheTags {
     blogs,
-    singleBlog
+    singleBlog,
+    prompts,
+    singlePrompt
 }
 
 export const cacheTag = async (tag: cacheTags) => {
@@ -24,9 +26,22 @@ export const fetchBlogs = async () => {
   cacheTag(cacheTags.blogs)
   return await db.select().from(blogsTable)
 }
-export const fetchSinglePost = async (slug: string): Promise<Blog | null> => {
+export const fetchSingleBlog = async (slug: string): Promise<Blog | null> => {
     "use cache"
     cacheTag(cacheTags.singleBlog)
     const [blog] = await db.select().from(blogsTable).where(eq(blogsTable.slug, decodeURIComponent(slug))).limit(1)
     return blog
 }
+
+export const fetchPrompts = async () => {
+    "use cache"
+    cacheTag(cacheTags.prompts)
+    return await db.select().from(promptsTable)
+}
+
+export const fetchSinglePrompt = async (slug: string) => {
+    "use cache"
+    cacheTag(cacheTags.singleBlog)
+    const [p] =  await db.select().from(promptsTable).where(eq(promptsTable.slug, decodeURIComponent(slug))).limit(1)
+    return p
+} 

@@ -1,14 +1,6 @@
 import { notFound } from "next/navigation"
-import { Prompt, promptsTable } from "@/db/schema"
-import { db } from "@/db"
-import { eq } from "drizzle-orm"
 import PromptPageClient from "@/components/pages/PromptPageClient"
-
-async function getPrompt(slug: string): Promise<Prompt | undefined> {
-  // Replace with your actual data fetching logic
-  const [p] =  await db.select().from(promptsTable).where(eq(promptsTable.slug, decodeURIComponent(slug))).limit(1)
-  return p
-}
+import { fetchSinglePrompt } from "@/server/dataFetching"
 
 export default async function PromptPage({
   params,
@@ -16,7 +8,7 @@ export default async function PromptPage({
   params: Promise<{ slug: string }>
 }) {
   const { slug } = await params
-  const prompt = await getPrompt(slug)
+  const prompt = await fetchSinglePrompt(slug)
 
   if (!prompt) {
     notFound()
