@@ -1,10 +1,9 @@
-import { db } from "@/db"
-import { blogsTable } from "@/db/schema"
 import "server-only"
 import LatestBlogs from "./LatestBlogs"
+import { fetchFiveBlogs } from "@/server/dataFetching"
 
 const LatestBlogsFetcher = async () => {
-    let data = await db.select().from(blogsTable).limit(5)
+    let data = await fetchFiveBlogs()
   return (
     <LatestBlogs blogs={data}/>
   )

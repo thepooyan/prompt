@@ -3,11 +3,10 @@ import { Button } from "@/components/ui/button"
 import Link from "next/link"
 import { Library, ArrowLeft } from "lucide-react"
 import { PromptCard } from "@/components/PromptCard"
-import { db } from "@/db"
-import { promptsTable } from "@/db/schema"
+import { fetchPrompts } from "@/server/dataFetching"
 
 export default async function Home() {
-  const featuredPrompts = await db.select().from(promptsTable)
+  const featuredPrompts = await fetchPrompts()
 
   return (
     <div className="min-h-screen bg-background">

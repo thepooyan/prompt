@@ -8,7 +8,9 @@ enum cacheTags {
     blogs,
     singleBlog,
     prompts,
-    singlePrompt
+    singlePrompt,
+    threePrompts,
+    fiveBlogs
 }
 
 export const cacheTag = async (tag: cacheTags) => {
@@ -45,3 +47,17 @@ export const fetchSinglePrompt = async (slug: string) => {
     const [p] =  await db.select().from(promptsTable).where(eq(promptsTable.slug, decodeURIComponent(slug))).limit(1)
     return p
 } 
+
+export const fetchThreePrompts = async () => {
+    "use cache"
+    cacheTag(cacheTags.threePrompts)
+  const posts = await db.select().from(promptsTable).limit(3)
+  return posts
+}
+
+export const fetchFiveBlogs = async () => {
+    "use cache"
+    cacheTag(cacheTags.fiveBlogs)
+    let data = await db.select().from(blogsTable).limit(5)
+    return data
+}
