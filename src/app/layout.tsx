@@ -3,6 +3,7 @@ import { Vazirmatn } from "next/font/google";
 import "@/styles/global.css";
 import { Toaster } from "sonner";
 import { GoogleTagManager } from '@next/third-parties/google';
+import Modal from "@/components/layout/Modal";
 
 const vazirmatn = Vazirmatn({
   variable: "--font-vazirmatn",
@@ -50,6 +51,7 @@ export default function RootLayout({
         {children}
         <GoogleTagManager gtmId={process.env.NEXT_PUBLIC_GTM_ID!}/>
         <Toaster/>
+        <Modal/>
       </body>
     </html>
   );
