@@ -17,18 +17,15 @@ export default function Hero() {
             <span className="text-sm text-zinc-400">بازار پرامپت‌های هوش مصنوعی</span>
           </div>
 
-          <h2 className="text-5xl sm:text-6xl lg:text-7xl font-bold mb-6 leading-tight text-balance">
-            <span className="text-zinc-100">دنیای</span>{" "}
-            <span className="bg-gradient-to-l from-[#8a2be2] to-[#b47eff] bg-clip-text text-transparent">
-              پرامپت‌های
-            </span>
+          <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold mb-6 leading-tight text-balance">
+            آکادمی 
+            <span className="bg-gradient-to-l from-[#8a2be2] to-[#b47eff] bg-clip-text text-transparent"> پرامپت </span> 
+            و اتوماسیون n8n
             <br />
-            <span className="text-zinc-100">حرفه‌ای را کشف کنید</span>
-          </h2>
+          </h1>
 
           <p className="text-lg sm:text-xl text-zinc-400 mb-12 max-w-2xl mx-auto leading-relaxed text-pretty">
-            با بهترین مجموعه پرامپت‌های هوش مصنوعی، کار خود را سریع‌تر و حرفه‌ای‌تر انجام دهید. از تولید محتوا تا طراحی و
-            برنامه‌نویسی.
+            از آموزش‌های جامع ما برای تسلط بر مهندسی پرامپت و n8n استفاده کنید و با دانلود پرامپت‌ها و ورک‌فلوهای آماده، کسب‌وکار خود را متحول کنید.
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
