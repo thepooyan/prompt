@@ -7,9 +7,9 @@ const Logo = () => {
       <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-[#8a2be2] to-[#6a1bb2] glow-purple-sm">
         <Sparkles className="h-6 w-6 text-white" />
       </div>
-      <h1 className="text-2xl font-bold bg-gradient-to-l from-[#8a2be2] to-[#b47eff] bg-clip-text text-transparent">
+      <div className="text-2xl font-bold bg-gradient-to-l from-[#8a2be2] to-[#b47eff] bg-clip-text text-transparent">
         پرامپت بازار
-      </h1>
+      </div>
     </Link>
   );
 };
