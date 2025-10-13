@@ -9,20 +9,23 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
 } from "@/components/ui/alert-dialog"
+import { CallbackStore } from "@/lib/utils"
 import { ReactNode, useEffect, useState } from "react"
 
 
-type state = "prompt" | ""
-type passer = null | ((str: ReactNode, state: state) => void)
+type state = "" | "prompt"
+type passer = null | ((str: ReactNode, title:string, state: state) => void)
 let passer:passer = null
 
 export default function Modal() {
   const [content, setContent] = useState<ReactNode>(<></>)
   const [state, setState] = useState<state>("")
+  const [title, setTitle] = useState("")
   const [open, setOpen] = useState(false)
 
     useEffect(() => {
-        passer = (content: ReactNode, state:state = "") => {
+        passer = (content: ReactNode, title:string, state:state = "") => {
+          setTitle(title)
           setState(state)
           setContent(content)
           setOpen(true)
@@ -32,7 +35,7 @@ export default function Modal() {
     <AlertDialog open={open} onOpenChange={setOpen}>
       <AlertDialogContent className="rtl">
         <AlertDialogHeader>
-          <AlertDialogTitle className="text-right">آیا مطمين هستید؟</AlertDialogTitle>
+          <AlertDialogTitle className="text-right">{title}</AlertDialogTitle>
           <AlertDialogDescription className="text-right">
             {content}
           </AlertDialogDescription>
@@ -46,8 +49,31 @@ export default function Modal() {
   )
 }
 
-export const callModal = (content: ReactNode, state: state = "") => {
-    passer?.(content, state)
+const callbackStore = new CallbackStore()
+
+export const callModal = (content: ReactNode, title:string, state: state = "") => {
+    passer?.(content, title, state)
 }
 
-callModal.prompt = (content: ReactNode) => callModal(content, "prompt")
+callModal.prompt = (content: ReactNode) => {
+
+  callModal(content, "آیا مطمین هستید؟", "prompt");
+  return {
+    yes: (callback: ()=>void) => {
+      callbackStore.setYes(callback)
+      return {
+        no: (callback: ()=>void) => {
+          callbackStore.setNo(callback)
+        }
+      }
+    },
+    no: (callback: ()=>void) => {
+      callbackStore.setNo(callback)
+      return {
+        yes: (callback: ()=>void) => {
+          callbackStore.setYes(callback)
+        }
+      }
+    }
+  }
+}
