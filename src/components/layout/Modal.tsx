@@ -10,22 +10,23 @@ import {
   AlertDialogTitle,
 } from "@/components/ui/alert-dialog"
 import { CallbackStore } from "@/lib/utils"
+import { Check, Cross } from "lucide-react"
 import { ReactNode, useEffect, useState } from "react"
 
 
-type state = "" | "prompt"
-type passer = null | ((str: ReactNode, title:string, state: state) => void)
+type state = "" | "prompt" | "success" | "fail"
+type passer = null | ((str: ReactNode, title: ReactNode, state: state) => void)
 let passer:passer = null
 const callbackStore = new CallbackStore()
 
 export default function Modal() {
   const [content, setContent] = useState<ReactNode>(<></>)
   const [state, setState] = useState<state>("")
-  const [title, setTitle] = useState("")
+  const [title, setTitle] = useState<ReactNode>(<></>)
   const [open, setOpen] = useState(false)
 
     useEffect(() => {
-        passer = (content: ReactNode, title:string, state:state = "") => {
+        passer = (content: ReactNode, title: ReactNode, state:state = "") => {
           setTitle(title)
           setState(state)
           setContent(content)
@@ -51,7 +52,7 @@ export default function Modal() {
 }
 
 
-export const callModal = (content: ReactNode, title:string, state: state = "") => {
+export const callModal = (content: ReactNode, title: ReactNode, state: state = "") => {
     passer?.(content, title, state)
 }
 
@@ -77,3 +78,6 @@ callModal.prompt = (content: ReactNode) => {
     }
   }
 }
+
+callModal.success = (content: ReactNode) => callModal(content, <Check />, "success")
+callModal.fail = (content: ReactNode) => callModal(content, <Cross />, "fail")

@@ -9,23 +9,26 @@ import {
 } from "@/components/ui/card";
 import Link from "@/components/ui/link";
 import { Blog } from "@/db/schema";
-import { useState } from "react";
+import { Suspense, useState } from "react";
 import { limitChar, readableDate } from "@/lib/utils";
-import { toast } from "sonner";
+import { callModal } from "@/components/layout/Modal";
+import { Calendar, Edit, Eye, Plus, Trash2 } from "lucide-react";
+import { revalidateTag } from "@/server/dataFetching";
+import { deletePost } from "@/server/mutation";
+import { Loading } from "@/components/parts/Loading";
 
 export default function WeblogPanel() {
-  const [posts, setPosts] = useState([])
+  const [posts, setPosts] = useState<Blog[]>([])
 
   const handleDelete = (post: Blog) => {
-    toast.prompt(`"${limitChar(post.title, 40)}" حذف شود؟`)
+    callModal.prompt(`"${limitChar(post.title, 40)}" حذف شود؟`)
     .yes(async () => {
-        toast.wait()
         let {ok} = await deletePost(post.id)
         if (ok) {
-          toast.success("با موفقیت حذف شد!")
-          revalidate("blogs")
+          callModal.success("با موفقیت حذف شد!")
+          revalidateTag(tags => tags.blogs)
         }
-        else toast.fail("خطایی پیش آمده. لطفا مجددا تلاش کنید")
+        else callModal.fail("خطایی پیش آمده. لطفا مجددا تلاش کنید")
       })
   }
 
@@ -39,7 +42,7 @@ export default function WeblogPanel() {
         </div>
         <Button className="gap-2 bg-primary text-primary-foreground hover:bg-primary/90" as={Link} href="/Admin/NewBlog">
           پست جدید
-          <FiPlus className="h-4 w-4" />
+          <Plus className="h-4 w-4" />
         </Button>
       </div>
 
@@ -50,7 +53,7 @@ export default function WeblogPanel() {
             <CardDescription>تعداد پست ها</CardDescription>
             <CardTitle className="text-3xl font-bold text-primary">
               <Suspense fallback="0">
-                {posts()?.length}
+                {posts?.length}
               </Suspense>
             </CardTitle>
           </CardHeader>
@@ -60,7 +63,7 @@ export default function WeblogPanel() {
             <CardDescription>تاریخ آخرین پست</CardDescription>
             <CardTitle className="text-3xl font-bold text-primary">
               <Suspense fallback="-----">
-                {posts()?.at(0)?.date ? readableDate(posts()?.at(0)?.date || "") : "موجود نیست"}
+                {/* {posts?.at(0)?.date ? readableDate(posts()?.at(0)?.date || "") : "موجود نیست"} */}
               </Suspense>
             </CardTitle>
           </CardHeader>
@@ -78,7 +81,7 @@ export default function WeblogPanel() {
         <h3 className="text-xl font-semibold">آخرین بلاگ ها</h3>
         <div className="space-y-3">
           <Suspense fallback={<Loading />}>
-            {posts()?.length === 0 && <>
+            {posts?.length === 0 && <>
               <div className="bg-card rounded-md p-5 text-center flex flex-col gap-3 items-center">
                 بلاگی یافت نشد!
                 <Button>
@@ -88,7 +91,7 @@ export default function WeblogPanel() {
                 </Button>
               </div>
             </>}
-            {posts()?.map((post) => (
+            {posts.map((post) => (
               <Card className="bg-card transition-colors hover:bg-accent/50">
                 <CardContent className="p-4">
                   <div className="flex justify-between gap-4 items-center">
@@ -102,20 +105,23 @@ export default function WeblogPanel() {
                         {post.excerpt}
                       </p>
                       <div className="flex items-center gap-1 text-xs text-muted-foreground">
-                        <FiCalendar className="h-3 w-3" />
-                        {readableDate(post.date)}
+                        <Calendar className="h-3 w-3" />
+                        {/* {readableDate(post.date)} */}
                       </div>
                     </div>
                     <div className="flex gap-2 items-center">
                       <Button
                         size="sm"
                         variant="ghost"
-                        as={Link} href={`/Weblog/${encodeURIComponent(post.slug)}`}
                       >
-                        <FiEye className="h-4 w-4" />
+                        <Link href={`/Weblog/${encodeURIComponent(post.slug)}`}>
+                        <Eye className="h-4 w-4" />
+                        </Link>
                       </Button>
-                      <Button size="sm" variant="ghost" className="h-8 w-8 p-0" as={Link} href={`/Admin/EditBlog/${post.id}`}>
-                        <FiEdit className="h-4 w-4" />
+                      <Button size="sm" variant="ghost" className="h-8 w-8 p-0" asChild>
+                      <Link href={`/Admin/EditBlog/${post.id}`}>
+                        <Edit className="h-4 w-4" />
+                      </Link>
                       </Button>
                       <Button
                         size="sm"
@@ -123,7 +129,7 @@ export default function WeblogPanel() {
                         className="h-8 w-8 p-0 text-destructive hover:text-destructive"
                         onClick={() => handleDelete(post)}
                       >
-                        <FiTrash2 className="h-4 w-4" />
+                        <Trash2 className="h-4 w-4" />
                       </Button>
                     </div>
                   </div>
