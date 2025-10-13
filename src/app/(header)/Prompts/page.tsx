@@ -34,8 +34,7 @@ export default function PromptGuide() {
             </h1>
 
             <p className="text-lg md:text-xl text-gray-400 max-w-4xl mx-auto leading-relaxed mb-8">
-              پرامپت یعنی دستور دقیق به هوش مصنوعی. با این راهنما یاد می‌گیری چطور واضح و حرفه‌ای بنویسی تا
-              نتیجهٔ بهتر بگیری—از <strong className="text-gray-200">تولید محتوا</strong> تا <strong className="text-gray-200">طراحی لوگو</strong> و <strong className="text-gray-200">عکس پروفایل</strong>.
+              پرامپت به زبان ساده، همان دستوری است که به مدل‌های هوش مصنوعی می‌دهیم تا خروجی دلخواه را دریافت کنیم. در این صفحه، با مفهوم پرامپت آشنا می‌شوید و خواهید فهمید که چگونه با مهندسی پرامپت می‌توانید نتایج دقیقی دریافت کنید.<strong className="text-gray-200">تولید محتوا</strong> تا <strong className="text-gray-200">طراحی لوگو</strong> و <strong className="text-gray-200">عکس پروفایل</strong>.
             </p>
 
             <div className="flex gap-4 justify-center">
