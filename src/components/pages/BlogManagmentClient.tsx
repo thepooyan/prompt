@@ -12,10 +12,11 @@ import { Suspense, useEffect, useState } from "react";
 import { limitChar } from "@/lib/utils";
 import { callModal } from "@/components/layout/Modal";
 import { Calendar, Edit, Eye, Plus, Trash2 } from "lucide-react";
-import { revalidateTag } from "@/server/dataFetching";
+import { revalidate } from "@/server/dataFetching";
 import { deletePost } from "@/server/mutation";
 import { Loading } from "@/components/parts/Loading";
 import Link from "@/components/ui/link";
+import { cacheTags } from "@/server/cache";
 
 interface p {
     initialBlogs: Blog[]
@@ -29,8 +30,7 @@ export default function BlogManagmentClient({initialBlogs}:p) {
         let {ok} = await deletePost(post.id)
         if (ok) {
           callModal.success("با موفقیت حذف شد!")
-          revalidateTag(tags => tags.blogs)
-          window.location.reload()
+          revalidate(cacheTags.blogs)
         }
         else callModal.fail("خطایی پیش آمده. لطفا مجددا تلاش کنید")
       })
