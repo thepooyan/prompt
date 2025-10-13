@@ -1,10 +1,9 @@
-import { db } from "@/db"
-import { promptsTable } from "@/db/schema"
 import { PromptCard } from "../PromptCard"
+import { fetchThreePrompts } from "@/server/dataFetching"
 
 export default async function Latest() {
 
-  const posts = await db.select().from(promptsTable).limit(3)
+  const posts = await fetchThreePrompts()
 
   return (
     <section id="latest" className="py-16 bg-zinc-900">

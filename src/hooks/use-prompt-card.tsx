@@ -6,7 +6,7 @@ import type { Prompt } from "@/db/schema"
 
 export function usePromptCard(prompt: Prompt) {
   const [isLiked, setIsLiked] = useState(false)
-  const [likeCount, setLikeCount] = useState(Math.floor(Math.random() * 100) + 1)
+  const [likeCount, setLikeCount] = useState(0)
 
   const handleCopy = async () => {
     try {
