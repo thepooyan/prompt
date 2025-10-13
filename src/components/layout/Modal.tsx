@@ -8,43 +8,46 @@ import {
   AlertDialogFooter,
   AlertDialogHeader,
   AlertDialogTitle,
-  AlertDialogTrigger,
 } from "@/components/ui/alert-dialog"
-import { Button } from "@/components/ui/button"
-import { useEffect, useState } from "react"
+import { ReactNode, useEffect, useState } from "react"
 
 
-type passer = null | ((str: string) => void)
+type state = "prompt" | ""
+type passer = null | ((str: ReactNode, state: state) => void)
 let passer:passer = null
 
 export default function Modal() {
-    const [str, setStr] = useState("")
-    const [open, setOpen] = useState(false)
+  const [content, setContent] = useState<ReactNode>(<></>)
+  const [state, setState] = useState<state>("")
+  const [open, setOpen] = useState(false)
+
     useEffect(() => {
-        passer = (str: string) => {
-            setStr(str)
-            setOpen(true)
+        passer = (content: ReactNode, state:state = "") => {
+          setState(state)
+          setContent(content)
+          setOpen(true)
         }
     }, [])
   return (
-    <AlertDialog open={open}>
-      <AlertDialogContent>
+    <AlertDialog open={open} onOpenChange={setOpen}>
+      <AlertDialogContent className="rtl">
         <AlertDialogHeader>
-          <AlertDialogTitle>{str}</AlertDialogTitle>
-          <AlertDialogDescription>
-            This action cannot be undone. This will permanently delete your
-            account and remove your data from our servers.
+          <AlertDialogTitle className="text-right">آیا مطمين هستید؟</AlertDialogTitle>
+          <AlertDialogDescription className="text-right">
+            {content}
           </AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>
-          <AlertDialogCancel>Cancel</AlertDialogCancel>
-          <AlertDialogAction>Continue</AlertDialogAction>
+          <AlertDialogAction>بله</AlertDialogAction>
+          <AlertDialogCancel>خیر</AlertDialogCancel>
         </AlertDialogFooter>
       </AlertDialogContent>
     </AlertDialog>
   )
 }
 
-export const callModal = (str: string) => {
-    passer?.(str)
+export const callModal = (content: ReactNode, state: state = "") => {
+    passer?.(content, state)
 }
+
+callModal.prompt = (content: ReactNode) => callModal(content, "prompt")
