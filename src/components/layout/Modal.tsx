@@ -1,3 +1,4 @@
+"use client"
 import {
   AlertDialog,
   AlertDialogAction,
@@ -10,16 +11,26 @@ import {
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog"
 import { Button } from "@/components/ui/button"
+import { useEffect, useState } from "react"
+
+
+type passer = null | ((str: string) => void)
+let passer:passer = null
 
 export default function Modal() {
+    const [str, setStr] = useState("")
+    const [open, setOpen] = useState(false)
+    useEffect(() => {
+        passer = (str: string) => {
+            setStr(str)
+            setOpen(true)
+        }
+    }, [])
   return (
-    <AlertDialog>
-      <AlertDialogTrigger asChild>
-        <Button variant="outline">Show Dialog</Button>
-      </AlertDialogTrigger>
+    <AlertDialog open={open}>
       <AlertDialogContent>
         <AlertDialogHeader>
-          <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
+          <AlertDialogTitle>{str}</AlertDialogTitle>
           <AlertDialogDescription>
             This action cannot be undone. This will permanently delete your
             account and remove your data from our servers.
@@ -32,4 +43,8 @@ export default function Modal() {
       </AlertDialogContent>
     </AlertDialog>
   )
+}
+
+export const callModal = (str: string) => {
+    passer?.(str)
 }
