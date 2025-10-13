@@ -30,6 +30,7 @@ export default function BlogManagmentClient({initialBlogs}:p) {
         if (ok) {
           callModal.success("با موفقیت حذف شد!")
           revalidateTag(tags => tags.blogs)
+          window.location.reload()
         }
         else callModal.fail("خطایی پیش آمده. لطفا مجددا تلاش کنید")
       })
@@ -65,7 +66,7 @@ export default function BlogManagmentClient({initialBlogs}:p) {
         </Card>
         <Card className="bg-card">
           <CardHeader className="pb-3">
-            <CardDescription>تاریخ آخرین پست</CardDescription>
+            <CardDescription></CardDescription>
             <CardTitle className="text-3xl font-bold text-primary">
               <Suspense fallback="-----">
                 {/* {posts?.at(0)?.date ? readableDate(posts()?.at(0)?.date || "") : "موجود نیست"} */}
