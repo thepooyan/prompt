@@ -17,12 +17,14 @@ import { deletePost } from "@/server/mutation";
 import { Loading } from "@/components/parts/Loading";
 import Link from "@/components/ui/link";
 import { cacheTags } from "@/server/cache";
+import { useRouter } from "next/navigation";
 
 interface p {
     initialBlogs: Blog[]
 }
 export default function BlogManagmentClient({initialBlogs}:p) {
   const [posts, setPosts] = useState<Blog[]>(initialBlogs)
+  const router = useRouter()
 
   const handleDelete = (post: Blog) => {
     callModal.prompt(`"${limitChar(post.title, 40)}" حذف شود؟`)
@@ -30,7 +32,10 @@ export default function BlogManagmentClient({initialBlogs}:p) {
         let {ok} = await deletePost(post.id)
         if (ok) {
           callModal.success("با موفقیت حذف شد!")
-          revalidate(cacheTags.blogs)
+          await revalidate(cacheTags.blogs)
+          setTimeout(() => {
+              router.refresh()
+          }, 2000);
         }
         else callModal.fail("خطایی پیش آمده. لطفا مجددا تلاش کنید")
       })
