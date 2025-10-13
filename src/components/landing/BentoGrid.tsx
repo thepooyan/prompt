@@ -3,7 +3,7 @@ import Link from "next/link"
 
 const boxes = [
   {
-    href: "/prompts",
+    href: "/what-is-prompt",
     Icon: Sparkles,
     title: "پرامپت و پرامپت نویسی چیست؟",
     p: "یاد بگیرید که پرامپت نویسی چیست و چگونه می‌توانید با نوشتن دستورات دقیق، خروجی‌های قدرتمند و حرفه‌ای از هوش مصنوعی دریافت کنید."
