@@ -16,6 +16,7 @@ import { ReactNode, useEffect, useState } from "react"
 type state = "" | "prompt"
 type passer = null | ((str: ReactNode, title:string, state: state) => void)
 let passer:passer = null
+const callbackStore = new CallbackStore()
 
 export default function Modal() {
   const [content, setContent] = useState<ReactNode>(<></>)
@@ -41,7 +42,7 @@ export default function Modal() {
           </AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>
-          <AlertDialogAction>بله</AlertDialogAction>
+          <AlertDialogAction onClick={() => callbackStore.callYes()}>بله</AlertDialogAction>
           <AlertDialogCancel>خیر</AlertDialogCancel>
         </AlertDialogFooter>
       </AlertDialogContent>
@@ -49,7 +50,6 @@ export default function Modal() {
   )
 }
 
-const callbackStore = new CallbackStore()
 
 export const callModal = (content: ReactNode, title:string, state: state = "") => {
     passer?.(content, title, state)
