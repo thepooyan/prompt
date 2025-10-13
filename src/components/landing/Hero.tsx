@@ -32,7 +32,7 @@ export default function Hero() {
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <button className="group relative px-8 py-4 bg-gradient-to-l from-[#8a2be2] to-[#6a1bb2] text-white rounded-xl font-medium transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-[#8a2be2]/20">
-            <Link href="/Guide">
+            <Link href="/Prompts">
               <span className="relative z-10">شروع کنید</span>
               <div className="absolute inset-0 rounded-xl bg-gradient-to-l from-[#9a3bf2] to-[#7a2bc2] opacity-0 group-hover:opacity-100 transition-opacity" />
             </Link>
