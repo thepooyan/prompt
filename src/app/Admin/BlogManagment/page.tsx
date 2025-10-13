@@ -7,15 +7,15 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import Link from "@/components/ui/link";
 import { Blog } from "@/db/schema";
-import { Suspense, useState } from "react";
-import { limitChar, readableDate } from "@/lib/utils";
+import { Suspense, useEffect, useState } from "react";
+import { limitChar } from "@/lib/utils";
 import { callModal } from "@/components/layout/Modal";
 import { Calendar, Edit, Eye, Plus, Trash2 } from "lucide-react";
-import { revalidateTag } from "@/server/dataFetching";
+import { fetchBlogs, revalidateTag } from "@/server/dataFetching";
 import { deletePost } from "@/server/mutation";
 import { Loading } from "@/components/parts/Loading";
+import Link from "@/components/ui/link";
 
 export default function WeblogPanel() {
   const [posts, setPosts] = useState<Blog[]>([])
@@ -40,9 +40,11 @@ export default function WeblogPanel() {
           <h2 className="text-3xl font-bold tracking-tight">مدیریت وبلاگ</h2>
           <p className="text-muted-foreground">مدیریت و ایجاد بلاگ ها</p>
         </div>
-        <Button className="gap-2 bg-primary text-primary-foreground hover:bg-primary/90" as={Link} href="/Admin/NewBlog">
+        <Button className="gap-2 bg-primary text-primary-foreground hover:bg-primary/90" asChild>
+        <Link href="/Admin/NewBlog">
           پست جدید
           <Plus className="h-4 w-4" />
+        </Link>
         </Button>
       </div>
 
