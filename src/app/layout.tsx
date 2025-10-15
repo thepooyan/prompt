@@ -4,6 +4,9 @@ import "@/styles/global.css";
 import { Toaster } from "sonner";
 import { GoogleTagManager } from '@next/third-parties/google';
 import RenderSchema from "@/components/schema/RenderSchema";
+import Head from "next/head";
+import TagManagerHead from "@/components/other/TagManagerHead";
+import TagManagerBody from "@/components/other/TagManagerBody";
 
 const vazirmatn = Vazirmatn({
   variable: "--font-vazirmatn",
@@ -34,11 +37,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <Head>
+        <TagManagerHead/>
+      </Head>
       <body
         className={`${vazirmatn.className} antialiased dark`}
       >
+        <TagManagerBody/>
         {children}
-        <GoogleTagManager gtmId={process.env.NEXT_PUBLIC_GTM_ID!}/>
         <Toaster/>
       </body>
     </html>
