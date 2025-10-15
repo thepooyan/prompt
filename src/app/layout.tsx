@@ -7,6 +7,7 @@ import RenderSchema from "@/components/schema/RenderSchema";
 import Head from "next/head";
 import TagManagerHead from "@/components/other/TagManagerHead";
 import TagManagerBody from "@/components/other/TagManagerBody";
+import { env } from "@/server/env";
 
 const vazirmatn = Vazirmatn({
   variable: "--font-vazirmatn",
@@ -37,7 +38,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <GoogleTagManager gtmId={process.env.NEXT_PUBLIC_GTM_ID!}/>
+      <GoogleTagManager gtmId={env.GTM_ID}/>
     
       <body
         className={`${vazirmatn.className} antialiased dark`}
