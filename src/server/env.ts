@@ -18,4 +18,3 @@ if (!process || !process.env) throw new Error("Attemp to access env in client")
 
 
 export const env = envSchema.parse(process.env)
-throw new Error(JSON.stringify(env))
