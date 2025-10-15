@@ -2,12 +2,13 @@
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "../ui/carousel";
 import BlogCard from "../parts/BlogCard";
 import { Blog } from "@/db/schema";
+import { Button } from "../ui/button";
+import Link from "next/link";
 
 interface p {
   blogs: Blog[]
 }
 export default function LatestBlogs({blogs}:p) {
-  console.log(blogs)
   return (
     <section id="blog" className="py-16 bg-zinc-900">
       <div className="container mx-auto px-6">
@@ -18,6 +19,11 @@ export default function LatestBlogs({blogs}:p) {
           <p className="text-lg text-gray-400 mt-4">
             دانش خود را در دنیای هوش مصنوعی و مهندسی پرامپت به‌روز نگه دارید. با مطالعه این مقالات می‌توانید از ابزارهای جدید و استراتژی‌های بهینه برای پیشرفت در دنیای هوش مصنوعی استفاده کنید.
           </p>
+          <Button className="mt-4 text-white" size="lg" asChild>
+            <Link href="/Blog">
+              مشاهده همه
+            </Link>
+          </Button>
         </div>
 
         <>

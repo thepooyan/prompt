@@ -1,17 +1,6 @@
-import Image from "next/image"
 import Link from "next/link"
 import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card"
-
-type Blog = {
-  id: number
-  title: string
-  slug: string
-  tags: string
-  picture: string
-  excerpt: string
-  description: string
-  canonical: string | null
-}
+import { Blog } from "@/db/schema"
 
 interface BlogCardProps {
   blog: Blog
@@ -21,8 +10,7 @@ export default function BlogCard({ blog }: BlogCardProps) {
   const tags = blog.tags.split(",").map((tag) => tag.trim())
 
   return (
-    // href={`/Blog/${blog.slug}`}
-    <Link href={`#`} className="block group rtl"> 
+    <Link href={`/Blog/${encodeURIComponent(blog.slug)}`} className="block group rtl"> 
       <Card className="overflow-hidden h-full transition-all duration-300 hover:shadow-lg ">
         <CardHeader className="p-0">
           <div className="relative w-full aspect-video overflow-hidden">

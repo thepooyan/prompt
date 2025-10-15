@@ -13,8 +13,8 @@ export default function PromptGuide() {
     <div className="min-h-screen bg-gray-900 text-gray-200 font-sans" dir="rtl">
    
 
-      <main>
-        {/* Hero */}
+           <main>
+        {/* Hero Section */}
         <section className="bg-gradient-to-br from-purple-900/20 to-gray-900/10 py-20 border-b border-gray-700">
           <div className="container mx-auto px-4 text-center">
             <div className="flex gap-2 justify-center mb-4 flex-wrap">
@@ -34,17 +34,14 @@ export default function PromptGuide() {
             </h1>
 
             <p className="text-lg md:text-xl text-gray-400 max-w-4xl mx-auto leading-relaxed mb-8">
-              پرامپت یعنی دستور دقیق به هوش مصنوعی. با این راهنما یاد می‌گیری چطور واضح و حرفه‌ای بنویسی تا
-              نتیجهٔ بهتر بگیری—از <strong className="text-gray-200">تولید محتوا</strong> تا <strong className="text-gray-200">طراحی لوگو</strong> و <strong className="text-gray-200">عکس پروفایل</strong>.
+              پرامپت به زبان ساده، همان دستوری است که به مدل‌های هوش مصنوعی می‌دهیم تا خروجی دلخواه را دریافت کنیم. در این صفحه، با مفهوم پرامپت آشنا می‌شوید و خواهید فهمید که چگونه با مهندسی پرامپت می‌توانید نتایج دقیقی دریافت کنید.<strong className="text-gray-200">تولید محتوا</strong> تا <strong className="text-gray-200">طراحی لوگو</strong> و <strong className="text-gray-200">عکس پروفایل</strong>.
             </p>
 
             <div className="flex gap-4 justify-center">
               <a href="/prompts" className="bg-purple-600 hover:bg-purple-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors">
-                مشاهده پرامپت‌های آماده
-              </a>
-              <a href="/download-prompts" className="border border-gray-600 hover:border-gray-500 text-gray-200 px-6 py-3 rounded-lg font-semibold transition-colors">
                 دانلود پرامپت
               </a>
+        
             </div>
           </div>
         </section>
@@ -254,19 +251,15 @@ soft studio lighting, 3/4 angle, natural skin; 1080×1080.
                 </section>
 
                 {/* CTA */}
-                <section id="cta" className="text-center p-8 rounded-lg bg-gray-800 my-12">
-                  <h4 className="text-2xl font-bold mb-4">شروع سریع</h4>
+             
+                <section id="cta" className="text-center p-8 rounded-lg bg-gray-800 my-12 scroll-mt-20">
+                  <h4 className="text-2xl font-bold mb-4">آماده شروع هستید؟</h4>
                   <p className="text-gray-400 mb-6">
-                    وقت کم داری؟ از <strong className="text-gray-200">پرامپت‌های آماده</strong> شروع کن.
-                    اگر می‌خوای انتشار محتوا را خودکار کنی، سری به{" "}
-                    <a href="/n8n" className="text-purple-400 hover:text-purple-300">آموزش n8n</a> بزن.
+                    وقت کم داری؟ از <strong className="text-gray-200">پرامپت‌های آماده</strong> شروع کن یا با <a href="/n8n" className="text-purple-400 hover:text-purple-300">آموزش n8n</a> فرآیندهایت را خودکار کن.
                   </p>
                   <div className="flex gap-4 justify-center">
                     <a href="/prompts" className="bg-purple-600 hover:bg-purple-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors">
                       مشاهده همه پرامپت‌ها
-                    </a>
-                    <a href="/download-prompts" className="border border-gray-600 hover:border-gray-500 text-gray-200 px-6 py-3 rounded-lg font-semibold transition-colors">
-                      دانلود پرامپت
                     </a>
                   </div>
                 </section>

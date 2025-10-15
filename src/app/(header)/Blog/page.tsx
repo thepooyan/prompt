@@ -1,11 +1,10 @@
 import BlogCard from "@/components/parts/BlogCard";
-import { db } from "@/db";
-import { blogsTable } from "@/db/schema";
+import { fetchBlogs } from "@/server/dataFetching";
 import { Metadata } from "next";
 
 const page = async () => {
 
-  let posts = await db.select().from(blogsTable)
+  let posts = await fetchBlogs()
 
   return (
     <div className="grid grid-cols-3 gap-10 max-w-7xl m-auto py-20 ">

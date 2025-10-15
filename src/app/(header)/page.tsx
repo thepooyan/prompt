@@ -23,3 +23,5 @@ export const metadata:Metadata = {
     canonical: "https://promptbazar.ir"
   }
 }
+
+
