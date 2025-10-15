@@ -38,11 +38,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <GoogleTagManager gtmId={env.GTM_ID}/>
+    <Head>
+      <TagManagerHead/>
+    </Head>
     
       <body
         className={`${vazirmatn.className} antialiased dark`}
       >
+        <TagManagerBody/>
         {children}
         <Toaster/>
       </body>

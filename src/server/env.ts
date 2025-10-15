@@ -1,4 +1,5 @@
 import { json, z } from "zod"
+import "server-only"
 
 const envSchema = z.object({
     BUCKET_NAME: z.string(),

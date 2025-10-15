@@ -2,6 +2,7 @@ import { env } from "@/server/env"
 import Script from "next/script"
 
 const TagManagerHead = () => {
+  console.log("head")
   return (
     <>
         <Script id="google-tag-manager" strategy="afterInteractive">
