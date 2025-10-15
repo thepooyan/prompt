@@ -4,7 +4,6 @@ import "@/styles/global.css";
 import { Toaster } from "sonner";
 import { GoogleTagManager } from '@next/third-parties/google';
 import RenderSchema from "@/components/schema/RenderSchema";
-import { mainSchema } from "@/components/schema/schema";
 
 const vazirmatn = Vazirmatn({
   variable: "--font-vazirmatn",
@@ -38,7 +37,6 @@ export default function RootLayout({
       <body
         className={`${vazirmatn.className} antialiased dark`}
       >
-        <RenderSchema schema={mainSchema}/>
         {children}
         <GoogleTagManager gtmId={process.env.NEXT_PUBLIC_GTM_ID!}/>
         <Toaster/>
