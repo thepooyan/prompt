@@ -6,7 +6,7 @@ const envSchema = z.object({
     BUCKET_URL: z.string(),
     BUCKET_KEY: z.string(),
     BUCKET_SECRET: z.string(),
-    GTM_ID: z.string(),
+    NEXT_PUBLIC_GTM_ID: z.string(),
     DATABASE_URL: z.string(),
     NODE_ENV: z.enum(["development", "production", "test"]),
     googleClientSecret: z.string(),
