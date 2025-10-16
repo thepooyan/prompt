@@ -38,7 +38,7 @@ export default function PromptGuide() {
             </p>
 
             <div className="flex gap-4 justify-center">
-              <a href="/prompts" className="bg-purple-600 hover:bg-purple-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors">
+              <a href="/Library" className="bg-purple-600 hover:bg-purple-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors">
                 دانلود پرامپت
               </a>
         
@@ -66,7 +66,7 @@ export default function PromptGuide() {
                       { id: "s6", title: "اشتباهات رایج و راه‌حل" },
                       { id: "s7", title: "انواع پرامپت‌ها + نمونه" },
                       { id: "s8", title: "چک‌لیست قبل از ارسال" },
-                      { id: "cta", title: "شروع سریع" },
+                      { id: "cta", title: "شرو÷ع سریع" },
                       { id: "faq", title: "پرسش‌های پرتکرار" },
                     ].map(item => (
                       <a key={item.id} href={`#${item.id}`} className="block p-2 rounded text-gray-400 hover:text-white hover:bg-gray-700 transition-colors">
@@ -255,7 +255,7 @@ soft studio lighting, 3/4 angle, natural skin; 1080×1080.
                 <section id="cta" className="text-center p-8 rounded-lg bg-gray-800 my-12 scroll-mt-20">
                   <h4 className="text-2xl font-bold mb-4">آماده شروع هستید؟</h4>
                   <p className="text-gray-400 mb-6">
-                    وقت کم داری؟ از <strong className="text-gray-200">پرامپت‌های آماده</strong> شروع کن یا با <a href="/n8n" className="text-purple-400 hover:text-purple-300">آموزش n8n</a> فرآیندهایت را خودکار کن.
+                    وقت کم داری؟ از <strong className="text-gray-200">پرامپت‌های آماده</strong> شروع کن یا با <a href="/what-is-n8n" className="text-purple-400 hover:text-purple-300">آموزش n8n</a> فرآیندهایت را خودکار کن.
                   </p>
                   <div className="flex gap-4 justify-center">
                     <a href="/prompts" className="bg-purple-600 hover:bg-purple-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors">
@@ -272,20 +272,21 @@ soft studio lighting, 3/4 angle, natural skin; 1080×1080.
                   <div className="space-y-4">
                     {[
                       {
-                        id: "f1",
-                        q: "پرامپت دقیقاً چیست؟",
-                        a: "متن/دستور دقیق برای مدل هوش مصنوعی. کیفیت خروجی مستقیم به وضوح پرامپت بستگی دارد."
-                      },
-                      {
-                        id: "f2",
-                        q: "از کدام الگو شروع کنم؟",
-                        a: "از الگوهای تولید محتوا، طراحی لوگو یا عکس پروفایل همین صفحه شروع کن و با نیاز خودت شخصی‌سازی کن."
-                      },
-                      {
-                        id: "f3",
-                        q: "بعد از یادگیری اصول، قدم بعد چیست؟",
-                        a: "پرامپت‌های آماده را تست کن و اگر تولیدت زیاده، انتشار را با n8n خودکار کن."
-                      },
+      id: "f1",
+      q: "پرامپت در ایران چه کاربردهایی دارد؟",
+      a: "در ایران، از پرامپت برای تولید محتوای شبکه‌های اجتماعی، نوشتن مقالات وبلاگ، طراحی گرافیک برای کسب‌وکارهای محلی و حتی خودکارسازی فرآیندهای اداری با ابزارهایی مانند n8n استفاده می‌شود."
+    },
+    {
+      id: "f2",
+      q: "چطور می‌توانم از پرامپت نویسی برای کسب درآمد در ایران استفاده کنم؟",
+      a: "شما می‌توانید به عنوان فریلنسر خدمات تولید محتوا با هوش مصنوعی ارائه دهید، پرامپت‌های تخصصی برای فروش طراحی کنید یا در شرکت‌های دیجیتال مارکتینگ به عنوان مهندس پرامپت مشغول به کار شوید."
+    },
+    {
+      id: "f3",
+      q: "آیا ابزارهای هوش مصنوعی در ایران قابل دسترس هستند؟",
+      a: "بله، بسیاری از ابزارهای هوش مصنوعی پیشرو در ایران قابل استفاده هستند. در سایت پرامپت بازار، ما نحوه کار با ابزارهای در دسترس و دانلود پرامپت‌های سازگار را آموزش می‌دهیم.",
+      link: "/download-prompts"
+    },
                     ].map(faq => (
                       <div key={faq.id} className="border border-gray-700 rounded-lg bg-gray-800 overflow-hidden">
                         <button
@@ -299,7 +300,7 @@ soft studio lighting, 3/4 angle, natural skin; 1080×1080.
                           <div className="p-5 pt-0 text-gray-400 leading-relaxed">
                             {faq.a}
                             {faq.id === "f3" && (
-                              <span> <a href="/n8n" className="text-purple-400 hover:text-purple-300">آموزش n8n</a></span>
+                              <span> <a href="/what-is-n8n" className="text-purple-400 hover:text-purple-300">آموزش n8n</a></span>
                             )}
                           </div>
                         )}
