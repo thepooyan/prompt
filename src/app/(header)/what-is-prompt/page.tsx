@@ -255,7 +255,7 @@ soft studio lighting, 3/4 angle, natural skin; 1080×1080.
                 <section id="cta" className="text-center p-8 rounded-lg bg-gray-800 my-12 scroll-mt-20">
                   <h4 className="text-2xl font-bold mb-4">آماده شروع هستید؟</h4>
                   <p className="text-gray-400 mb-6">
-                    وقت کم داری؟ از <strong className="text-gray-200">پرامپت‌های آماده</strong> شروع کن یا با <a href="/n8n" className="text-purple-400 hover:text-purple-300">آموزش n8n</a> فرآیندهایت را خودکار کن.
+                    وقت کم داری؟ از <strong className="text-gray-200">پرامپت‌های آماده</strong> شروع کن یا با <a href="/what-is-n8n" className="text-purple-400 hover:text-purple-300">آموزش n8n</a> فرآیندهایت را خودکار کن.
                   </p>
                   <div className="flex gap-4 justify-center">
                     <a href="/prompts" className="bg-purple-600 hover:bg-purple-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors">
@@ -300,7 +300,7 @@ soft studio lighting, 3/4 angle, natural skin; 1080×1080.
                           <div className="p-5 pt-0 text-gray-400 leading-relaxed">
                             {faq.a}
                             {faq.id === "f3" && (
-                              <span> <a href="/n8n" className="text-purple-400 hover:text-purple-300">آموزش n8n</a></span>
+                              <span> <a href="/what-is-n8n" className="text-purple-400 hover:text-purple-300">آموزش n8n</a></span>
                             )}
                           </div>
                         )}
