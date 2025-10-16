@@ -66,7 +66,7 @@ export default function PromptGuide() {
                       { id: "s6", title: "اشتباهات رایج و راه‌حل" },
                       { id: "s7", title: "انواع پرامپت‌ها + نمونه" },
                       { id: "s8", title: "چک‌لیست قبل از ارسال" },
-                      { id: "cta", title: "شروع سریع" },
+                      { id: "cta", title: "شرو÷ع سریع" },
                       { id: "faq", title: "پرسش‌های پرتکرار" },
                     ].map(item => (
                       <a key={item.id} href={`#${item.id}`} className="block p-2 rounded text-gray-400 hover:text-white hover:bg-gray-700 transition-colors">
