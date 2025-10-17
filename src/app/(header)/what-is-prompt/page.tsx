@@ -11,9 +11,7 @@ export default function PromptGuide() {
 
   return (
     <div className="min-h-screen bg-gray-900 text-gray-200 font-sans" dir="rtl">
-   
-
-           <main>
+       <main>
         {/* Hero Section */}
         <section className="bg-gradient-to-br from-purple-900/20 to-gray-900/10 py-20 border-b border-gray-700">
           <div className="container mx-auto px-4 text-center">
@@ -313,13 +311,6 @@ soft studio lighting, 3/4 angle, natural skin; 1080×1080.
           </div>
         </section>
       </main>
-
-      {/* Footer */}
-      <footer className="py-6 border-t border-gray-700">
-        <div className="container mx-auto px-4 text-center">
-          <small className="text-gray-500">© تمامی حقوق برای پرامپت بازار محفوظ است.</small>
-        </div>
-      </footer>
     </div>
   )
 }

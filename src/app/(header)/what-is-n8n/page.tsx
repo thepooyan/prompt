@@ -1,13 +1,5 @@
 "use client"
-
-import type React from "react"
-
 import { useState } from "react"
-
-// کامپوننت آیکون برای استفاده در بخش‌ها
-const FeatureIcon = ({ children }: { children: React.ReactNode }) => (
-  <div className="bg-purple-600/20 text-purple-400 rounded-lg p-3 inline-flex">{children}</div>
-)
 
 export default function N8nTutorialPageForIran() {
   const [activeAccordion, setActiveAccordion] = useState("f1")
@@ -274,12 +266,6 @@ export default function N8nTutorialPageForIran() {
           </div>
         </section>
       </main>
-
-      <footer className="py-6 border-t border-gray-700">
-        <div className="container mx-auto px-4 text-center">
-          <small className="text-gray-500">© تمامی حقوق برای پرامپت بازار محفوظ است.</small>
-        </div>
-      </footer>
     </div>
   )
 }
