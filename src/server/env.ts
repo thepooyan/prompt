@@ -1,4 +1,4 @@
-import { json, z } from "zod"
+import { z } from "zod"
 import "server-only"
 
 const envSchema = z.object({
