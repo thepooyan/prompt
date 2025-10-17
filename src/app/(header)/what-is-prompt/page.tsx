@@ -1,7 +1,13 @@
 import PromptAccordion from "@/components/parts/PromptAccordion"
+import {Metadata} from "next"
+
+export const metadata:Metadata = {
+  title: "پرامپت چیست؟ راهنمای جامع مهندسی پرامپت | پرامپت بازار",
+  description: "پرامپت چیست؟ با راهنمای جامع مهندسی پرامپت در پرامپت بازار، اصول پرامپت نویسی حرفه‌ای را یاد بگیرید و پرامپت‌های آماده را دانلود کنید. آموزش n8n.",
+  keywords: "پرامپت چیست, مهندسی پرامپت, آموزش پرامپت نویسی, پرامپت, پرامپت نویسی چیست, دانلود پرامپت, n8n, پرامپت بازار"
+}
 
 export default function PromptGuide() {
-
   return (
     <div className="min-h-screen bg-gray-900 text-gray-200 font-sans" dir="rtl">
        <main>
