@@ -1,5 +1,5 @@
 "use server"
-import { revalidateTag as r, unstable_cacheTag } from 'next/cache'
+import { revalidateTag as r, cacheTag as c } from 'next/cache'
 import { db } from "@/db"
 import { Blog, blogsTable, promptsTable } from "@/db/schema"
 import { eq } from 'drizzle-orm'
@@ -14,7 +14,7 @@ enum cacheTags {
 }
 
 export const cacheTag = async (tag: cacheTags) => {
-    return unstable_cacheTag(tag.toString())
+    return c(tag.toString())
 }
 
 type arg = (tags: typeof cacheTags) => cacheTags
