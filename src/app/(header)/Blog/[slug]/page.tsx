@@ -1,4 +1,4 @@
-import { fetchSingleBlog } from "@/server/dataFetching"
+import BlogAsync from "@/components/pages/BlogAsync"
 import { Suspense } from "react"
 
 interface props {
@@ -7,15 +7,9 @@ interface props {
 const page = (props:props) => {
   return (
     <Suspense>
-      <Inner {...props}/>
+      <BlogAsync {...props}/>
     </Suspense>
   )
-}
-
-const Inner = async ({params}:props) => {
-  const {slug} = await params
-  const data = await fetchSingleBlog(slug)
-  return data?.title
 }
 
 export default page
