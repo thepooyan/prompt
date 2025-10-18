@@ -4,10 +4,11 @@ import { authClient } from "@/lib/auth-client";
 
 const ContinueWithGoogle = () => {
   const clickHndlr = async () => {
-    await authClient.signIn.social({
+    const res = await authClient.signIn.social({
       provider: "google",
-      requestSignUp: true
+      // requestSignUp: true
     })
+    console.log(res)
   }
   return (
     <button onClick={clickHndlr} className="  border-1 bg-zinc-700 rounded-lg w-full  flex justify-center 
