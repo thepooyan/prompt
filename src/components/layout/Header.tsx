@@ -1,5 +1,4 @@
 import Link from 'next/link'
-import React from 'react'
 import LoginButton from './LoginButton'
 import Logo from '../parts/Logo'
 

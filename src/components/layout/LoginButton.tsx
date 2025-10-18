@@ -2,6 +2,7 @@
 
 import { authClient } from "@/lib/auth-client"
 import Link from "next/link";
+import UserDropdown from "../parts/UserDropdown";
 
 export type user = {
     id: string;
@@ -15,18 +16,13 @@ export type user = {
 const LoginButton = () => {
 
   const session = authClient.useSession()
-  const a = () => {
-    console.log(session.data)
-  }
 
   return (
-    <div className="flex items-center gap-3" onClick={a}>
-      {session.error && session.error.message}
-      {session.isPending && "pending..."}
+    <div className="flex items-center gap-3">
       {session.data !== null ? 
-        `welcome! ${session.data?.user.email}`
+        <UserDropdown user={session.data.user}/>
         :
-        <Link href="/#" className="bg-primary px-4 py-2 rounded-lg font-medium">ثبت‌نام / ورود</Link>
+        <Link href="/Login" className="bg-primary px-4 py-2 rounded-lg font-medium">ثبت‌نام / ورود</Link>
       }
     </div>
   )
