@@ -25,14 +25,14 @@ const UserDropdown = ({user}:props) => {
           <UserIcon/>
         </Button>
       </PopoverTrigger>
-      <PopoverContent className="w-56 rtl">
+      <PopoverContent className="w-56 rtl bg-zinc-800 ml-4 mt-2">
         <div className="space-y-4">
           <div className="flex flex-col space-y-1 leading-none">
             <p className="text-sm font-medium">خوش آمدید!</p>
             <p className="text-xs text-muted-foreground truncate">{user.email}</p>
           </div>
           <div className="flex flex-col space-y-1">
-            <Button variant="ghost" className="justify-start h-9 px-2" onClick={() => setOpen(false)} asChild>
+            <Button variant="ghost" className="justify-start h-9 px-2 hover:!bg-zinc-600 " onClick={() => setOpen(false)} asChild>
                 <Link href="/Panel">
                   <Settings className="mr-2 h-4 w-4" />
                   <span>پنل کاربری</span>
@@ -40,7 +40,7 @@ const UserDropdown = ({user}:props) => {
             </Button>
             <Button
               variant="ghost"
-              className="justify-start text-red-500 hover:text-red-600 hover:bg-red-50 h-9 px-2"
+              className="justify-start text-red-500 hover:text-red-600 hover:!bg-zinc-600 h-9 px-2"
               onClick={handleLogout}
             >
               <LogOut className="mr-2 h-4 w-4" />
