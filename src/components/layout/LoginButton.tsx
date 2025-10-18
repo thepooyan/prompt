@@ -1,9 +1,7 @@
-"use client"
-
-import { authClient } from "@/lib/auth-client"
 import Link from "next/link";
 import UserDropdown from "../parts/UserDropdown";
-import Spinner from "../parts/Spinner";
+import { auth } from "@/lib/auth";
+import { headers } from "next/headers";
 
 export type user = {
     id: string;
@@ -14,15 +12,14 @@ export type user = {
     name: string;
     image?: string | null | undefined;
 };
-const LoginButton = () => {
+const LoginButton = async () => {
 
-  const session = authClient.useSession()
+  const session = await auth.api.getSession({headers: await headers()})
 
   return (
     <div className="flex items-center gap-3">
-      {session.isPending ? <Spinner size="sm"/> : 
-        session.data !== null ? 
-          <UserDropdown user={session.data.user}/>
+      {session !== null ? 
+          <UserDropdown user={session.user}/>
           :
           <Link href="/Login" className="bg-primary px-4 py-2 rounded-lg font-medium">ثبت‌نام / ورود</Link>
       }

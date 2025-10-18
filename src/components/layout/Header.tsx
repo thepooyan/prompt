@@ -1,6 +1,8 @@
 import Link from 'next/link'
 import LoginButton from './LoginButton'
 import Logo from '../parts/Logo'
+import { Suspense } from 'react'
+import Spinner from '../parts/Spinner'
 
 const Header = () => {
   return (
@@ -17,9 +19,11 @@ const Header = () => {
               کتابخانه کامل <i className="bi bi-box-arrow-up-right text-sm" />
             </Link>
           </nav>
+        <Suspense fallback={<Spinner/>}>
           <LoginButton/>
-        </div>
-      </header>
+        </Suspense>
+      </div>
+    </header>
   )
 }
 
