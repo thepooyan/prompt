@@ -5,6 +5,7 @@ import { useState } from "react"
 import { authClient } from "@/lib/auth-client"
 import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover"
 import { User } from "better-auth"
+import Link from "../ui/link"
 
 interface props {
   user: User
@@ -19,7 +20,7 @@ const UserDropdown = ({user}:props) => {
   return (
     <>
     <Popover open={open} onOpenChange={setOpen}>
-      <PopoverTrigger >
+      <PopoverTrigger asChild>
         <Button  className="relative h-9 w-9 text-white">
           <UserIcon/>
         </Button>
@@ -31,9 +32,11 @@ const UserDropdown = ({user}:props) => {
             <p className="text-xs text-muted-foreground truncate">{user.email}</p>
           </div>
           <div className="flex flex-col space-y-1">
-            <Button variant="ghost" className="justify-start h-9 px-2" onClick={() => setOpen(false)}>
-              <Settings className="mr-2 h-4 w-4" />
-              <span>پنل کاربری</span>
+            <Button variant="ghost" className="justify-start h-9 px-2" onClick={() => setOpen(false)} asChild>
+                <Link href="/Panel">
+                  <Settings className="mr-2 h-4 w-4" />
+                  <span>پنل کاربری</span>
+                </Link>
             </Button>
             <Button
               variant="ghost"
