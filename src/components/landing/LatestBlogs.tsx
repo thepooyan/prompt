@@ -27,7 +27,7 @@ export default function LatestBlogs({blogs}:p) {
         </div>
 
         <>
-        <Carousel className="m-6">
+        <Carousel className="m-6 ltr">
           <CarouselContent>
             {blogs.map(b => <CarouselItem className=" md:basis-1/3 basis-1/1" key={b.id}>
                 <BlogCard blog={b}/>
