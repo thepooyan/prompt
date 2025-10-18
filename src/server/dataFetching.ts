@@ -1,12 +1,12 @@
 "use server"
-import { revalidateTag, unstable_cacheTag } from 'next/cache'
+import { revalidateTag, cacheTag as c } from 'next/cache'
 import { db } from "@/db"
 import { Blog, blogsTable, promptsTable } from "@/db/schema"
-import { asc, eq } from 'drizzle-orm'
+import { eq } from 'drizzle-orm'
 import { cacheTags } from './cache'
 
 export const cacheTag = async (tag: typeof cacheTags[keyof typeof cacheTags]) => {
-    return unstable_cacheTag(tag)
+    return c(tag)
 }
 
 export const revalidate = async (tag: typeof cacheTags[keyof typeof cacheTags]) => {
@@ -48,6 +48,6 @@ export const fetchThreePrompts = async () => {
 export const fetchFiveBlogs = async () => {
     "use cache"
     cacheTag(cacheTags.fiveBlogs)
-    let data = await db.select().from(blogsTable).limit(5)
+    const data = await db.select().from(blogsTable).limit(5)
     return data
 }

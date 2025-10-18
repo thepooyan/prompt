@@ -1,18 +1,9 @@
-import { notFound } from "next/navigation"
-import PromptPageClient from "@/components/pages/PromptPageClient"
-import { fetchSinglePrompt } from "@/server/dataFetching"
+import React from 'react'
 
-export default async function PromptPage({
-  params,
-}: {
-  params: Promise<{ slug: string }>
-}) {
-  const { slug } = await params
-  const prompt = await fetchSinglePrompt(slug)
-
-  if (!prompt) {
-    notFound()
-  }
-
-  return <PromptPageClient prompt={prompt}/>
+const page = () => {
+  return (
+    <div>page</div>
+  )
 }
+
+export default page

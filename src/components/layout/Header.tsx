@@ -10,7 +10,7 @@ const Header = () => {
           <Logo/>
           <nav className="hidden md:flex gap-6">
             <Link href="/" className="hover:text-primary">خانه</Link>
-            <Link href="/Prompts" className="hover:text-primary flex items-center gap-1">
+            <Link href="/what-is-prompt" className="hover:text-primary flex items-center gap-1">
               راهنمای جامع <i className="bi bi-box-arrow-up-right text-sm" />
             </Link>
             <Link href="/Blog" className="hover:text-primary">وبلاگ</Link>

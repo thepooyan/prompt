@@ -4,6 +4,7 @@ import "@/styles/global.css";
 import { Toaster } from "sonner";
 import { GoogleTagManager } from '@next/third-parties/google';
 import Modal from "@/components/layout/Modal";
+import { env } from "@/server/env";
 
 const vazirmatn = Vazirmatn({
   variable: "--font-vazirmatn",
@@ -24,18 +25,7 @@ export const metadata: Metadata = {
     index: true,
     follow: true,
   },
-  // structuredData: {
-  //   '@context': 'http://schema.org',
-  //   '@type': 'WebPage',
-  //   name: 'پرامپت بازار',
-  //   description: 'پرامپت بازار یک پلتفرم آنلاین است که بهترین پرامپت‌ها برای مدل‌های هوش مصنوعی را ارائه می‌دهد.',
-  //   url: 'https://promptbazar.ir',
-  //   publisher: {
-  //     '@type': 'Organization',
-  //     name: 'پرامپت بازار',
-  //     logo: 'https://yourwebsite.com/logo.png',
-  //   },
-  // },
+
 };
 
 export default function RootLayout({
@@ -45,11 +35,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <GoogleTagManager gtmId={env.NEXT_PUBLIC_GTM_ID}/>
+    
       <body
         className={`${vazirmatn.className} antialiased dark`}
       >
         {children}
-        <GoogleTagManager gtmId={process.env.NEXT_PUBLIC_GTM_ID!}/>
         <Toaster/>
         <Modal/>
       </body>
