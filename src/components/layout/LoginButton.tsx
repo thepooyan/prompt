@@ -3,6 +3,7 @@
 import { authClient } from "@/lib/auth-client"
 import Link from "next/link";
 import UserDropdown from "../parts/UserDropdown";
+import Spinner from "../parts/Spinner";
 
 export type user = {
     id: string;
@@ -19,10 +20,11 @@ const LoginButton = () => {
 
   return (
     <div className="flex items-center gap-3">
-      {session.data !== null ? 
-        <UserDropdown user={session.data.user}/>
-        :
-        <Link href="/Login" className="bg-primary px-4 py-2 rounded-lg font-medium">ثبت‌نام / ورود</Link>
+      {session.isPending ? <Spinner size="sm"/> : 
+        session.data !== null ? 
+          <UserDropdown user={session.data.user}/>
+          :
+          <Link href="/Login" className="bg-primary px-4 py-2 rounded-lg font-medium">ثبت‌نام / ورود</Link>
       }
     </div>
   )
