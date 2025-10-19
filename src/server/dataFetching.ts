@@ -9,10 +9,8 @@ export const cacheTag = async (tag: typeof cacheTags[keyof typeof cacheTags]) =>
     return c(tag.toString())
 }
 
-type arg = (tags: typeof cacheTags) => typeof cacheTags[keyof typeof cacheTags]
-export const revalidateTag = async (arg: arg) => {
-    let a = arg(cacheTags)
-    return r(a.toString(), "max")
+export const revalidateTag = async (tag: typeof cacheTags[keyof typeof cacheTags]) => {
+    return r(tag, "max")
 }
 
 export const fetchBlogs = async () => {

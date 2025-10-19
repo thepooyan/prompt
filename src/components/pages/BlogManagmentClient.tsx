@@ -12,7 +12,7 @@ import { Suspense, useEffect, useState } from "react";
 import { limitChar } from "@/lib/utils";
 import { callModal } from "@/components/layout/Modal";
 import { Calendar, Edit, Eye, Plus, Trash2 } from "lucide-react";
-import { revalidate } from "@/server/dataFetching";
+import { revalidateTag } from "@/server/dataFetching";
 import { deletePost } from "@/server/mutation";
 import { Loading } from "@/components/parts/Loading";
 import Link from "@/components/ui/link";
@@ -32,7 +32,7 @@ export default function BlogManagmentClient({initialBlogs}:p) {
         let {ok} = await deletePost(post.id)
         if (ok) {
           callModal.success("با موفقیت حذف شد!")
-          await revalidate(cacheTags.blogs)
+          await revalidateTag(cacheTags.blogs)
           setTimeout(() => {
               router.refresh()
           }, 2000);

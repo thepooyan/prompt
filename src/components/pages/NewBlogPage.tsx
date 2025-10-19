@@ -15,7 +15,7 @@ import { toast } from "sonner"
 import UploadBtn from "../parts/UploadBtn"
 import { uploadNewBlog, uploadNewPrompt } from "@/server/actions"
 import { NewBlog } from "@/db/schema"
-import { revalidate,  } from "@/server/dataFetching"
+import { revalidateTag } from "@/server/dataFetching"
 import { cacheTags } from "@/server/cache"
 
 export default function NewBlogPage() {
@@ -66,7 +66,7 @@ export default function NewBlogPage() {
       toast.success("ثبت شد!")
 
     toast.success("بلاگ جدید با موفقیت ایجاد شد")
-    revalidate(cacheTags.blogs)
+    revalidateTag(cacheTags.blogs)
 
     // Reset form
     setFormData({...empty})
