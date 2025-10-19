@@ -83,7 +83,7 @@ export function PromptCard({ prompt, className }: PromptCardProps) {
             </Button>
           </div>
           <Button className="cursor-pointer" asChild>
-            <Link href={`/Prompt/`}>
+            <Link href={`/Prompts/${encodeURIComponent(prompt.slug)}`}>
               مشاهده
               <ArrowLeft/>
             </Link>

@@ -1,8 +1,23 @@
-import React from 'react'
+import { Suspense } from "react"
 
-const page = () => {
+interface p {
+  params: Promise<{slug: string}>
+}
+const page = (p:p) => {
   return (
-    <div>page</div>
+    <Suspense>
+      <Inner {...p}/>
+    </Suspense>
+  )
+}
+
+const Inner = async ({params}:p) => {
+  const {slug} = await params
+  
+  return (
+    <>
+      {slug}
+    </>
   )
 }
 
