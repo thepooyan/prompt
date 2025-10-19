@@ -4,6 +4,7 @@ import "@/styles/global.css";
 import { Toaster } from "sonner";
 import Modal from "@/components/layout/Modal";
 import { env } from "@/server/env";
+import {GoogleTagManager} from "@next/third-parties/google"
 
 const vazirmatn = Vazirmatn({
   variable: "--font-vazirmatn",
