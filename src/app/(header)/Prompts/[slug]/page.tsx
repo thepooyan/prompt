@@ -1,3 +1,6 @@
+import PromptPageClient from "@/components/pages/PromptPageClient"
+import { fetchSinglePrompt } from "@/server/dataFetching"
+import { notFound } from "next/navigation"
 import { Suspense } from "react"
 
 interface p {
@@ -13,10 +16,11 @@ const page = (p:p) => {
 
 const Inner = async ({params}:p) => {
   const {slug} = await params
-  
+  const data = await fetchSinglePrompt(slug)
+  if (!data) return notFound()
   return (
     <>
-      {slug}
+      <PromptPageClient prompt={data}/>
     </>
   )
 }
