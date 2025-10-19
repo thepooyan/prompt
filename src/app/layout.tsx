@@ -2,10 +2,8 @@ import type { Metadata } from "next";
 import { Vazirmatn } from "next/font/google";
 import "@/styles/global.css";
 import { Toaster } from "sonner";
-import Head from "next/head";
-import TagManagerHead from "@/components/other/TagManagerHead";
-import TagManagerBody from "@/components/other/TagManagerBody";
 import Modal from "@/components/layout/Modal";
+import { env } from "@/server/env";
 
 const vazirmatn = Vazirmatn({
   variable: "--font-vazirmatn",
@@ -36,13 +34,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <Head>
-        <TagManagerHead/>
-      </Head>
+    <GoogleTagManager gtmId={env.NEXT_PUBLIC_GTM_ID}/>
+    
       <body
         className={`${vazirmatn.className} antialiased dark`}
       >
-        <TagManagerBody/>
         {children}
         <Toaster/>
         <Modal/>

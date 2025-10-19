@@ -1,19 +1,16 @@
-"use client"
+import PromptAccordion from "@/components/parts/PromptAccordion"
+import {Metadata} from "next"
 
-import { useState } from "react"
+export const metadata:Metadata = {
+  title: "پرامپت چیست؟ راهنمای جامع مهندسی پرامپت | پرامپت بازار",
+  description: "پرامپت چیست؟ با راهنمای جامع مهندسی پرامپت در پرامپت بازار، اصول پرامپت نویسی حرفه‌ای را یاد بگیرید و پرامپت‌های آماده را دانلود کنید. آموزش n8n.",
+  keywords: "پرامپت چیست, مهندسی پرامپت, آموزش پرامپت نویسی, پرامپت, پرامپت نویسی چیست, دانلود پرامپت, n8n, پرامپت بازار"
+}
 
 export default function PromptGuide() {
-  const [activeAccordion, setActiveAccordion] = useState("f1")
-
-  const toggleAccordion = (id: string) => {
-    setActiveAccordion(activeAccordion === id ? "" : id)
-  }
-
   return (
     <div className="min-h-screen bg-gray-900 text-gray-200 font-sans" dir="rtl">
-   
-
-           <main>
+       <main>
         {/* Hero Section */}
         <section className="bg-gradient-to-br from-purple-900/20 to-gray-900/10 py-20 border-b border-gray-700">
           <div className="container mx-auto px-4 text-center">
@@ -270,42 +267,7 @@ soft studio lighting, 3/4 angle, natural skin; 1080×1080.
                     <span className="text-purple-400">❓</span> پرسش‌های پرتکرار
                   </h2>
                   <div className="space-y-4">
-                    {[
-                      {
-      id: "f1",
-      q: "پرامپت در ایران چه کاربردهایی دارد؟",
-      a: "در ایران، از پرامپت برای تولید محتوای شبکه‌های اجتماعی، نوشتن مقالات وبلاگ، طراحی گرافیک برای کسب‌وکارهای محلی و حتی خودکارسازی فرآیندهای اداری با ابزارهایی مانند n8n استفاده می‌شود."
-    },
-    {
-      id: "f2",
-      q: "چطور می‌توانم از پرامپت نویسی برای کسب درآمد در ایران استفاده کنم؟",
-      a: "شما می‌توانید به عنوان فریلنسر خدمات تولید محتوا با هوش مصنوعی ارائه دهید، پرامپت‌های تخصصی برای فروش طراحی کنید یا در شرکت‌های دیجیتال مارکتینگ به عنوان مهندس پرامپت مشغول به کار شوید."
-    },
-    {
-      id: "f3",
-      q: "آیا ابزارهای هوش مصنوعی در ایران قابل دسترس هستند؟",
-      a: "بله، بسیاری از ابزارهای هوش مصنوعی پیشرو در ایران قابل استفاده هستند. در سایت پرامپت بازار، ما نحوه کار با ابزارهای در دسترس و دانلود پرامپت‌های سازگار را آموزش می‌دهیم.",
-      link: "/download-prompts"
-    },
-                    ].map(faq => (
-                      <div key={faq.id} className="border border-gray-700 rounded-lg bg-gray-800 overflow-hidden">
-                        <button
-                          className="w-full text-right p-5 font-semibold text-gray-200 hover:text-white transition-colors flex items-center justify-between"
-                          onClick={() => toggleAccordion(faq.id)}
-                        >
-                          {faq.q}
-                          <span className={`transform transition-transform duration-300 ${activeAccordion === faq.id ? "rotate-180" : ""}`}>▼</span>
-                        </button>
-                        {activeAccordion === faq.id && (
-                          <div className="p-5 pt-0 text-gray-400 leading-relaxed">
-                            {faq.a}
-                            {faq.id === "f3" && (
-                              <span> <a href="/what-is-n8n" className="text-purple-400 hover:text-purple-300">آموزش n8n</a></span>
-                            )}
-                          </div>
-                        )}
-                      </div>
-                    ))}
+                    <PromptAccordion/>
                   </div>
                 </section>
               </div>
@@ -313,13 +275,6 @@ soft studio lighting, 3/4 angle, natural skin; 1080×1080.
           </div>
         </section>
       </main>
-
-      {/* Footer */}
-      <footer className="py-6 border-t border-gray-700">
-        <div className="container mx-auto px-4 text-center">
-          <small className="text-gray-500">© تمامی حقوق برای پرامپت بازار محفوظ است.</small>
-        </div>
-      </footer>
     </div>
   )
 }
