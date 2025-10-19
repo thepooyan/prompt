@@ -3,11 +3,10 @@ import { fetchBlogs } from "@/server/dataFetching"
 
 const page = async () => {
 
-  let a = await fetchBlogs()
-  console.log(a)
+  let data = await fetchBlogs()
 
   return (
-    <BlogManagmentClient initialBlogs={a}/>
+    <BlogManagmentClient initialBlogs={data}/>
   )
 }
 

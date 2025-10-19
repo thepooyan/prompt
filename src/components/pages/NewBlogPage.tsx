@@ -17,6 +17,7 @@ import { uploadNewBlog, uploadNewPrompt } from "@/server/actions"
 import { NewBlog } from "@/db/schema"
 import { revalidateTag } from "@/server/dataFetching"
 import { cacheTags } from "@/server/cache"
+import { useRouter } from "next/navigation"
 
 export default function NewBlogPage() {
   const empty = {
@@ -31,6 +32,7 @@ export default function NewBlogPage() {
   const [formData, setFormData] = useState<NewBlog>({...empty})
   const [tagInput, setTagInput] = useState("")
   const [parsedTags, setParsedTags] = useState<string[]>([])
+  const router = useRouter()
 
   const handleInputChange = (field: string, value: string | boolean) => {
     setFormData((prev) => ({ ...prev, [field]: value }))
@@ -63,14 +65,9 @@ export default function NewBlogPage() {
     console.log("Creating prompt:", formData)
     let result = await uploadNewBlog(formData)
     if (result.ok) {
-      toast.success("ثبت شد!")
-
-    toast.success("بلاگ جدید با موفقیت ایجاد شد")
-    revalidateTag(cacheTags.blogs)
-
-    // Reset form
-    setFormData({...empty})
-    setParsedTags([])
+      toast.success("بلاگ جدید با موفقیت ایجاد شد")
+      revalidateTag(cacheTags.blogs)
+      router.push("/Admin/BlogManagment")
     } else {
       toast.error("خطا")
     }
