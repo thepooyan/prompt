@@ -15,9 +15,9 @@ import { toast } from "sonner"
 import UploadBtn from "../parts/UploadBtn"
 import { uploadNewBlog, uploadNewPrompt } from "@/server/actions"
 import { NewBlog } from "@/db/schema"
-import { revalidateTag } from "@/server/dataFetching"
 import { cacheTags } from "@/server/cache"
 import { useRouter } from "next/navigation"
+import { updateTag } from "next/cache"
 
 export default function NewBlogPage() {
   const empty = {
@@ -66,7 +66,6 @@ export default function NewBlogPage() {
     let result = await uploadNewBlog(formData)
     if (result.ok) {
       toast.success("بلاگ جدید با موفقیت ایجاد شد")
-      revalidateTag(cacheTags.blogs)
       router.push("/Admin/BlogManagment")
     } else {
       toast.error("خطا")

@@ -6,3 +6,5 @@ export const cacheTags =  {
     threePrompts: "threePrompts",
     fiveBlogs: "fiveBlogs"
 }
+
+export type cacheTagKey = typeof cacheTags[keyof typeof cacheTags]

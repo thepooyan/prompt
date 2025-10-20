@@ -32,9 +32,7 @@ export default function BlogManagmentClient({initialBlogs}:p) {
         let {ok} = await deletePost(post.id)
         if (ok) {
           callModal.success("با موفقیت حذف شد!")
-          await revalidateTag(cacheTags.blogs)
           let blogs = await fetchBlogs()
-          blogs = await fetchBlogs()
           setPosts(blogs)
         }
         else callModal.fail("خطایی پیش آمده. لطفا مجددا تلاش کنید")
