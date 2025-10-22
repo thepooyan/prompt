@@ -1,8 +1,8 @@
-import NewBlogPage from "@/components/pages/NewBlogPage"
+import BlogEditor from "@/components/pages/BlogEditor"
 
 const page = () => {
   return (
-    <NewBlogPage/>
+    <BlogEditor/>
   )
 }
 

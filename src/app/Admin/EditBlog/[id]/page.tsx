@@ -1,4 +1,4 @@
-import NewBlogPage from "@/components/pages/NewBlogPage"
+import BlogEditor from "@/components/pages/BlogEditor"
 import { Loading } from "@/components/parts/Loading"
 import { getBlogById } from "@/server/dataFetching"
 import { Suspense } from "react"
@@ -19,7 +19,7 @@ const InnerPage = async ({params}:p) => {
 
   return (
     <>
-      <NewBlogPage edit={data}/>
+      <BlogEditor edit={data}/>
     </>
   )
 }

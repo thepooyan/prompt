@@ -8,26 +8,32 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
-import { Switch } from "@/components/ui/switch"
 import { Badge } from "@/components/ui/badge"
 import { X, Plus } from "lucide-react"
 import Link from "next/link"
 import { toast } from "sonner"
 import UploadBtn from "../parts/UploadBtn"
-import { uploadNewPrompt } from "@/server/actions"
+import { editBlog, uploadNewBlog, uploadNewPrompt } from "@/server/actions"
+import { Blog, NewBlog } from "@/db/schema"
+import { useRouter } from "next/navigation"
 
-export default function NewPromptPage() {
-  const [formData, setFormData] = useState({
+interface p {
+  edit?: Blog
+}
+export default function BlogEditor({edit}:p) {
+  const empty = {
+    slug: "",
     title: "",
     description: "",
-    slug: "",
-    prompt: "",
     tags: "",
     picture: "",
-    isFree: true,
-  })
+    excerpt: "",
+    canonical: null
+  }
+  const [formData, setFormData] = useState(edit ? {...edit} : {...empty})
   const [tagInput, setTagInput] = useState("")
   const [parsedTags, setParsedTags] = useState<string[]>([])
+  const router = useRouter()
 
   const handleInputChange = (field: string, value: string | boolean) => {
     setFormData((prev) => ({ ...prev, [field]: value }))
@@ -51,31 +57,37 @@ export default function NewPromptPage() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
 
-    if (!formData.title || !formData.description || !formData.prompt) {
+    if (!formData.title || !formData.description ) {
       toast.error("لطفاً تمام فیلدهای اجباری را پر کنید")
       return
     }
 
-    // Here you would typically send the data to your backend
-    console.log("Creating prompt:", formData)
-    let result = await uploadNewPrompt(formData)
+    if (edit !== undefined)
+      submitEdit(edit)
+    else
+      submitNew()
+
+    
+  }
+
+  const submitNew = async () => {
+    let result = await uploadNewBlog(formData)
     if (result.ok) {
-      toast.success("ثبت شد!")
-
-    toast.success("پرامپت جدید با موفقیت ایجاد شد")
-
-    // Reset form
-    setFormData({
-      title: "",
-      description: "",
-      prompt: "",
-      slug: "",
-      tags: "",
-      picture: "",
-      isFree: true,
-    })
-    setParsedTags([])
+      toast.success("بلاگ جدید با موفقیت ایجاد شد")
+      router.push("/Admin/BlogManagment")
+      router.refresh()
     } else {
+      toast.error("خطا")
+    }
+  }
+  const submitEdit = async (edit: Blog) => {
+    let result = await editBlog({...formData, id: edit.id})
+    if (result.ok) {
+      toast.success("ویرایش موفقیت آمیز بود")
+      router.push("/Admin/BlogManagment")
+      router.refresh()
+    } else {
+      console.log(result.error)
       toast.error("خطا")
     }
   }
@@ -87,13 +99,13 @@ export default function NewPromptPage() {
           <Link href="/library" className="text-sm text-muted-foreground hover:text-foreground">
             ← بازگشت به کتابخانه
           </Link>
-          <h1 className="text-3xl font-bold mt-2">ایجاد پرامپت جدید</h1>
-          <p className="text-muted-foreground mt-1">پرامپت جدید خود را ایجاد و به اشتراک بگذارید</p>
+          <h1 className="text-3xl font-bold mt-2">ایجاد بلاگ جدید</h1>
+          <p className="text-muted-foreground mt-1">بلاگ جدید خود را ایجاد و به اشتراک بگذارید</p>
         </div>
 
         <Card>
           <CardHeader>
-            <CardTitle>اطلاعات پرامپت</CardTitle>
+            <CardTitle>اطلاعات بلاگ</CardTitle>
           </CardHeader>
           <CardContent>
             <form onSubmit={handleSubmit} className="space-y-6">
@@ -104,7 +116,7 @@ export default function NewPromptPage() {
                   id="title"
                   value={formData.title}
                   onChange={(e) => handleInputChange("title", e.target.value)}
-                  placeholder="عنوان پرامپت را وارد کنید"
+                  placeholder="عنوان بلاگ را وارد کنید"
                   className="text-right"
                 />
               </div>
@@ -116,20 +128,8 @@ export default function NewPromptPage() {
                   id="description"
                   value={formData.description}
                   onChange={(e) => handleInputChange("description", e.target.value)}
-                  placeholder="توضیح مختصری از پرامپت ارائه دهید"
+                  placeholder="توضیح مختصری از بلاگ ارائه دهید"
                   className="text-right min-h-[100px]"
-                />
-              </div>
-
-              {/* Prompt Content */}
-              <div className="space-y-2">
-                <Label htmlFor="prompt">محتوای پرامپت *</Label>
-                <Textarea
-                  id="prompt"
-                  value={formData.prompt}
-                  onChange={(e) => handleInputChange("prompt", e.target.value)}
-                  placeholder="متن کامل پرامپت را وارد کنید"
-                  className="text-right min-h-[150px] font-mono"
                 />
               </div>
 
@@ -187,31 +187,13 @@ export default function NewPromptPage() {
                 )}
               </div>
 
-              {/* Free/Premium Toggle */}
-              <div className="flex items-center justify-between">
-                <div className="space-y-1">
-                  <Label>نوع پرامپت</Label>
-                  <p className="text-sm text-muted-foreground">
-                    {formData.isFree ? "این پرامپت رایگان است" : "این پرامپت پریمیوم است"}
-                  </p>
-                </div>
-                <div className="flex items-center gap-2 ltr">
-                  <span className="text-sm">پریمیوم</span>
-                  <Switch
-                    checked={formData.isFree}
-                    onCheckedChange={(checked) => handleInputChange("isFree", checked)}
-                  />
-                  <span className="text-sm">رایگان</span>
-                </div>
-              </div>
-
               {/* Submit Button */}
               <div className="flex gap-3 pt-4">
                 <Button type="submit" className="flex-1">
-                  ایجاد پرامپت
+                  {!edit ? "ایجاد بلاگ" : "ویرایش بلاگ"}
                 </Button>
                 <Button type="button" variant="outline" asChild>
-                  <Link href="/library">انصراف</Link>
+                  <Link href="/Admin/BlogManagment">انصراف</Link>
                 </Button>
               </div>
             </form>
