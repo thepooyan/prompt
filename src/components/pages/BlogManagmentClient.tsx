@@ -7,7 +7,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Blog } from "@/db/schema";
+import { Blog, blogsTable } from "@/db/schema";
 import { Suspense, useEffect, useState } from "react";
 import { limitChar } from "@/lib/utils";
 import { callModal } from "@/components/layout/Modal";
@@ -18,6 +18,7 @@ import { Loading } from "@/components/parts/Loading";
 import Link from "@/components/ui/link";
 import { cacheTags } from "@/server/cache";
 import { useRouter } from "next/navigation";
+import { weblogDetails as weblogDetailsUrl } from "@/lib/url";
 
 interface p {
     initialBlogs: Blog[]
@@ -122,9 +123,10 @@ export default function BlogManagmentClient({initialBlogs}:p) {
                       <Button
                         size="sm"
                         variant="ghost"
+                        asChild
                       >
-                        <Link href={`/Weblog/${encodeURIComponent(post.slug)}`}>
-                        <Eye className="h-4 w-4" />
+                        <Link href={weblogDetailsUrl(post.slug)}>
+                          <Eye className="h-4 w-4" />
                         </Link>
                       </Button>
                       <Button size="sm" variant="ghost" className="h-8 w-8 p-0" asChild>
