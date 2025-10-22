@@ -16,7 +16,7 @@ import { fetchPrompts } from "@/server/dataFetching";
 import { deletePrompt } from "@/server/mutation";
 import { Loading } from "@/components/parts/Loading";
 import Link from "@/components/ui/link";
-import { editPromptUrl, weblogDetailsUrl as weblogDetailsUrl } from "@/lib/url";
+import { editPromptUrl, promptDetailsUrl, weblogDetailsUrl as weblogDetailsUrl } from "@/lib/url";
 
 interface p {
     initialBlogs: Prompt[]
@@ -123,7 +123,7 @@ export default function PromptManagmentClient({initialBlogs}:p) {
                         variant="ghost"
                         asChild
                       >
-                        <Link href={weblogDetailsUrl(post.slug)}>
+                        <Link href={promptDetailsUrl(post.slug)}>
                           <Eye className="h-4 w-4" />
                         </Link>
                       </Button>
