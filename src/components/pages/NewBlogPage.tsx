@@ -190,10 +190,10 @@ export default function NewBlogPage({edit}:p) {
               {/* Submit Button */}
               <div className="flex gap-3 pt-4">
                 <Button type="submit" className="flex-1">
-                  ایجاد بلاگ
+                  {!edit ? "ایجاد بلاگ" : "ویرایش بلاگ"}
                 </Button>
                 <Button type="button" variant="outline" asChild>
-                  <Link href="/library">انصراف</Link>
+                  <Link href="/Admin/BlogManagment">انصراف</Link>
                 </Button>
               </div>
             </form>
