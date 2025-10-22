@@ -16,7 +16,7 @@ import { fetchPrompts } from "@/server/dataFetching";
 import { deletePrompt } from "@/server/mutation";
 import { Loading } from "@/components/parts/Loading";
 import Link from "@/components/ui/link";
-import { weblogDetails as weblogDetailsUrl } from "@/lib/url";
+import { editPromptUrl, weblogDetailsUrl as weblogDetailsUrl } from "@/lib/url";
 
 interface p {
     initialBlogs: Prompt[]
@@ -127,7 +127,7 @@ export default function PromptManagmentClient({initialBlogs}:p) {
                         </Link>
                       </Button>
                       <Button size="sm" variant="ghost" className="h-8 w-8 p-0" asChild>
-                      <Link href={`/Admin/EditBlog/${post.id}`}>
+                      <Link href={editPromptUrl(post.id)}>
                         <Edit className="h-4 w-4" />
                       </Link>
                       </Button>

@@ -1,2 +1,4 @@
 
-export const weblogDetails = (slug: string) => `/Blog/${encodeURIComponent(slug)}`
+export const weblogDetailsUrl = (slug: string) => `/Admin/Blog/${encodeURIComponent(slug)}`
+
+export const editPromptUrl = (id: number) => `/Admin/EditPrompt/${id}`

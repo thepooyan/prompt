@@ -18,7 +18,7 @@ import { Loading } from "@/components/parts/Loading";
 import Link from "@/components/ui/link";
 import { cacheTags } from "@/server/cache";
 import { useRouter } from "next/navigation";
-import { weblogDetails as weblogDetailsUrl } from "@/lib/url";
+import { weblogDetailsUrl as weblogDetailsUrl } from "@/lib/url";
 
 interface p {
     initialBlogs: Blog[]

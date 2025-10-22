@@ -14,10 +14,15 @@ import { X, Plus } from "lucide-react"
 import Link from "next/link"
 import { toast } from "sonner"
 import UploadBtn from "../parts/UploadBtn"
-import { uploadNewPrompt } from "@/server/actions"
+import { editPrompt, uploadNewPrompt } from "@/server/actions"
+import { Prompt } from "@/db/schema"
+import { useRouter } from "next/navigation"
 
-export default function PromptEditor() {
-  const [formData, setFormData] = useState({
+interface p {
+  edit?: Prompt
+}
+export default function PromptEditor({edit}:p) {
+  const empty = {
     title: "",
     description: "",
     slug: "",
@@ -25,7 +30,9 @@ export default function PromptEditor() {
     tags: "",
     picture: "",
     isFree: true,
-  })
+  }
+  const router = useRouter()
+  const [formData, setFormData] = useState(edit ? edit : empty)
   const [tagInput, setTagInput] = useState("")
   const [parsedTags, setParsedTags] = useState<string[]>([])
 
@@ -56,25 +63,27 @@ export default function PromptEditor() {
       return
     }
 
-    // Here you would typically send the data to your backend
-    console.log("Creating prompt:", formData)
+    if (edit) submitEdit(edit)
+      else submitNew()
+
+  }
+
+  const submitNew = async () => {
     let result = await uploadNewPrompt(formData)
     if (result.ok) {
-      toast.success("ثبت شد!")
-
-    toast.success("پرامپت جدید با موفقیت ایجاد شد")
-
-    // Reset form
-    setFormData({
-      title: "",
-      description: "",
-      prompt: "",
-      slug: "",
-      tags: "",
-      picture: "",
-      isFree: true,
-    })
-    setParsedTags([])
+      toast.success("پرامپت جدید با موفقیت ایجاد شد")
+      router.push("/Admin/PromptManagment")
+      router.refresh()
+    } else {
+      toast.error("خطا")
+    }
+  }
+  const submitEdit = async (edit: Prompt) => {
+    let result = await editPrompt({...formData, id: edit.id})
+    if (result.ok) {
+      toast.success("ویرایش با موفقیت ایجاد شد")
+      router.push("/Admin/PromptManagment")
+      router.refresh()
     } else {
       toast.error("خطا")
     }

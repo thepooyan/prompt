@@ -30,6 +30,12 @@ export const getBlogById = async (id: number) => {
     return blog
 }
 
+export const getPromptById = async (id: number) => {
+    const [en] = await db.select().from(promptsTable).where(eq(promptsTable.id, id)).limit(1)
+    return en
+}
+
+
 export const fetchPrompts = async () => {
     "use cache"
     cacheTag(cacheTags.prompts)
