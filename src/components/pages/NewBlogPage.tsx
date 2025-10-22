@@ -67,6 +67,7 @@ export default function NewBlogPage() {
     if (result.ok) {
       toast.success("بلاگ جدید با موفقیت ایجاد شد")
       router.push("/Admin/BlogManagment")
+      router.refresh()
     } else {
       toast.error("خطا")
     }
