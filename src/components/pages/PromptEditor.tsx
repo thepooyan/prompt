@@ -94,17 +94,10 @@ export default function PromptEditor({edit}:p) {
     <div className="min-h-screen bg-background p-4" dir="rtl">
       <div className="max-w-2xl mx-auto">
         <div className="mb-6">
-          <Link href="/library" className="text-sm text-muted-foreground hover:text-foreground">
-            ← بازگشت به کتابخانه
-          </Link>
-          <h1 className="text-3xl font-bold mt-2">ایجاد پرامپت جدید</h1>
-          <p className="text-muted-foreground mt-1">پرامپت جدید خود را ایجاد و به اشتراک بگذارید</p>
+          <h1 className="text-3xl font-bold mt-2">{!edit ? "ایجاد پرامپت جدید" : "ویرایش پرامپت"}</h1>
         </div>
 
         <Card>
-          <CardHeader>
-            <CardTitle>اطلاعات پرامپت</CardTitle>
-          </CardHeader>
           <CardContent>
             <form onSubmit={handleSubmit} className="space-y-6">
               {/* Title */}
@@ -218,7 +211,7 @@ export default function PromptEditor({edit}:p) {
               {/* Submit Button */}
               <div className="flex gap-3 pt-4">
                 <Button type="submit" className="flex-1">
-                  ایجاد پرامپت
+                  {edit ? "ویرایش پرامپت" : "ایجاد پرامپت"}
                 </Button>
                 <Button type="button" variant="outline" asChild>
                   <Link href="/library">انصراف</Link>
