@@ -24,6 +24,7 @@ interface p {
 export default function PromptManagmentClient({initialBlogs}:p) {
   const [posts, setPosts] = useState<Prompt[]>(initialBlogs)
 
+  const name = "پرامپت"
   const handleDelete = (post: Prompt) => {
     callModal.prompt(`"${limitChar(post.title, 40)}" حذف شود؟`)
     .yes(async () => {
@@ -42,12 +43,12 @@ export default function PromptManagmentClient({initialBlogs}:p) {
       {/* Header Section */}
       <div className="flex items-center justify-between">
         <div>
-          <h2 className="text-3xl font-bold tracking-tight">مدیریت وبلاگ</h2>
-          <p className="text-muted-foreground">مدیریت و ایجاد بلاگ ها</p>
+          <h2 className="text-3xl font-bold tracking-tight">مدیریت {name}</h2>
+          <p className="text-muted-foreground">مدیریت و ایجاد {name} ها</p>
         </div>
         <Button className="gap-2 bg-primary text-primary-foreground hover:bg-primary/90" asChild>
         <Link href="/Admin/NewPrompt">
-          پست جدید
+          {name} جدید
           <Plus className="h-4 w-4" />
         </Link>
         </Button>
@@ -85,12 +86,12 @@ export default function PromptManagmentClient({initialBlogs}:p) {
 
       {/* Posts List */}
       <div className="space-y-4">
-        <h3 className="text-xl font-semibold">آخرین بلاگ ها</h3>
+        <h3 className="text-xl font-semibold">آخرین {name} ها</h3>
         <div className="space-y-3">
           <Suspense fallback={<Loading />}>
             {posts?.length === 0 && <>
               <div className="bg-card rounded-md p-5 text-center flex flex-col gap-3 items-center">
-                بلاگی یافت نشد!
+                {name}ی یافت نشد!
                 <Button>
                   <Link href="/Admin/NewBlog">
                     اضافه کردن
