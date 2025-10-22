@@ -16,7 +16,6 @@ import { fetchBlogs } from "@/server/dataFetching";
 import { deletePost } from "@/server/mutation";
 import { Loading } from "@/components/parts/Loading";
 import Link from "@/components/ui/link";
-import { useRouter } from "next/navigation";
 import { weblogDetailsUrl } from "@/lib/url";
 
 interface p {
