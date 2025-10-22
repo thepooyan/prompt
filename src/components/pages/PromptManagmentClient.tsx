@@ -16,7 +16,7 @@ import { fetchPrompts } from "@/server/dataFetching";
 import { deletePrompt } from "@/server/mutation";
 import { Loading } from "@/components/parts/Loading";
 import Link from "@/components/ui/link";
-import { editPromptUrl, promptDetailsUrl, weblogDetailsUrl as weblogDetailsUrl } from "@/lib/url";
+import { editPromptUrl, promptDetailsUrl } from "@/lib/url";
 
 interface p {
     initialBlogs: Prompt[]

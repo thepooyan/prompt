@@ -7,25 +7,23 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Blog, blogsTable } from "@/db/schema";
-import { Suspense, useEffect, useState } from "react";
+import { Blog } from "@/db/schema";
+import { Suspense, useState } from "react";
 import { limitChar } from "@/lib/utils";
 import { callModal } from "@/components/layout/Modal";
 import { Calendar, Edit, Eye, Plus, Trash2 } from "lucide-react";
-import { fetchBlogs, revalidateTag } from "@/server/dataFetching";
+import { fetchBlogs } from "@/server/dataFetching";
 import { deletePost } from "@/server/mutation";
 import { Loading } from "@/components/parts/Loading";
 import Link from "@/components/ui/link";
-import { cacheTags } from "@/server/cache";
 import { useRouter } from "next/navigation";
-import { weblogDetailsUrl as weblogDetailsUrl } from "@/lib/url";
+import { weblogDetailsUrl } from "@/lib/url";
 
 interface p {
     initialBlogs: Blog[]
 }
 export default function BlogManagmentClient({initialBlogs}:p) {
   const [posts, setPosts] = useState<Blog[]>(initialBlogs)
-  const router = useRouter()
 
   const handleDelete = (post: Blog) => {
     callModal.prompt(`"${limitChar(post.title, 40)}" حذف شود؟`)
