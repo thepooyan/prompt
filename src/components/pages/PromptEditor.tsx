@@ -17,6 +17,7 @@ import UploadBtn from "../parts/UploadBtn"
 import { editPrompt, uploadNewPrompt } from "@/server/actions"
 import { Prompt } from "@/db/schema"
 import { useRouter } from "next/navigation"
+import ArrayInput from "../ui/array-input"
 
 interface p {
   edit?: Prompt
@@ -36,9 +37,9 @@ export default function PromptEditor({edit}:p) {
     canonical: ""
   }
   const router = useRouter()
-  const [formData, setFormData] = useState(edit ? edit : empty);
+  const [formData, setFormData] = useState<Prompt>(edit ? edit : {...empty, id: 0});
   const [tagInput, setTagInput] = useState("");
-  const [seoTags, setSeoTags] = useState<string[]>([]);
+  
   const [parsedTags, setParsedTags] = useState<string[]>([])
 
   const handleInputChange = (field: string, value: string | boolean) => {
@@ -74,7 +75,8 @@ export default function PromptEditor({edit}:p) {
   }
 
   const submitNew = async () => {
-    let result = await uploadNewPrompt(formData)
+    const {id , ...rest} = formData
+    let result = await uploadNewPrompt(rest)
     if (result.ok) {
       toast.success("پرامپت جدید با موفقیت ایجاد شد")
       router.push("/Admin/PromptManagment")
@@ -242,24 +244,10 @@ export default function PromptEditor({edit}:p) {
               {/* Seo Tags */}
               <div className="space-y-2">
                 <Label>Seo Keywords</Label>
-                <div className="flex gap-2">
-                  <Input
-                    onKeyUp={(e) => e.key === "Enter" && (e.preventDefault(), submitSeoTag())}
-                  />
-                  <Button type="button" onClick={addTag} size="sm">
-                    <Plus className="h-4 w-4" />
-                  </Button>
-                </div>
-                {seoTags.length > 0 && (
-                  <div className="flex flex-wrap gap-2 mt-2">
-                    {seoTags.map((tag,i) => (
-                      <Badge key={i} variant="secondary" className="flex items-center gap-1" onClick={() => setSeoTags(prev => [...prev.filter(p => p !== tag)]) }>
-                        {tag}
-                        <X className="h-3 w-3 cursor-pointer hover:text-destructive" />
-                      </Badge>
-                    ))}
-                  </div>
-                )}
+                <ArrayInput
+                  array={formData.seoKeywords}
+                  onChange={val => setFormData(prev => ({...prev, seoKeywords: val }))}
+                />
               </div>
 
 
