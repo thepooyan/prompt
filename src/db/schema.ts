@@ -1,5 +1,5 @@
 import { InferInsertModel, InferSelectModel } from "drizzle-orm";
-import { boolean, integer, pgTable, text, varchar } from "drizzle-orm/pg-core";
+import { boolean, integer, json, PgArray, pgTable, text, varchar } from "drizzle-orm/pg-core";
 
 // export const promptsTable = pgTable("prompts", {
 //   id: integer().primaryKey().generatedAlwaysAsIdentity(),
@@ -17,6 +17,11 @@ export const promptsTable = pgTable("prompts", {
   isFree: boolean().notNull().default(false),
   description: text().notNull(),
   prompt: text().notNull(),
+  //seo fields
+  canonical: varchar({length: 255}).default("").notNull(),
+  seoTitle: varchar({length: 255}).default("").notNull(),
+  seoDescription: varchar({length: 255}).default("").notNull(),
+  seoKeywords: json().default([]).$type<string[]>().notNull()
 });
 
 export type Prompt = InferSelectModel<typeof promptsTable>

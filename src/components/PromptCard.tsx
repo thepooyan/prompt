@@ -2,7 +2,7 @@
 import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
-import { Copy, Share2, Heart, ArrowLeft } from "lucide-react"
+import { Share2, Heart, ArrowLeft } from "lucide-react"
 import { cn } from "@/lib/utils"
 import type { Prompt } from "@/db/schema"
 import { usePromptCard } from "@/hooks/use-prompt-card"

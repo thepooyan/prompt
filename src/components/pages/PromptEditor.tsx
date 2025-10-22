@@ -208,6 +208,56 @@ export default function PromptEditor({edit}:p) {
                 </div>
               </div>
 
+              {/* Seo Title */}
+              <div className="space-y-2">
+                <Label htmlFor="title">Seo title</Label>
+                <Input
+                  id="title"
+                  value={formData.title}
+                  onChange={(e) => handleInputChange("title", e.target.value)}
+                  placeholder="عنوان پرامپت را وارد کنید"
+                  className="text-right"
+                />
+              </div>
+              {/* Seo desc */}
+              <div className="space-y-2">
+                <Label htmlFor="title">Seo description</Label>
+                <Input
+                  id="title"
+                  value={formData.title}
+                  onChange={(e) => handleInputChange("title", e.target.value)}
+                  placeholder="عنوان پرامپت را وارد کنید"
+                  className="text-right"
+                />
+              </div>
+              {/* Tags */}
+              <div className="space-y-2">
+                <Label>برچسب‌ها</Label>
+                <div className="flex gap-2">
+                  <Input
+                    value={tagInput}
+                    onChange={(e) => setTagInput(e.target.value)}
+                    placeholder="برچسب جدید"
+                    className="text-right"
+                    onKeyPress={(e) => e.key === "Enter" && (e.preventDefault(), addTag())}
+                  />
+                  <Button type="button" onClick={addTag} size="sm">
+                    <Plus className="h-4 w-4" />
+                  </Button>
+                </div>
+                {parsedTags.length > 0 && (
+                  <div className="flex flex-wrap gap-2 mt-2">
+                    {parsedTags.map((tag, index) => (
+                      <Badge key={index} variant="secondary" className="flex items-center gap-1">
+                        {tag}
+                        <X className="h-3 w-3 cursor-pointer hover:text-destructive" onClick={() => removeTag(tag)} />
+                      </Badge>
+                    ))}
+                  </div>
+                )}
+              </div>
+
+
               {/* Submit Button */}
               <div className="flex gap-3 pt-4">
                 <Button type="submit" className="flex-1">
