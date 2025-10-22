@@ -13,13 +13,14 @@ import { X, Plus } from "lucide-react"
 import Link from "next/link"
 import { toast } from "sonner"
 import UploadBtn from "../parts/UploadBtn"
-import { uploadNewBlog, uploadNewPrompt } from "@/server/actions"
-import { NewBlog } from "@/db/schema"
-import { cacheTags } from "@/server/cache"
+import { editBlog, uploadNewBlog, uploadNewPrompt } from "@/server/actions"
+import { Blog, NewBlog } from "@/db/schema"
 import { useRouter } from "next/navigation"
-import { updateTag } from "next/cache"
 
-export default function NewBlogPage() {
+interface p {
+  edit?: Blog
+}
+export default function NewBlogPage({edit}:p) {
   const empty = {
     slug: "",
     title: "",
@@ -29,7 +30,7 @@ export default function NewBlogPage() {
     excerpt: "",
     canonical: null
   }
-  const [formData, setFormData] = useState<NewBlog>({...empty})
+  const [formData, setFormData] = useState(edit ? {...edit} : {...empty})
   const [tagInput, setTagInput] = useState("")
   const [parsedTags, setParsedTags] = useState<string[]>([])
   const router = useRouter()
@@ -61,14 +62,32 @@ export default function NewBlogPage() {
       return
     }
 
-    // Here you would typically send the data to your backend
-    console.log("Creating prompt:", formData)
+    if (edit !== undefined)
+      submitEdit(edit)
+    else
+      submitNew()
+
+    
+  }
+
+  const submitNew = async () => {
     let result = await uploadNewBlog(formData)
     if (result.ok) {
       toast.success("بلاگ جدید با موفقیت ایجاد شد")
       router.push("/Admin/BlogManagment")
       router.refresh()
     } else {
+      toast.error("خطا")
+    }
+  }
+  const submitEdit = async (edit: Blog) => {
+    let result = await editBlog({...formData, id: edit.id})
+    if (result.ok) {
+      toast.success("ویرایش موفقیت آمیز بود")
+      router.push("/Admin/BlogManagment")
+      router.refresh()
+    } else {
+      console.log(result.error)
       toast.error("خطا")
     }
   }

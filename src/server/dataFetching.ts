@@ -25,6 +25,11 @@ export const fetchSingleBlog = async (slug: string): Promise<Blog | null> => {
     return blog
 }
 
+export const getBlogById = async (id: number) => {
+    const [blog] = await db.select().from(blogsTable).where(eq(blogsTable.id, id)).limit(1)
+    return blog
+}
+
 export const fetchPrompts = async () => {
     "use cache"
     cacheTag(cacheTags.prompts)
