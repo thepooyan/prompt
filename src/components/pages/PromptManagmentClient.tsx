@@ -58,7 +58,7 @@ export default function PromptManagmentClient({initialBlogs}:p) {
       <div className="grid gap-4 md:grid-cols-3">
         <Card className="bg-card">
           <CardHeader className="pb-3">
-            <CardDescription>تعداد پست ها</CardDescription>
+            <CardDescription>تعداد {name} ها</CardDescription>
             <CardTitle className="text-3xl font-bold text-primary">
               <Suspense fallback="0">
                 {posts?.length}
