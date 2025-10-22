@@ -30,10 +30,15 @@ export default function PromptEditor({edit}:p) {
     tags: "",
     picture: "",
     isFree: true,
+    seoTitle: "",
+    seoDescription: "",
+    seoKeywords: [],
+    canonical: ""
   }
   const router = useRouter()
-  const [formData, setFormData] = useState(edit ? edit : empty)
-  const [tagInput, setTagInput] = useState("")
+  const [formData, setFormData] = useState(edit ? edit : empty);
+  const [tagInput, setTagInput] = useState("");
+  const [seoTags, setSeoTags] = useState<string[]>([]);
   const [parsedTags, setParsedTags] = useState<string[]>([])
 
   const handleInputChange = (field: string, value: string | boolean) => {
@@ -109,6 +114,16 @@ export default function PromptEditor({edit}:p) {
                   onChange={(e) => handleInputChange("title", e.target.value)}
                   placeholder="عنوان پرامپت را وارد کنید"
                   className="text-right"
+                />
+              </div>
+
+              {/* Slug */}
+              <div className="space-y-2">
+                <Label htmlFor="title">اسلاگ *</Label>
+                <Input
+                  value={formData.slug}
+                  onChange={(e) => handleInputChange("slug", e.target.value)}
+                  placeholder="اسلاگ پرامپت را وارد کنید"
                 />
               </div>
 
@@ -212,45 +227,35 @@ export default function PromptEditor({edit}:p) {
               <div className="space-y-2">
                 <Label htmlFor="title">Seo title</Label>
                 <Input
-                  id="title"
-                  value={formData.title}
-                  onChange={(e) => handleInputChange("title", e.target.value)}
-                  placeholder="عنوان پرامپت را وارد کنید"
-                  className="text-right"
+                  value={formData.seoTitle}
+                  onChange={(e) => handleInputChange("seoTitle", e.target.value)}
                 />
               </div>
               {/* Seo desc */}
               <div className="space-y-2">
                 <Label htmlFor="title">Seo description</Label>
                 <Input
-                  id="title"
-                  value={formData.title}
-                  onChange={(e) => handleInputChange("title", e.target.value)}
-                  placeholder="عنوان پرامپت را وارد کنید"
-                  className="text-right"
+                  value={formData.seoDescription}
+                  onChange={(e) => handleInputChange("seoDescription", e.target.value)}
                 />
               </div>
-              {/* Tags */}
+              {/* Seo Tags */}
               <div className="space-y-2">
-                <Label>برچسب‌ها</Label>
+                <Label>Seo Keywords</Label>
                 <div className="flex gap-2">
                   <Input
-                    value={tagInput}
-                    onChange={(e) => setTagInput(e.target.value)}
-                    placeholder="برچسب جدید"
-                    className="text-right"
-                    onKeyPress={(e) => e.key === "Enter" && (e.preventDefault(), addTag())}
+                    onKeyUp={(e) => e.key === "Enter" && (e.preventDefault(), submitSeoTag())}
                   />
                   <Button type="button" onClick={addTag} size="sm">
                     <Plus className="h-4 w-4" />
                   </Button>
                 </div>
-                {parsedTags.length > 0 && (
+                {seoTags.length > 0 && (
                   <div className="flex flex-wrap gap-2 mt-2">
-                    {parsedTags.map((tag, index) => (
-                      <Badge key={index} variant="secondary" className="flex items-center gap-1">
+                    {seoTags.map((tag,i) => (
+                      <Badge key={i} variant="secondary" className="flex items-center gap-1" onClick={() => setSeoTags(prev => [...prev.filter(p => p !== tag)]) }>
                         {tag}
-                        <X className="h-3 w-3 cursor-pointer hover:text-destructive" onClick={() => removeTag(tag)} />
+                        <X className="h-3 w-3 cursor-pointer hover:text-destructive" />
                       </Badge>
                     ))}
                   </div>
