@@ -56,7 +56,7 @@ export const editBlog = async (blog: Blog) => {
 export const editPrompt = async (en: Prompt) => {
   try {
     let {id, ...other} = en
-    await db.update(promptsTable).set(other).where(eq(blogsTable.id, id))
+    await db.update(promptsTable).set(other).where(eq(promptsTable.id, id))
     updateTag(cacheTags.prompts)
     return {ok: true}
   } catch(e) {

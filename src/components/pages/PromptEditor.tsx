@@ -86,6 +86,7 @@ export default function PromptEditor({edit}:p) {
       router.refresh()
     } else {
       toast.error("خطا")
+      console.log(result.error)
     }
   }
 
