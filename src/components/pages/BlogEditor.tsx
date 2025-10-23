@@ -13,8 +13,8 @@ import { X, Plus } from "lucide-react"
 import Link from "next/link"
 import { toast } from "sonner"
 import UploadBtn from "../parts/UploadBtn"
-import { editBlog, uploadNewBlog, uploadNewPrompt } from "@/server/actions"
-import { Blog, NewBlog } from "@/db/schema"
+import { updateBlog, insertBlog, } from "@/server/mutation"
+import { Blog } from "@/db/schema"
 import { useRouter } from "next/navigation"
 import ArrayInput from "../ui/array-input"
 
@@ -76,7 +76,7 @@ export default function BlogEditor({edit}:p) {
 
   const submitNew = async () => {
     const {id, ...others} = formData
-    let result = await uploadNewBlog(others)
+    let result = await insertBlog(others)
     if (result.ok) {
       toast.success("بلاگ جدید با موفقیت ایجاد شد")
       router.push("/Admin/BlogManagment")
@@ -86,7 +86,7 @@ export default function BlogEditor({edit}:p) {
     }
   }
   const submitEdit = async (edit: Blog) => {
-    let result = await editBlog({...formData, id: edit.id})
+    let result = await updateBlog({...formData, id: edit.id})
     if (result.ok) {
       toast.success("ویرایش موفقیت آمیز بود")
       router.push("/Admin/BlogManagment")

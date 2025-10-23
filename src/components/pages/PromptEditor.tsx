@@ -3,7 +3,7 @@
 import type React from "react"
 
 import { useState } from "react"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
@@ -14,7 +14,7 @@ import { X, Plus } from "lucide-react"
 import Link from "next/link"
 import { toast } from "sonner"
 import UploadBtn from "../parts/UploadBtn"
-import { editPrompt, uploadNewPrompt } from "@/server/actions"
+import {  updatePrompt,  insertPrompt } from "@/server/mutation"
 import { Prompt } from "@/db/schema"
 import { useRouter } from "next/navigation"
 import ArrayInput from "../ui/array-input"
@@ -76,7 +76,7 @@ export default function PromptEditor({edit}:p) {
 
   const submitNew = async () => {
     const {id , ...rest} = formData
-    let result = await uploadNewPrompt(rest)
+    let result = await insertPrompt(rest)
     if (result.ok) {
       toast.success("پرامپت جدید با موفقیت ایجاد شد")
       router.push("/Admin/PromptManagment")
@@ -86,7 +86,7 @@ export default function PromptEditor({edit}:p) {
     }
   }
   const submitEdit = async (edit: Prompt) => {
-    let result = await editPrompt({...formData, id: edit.id})
+    let result = await updatePrompt({...formData, id: edit.id})
     if (result.ok) {
       toast.success("ویرایش با موفقیت ایجاد شد")
       router.push("/Admin/PromptManagment")
