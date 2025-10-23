@@ -51,14 +51,14 @@ export const fetchSinglePrompt = async (slug: string) => {
 
 export const fetchThreePrompts = async () => {
     "use cache"
-    cacheTag(cacheTags.threePrompts)
+    cacheTag(cacheTags.prompts)
   const posts = await db.select().from(promptsTable).limit(3)
   return posts
 }
 
 export const fetchFiveBlogs = async () => {
     "use cache"
-    cacheTag(cacheTags.fiveBlogs)
+    cacheTag(cacheTags.blogs)
     let data = await db.select().from(blogsTable).limit(5)
     return data
 }
