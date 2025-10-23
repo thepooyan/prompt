@@ -56,6 +56,7 @@ export const updatePrompt = async (en: Prompt) => {
     let {id, ...other} = en
     await db.update(promptsTable).set(other).where(eq(promptsTable.id, id))
     updateTag(cacheTags.prompts)
+    revalidateTag(cacheTags.singlePrompt, "max")
     return {ok: true}
   } catch(e) {
     return {ok: false, error: e}
