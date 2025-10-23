@@ -1,3 +1,4 @@
 search like sokan
 logo
-prompts => what-is-prompt
+favicon
+make tags searchable
