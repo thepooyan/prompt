@@ -225,6 +225,14 @@ export default function PromptEditor({edit}:p) {
                 </div>
               </div>
 
+              {/* Canonical */}
+              <div className="space-y-2">
+                <Label htmlFor="title">Canonical</Label>
+                <Input
+                  value={formData.canonical}
+                  onChange={(e) => handleInputChange("canonical", e.target.value)}
+                />
+              </div>
               {/* Seo Title */}
               <div className="space-y-2">
                 <Label htmlFor="title">Seo title</Label>
