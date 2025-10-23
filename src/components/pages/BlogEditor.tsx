@@ -16,6 +16,7 @@ import UploadBtn from "../parts/UploadBtn"
 import { editBlog, uploadNewBlog, uploadNewPrompt } from "@/server/actions"
 import { Blog, NewBlog } from "@/db/schema"
 import { useRouter } from "next/navigation"
+import ArrayInput from "../ui/array-input"
 
 interface p {
   edit?: Blog
@@ -35,7 +36,7 @@ export default function BlogEditor({edit}:p) {
   }
   const [formData, setFormData] = useState<Blog>(edit ? {...edit} : {...empty, id: 0})
   const [tagInput, setTagInput] = useState("")
-  const [parsedTags, setParsedTags] = useState<string[]>([])
+  const [parsedTags, setParsedTags] = useState<string[]>(edit ? edit.tags.split(",") : [])
   const router = useRouter()
 
   const handleInputChange = (field: string, value: string | boolean) => {
@@ -113,6 +114,7 @@ export default function BlogEditor({edit}:p) {
           </CardHeader>
           <CardContent>
             <form onSubmit={handleSubmit} className="space-y-6">
+
               {/* Title */}
               <div className="space-y-2">
                 <Label htmlFor="title">عنوان *</Label>
@@ -125,17 +127,41 @@ export default function BlogEditor({edit}:p) {
                 />
               </div>
 
-              {/* Description */}
+              {/* Slug */}
               <div className="space-y-2">
-                <Label htmlFor="description">توضیحات *</Label>
+                <Label>اسلاگ *</Label>
+                <Input
+                  value={formData.slug}
+                  onChange={(e) => handleInputChange("slug", e.target.value)}
+                  placeholder="اسلاگ بلاگ را وارد کنید"
+                  className="text-right"
+                />
+              </div>
+
+
+              {/* Excerpt */}
+              <div className="space-y-2">
+                <Label>خلاصه *</Label>
                 <Textarea
-                  id="description"
-                  value={formData.description}
-                  onChange={(e) => handleInputChange("description", e.target.value)}
+                  value={formData.excerpt}
+                  onChange={(e) => handleInputChange("excerpt", e.target.value)}
                   placeholder="توضیح مختصری از بلاگ ارائه دهید"
                   className="text-right min-h-[100px]"
                 />
               </div>
+
+              {/* Description */}
+              <div className="space-y-2">
+                <Label htmlFor="description">مطلب *</Label>
+                <Textarea
+                  id="description"
+                  value={formData.description}
+                  onChange={(e) => handleInputChange("description", e.target.value)}
+                  placeholder="مطلب کامل بلاگ"
+                  className="text-right min-h-[100px]"
+                />
+              </div>
+
 
               {/* Tags */}
               <div className="space-y-2">
@@ -155,9 +181,9 @@ export default function BlogEditor({edit}:p) {
                 {parsedTags.length > 0 && (
                   <div className="flex flex-wrap gap-2 mt-2">
                     {parsedTags.map((tag, index) => (
-                      <Badge key={index} variant="secondary" className="flex items-center gap-1">
+                      <Badge key={index} variant="secondary" className="flex items-center gap-1" onClick={() => removeTag(tag)}>
                         {tag}
-                        <X className="h-3 w-3 cursor-pointer hover:text-destructive" onClick={() => removeTag(tag)} />
+                        <X className="h-3 w-3 cursor-pointer hover:text-destructive" />
                       </Badge>
                     ))}
                   </div>
@@ -190,6 +216,43 @@ export default function BlogEditor({edit}:p) {
                   </div>
                 )}
               </div>
+
+              {/* Canonical */}
+              <div className="space-y-2">
+                <Label>Canonical</Label>
+                <Input
+                  value={formData.canonical}
+                  onChange={(e) => handleInputChange("canonical", e.target.value)}
+                  className="text-right"
+                />
+              </div>
+              {/* Seo title */}
+              <div className="space-y-2">
+                <Label>Seo title</Label>
+                <Input
+                  value={formData.seoTitle}
+                  onChange={(e) => handleInputChange("seoTitle", e.target.value)}
+                  className="text-right"
+                />
+              </div>
+              {/* Seo des */}
+              <div className="space-y-2">
+                <Label>Seo Description</Label>
+                <Input
+                  value={formData.seoDescription}
+                  onChange={(e) => handleInputChange("seoDescription", e.target.value)}
+                  className="text-right"
+                />
+              </div>
+              {/* Seo title */}
+              <div className="space-y-2">
+                <Label>Seo keywords</Label>
+                <ArrayInput
+                  array={formData.seoKeywords}
+                  onChange={val => setFormData(prev => ({...prev, seoKeywords: val})) }
+                />
+              </div>
+
 
               {/* Submit Button */}
               <div className="flex gap-3 pt-4">
