@@ -1,15 +1,8 @@
 "use server"
 
-import { db } from "@/db"
-import { Blog, blogsTable, NewBlog, NewPrompt, Prompt, promptsTable } from "@/db/schema"
 import { s3 } from "@/s3"
 import { PutObjectCommand } from "@aws-sdk/client-s3"
-import { eq, InferInsertModel } from "drizzle-orm"
-import { PgNumeric, PgTable, TableConfig } from "drizzle-orm/pg-core"
 import { env } from "./env"
-import { cacheTagKey, cacheTags } from "./cache"
-import { updateTag } from "next/cache"
-import { revalidateTag } from "./dataFetching"
 
 export async function uploadToS3(file: File) {
   const arrayBuffer = await file.arrayBuffer()
@@ -26,40 +19,4 @@ export async function uploadToS3(file: File) {
   }))
 
   return `https://${env.BUCKET_URL}/${key}`
-}
-
-const insertRecordAction = async <T extends PgTable<TableConfig>, V extends InferInsertModel<T>>(table: T, values: V, tag: cacheTagKey) => {
-  try {
-    await db.insert(table).values(values)
-    updateTag(tag)
-    return { ok: true }
-  } catch (e) {
-    return { ok: false, error: e }
-  }
-}
-
-export const uploadNewPrompt = async (newPrompt: NewPrompt)  => insertRecordAction(promptsTable, newPrompt, cacheTags.prompts)
-export const uploadNewBlog = async (newBlog: NewBlog)        => insertRecordAction(blogsTable, newBlog, cacheTags.blogs)
-
-
-export const editBlog = async (blog: Blog) => {
-  try {
-    let {id, ...other} = blog
-    await db.update(blogsTable).set(other).where(eq(blogsTable.id, id))
-    updateTag(cacheTags.blogs)
-    return {ok: true}
-  } catch(e) {
-    return {ok: false, error: e}
-  }
-}
-
-export const editPrompt = async (en: Prompt) => {
-  try {
-    let {id, ...other} = en
-    await db.update(promptsTable).set(other).where(eq(promptsTable.id, id))
-    updateTag(cacheTags.prompts)
-    return {ok: true}
-  } catch(e) {
-    return {ok: false, error: e}
-  }
 }
