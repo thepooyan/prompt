@@ -1,6 +1,6 @@
 import PromptPageClient from "@/components/pages/PromptPageClient"
 import { fetchSinglePrompt } from "@/server/dataFetching"
-import { Metadata, ResolvingMetadata } from "next"
+import { Metadata } from "next"
 import { notFound } from "next/navigation"
 import { Suspense } from "react"
 
@@ -27,11 +27,10 @@ const Inner = async ({params}:p) => {
 }
 
  
-export async function generateMetadata( { params }: p, parent: ResolvingMetadata): Promise<Metadata> {
-  // read route params
+export async function generateMetadata( { params }: p ): Promise<Metadata> {
+  
   const { slug } = await params
- 
- const data = await fetchSinglePrompt(slug)
+  const data = await fetchSinglePrompt(slug)
  
   return {
     title: data.seoTitle,
