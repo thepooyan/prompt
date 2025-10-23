@@ -36,6 +36,9 @@ export async function generateMetadata( { params }: p ): Promise<Metadata> {
     title: data.seoTitle,
     description: data.seoDescription,
     keywords: data.seoKeywords,
+    alternates: {
+      canonical: data.canonical
+    }
   }
 }
 
