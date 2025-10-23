@@ -28,9 +28,12 @@ export default function BlogEditor({edit}:p) {
     tags: "",
     picture: "",
     excerpt: "",
-    canonical: null
+    canonical: "",
+    seoTitle: "",
+    seoDescription: "",
+    seoKeywords: []
   }
-  const [formData, setFormData] = useState(edit ? {...edit} : {...empty})
+  const [formData, setFormData] = useState<Blog>(edit ? {...edit} : {...empty, id: 0})
   const [tagInput, setTagInput] = useState("")
   const [parsedTags, setParsedTags] = useState<string[]>([])
   const router = useRouter()
@@ -71,7 +74,8 @@ export default function BlogEditor({edit}:p) {
   }
 
   const submitNew = async () => {
-    let result = await uploadNewBlog(formData)
+    const {id, ...others} = formData
+    let result = await uploadNewBlog(others)
     if (result.ok) {
       toast.success("بلاگ جدید با موفقیت ایجاد شد")
       router.push("/Admin/BlogManagment")
