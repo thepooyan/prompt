@@ -6,7 +6,7 @@ import { cacheTagKey, cacheTags } from "./cache"
 import { updateTag } from "next/cache"
 import { db } from "@/db"
 
-export const deletePost = async (id: number) => {
+export const deleteBlog = async (id: number) => {
     try {
         await db.delete(blogsTable).where(eq(blogsTable.id, id))
         updateTag(cacheTags.blogs)
@@ -35,8 +35,8 @@ const insertRecordAction = async <T extends PgTable<TableConfig>, V extends Infe
   }
 }
 
-export const uploadNewPrompt = async (newPrompt: NewPrompt)  => insertRecordAction(promptsTable, newPrompt, cacheTags.prompts)
-export const uploadNewBlog = async (newBlog: NewBlog)        => insertRecordAction(blogsTable, newBlog, cacheTags.blogs)
+export const insertPrompt = async (newPrompt: NewPrompt)  => insertRecordAction(promptsTable, newPrompt, cacheTags.prompts)
+export const insertBlog = async (newBlog: NewBlog)        => insertRecordAction(blogsTable, newBlog, cacheTags.blogs)
 
 
 export const editBlog = async (blog: Blog) => {

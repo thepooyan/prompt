@@ -13,7 +13,7 @@ import { limitChar } from "@/lib/utils";
 import { callModal } from "@/components/layout/Modal";
 import { Calendar, Edit, Eye, Plus, Trash2 } from "lucide-react";
 import { fetchBlogs } from "@/server/dataFetching";
-import { deletePost } from "@/server/mutation";
+import { deleteBlog } from "@/server/mutation";
 import { Loading } from "@/components/parts/Loading";
 import Link from "@/components/ui/link";
 import { weblogDetailsUrl } from "@/lib/url";
@@ -27,7 +27,7 @@ export default function BlogManagmentClient({initialBlogs}:p) {
   const handleDelete = (post: Blog) => {
     callModal.prompt(`"${limitChar(post.title, 40)}" حذف شود؟`)
     .yes(async () => {
-        let {ok} = await deletePost(post.id)
+        let {ok} = await deleteBlog(post.id)
         if (ok) {
           callModal.success("با موفقیت حذف شد!")
           let blogs = await fetchBlogs()
