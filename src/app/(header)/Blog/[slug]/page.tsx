@@ -1,4 +1,5 @@
 import BlogAsync from "@/components/pages/BlogAsync"
+import { Loading } from "@/components/parts/Loading"
 import { fetchSingleBlog } from "@/server/dataFetching"
 import { Metadata, ResolvingMetadata } from "next"
 import { Suspense } from "react"
@@ -8,7 +9,7 @@ interface props {
 }
 const page = (props:props) => {
   return (
-    <Suspense>
+    <Suspense fallback={<Loading/>}>
       <BlogAsync {...props}/>
     </Suspense>
   )
