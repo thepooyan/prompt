@@ -1,4 +1,5 @@
 import PromptPageClient from "@/components/pages/PromptPageClient"
+import { Loading } from "@/components/parts/Loading"
 import { fetchSinglePrompt } from "@/server/dataFetching"
 import { Metadata } from "next"
 import { notFound } from "next/navigation"
@@ -9,7 +10,7 @@ interface p {
 }
 const page = (p:p) => {
   return (
-    <Suspense>
+    <Suspense fallback={<Loading/>}>
       <Inner {...p}/>
     </Suspense>
   )
