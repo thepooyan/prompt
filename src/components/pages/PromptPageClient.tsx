@@ -102,7 +102,7 @@ export default function PromptPageClient({ prompt }:p ) {
         </div>
         <div className="flex items-start gap-4">
             <div className="step-number-blue text-white font-bold text-xl rounded-full flex items-center justify-center flex-shrink-0">۲</div>
-            <p className="text-gray-300 text-lg flex-1 pt-1">وارد اپلیکیشن دیسکورد و سرور <a href="/blog/midjourney-prompts-tutorial" className="text-blue-400 hover:underline">میدجرنی</a> شوید.</p>
+            <p className="text-gray-300 text-lg flex-1 pt-1">وارد اپلیکیشن دیسکورد و سرور <a href="/Blog/midjourney-prompt-guide" className="text-blue-400 hover:underline">میدجرنی</a> شوید.</p>
         </div>
         <div className="flex items-start gap-4">
             <div className="step-number-blue text-white font-bold text-xl rounded-full flex items-center justify-center flex-shrink-0">۳</div>

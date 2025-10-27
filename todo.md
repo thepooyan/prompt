@@ -1,4 +1,5 @@
 search like sokan
+promptcard img fix
 logo
 favicon
 make tags searchable
