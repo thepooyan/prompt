@@ -265,7 +265,7 @@ export default function PromptEditor({edit}:p) {
                   {edit ? "ویرایش پرامپت" : "ایجاد پرامپت"}
                 </Button>
                 <Button type="button" variant="outline" asChild>
-                  <Link href="/library">انصراف</Link>
+                  <Link href="/Prompts">انصراف</Link>
                 </Button>
               </div>
             </form>

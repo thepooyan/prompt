@@ -15,7 +15,7 @@ export default async function Home() {
           <h1 className="text-3xl font-bold text-foreground mb-2">مجموعه پرامپت‌های هوش مصنوعی</h1>
           <p className="text-muted-foreground mb-6">بهترین پرامپت‌ها برای کارهای مختلف شما</p>
 
-          <Link href="/library">
+          <Link href="/Prompts">
             <Button className="mb-8" dir="rtl">
               <Library className="h-4 w-4 ml-2" />
               مشاهده کتابخانه کامل
@@ -36,7 +36,7 @@ export default async function Home() {
 
         <div className="text-center mt-12">
           <p className="text-muted-foreground mb-4">{featuredPrompts.length - 3} پرامپت دیگر در کتابخانه موجود است</p>
-          <Link href="/library">
+          <Link href="/Prompts">
             <Button variant="outline" dir="rtl">
               مشاهده همه پرامپت‌ها
               <ArrowLeft className="h-4 w-4 mr-2" />

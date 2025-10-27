@@ -101,7 +101,7 @@ export default function BlogEditor({edit}:p) {
     <div className="min-h-screen bg-background p-4" dir="rtl">
       <div className="max-w-2xl mx-auto">
         <div className="mb-6">
-          <Link href="/library" className="text-sm text-muted-foreground hover:text-foreground">
+          <Link href="/Prompts" className="text-sm text-muted-foreground hover:text-foreground">
             ← بازگشت به کتابخانه
           </Link>
           <h1 className="text-3xl font-bold mt-2">ایجاد بلاگ جدید</h1>

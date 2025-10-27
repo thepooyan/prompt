@@ -38,7 +38,7 @@ export default function Hero() {
             </Link>
             </button>
             <button className="px-8 py-4 bg-zinc-800/80 backdrop-blur-sm text-zinc-100 rounded-xl font-medium border border-zinc-700/50 hover:border-zinc-600 transition-all duration-300 hover:bg-zinc-800">
-            <Link href="/Library">
+            <Link href="/Prompts">
               پرامپت‌های آماده را دانلود کنید
             </Link>
             </button>
