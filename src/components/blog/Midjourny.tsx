@@ -43,9 +43,10 @@ export default function MidjournyBlog() {
 
   return (
     <main className="container mx-auto px-4 py-12 md:py-16 max-w-4xl">
-      <h1 className="text-3xl md:text-4xl font-bold mb-6 text-balance">
+      <h1>آموزش پرامپت نویسی میدجرنی: ساخت عکس شگفت‌انگیز با AI</h1>
+      <h2 className="text-3xl md:text-4xl font-bold mb-6 text-balance">
         چگونه با هوش مصنوعی برای اینستاگرام محتوای جذاب تولید کنیم؟ (پرامپت‌های آماده ChatGPT و Gemini)
-      </h1>
+      </h2>
 
       <p className="mb-6 leading-relaxed">
         اینستاگرام برای خیلی از ماها، چه صاحب کسب‌وکار باشیم چه فریلنسر، دیگه فقط یه شبکه اجتماعی نیست؛ یه ویترین مهمه،
