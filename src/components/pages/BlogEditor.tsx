@@ -1,13 +1,6 @@
 "use client"
 
 import type React from "react"
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select"
 import z from "zod"
 import { useState } from "react"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
@@ -157,22 +150,6 @@ export default function BlogEditor({edit}:p) {
                   className="text-right"
                 />
               </div>
-
-              {/* Cate */}
-              <div className="space-y-2">
-                <Label>دسته بندی *</Label>
-                <Select>
-                  <SelectTrigger className="w-full" >
-                    <SelectValue placeholder="دسته بندی" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="light">Light</SelectItem>
-                    <SelectItem value="dark">Dark</SelectItem>
-                    <SelectItem value="system">System</SelectItem>
-                  </SelectContent>
-                </Select>
-              </div>
-
 
               {/* Excerpt */}
               <div className="space-y-2">

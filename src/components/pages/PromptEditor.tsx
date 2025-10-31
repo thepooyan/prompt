@@ -1,6 +1,13 @@
 "use client"
 
 import type React from "react"
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select"
 
 import { useState } from "react"
 import { Card, CardContent } from "@/components/ui/card"
@@ -142,6 +149,21 @@ export default function PromptEditor({edit}:p) {
                   onChange={(e) => handleInputChange("slug", e.target.value)}
                   placeholder="اسلاگ پرامپت را وارد کنید"
                 />
+              </div>
+
+              {/* Cate */}
+              <div className="space-y-2">
+                <Label>دسته بندی *</Label>
+                <Select>
+                  <SelectTrigger className="w-full" >
+                    <SelectValue placeholder="دسته بندی" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="light">Light</SelectItem>
+                    <SelectItem value="dark">Dark</SelectItem>
+                    <SelectItem value="system">System</SelectItem>
+                  </SelectContent>
+                </Select>
               </div>
 
               {/* Description */}
