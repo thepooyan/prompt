@@ -2,6 +2,12 @@ import { InferInsertModel, InferSelectModel } from "drizzle-orm";
 import { boolean, integer, json, pgTable, text, timestamp, varchar } from "drizzle-orm/pg-core";
 
 const createdAt = {createdAt: timestamp().defaultNow()}
+const pageSeoFields = {
+  canonical: varchar({length: 255}).default("").notNull(),
+  seoTitle: varchar({length: 255}).default("").notNull(),
+  seoDescription: varchar({length: 255}).default("").notNull(),
+  seoKeywords: json().default([]).$type<string[]>().notNull(),
+}
 
 export const promptsTable = pgTable("prompts", {
   id: integer().primaryKey().generatedAlwaysAsIdentity(),
@@ -12,11 +18,7 @@ export const promptsTable = pgTable("prompts", {
   isFree: boolean().notNull().default(false),
   description: text().notNull(),
   prompt: text().notNull(),
-  //seo fields
-  canonical: varchar({length: 255}).default("").notNull(),
-  seoTitle: varchar({length: 255}).default("").notNull(),
-  seoDescription: varchar({length: 255}).default("").notNull(),
-  seoKeywords: json().default([]).$type<string[]>().notNull(),
+  ...pageSeoFields,
   ...createdAt
 });
 
@@ -31,12 +33,7 @@ export const blogsTable = pgTable("blogs", {
   picture: varchar({ length: 255 }).notNull(),
   excerpt: text().notNull(),
   description: text().notNull(),
-  //seo fields
-  canonical: varchar({length: 255}).default("").notNull(),
-  seoTitle: varchar({length: 255}).default("").notNull(),
-  seoDescription: varchar({length: 255}).default("").notNull(),
-  seoKeywords: json().default([]).$type<string[]>().notNull(),
-  //to add: og {title, secs, image, url, site_name}, seo: {title, des}, canonical, schema, author: {name, image, id, socials}
+  ...pageSeoFields,
   ...createdAt
 });
 
