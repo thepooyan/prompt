@@ -1,6 +1,7 @@
 import Link from "next/link"
 import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card"
 import { Blog } from "@/db/schema"
+import Image from "next/image"
 
 interface BlogCardProps {
   blog: Blog
@@ -10,13 +11,15 @@ export default function BlogCard({ blog }: BlogCardProps) {
   const tags = blog.tags.split(",").map((tag) => tag.trim())
 
   return (
-    <Link href={`/Blog/${encodeURIComponent(blog.slug)}`} className="block group rtl max-w-sm"> 
+    <Link href={`/Blog/${encodeURIComponent(blog.slug)}`} className="block group rtl w-73 h-120 m-auto "> 
       <Card className="overflow-hidden h-full transition-all duration-300 hover:shadow-lg ">
         <CardHeader className="p-0">
           <div className="relative w-full aspect-video overflow-hidden">
-            <img
+            <Image
               src={blog.picture || "/placeholder.svg"}
               alt={blog.title}
+              width={570}
+              height={320}
               className="object-cover transition-transform duration-300 group-hover:scale-105"
             />
           </div>
