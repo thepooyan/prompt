@@ -7,7 +7,7 @@ import Spinner from '../parts/Spinner'
 const Header = () => {
   return (
       <header className="fixed top-0 w-full bg-zinc-900/30 backdrop-blur-xl  z-50 shadow-zinc-800 shadow-md ">
-        <div className="container mx-auto flex items-center justify-between p-4">
+        <div className="container mx-auto flex items-center justify-between p-2 px-4">
           <Logo/>
           <nav className="hidden md:flex gap-6">
             <Link href="/" className="hover:text-primary">خانه</Link>
