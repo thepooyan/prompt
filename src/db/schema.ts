@@ -1,5 +1,5 @@
-import { InferInsertModel, InferSelectModel } from "drizzle-orm";
-import { boolean, integer, json, pgTable, text, timestamp, varchar } from "drizzle-orm/pg-core";
+import { InferInsertModel, InferSelectModel, relations } from "drizzle-orm";
+import { boolean, integer, json, pgTable, text, timestamp, uuid, varchar } from "drizzle-orm/pg-core";
 
 const timestapms = {
   updated_at: timestamp().defaultNow(),
@@ -11,8 +11,18 @@ const pageSeoFields = {
   seoKeywords: json().default([]).$type<string[]>().notNull(),
 }
 
+export const promptCateTable = pgTable("prompt_category", {
+  id: uuid().defaultRandom().primaryKey(),
+  name: varchar({length: 100}).notNull(),
+  slug: varchar({length: 100}).notNull().unique()
+})
+
+export type Category = InferSelectModel<typeof promptCateTable>
+export type NewCategory = InferSelectModel<typeof promptCateTable>
+
 export const promptsTable = pgTable("prompts", {
   id: integer().primaryKey().generatedAlwaysAsIdentity(),
+  category_id: uuid().references(() => promptCateTable.id, {onDelete: "restrict"}),
   title: varchar({ length: 255 }).notNull(),
   slug: varchar({ length: 255 }).notNull(),
   tags: text().notNull(),
@@ -23,6 +33,14 @@ export const promptsTable = pgTable("prompts", {
   ...pageSeoFields,
   ...timestapms
 });
+
+export const promptsRelations = relations(promptsTable, ({one}) => ({
+  category: one(promptCateTable, {fields: [promptsTable.category_id], references: [promptCateTable.id]})
+}))
+
+export const promptCateRelatins = relations(promptCateTable, ({many}) => ({
+  posts: many(promptsTable)
+}))
 
 export type Prompt = InferSelectModel<typeof promptsTable>
 export type NewPrompt = InferInsertModel<typeof promptsTable>

@@ -5,6 +5,20 @@ import { ReactNode } from "react"
 
 export default function AdminLayout({children}:{children: ReactNode}) {
 //   getAdminUser()
+  const items = [
+    {
+      name: "weblog",
+      slug: "BlogManagment"
+    },
+    {
+      name: "prompt",
+      slug: "PromptManagment"
+    }, 
+    {
+      name: "category",
+      slug: "CateManagment"
+    }, 
+  ]
   return (
     <>
     <style>{`html {overflow: hidden}`}</style>
@@ -36,21 +50,14 @@ export default function AdminLayout({children}:{children: ReactNode}) {
         <aside className="w-64 border-l border-border bg-card">
           <nav className="p-4">
             <div className="space-y-1">
-              <Link
-                href="/Admin/BlogManagment"
+                {items.map(i => <Link
+                key={i.slug}
+                href={`/Admin/${i.slug}`}
                 activeClassName="!bg-primary text-primary-foreground"
                 className={`flex w-full items-center gap-3 rounded-lg px-4 py-3 text-sm font-medium transition-colors text-muted-foreground hover:bg-accent hover:text-accent-foreground`}>
                 <FileText className="h-5 w-5" />
-                وبلاگ
-              </Link>
-              <Link
-                href="/Admin/PromptManagment"
-                activeClassName="!bg-primary text-primary-foreground"
-                
-                className={`flex w-full items-center gap-3 rounded-lg px-4 py-3 text-sm font-medium transition-colors text-muted-foreground hover:bg-accent hover:text-accent-foreground`}>
-                <FileText className="h-5 w-5" />
-                پرامپت
-              </Link>
+                  {i.name}
+              </Link>)}
             </div>
           </nav>
         </aside>
