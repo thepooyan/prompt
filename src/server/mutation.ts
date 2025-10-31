@@ -72,3 +72,12 @@ export const insertCategory = async (c: NewCategory) => {
     return {ok: false, error: e}
   }
 }
+
+export const deleteCategory = async (id: string) => {
+  try {
+    await db.delete(promptCateTable).where(eq(promptCateTable.id, id))
+    return {ok: true}
+  } catch(e) {
+    return {ok: false, error: e}
+  }
+}

@@ -7,15 +7,15 @@ export default function AdminLayout({children}:{children: ReactNode}) {
 //   getAdminUser()
   const items = [
     {
-      name: "weblog",
+      name: "بلاگ",
       slug: "BlogManagment"
     },
     {
-      name: "prompt",
+      name: "پرامپت",
       slug: "PromptManagment"
     }, 
     {
-      name: "category",
+      name: "دسته بندی",
       slug: "CateManagment"
     }, 
   ]
