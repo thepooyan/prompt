@@ -52,10 +52,10 @@ export const updateBlog = async (id: number, blog: UpdateBlogInput) => {
   }
 }
 
-export const updatePrompt = async (en: Prompt) => {
+type promptEdit = Partial<Omit<Prompt, "id">>
+export const updatePrompt = async (id:number, en: promptEdit) => {
   try {
-    const {id, ...other} = en
-    await db.update(promptsTable).set(other).where(eq(promptsTable.id, id))
+    await db.update(promptsTable).set({...en, updated_at: new Date()}).where(eq(promptsTable.id, id))
     updateTag(cacheTags.prompts)
     revalidateTag(cacheTags.singlePrompt, "max")
     return {ok: true}
