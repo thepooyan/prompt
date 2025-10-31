@@ -18,7 +18,7 @@ export const promptCateTable = pgTable("prompt_category", {
 })
 
 export type Category = InferSelectModel<typeof promptCateTable>
-export type NewCategory = InferSelectModel<typeof promptCateTable>
+export type NewCategory = InferInsertModel<typeof promptCateTable>
 
 export const promptsTable = pgTable("prompts", {
   id: integer().primaryKey().generatedAlwaysAsIdentity(),

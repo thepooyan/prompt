@@ -1,5 +1,5 @@
 "use server"
-import { Blog, blogsTable, NewBlog, NewPrompt, Prompt, promptsTable } from "@/db/schema"
+import { Blog, blogsTable, NewBlog, NewCategory, NewPrompt, Prompt, promptCateTable, promptsTable } from "@/db/schema"
 import { eq, InferInsertModel } from "drizzle-orm"
 import { PgTable, TableConfig } from "drizzle-orm/pg-core"
 import { cacheTagKey, cacheTags } from "./cache"
@@ -58,6 +58,15 @@ export const updatePrompt = async (id:number, en: promptEdit) => {
     await db.update(promptsTable).set({...en, updated_at: new Date()}).where(eq(promptsTable.id, id))
     updateTag(cacheTags.prompts)
     revalidateTag(cacheTags.singlePrompt, "max")
+    return {ok: true}
+  } catch(e) {
+    return {ok: false, error: e}
+  }
+}
+
+export const insertCategory = async (c: NewCategory) => {
+  try {
+    await db.insert(promptCateTable).values(c)
     return {ok: true}
   } catch(e) {
     return {ok: false, error: e}

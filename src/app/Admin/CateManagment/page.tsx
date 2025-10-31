@@ -1,4 +1,4 @@
-import { Button } from "@/components/ui/button"
+import NewCategory from "@/components/admin/NewCategory"
 import { db } from "@/db"
 import { Category, promptCateTable } from "@/db/schema"
 
@@ -8,7 +8,7 @@ const page = async () => {
 
   return (
     <div>
-      <Button>Add</Button>
+      <NewCategory/>
       {cate.map(c => <Card key={c.slug} c={c}/>)}
     </div>
   )
