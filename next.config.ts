@@ -6,6 +6,16 @@ const nextConfig: NextConfig = {
   // },
   experimental: {
     cacheComponents: true,
+  },
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'c327107.parspack.net',
+        port: '',
+        pathname: '**',
+      },
+    ]
   }
 };
 

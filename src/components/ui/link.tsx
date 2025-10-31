@@ -3,6 +3,7 @@
 import L  from 'next/link'
 import { usePathname } from 'next/navigation'
 import { cn } from '@/lib/utils'
+import { Suspense } from 'react'
 
 interface ActiveLinkProps {
   href: string
@@ -12,15 +13,21 @@ interface ActiveLinkProps {
 }
 
 export default function Link({ href, children, className, activeClassName }: ActiveLinkProps) {
-  const pathname = usePathname()
-  const isActive = pathname === href
+  const Inner = () => {
+    const pathname = usePathname()
+    const isActive = pathname === href
 
-  return (
-    <L
-      href={href}
-      className={cn(className, isActive && activeClassName)}
-    >
-      {children}
-    </L>
-  )
+    return (
+      <L
+        href={href}
+        className={cn(className, isActive && activeClassName)}
+      >
+        {children}
+      </L>
+    )
+  }
+
+  return <Suspense>
+    <Inner/>
+  </Suspense>
 }

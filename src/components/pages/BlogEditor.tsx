@@ -8,26 +8,36 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
-import { Switch } from "@/components/ui/switch"
 import { Badge } from "@/components/ui/badge"
 import { X, Plus } from "lucide-react"
 import Link from "next/link"
 import { toast } from "sonner"
 import UploadBtn from "../parts/UploadBtn"
-import { uploadNewPrompt } from "@/server/actions"
+import { updateBlog, insertBlog, } from "@/server/mutation"
+import { Blog } from "@/db/schema"
+import { useRouter } from "next/navigation"
+import ArrayInput from "../ui/array-input"
 
-export default function NewPromptPage() {
-  const [formData, setFormData] = useState({
+interface p {
+  edit?: Blog
+}
+export default function BlogEditor({edit}:p) {
+  const empty = {
+    slug: "",
     title: "",
     description: "",
-    slug: "",
-    prompt: "",
     tags: "",
     picture: "",
-    isFree: true,
-  })
+    excerpt: "",
+    canonical: "",
+    seoTitle: "",
+    seoDescription: "",
+    seoKeywords: []
+  }
+  const [formData, setFormData] = useState<Blog>(edit ? {...edit} : {...empty, id: 0})
   const [tagInput, setTagInput] = useState("")
-  const [parsedTags, setParsedTags] = useState<string[]>([])
+  const [parsedTags, setParsedTags] = useState<string[]>(edit ? edit.tags.split(",") : [])
+  const router = useRouter()
 
   const handleInputChange = (field: string, value: string | boolean) => {
     setFormData((prev) => ({ ...prev, [field]: value }))
@@ -51,31 +61,38 @@ export default function NewPromptPage() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
 
-    if (!formData.title || !formData.description || !formData.prompt) {
+    if (!formData.title || !formData.description ) {
       toast.error("لطفاً تمام فیلدهای اجباری را پر کنید")
       return
     }
 
-    // Here you would typically send the data to your backend
-    console.log("Creating prompt:", formData)
-    let result = await uploadNewPrompt(formData)
+    if (edit !== undefined)
+      submitEdit(edit)
+    else
+      submitNew()
+
+    
+  }
+
+  const submitNew = async () => {
+    const {id, ...others} = formData
+    let result = await insertBlog(others)
     if (result.ok) {
-      toast.success("ثبت شد!")
-
-    toast.success("پرامپت جدید با موفقیت ایجاد شد")
-
-    // Reset form
-    setFormData({
-      title: "",
-      description: "",
-      prompt: "",
-      slug: "",
-      tags: "",
-      picture: "",
-      isFree: true,
-    })
-    setParsedTags([])
+      toast.success("بلاگ جدید با موفقیت ایجاد شد")
+      router.push("/Admin/BlogManagment")
+      router.refresh()
     } else {
+      toast.error("خطا")
+    }
+  }
+  const submitEdit = async (edit: Blog) => {
+    let result = await updateBlog({...formData, id: edit.id})
+    if (result.ok) {
+      toast.success("ویرایش موفقیت آمیز بود")
+      router.push("/Admin/BlogManagment")
+      router.refresh()
+    } else {
+      console.log(result.error)
       toast.error("خطا")
     }
   }
@@ -84,19 +101,20 @@ export default function NewPromptPage() {
     <div className="min-h-screen bg-background p-4" dir="rtl">
       <div className="max-w-2xl mx-auto">
         <div className="mb-6">
-          <Link href="/library" className="text-sm text-muted-foreground hover:text-foreground">
+          <Link href="/Prompts" className="text-sm text-muted-foreground hover:text-foreground">
             ← بازگشت به کتابخانه
           </Link>
-          <h1 className="text-3xl font-bold mt-2">ایجاد پرامپت جدید</h1>
-          <p className="text-muted-foreground mt-1">پرامپت جدید خود را ایجاد و به اشتراک بگذارید</p>
+          <h1 className="text-3xl font-bold mt-2">ایجاد بلاگ جدید</h1>
+          <p className="text-muted-foreground mt-1">بلاگ جدید خود را ایجاد و به اشتراک بگذارید</p>
         </div>
 
         <Card>
           <CardHeader>
-            <CardTitle>اطلاعات پرامپت</CardTitle>
+            <CardTitle>اطلاعات بلاگ</CardTitle>
           </CardHeader>
           <CardContent>
             <form onSubmit={handleSubmit} className="space-y-6">
+
               {/* Title */}
               <div className="space-y-2">
                 <Label htmlFor="title">عنوان *</Label>
@@ -104,34 +122,46 @@ export default function NewPromptPage() {
                   id="title"
                   value={formData.title}
                   onChange={(e) => handleInputChange("title", e.target.value)}
-                  placeholder="عنوان پرامپت را وارد کنید"
+                  placeholder="عنوان بلاگ را وارد کنید"
                   className="text-right"
+                />
+              </div>
+
+              {/* Slug */}
+              <div className="space-y-2">
+                <Label>اسلاگ *</Label>
+                <Input
+                  value={formData.slug}
+                  onChange={(e) => handleInputChange("slug", e.target.value)}
+                  placeholder="اسلاگ بلاگ را وارد کنید"
+                  className="text-right"
+                />
+              </div>
+
+
+              {/* Excerpt */}
+              <div className="space-y-2">
+                <Label>خلاصه *</Label>
+                <Textarea
+                  value={formData.excerpt}
+                  onChange={(e) => handleInputChange("excerpt", e.target.value)}
+                  placeholder="توضیح مختصری از بلاگ ارائه دهید"
+                  className="text-right min-h-[100px]"
                 />
               </div>
 
               {/* Description */}
               <div className="space-y-2">
-                <Label htmlFor="description">توضیحات *</Label>
+                <Label htmlFor="description">مطلب *</Label>
                 <Textarea
                   id="description"
                   value={formData.description}
                   onChange={(e) => handleInputChange("description", e.target.value)}
-                  placeholder="توضیح مختصری از پرامپت ارائه دهید"
+                  placeholder="مطلب کامل بلاگ"
                   className="text-right min-h-[100px]"
                 />
               </div>
 
-              {/* Prompt Content */}
-              <div className="space-y-2">
-                <Label htmlFor="prompt">محتوای پرامپت *</Label>
-                <Textarea
-                  id="prompt"
-                  value={formData.prompt}
-                  onChange={(e) => handleInputChange("prompt", e.target.value)}
-                  placeholder="متن کامل پرامپت را وارد کنید"
-                  className="text-right min-h-[150px] font-mono"
-                />
-              </div>
 
               {/* Tags */}
               <div className="space-y-2">
@@ -151,9 +181,9 @@ export default function NewPromptPage() {
                 {parsedTags.length > 0 && (
                   <div className="flex flex-wrap gap-2 mt-2">
                     {parsedTags.map((tag, index) => (
-                      <Badge key={index} variant="secondary" className="flex items-center gap-1">
+                      <Badge key={index} variant="secondary" className="flex items-center gap-1" onClick={() => removeTag(tag)}>
                         {tag}
-                        <X className="h-3 w-3 cursor-pointer hover:text-destructive" onClick={() => removeTag(tag)} />
+                        <X className="h-3 w-3 cursor-pointer hover:text-destructive" />
                       </Badge>
                     ))}
                   </div>
@@ -187,31 +217,50 @@ export default function NewPromptPage() {
                 )}
               </div>
 
-              {/* Free/Premium Toggle */}
-              <div className="flex items-center justify-between">
-                <div className="space-y-1">
-                  <Label>نوع پرامپت</Label>
-                  <p className="text-sm text-muted-foreground">
-                    {formData.isFree ? "این پرامپت رایگان است" : "این پرامپت پریمیوم است"}
-                  </p>
-                </div>
-                <div className="flex items-center gap-2 ltr">
-                  <span className="text-sm">پریمیوم</span>
-                  <Switch
-                    checked={formData.isFree}
-                    onCheckedChange={(checked) => handleInputChange("isFree", checked)}
-                  />
-                  <span className="text-sm">رایگان</span>
-                </div>
+              {/* Canonical */}
+              <div className="space-y-2">
+                <Label>Canonical</Label>
+                <Input
+                  value={formData.canonical}
+                  onChange={(e) => handleInputChange("canonical", e.target.value)}
+                  className="text-right"
+                />
               </div>
+              {/* Seo title */}
+              <div className="space-y-2">
+                <Label>Seo title</Label>
+                <Input
+                  value={formData.seoTitle}
+                  onChange={(e) => handleInputChange("seoTitle", e.target.value)}
+                  className="text-right"
+                />
+              </div>
+              {/* Seo des */}
+              <div className="space-y-2">
+                <Label>Seo Description</Label>
+                <Input
+                  value={formData.seoDescription}
+                  onChange={(e) => handleInputChange("seoDescription", e.target.value)}
+                  className="text-right"
+                />
+              </div>
+              {/* Seo title */}
+              <div className="space-y-2">
+                <Label>Seo keywords</Label>
+                <ArrayInput
+                  array={formData.seoKeywords}
+                  onChange={val => setFormData(prev => ({...prev, seoKeywords: val})) }
+                />
+              </div>
+
 
               {/* Submit Button */}
               <div className="flex gap-3 pt-4">
                 <Button type="submit" className="flex-1">
-                  ایجاد پرامپت
+                  {!edit ? "ایجاد بلاگ" : "ویرایش بلاگ"}
                 </Button>
                 <Button type="button" variant="outline" asChild>
-                  <Link href="/library">انصراف</Link>
+                  <Link href="/Admin/BlogManagment">انصراف</Link>
                 </Button>
               </div>
             </form>

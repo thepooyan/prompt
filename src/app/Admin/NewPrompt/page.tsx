@@ -1,8 +1,8 @@
-import NewPromptPage from "@/components/pages/NewPromptPage"
+import PromptEditor from "@/components/pages/PromptEditor"
 
 const page = () => {
   return (
-    <NewPromptPage/>
+    <PromptEditor/>
   )
 }
 

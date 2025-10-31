@@ -2,12 +2,9 @@ import type { Metadata } from "next";
 import { Vazirmatn } from "next/font/google";
 import "@/styles/global.css";
 import { Toaster } from "sonner";
-import { GoogleTagManager } from '@next/third-parties/google';
-import RenderSchema from "@/components/schema/RenderSchema";
-import Head from "next/head";
-import TagManagerHead from "@/components/other/TagManagerHead";
-import TagManagerBody from "@/components/other/TagManagerBody";
+import Modal from "@/components/layout/Modal";
 import { env } from "@/server/env";
+import {GoogleTagManager} from "@next/third-parties/google"
 
 const vazirmatn = Vazirmatn({
   variable: "--font-vazirmatn",
@@ -45,6 +42,7 @@ export default function RootLayout({
       >
         {children}
         <Toaster/>
+        <Modal/>
       </body>
     </html>
   );

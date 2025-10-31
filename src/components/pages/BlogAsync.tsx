@@ -1,14 +1,11 @@
 import { notFound } from "next/navigation"
 import { Badge } from "@/components/ui/badge"
-// import { Calendar, Clock } from "lucide-react"
 import { fetchSingleBlog } from "@/server/dataFetching"
-// import Image from "next/image"
 
-export default async function BlogAsync({
-  params,
-}: {
+interface p {
   params: Promise<{ slug: string }>
-}) {
+}
+export default async function BlogAsync({ params, }: p) {
   const { slug } = await params
   const blog = await fetchSingleBlog(slug)
 

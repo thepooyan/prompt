@@ -3,30 +3,20 @@ import { revalidateTag as r, cacheTag as c } from 'next/cache'
 import { db } from "@/db"
 import { Blog, blogsTable, promptsTable } from "@/db/schema"
 import { eq } from 'drizzle-orm'
+import { cacheTags } from './cache'
 
-enum cacheTags {
-    blogs,
-    singleBlog,
-    prompts,
-    singlePrompt,
-    threePrompts,
-    fiveBlogs
-}
-
-export const cacheTag = async (tag: cacheTags) => {
+export const cacheTag = async (tag: typeof cacheTags[keyof typeof cacheTags]) => {
     return c(tag.toString())
 }
 
-type arg = (tags: typeof cacheTags) => cacheTags
-export const revalidateTag = async (arg: arg) => {
-    let a = arg(cacheTags)
-    return r(a.toString(), "max")
+export const revalidateTag = async (tag: typeof cacheTags[keyof typeof cacheTags]) => {
+    return r(tag, "max")
 }
 
 export const fetchBlogs = async () => {
   "use cache"
   cacheTag(cacheTags.blogs)
-  return await db.select().from(blogsTable)
+  return (await db.select().from(blogsTable)).reverse()
 }
 export const fetchSingleBlog = async (slug: string): Promise<Blog | null> => {
     "use cache"
@@ -34,6 +24,17 @@ export const fetchSingleBlog = async (slug: string): Promise<Blog | null> => {
     const [blog] = await db.select().from(blogsTable).where(eq(blogsTable.slug, decodeURIComponent(slug))).limit(1)
     return blog
 }
+
+export const getBlogById = async (id: number) => {
+    const [blog] = await db.select().from(blogsTable).where(eq(blogsTable.id, id)).limit(1)
+    return blog
+}
+
+export const getPromptById = async (id: number) => {
+    const [en] = await db.select().from(promptsTable).where(eq(promptsTable.id, id)).limit(1)
+    return en
+}
+
 
 export const fetchPrompts = async () => {
     "use cache"
@@ -50,14 +51,14 @@ export const fetchSinglePrompt = async (slug: string) => {
 
 export const fetchThreePrompts = async () => {
     "use cache"
-    cacheTag(cacheTags.threePrompts)
+    cacheTag(cacheTags.prompts)
   const posts = await db.select().from(promptsTable).limit(3)
   return posts
 }
 
 export const fetchFiveBlogs = async () => {
     "use cache"
-    cacheTag(cacheTags.fiveBlogs)
+    cacheTag(cacheTags.blogs)
     let data = await db.select().from(blogsTable).limit(5)
     return data
 }
