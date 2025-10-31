@@ -9,7 +9,7 @@ import {
   SelectValue,
 } from "@/components/ui/select"
 import z from "zod"
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -24,7 +24,6 @@ import { updateBlog, insertBlog, } from "@/server/mutation"
 import { Blog } from "@/db/schema"
 import { useRouter } from "next/navigation"
 import ArrayInput from "../ui/array-input"
-import { getAllSlugs } from "@/server/dataFetching"
 
 interface p {
   edit?: Blog
