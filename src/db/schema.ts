@@ -1,7 +1,10 @@
 import { InferInsertModel, InferSelectModel } from "drizzle-orm";
 import { boolean, integer, json, pgTable, text, timestamp, varchar } from "drizzle-orm/pg-core";
 
-const createdAt = {createdAt: timestamp().defaultNow()}
+const timestapms = {
+  createdAt: timestamp().defaultNow(),
+  updated_at: timestamp(),
+}
 const pageSeoFields = {
   canonical: varchar({length: 255}).default("").notNull(),
   seoTitle: varchar({length: 255}).default("").notNull(),
@@ -19,7 +22,7 @@ export const promptsTable = pgTable("prompts", {
   description: text().notNull(),
   prompt: text().notNull(),
   ...pageSeoFields,
-  ...createdAt
+  ...timestapms
 });
 
 export type Prompt = InferSelectModel<typeof promptsTable>
@@ -34,7 +37,7 @@ export const blogsTable = pgTable("blogs", {
   excerpt: text().notNull(),
   description: text().notNull(),
   ...pageSeoFields,
-  ...createdAt
+  ...timestapms
 });
 
 export type Blog = InferSelectModel<typeof blogsTable>
