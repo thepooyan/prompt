@@ -7,10 +7,10 @@ const Logo = () => {
       <Image src="/logo.png" width={100} height={100} alt="prompt Bazar's logo"/>
 
       <div className="ltr text-center">
-        <p className="font-bold text-lg ">
+        <p className="font-bold text-lg hidden sm:block">
           PROMPT <span className="text-primary">BAZAR</span>
         </p>
-        <p className="text-muted-foreground">
+        <p className="text-muted-foreground sm:block hidden">
           Ignite. Discover. Automate.
         </p>
       </div>
