@@ -75,6 +75,6 @@ export const fetchFiveBlogs = async () => {
     return data
 }
 
-export const getAllSlugs = async () => {
+export const getAllCategories = async () => {
   return await db.select().from(promptCateTable)
 }

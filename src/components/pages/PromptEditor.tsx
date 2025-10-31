@@ -22,15 +22,16 @@ import Link from "next/link"
 import { toast } from "sonner"
 import UploadBtn from "../parts/UploadBtn"
 import {  updatePrompt,  insertPrompt } from "@/server/mutation"
-import { Prompt } from "@/db/schema"
+import { Category, Prompt } from "@/db/schema"
 import { useRouter } from "next/navigation"
 import ArrayInput from "../ui/array-input"
 import z from "zod"
 
 interface p {
   edit?: Prompt
+  categories: Category[]
 }
-export default function PromptEditor({edit}:p) {
+export default function PromptEditor({edit, categories}:p) {
   
   const inputSchema = z.object({
     title: z.string(),
@@ -159,9 +160,8 @@ export default function PromptEditor({edit}:p) {
                     <SelectValue placeholder="دسته بندی" />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="light">Light</SelectItem>
-                    <SelectItem value="dark">Dark</SelectItem>
-                    <SelectItem value="system">System</SelectItem>
+                    {categories.map(c => 
+                      <SelectItem key={c.slug} value={c.id}>{c.name}</SelectItem>)}
                   </SelectContent>
                 </Select>
               </div>
