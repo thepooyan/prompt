@@ -39,6 +39,7 @@ export default function PromptEditor({edit, categories}:p) {
     slug: z.string(),
     prompt: z.string(),
     tags: z.string(),
+    category_id: z.string(),
     picture: z.string(),
     isFree: z.boolean(),
     seoTitle: z.string(),
@@ -51,6 +52,7 @@ export default function PromptEditor({edit, categories}:p) {
     title: "",
     description: "",
     slug: "",
+    category_id: "",
     prompt: "",
     tags: "",
     picture: "",
@@ -155,7 +157,7 @@ export default function PromptEditor({edit, categories}:p) {
               {/* Cate */}
               <div className="space-y-2">
                 <Label>دسته بندی *</Label>
-                <Select>
+                <Select onValueChange={e => handleInputChange("category_id", e)}>
                   <SelectTrigger className="w-full" >
                     <SelectValue placeholder="دسته بندی" />
                   </SelectTrigger>
