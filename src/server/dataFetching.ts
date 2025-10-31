@@ -60,5 +60,5 @@ export const fetchFiveBlogs = async () => {
     "use cache"
     cacheTag(cacheTags.blogs)
     const data = await db.select().from(blogsTable).limit(5)
-    return data
+    return data.reverse()
 }
