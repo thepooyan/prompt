@@ -6,7 +6,9 @@ const ContinueWithGoogle = () => {
   const clickHndlr = async () => {
     await authClient.signIn.social({
       provider: "google",
-      requestSignUp: true
+      errorCallbackURL: "/error",
+      callbackURL: "/",
+      newUserCallbackURL: "/welcome"
     })
   }
   return (

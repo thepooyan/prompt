@@ -73,7 +73,7 @@ export default function PromptPageClient({ prompt }:p ) {
         </div>
 
         {/* Usage Tips */}
-        <div className="mt-12 rounded-lg border bg-muted/50 p-6">
+        {/* <div className="mt-12 rounded-lg border bg-muted/50 p-6">
         <h3 className="mb-3 text-lg font-semibold">نحوه استفاده</h3>
         <ul className="space-y-2 text-sm leading-relaxed text-muted-foreground">
           <li className="flex gap-2">
@@ -93,7 +93,30 @@ export default function PromptPageClient({ prompt }:p ) {
             <span>با نسخه‌های مختلف آزمایش کنید تا بهترین نتیجه را بگیرید</span>
           </li>
         </ul>
+        </div> */}
+        <h2 className="text-3xl font-bold mb-8 text-white text-center">راهنمای استفاده</h2>
+    <div className="space-y-6">
+         <div className="flex items-start gap-4">
+            <div className="step-number-blue text-white font-bold text-xl rounded-full flex items-center justify-center flex-shrink-0">۱</div>
+            <p className="text-gray-300 text-lg flex-1 pt-1">ابتدا با <a href="/what-is-prompt" className="text-blue-400 hover:underline">مفهوم پرامپت</a> آشنا شوید.</p>
         </div>
+        <div className="flex items-start gap-4">
+            <div className="step-number-blue text-white font-bold text-xl rounded-full flex items-center justify-center flex-shrink-0">۲</div>
+            <p className="text-gray-300 text-lg flex-1 pt-1">وارد اپلیکیشن دیسکورد و سرور <a href="/Blog/midjourney-prompt-guide" className="text-blue-400 hover:underline">میدجرنی</a> شوید.</p>
+        </div>
+        <div className="flex items-start gap-4">
+            <div className="step-number-blue text-white font-bold text-xl rounded-full flex items-center justify-center flex-shrink-0">۳</div>
+            <p className="text-gray-300 text-lg flex-1 pt-1">پرامپت انگلیسی بالا را کپی کرده و جلوی دستور <code>/imagine</code> پیست کنید.</p>
+        </div>
+         <div className="flex items-start gap-4">
+            <div className="step-number-blue text-white font-bold text-xl rounded-full flex items-center justify-center flex-shrink-0">۴</div>
+            <p className="text-gray-300 text-lg flex-1 pt-1">بخش‌های داخل براکت <code>[ ]</code> را با مشخصات خودتان (جنسیت و توضیحات کوتاه چهره/لباس) ویرایش کنید.</p>
+        </div>
+         <div className="flex items-start gap-4">
+            <div className="step-number-blue text-white font-bold text-xl rounded-full flex items-center justify-center flex-shrink-0">۵</div>
+            <p className="text-gray-300 text-lg flex-1 pt-1">دکمه Enter را بزنید و منتظر نتیجه حرفه‌ای خود باشید!</p>
+        </div>
+    </div>
       </div>
     </article>
   )

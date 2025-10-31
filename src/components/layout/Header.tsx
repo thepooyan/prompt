@@ -1,12 +1,13 @@
 import Link from 'next/link'
-import React from 'react'
 import LoginButton from './LoginButton'
 import Logo from '../parts/Logo'
+import { Suspense } from 'react'
+import Spinner from '../parts/Spinner'
 
 const Header = () => {
   return (
-      <header className="fixed top-0 w-full bg-zinc-900/30 backdrop-blur-xl  z-50">
-        <div className="container mx-auto flex items-center justify-between p-4">
+      <header className="fixed top-0 w-full bg-zinc-900/30 backdrop-blur-xl  z-50 shadow-zinc-800 shadow-md ">
+        <div className="container mx-auto flex items-center justify-between p-2 px-4">
           <Logo/>
           <nav className="hidden md:flex gap-6">
             <Link href="/" className="hover:text-primary">خانه</Link>
@@ -18,9 +19,11 @@ const Header = () => {
               کتابخانه کامل <i className="bi bi-box-arrow-up-right text-sm" />
             </Link>
           </nav>
+        <Suspense fallback={<Spinner/>}>
           <LoginButton/>
-        </div>
-      </header>
+        </Suspense>
+      </div>
+    </header>
   )
 }
 

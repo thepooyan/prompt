@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 
 export default function Hero() {
   return (
@@ -18,6 +19,8 @@ export default function Hero() {
             </span>
             <span className="text-sm text-zinc-400">بازار پرامپت‌های هوش مصنوعی</span>
           </div>
+
+          <Image src="/logo.png" width={250} height={250} alt="prompt Bazar's logo" className="m-auto"/>
 
           <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold mb-6 leading-tight text-balance">
             آکادمی 
