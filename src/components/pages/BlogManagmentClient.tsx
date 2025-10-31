@@ -14,9 +14,9 @@ import { callModal } from "@/components/layout/Modal";
 import { Calendar, Edit, Eye, Plus, Trash2 } from "lucide-react";
 import { fetchBlogs } from "@/server/dataFetching";
 import { deleteBlog } from "@/server/mutation";
-import { Loading } from "@/components/parts/Loading";
-import Link from "@/components/ui/link";
 import { weblogDetailsUrl } from "@/lib/url";
+import Link from "@/components/ui/link";
+import { LoadingPage } from "../parts/LoadingPage";
 
 interface p {
     initialBlogs: Blog[]
@@ -27,10 +27,10 @@ export default function BlogManagmentClient({initialBlogs}:p) {
   const handleDelete = (post: Blog) => {
     callModal.prompt(`"${limitChar(post.title, 40)}" حذف شود؟`)
     .yes(async () => {
-        let {ok} = await deleteBlog(post.id)
+        const {ok} = await deleteBlog(post.id)
         if (ok) {
           callModal.success("با موفقیت حذف شد!")
-          let blogs = await fetchBlogs()
+          const blogs = await fetchBlogs()
           setPosts(blogs)
         }
         else callModal.fail("خطایی پیش آمده. لطفا مجددا تلاش کنید")
@@ -87,7 +87,7 @@ export default function BlogManagmentClient({initialBlogs}:p) {
       <div className="space-y-4">
         <h3 className="text-xl font-semibold">آخرین بلاگ ها</h3>
         <div className="space-y-3">
-          <Suspense fallback={<Loading />}>
+          <Suspense fallback={<LoadingPage />}>
             {posts?.length === 0 && <>
               <div className="bg-card rounded-md p-5 text-center flex flex-col gap-3 items-center">
                 بلاگی یافت نشد!

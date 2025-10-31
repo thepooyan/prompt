@@ -6,11 +6,11 @@ import { eq } from 'drizzle-orm'
 import { cacheTags } from './cache'
 
 export const cacheTag = async (tag: typeof cacheTags[keyof typeof cacheTags]) => {
-    return c(tag.toString())
+    return c(tag)
 }
 
-export const revalidateTag = async (tag: typeof cacheTags[keyof typeof cacheTags]) => {
-    return r(tag, "max")
+export const revalidate = async (tag: typeof cacheTags[keyof typeof cacheTags]) => {
+  return r(tag, "max")
 }
 
 export const fetchBlogs = async () => {
@@ -59,6 +59,6 @@ export const fetchThreePrompts = async () => {
 export const fetchFiveBlogs = async () => {
     "use cache"
     cacheTag(cacheTags.blogs)
-    let data = await db.select().from(blogsTable).limit(5)
+    const data = await db.select().from(blogsTable).limit(5)
     return data
 }

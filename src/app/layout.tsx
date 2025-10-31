@@ -35,7 +35,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-    <GoogleTagManager gtmId={env.NEXT_PUBLIC_GTM_ID}/>
+      <GoogleTagManager gtmId={env.NEXT_PUBLIC_GTM_ID}/>
     
       <body
         className={`${vazirmatn.className} antialiased dark`}
