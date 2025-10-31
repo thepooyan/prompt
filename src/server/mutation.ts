@@ -1,5 +1,5 @@
 "use server"
-import { Blog, blogsTable, NewBlog, NewPrompt, Prompt, promptsTable } from "@/db/schema"
+import { Blog, blogsTable, NewBlog, NewCategory, NewPrompt, Prompt, promptCateTable, promptsTable } from "@/db/schema"
 import { eq, InferInsertModel } from "drizzle-orm"
 import { PgTable, TableConfig } from "drizzle-orm/pg-core"
 import { cacheTagKey, cacheTags } from "./cache"
@@ -39,10 +39,11 @@ export const insertPrompt = async (newPrompt: NewPrompt)  => insertRecordAction(
 export const insertBlog = async (newBlog: NewBlog)        => insertRecordAction(blogsTable, newBlog, cacheTags.blogs)
 
 
-export const updateBlog = async (blog: Blog) => {
+type UpdateBlogInput = Partial<Omit<Blog, "id">>;
+
+export const updateBlog = async (id: number, blog: UpdateBlogInput) => {
   try {
-    let {id, ...other} = blog
-    await db.update(blogsTable).set(other).where(eq(blogsTable.id, id))
+    await db.update(blogsTable).set({...blog, updated_at: new Date()}).where(eq(blogsTable.id, id))
     updateTag(cacheTags.blogs)
     revalidateTag(cacheTags.singleBlog, "max")
     return {ok: true}
@@ -51,12 +52,30 @@ export const updateBlog = async (blog: Blog) => {
   }
 }
 
-export const updatePrompt = async (en: Prompt) => {
+type promptEdit = Partial<Omit<Prompt, "id">>
+export const updatePrompt = async (id:number, en: promptEdit) => {
   try {
-    let {id, ...other} = en
-    await db.update(promptsTable).set(other).where(eq(promptsTable.id, id))
+    await db.update(promptsTable).set({...en, updated_at: new Date()}).where(eq(promptsTable.id, id))
     updateTag(cacheTags.prompts)
     revalidateTag(cacheTags.singlePrompt, "max")
+    return {ok: true}
+  } catch(e) {
+    return {ok: false, error: e}
+  }
+}
+
+export const insertCategory = async (c: NewCategory) => {
+  try {
+    await db.insert(promptCateTable).values(c)
+    return {ok: true}
+  } catch(e) {
+    return {ok: false, error: e}
+  }
+}
+
+export const deleteCategory = async (id: string) => {
+  try {
+    await db.delete(promptCateTable).where(eq(promptCateTable.id, id))
     return {ok: true}
   } catch(e) {
     return {ok: false, error: e}

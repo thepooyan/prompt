@@ -29,7 +29,7 @@ export default function LatestBlogs({blogs}:p) {
         <>
         <Carousel className="m-6 ltr">
           <CarouselContent>
-            {blogs.map(b => <CarouselItem className=" md:basis-1/3 basis-1/1" key={b.id}>
+            {blogs.map(b => <CarouselItem className="lg:basis-1/3 md:basis-1/2 basis-1/1 " key={b.id}>
                 <BlogCard blog={b}/>
               </CarouselItem>
             )}

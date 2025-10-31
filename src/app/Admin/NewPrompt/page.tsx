@@ -1,8 +1,10 @@
 import PromptEditor from "@/components/pages/PromptEditor"
+import { getAllCategories } from "@/server/dataFetching"
 
-const page = () => {
+const page = async () => {
+  const cate = await getAllCategories()
   return (
-    <PromptEditor/>
+    <PromptEditor categories={cate}/>
   )
 }
 

@@ -1,7 +1,7 @@
 "use client"
 
 import type React from "react"
-
+import z from "zod"
 import { useState } from "react"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
@@ -22,7 +22,20 @@ interface p {
   edit?: Blog
 }
 export default function BlogEditor({edit}:p) {
-  const empty = {
+  const inputsSchema = z.object({
+    slug: z.string(),
+    title: z.string(),
+    description: z.string(),
+    tags: z.string(),
+    picture: z.string(),
+    excerpt: z.string(),
+    canonical: z.string(),
+    seoTitle: z.string(),
+    seoDescription: z.string(),
+    seoKeywords: z.array(z.string()),
+  })
+  type inputsType = z.infer<typeof inputsSchema>
+  const empty:inputsType = {
     slug: "",
     title: "",
     description: "",
@@ -32,9 +45,9 @@ export default function BlogEditor({edit}:p) {
     canonical: "",
     seoTitle: "",
     seoDescription: "",
-    seoKeywords: []
+    seoKeywords: [],
   }
-  const [formData, setFormData] = useState<Blog>(edit ? {...edit} : {...empty, id: 0})
+  const [formData, setFormData] = useState<inputsType>(edit ? inputsSchema.parse(edit) : empty)
   const [tagInput, setTagInput] = useState("")
   const [parsedTags, setParsedTags] = useState<string[]>(edit ? edit.tags.split(",") : [])
   const router = useRouter()
@@ -67,7 +80,7 @@ export default function BlogEditor({edit}:p) {
     }
 
     if (edit !== undefined)
-      submitEdit(edit)
+      submitEdit(edit.id)
     else
       submitNew()
 
@@ -75,8 +88,7 @@ export default function BlogEditor({edit}:p) {
   }
 
   const submitNew = async () => {
-    const {id, ...others} = formData
-    let result = await insertBlog(others)
+    const result = await insertBlog(formData)
     if (result.ok) {
       toast.success("بلاگ جدید با موفقیت ایجاد شد")
       router.push("/Admin/BlogManagment")
@@ -85,8 +97,9 @@ export default function BlogEditor({edit}:p) {
       toast.error("خطا")
     }
   }
-  const submitEdit = async (edit: Blog) => {
-    let result = await updateBlog({...formData, id: edit.id})
+  const submitEdit = async (id: number) => {
+    console.log(formData)
+    const result = await updateBlog(id, formData)
     if (result.ok) {
       toast.success("ویرایش موفقیت آمیز بود")
       router.push("/Admin/BlogManagment")
@@ -98,7 +111,7 @@ export default function BlogEditor({edit}:p) {
   }
 
   return (
-    <div className="min-h-screen bg-background p-4" dir="rtl">
+    <>
       <div className="max-w-2xl mx-auto">
         <div className="mb-6">
           <Link href="/Prompts" className="text-sm text-muted-foreground hover:text-foreground">
@@ -138,7 +151,6 @@ export default function BlogEditor({edit}:p) {
                 />
               </div>
 
-
               {/* Excerpt */}
               <div className="space-y-2">
                 <Label>خلاصه *</Label>
@@ -172,7 +184,7 @@ export default function BlogEditor({edit}:p) {
                     onChange={(e) => setTagInput(e.target.value)}
                     placeholder="برچسب جدید"
                     className="text-right"
-                    onKeyPress={(e) => e.key === "Enter" && (e.preventDefault(), addTag())}
+                    onKeyDown={(e) => e.key === "Enter" && (e.preventDefault(), addTag())}
                   />
                   <Button type="button" onClick={addTag} size="sm">
                     <Plus className="h-4 w-4" />
@@ -267,6 +279,6 @@ export default function BlogEditor({edit}:p) {
           </CardContent>
         </Card>
       </div>
-    </div>
+    </>
   )
 }

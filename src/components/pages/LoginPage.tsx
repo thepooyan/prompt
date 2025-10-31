@@ -101,7 +101,7 @@ export default function LoginPage() {
         {/* Footer */}
         <p className="text-center text-xs text-zinc-600 mt-6">
           با ورود به سایت، شما{" "}
-          <Link href="/terms" className="text-zinc-500 hover:text-[#8a2be2] transition-colors">
+          <Link href="#terms" className="text-zinc-500 hover:text-[#8a2be2] transition-colors">
             شرایط و قوانین
           </Link>{" "}
           را می‌پذیرید

@@ -1,6 +1,13 @@
 "use client"
 
 import type React from "react"
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select"
 
 import { useState } from "react"
 import { Card, CardContent } from "@/components/ui/card"
@@ -15,18 +22,37 @@ import Link from "next/link"
 import { toast } from "sonner"
 import UploadBtn from "../parts/UploadBtn"
 import {  updatePrompt,  insertPrompt } from "@/server/mutation"
-import { Prompt } from "@/db/schema"
+import { Category, Prompt } from "@/db/schema"
 import { useRouter } from "next/navigation"
 import ArrayInput from "../ui/array-input"
+import z from "zod"
 
 interface p {
   edit?: Prompt
+  categories: Category[]
 }
-export default function PromptEditor({edit}:p) {
-  const empty = {
+export default function PromptEditor({edit, categories}:p) {
+  
+  const inputSchema = z.object({
+    title: z.string(),
+    description: z.string(),
+    slug: z.string(),
+    prompt: z.string(),
+    tags: z.string(),
+    category_id: z.string(),
+    picture: z.string(),
+    isFree: z.boolean(),
+    seoTitle: z.string(),
+    seoDescription: z.string(),
+    seoKeywords: z.array(z.string()),
+    canonical: z.string(),
+  })
+  type inputType = z.infer<typeof inputSchema>
+  const empty:inputType = {
     title: "",
     description: "",
     slug: "",
+    category_id: "",
     prompt: "",
     tags: "",
     picture: "",
@@ -37,7 +63,7 @@ export default function PromptEditor({edit}:p) {
     canonical: ""
   }
   const router = useRouter()
-  const [formData, setFormData] = useState<Prompt>(edit ? edit : {...empty, id: 0});
+  const [formData, setFormData] = useState<inputType>(edit ? inputSchema.parse(edit) : {...empty});
   const [tagInput, setTagInput] = useState("");
   
   const [parsedTags, setParsedTags] = useState<string[]>([])
@@ -69,14 +95,13 @@ export default function PromptEditor({edit}:p) {
       return
     }
 
-    if (edit) submitEdit(edit)
+    if (edit) submitEdit(edit.id)
       else submitNew()
 
   }
 
   const submitNew = async () => {
-    const {id , ...rest} = formData
-    let result = await insertPrompt(rest)
+    const result = await insertPrompt(formData)
     if (result.ok) {
       toast.success("پرامپت جدید با موفقیت ایجاد شد")
       router.push("/Admin/PromptManagment")
@@ -85,8 +110,8 @@ export default function PromptEditor({edit}:p) {
       toast.error("خطا")
     }
   }
-  const submitEdit = async (edit: Prompt) => {
-    let result = await updatePrompt({...formData, id: edit.id})
+  const submitEdit = async (id: number) => {
+    const result = await updatePrompt(id, formData)
     if (result.ok) {
       toast.success("ویرایش با موفقیت ایجاد شد")
       router.push("/Admin/PromptManagment")
@@ -129,6 +154,20 @@ export default function PromptEditor({edit}:p) {
                 />
               </div>
 
+              {/* Cate */}
+              <div className="space-y-2">
+                <Label>دسته بندی *</Label>
+                <Select onValueChange={e => handleInputChange("category_id", e)}>
+                  <SelectTrigger className="w-full" >
+                    <SelectValue placeholder="دسته بندی" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {categories.map(c => 
+                      <SelectItem key={c.slug} value={c.id}>{c.name}</SelectItem>)}
+                  </SelectContent>
+                </Select>
+              </div>
+
               {/* Description */}
               <div className="space-y-2">
                 <Label htmlFor="description">توضیحات *</Label>
@@ -162,7 +201,7 @@ export default function PromptEditor({edit}:p) {
                     onChange={(e) => setTagInput(e.target.value)}
                     placeholder="برچسب جدید"
                     className="text-right"
-                    onKeyPress={(e) => e.key === "Enter" && (e.preventDefault(), addTag())}
+                    onKeyDown={(e) => e.key === "Enter" && (e.preventDefault(), addTag())}
                   />
                   <Button type="button" onClick={addTag} size="sm">
                     <Plus className="h-4 w-4" />
