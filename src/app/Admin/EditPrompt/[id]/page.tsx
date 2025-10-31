@@ -15,8 +15,7 @@ const page = (props:p) => {
 }
 const InnerPage = async ({params}:p) => {
   const {id} = await params
-  const data = await getPromptById(id)
-  const cate = await getAllCategories()
+  const [data, cate] = await Promise.all([getPromptById(id), getAllCategories()])
 
   return (
     <>
