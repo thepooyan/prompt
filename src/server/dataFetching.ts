@@ -2,7 +2,7 @@
 import { revalidateTag as r, cacheTag as c } from 'next/cache'
 import { db } from "@/db"
 import { Blog, blogsTable, promptsTable } from "@/db/schema"
-import { desc, eq, sql } from 'drizzle-orm'
+import { desc, eq } from 'drizzle-orm'
 import { cacheTags } from './cache'
 
 export const cacheTag = async (tag: typeof cacheTags[keyof typeof cacheTags]) => {
@@ -18,9 +18,7 @@ export const fetchBlogs = async () => {
   cacheTag(cacheTags.blogs)
   return await db.select().from(blogsTable)
       .orderBy(
-        sql`(${blogsTable.updated_at} IS NULL) ASC`,
         desc(blogsTable.updated_at),
-        desc(blogsTable.created_at)
       )
 }
 export const fetchSingleBlog = async (slug: string): Promise<Blog | null> => {
@@ -46,9 +44,7 @@ export const fetchPrompts = async () => {
     cacheTag(cacheTags.prompts)
     return await db.select().from(promptsTable)
       .orderBy(
-        sql`(${promptsTable.updated_at} IS NULL) ASC`,
         desc(promptsTable.updated_at),
-        desc(promptsTable.created_at)
       )
 }
 
@@ -64,9 +60,7 @@ export const fetchThreePrompts = async () => {
     cacheTag(cacheTags.prompts)
   const posts = await db.select().from(promptsTable).limit(3)
       .orderBy(
-        sql`(${promptsTable.updated_at} IS NULL) ASC`,
         desc(promptsTable.updated_at),
-        desc(promptsTable.created_at)
       )
   return posts
 }
@@ -76,9 +70,7 @@ export const fetchFiveBlogs = async () => {
     cacheTag(cacheTags.blogs)
     const data = await db.select().from(blogsTable).limit(5)
       .orderBy(
-        sql`(${blogsTable.updated_at} IS NULL) ASC`,
         desc(blogsTable.updated_at),
-        desc(blogsTable.created_at)
       )
     return data
 }

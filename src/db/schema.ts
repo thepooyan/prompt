@@ -2,8 +2,7 @@ import { InferInsertModel, InferSelectModel } from "drizzle-orm";
 import { boolean, integer, json, pgTable, text, timestamp, varchar } from "drizzle-orm/pg-core";
 
 const timestapms = {
-  created_at: timestamp().defaultNow(),
-  updated_at: timestamp(),
+  updated_at: timestamp().defaultNow(),
 }
 const pageSeoFields = {
   canonical: varchar({length: 255}).default("").notNull(),
