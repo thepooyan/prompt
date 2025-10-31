@@ -1,9 +1,15 @@
 "use client"
 
 import type React from "react"
-
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select"
 import z from "zod"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -18,6 +24,7 @@ import { updateBlog, insertBlog, } from "@/server/mutation"
 import { Blog } from "@/db/schema"
 import { useRouter } from "next/navigation"
 import ArrayInput from "../ui/array-input"
+import { getAllSlugs } from "@/server/dataFetching"
 
 interface p {
   edit?: Blog
@@ -150,6 +157,21 @@ export default function BlogEditor({edit}:p) {
                   placeholder="اسلاگ بلاگ را وارد کنید"
                   className="text-right"
                 />
+              </div>
+
+              {/* Cate */}
+              <div className="space-y-2">
+                <Label>دسته بندی *</Label>
+                <Select>
+                  <SelectTrigger className="w-full" >
+                    <SelectValue placeholder="دسته بندی" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="light">Light</SelectItem>
+                    <SelectItem value="dark">Dark</SelectItem>
+                    <SelectItem value="system">System</SelectItem>
+                  </SelectContent>
+                </Select>
               </div>
 
 
