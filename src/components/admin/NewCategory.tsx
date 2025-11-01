@@ -19,12 +19,12 @@ const NewCategory = () => {
     const {ok} = await insertCategory({name, slug})
     setLoading(false)
     if (ok) {
-      toast("موفقیت!")
+      toast.success("موفقیت!")
       router.refresh()
       setName("")
       setSlug("")
     } else {
-      toast("خطا")
+      toast.error("خطا")
     }
   }
 
