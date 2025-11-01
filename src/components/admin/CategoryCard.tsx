@@ -16,10 +16,10 @@ export const CategoryCard = ({c}:{c: Category}) => {
     .yes(async() => {
       const {ok} = await deleteCategory(c.id)
         if (ok) {
-          toast("حذف شد!")
+          toast.success("حذف شد!")
           router.refresh()
         } else {
-          toast("خطا")
+          toast.error("خطا")
         }
     })
   }
