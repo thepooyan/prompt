@@ -7,6 +7,7 @@ import { cn } from "@/lib/utils"
 import type { Prompt } from "@/db/schema"
 import { usePromptCard } from "@/hooks/use-prompt-card"
 import Link from "next/link"
+import Image from "next/image"
 
 interface PromptCardProps {
   prompt: Prompt
@@ -14,16 +15,18 @@ interface PromptCardProps {
 }
 
 export function PromptCard({ prompt, className }: PromptCardProps) {
-  const { isLiked, likeCount, parsedTags, handleCopy, handleShare, handleLike } = usePromptCard(prompt)
+  const { isLiked, likeCount, parsedTags, handleShare, handleLike } = usePromptCard(prompt)
 
   return (
     <>
       <Card className={cn("w-full max-w-md overflow-hidden transition-all p-0 hover:shadow-lg", className)} dir="rtl">
         <CardHeader className="p-0">
           <div className="relative">
-            <img
+            <Image
               src={prompt.picture || `/placeholder.svg?height=200&width=400&query=${encodeURIComponent(prompt.title)}`}
               alt={prompt.title}
+              width={514}
+              height={288}
               className="w-full h-48 object-cover"
             />
             <div className="absolute top-2 right-2">

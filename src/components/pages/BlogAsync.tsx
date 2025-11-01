@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation"
 import { Badge } from "@/components/ui/badge"
 import { fetchSingleBlog } from "@/server/dataFetching"
+import Image from "next/image"
 
 interface p {
   params: Promise<{ slug: string }>
@@ -20,7 +21,9 @@ export default async function BlogAsync({ params, }: p) {
       {/* Hero Section */}
       <div className="relative h-[400px] md:h-[500px] w-full overflow-hidden bg-muted">
         {/* <Image src={blog.picture || "/placeholder.svg"} alt={blog.title} fill className="object-cover" priority /> */}
-        <img src={blog.picture || "/placeholder.svg"} alt={blog.title} className="object-cover m-auto"/>
+        <Image src={blog.picture || "/placeholder.svg"} alt={blog.title} className="object-cover m-auto"
+          width={600} height={600}
+        />
         <div className="absolute inset-0 bg-gradient-to-t from-background via-background/60 to-transparent" />
       </div>
 

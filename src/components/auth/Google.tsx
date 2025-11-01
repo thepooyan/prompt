@@ -1,6 +1,7 @@
 "use client"
 
 import { authClient } from "@/lib/auth-client";
+import Image from "next/image";
 
 const ContinueWithGoogle = () => {
   const clickHndlr = async () => {
@@ -15,7 +16,7 @@ const ContinueWithGoogle = () => {
     <button onClick={clickHndlr} className="  border-1 bg-zinc-700 rounded-lg w-full  flex justify-center 
       py-3 gap-3 items-center cursor-pointer hover:bg-zinc-800
       ">
-      <img src="/google.svg" alt="Google logo" width="40" height="40"/>
+      <Image width={40} height={40} src="/google.svg" alt="Google logo"/>
       با گوگل ادامه دهید
     </button>
   );
