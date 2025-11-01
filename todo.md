@@ -1,7 +1,6 @@
+prompt inner page
+compelete login
 search like sokan
-promptcard img fix
-logo
-favicon
 make tags searchable
 add sitemap
 ADD RObots.txt
