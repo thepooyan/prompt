@@ -56,10 +56,10 @@ function Button({
         props.loading && "opacity-60 pointer-events-none"
       )}
       {...props}>
-      <>
+      <div className="flex items-center">
         {props.children}
-        {props.loading && <Spinner/>}
-      </>
+        <Spinner className={cn("invisible w-0 transition-all ", props.loading && "visible w-5 mr-1")}/>
+      </div>
     </Comp>
   )
 }
