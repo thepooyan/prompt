@@ -3,7 +3,6 @@ import Image from "next/image"
 import { Button } from "../ui/button"
 import { Copy, Trash } from "lucide-react"
 import { callModal } from "../layout/Modal"
-import { copyToClipboard } from "@/lib/utils"
 import Copyable from "../ui/copyable"
 
 interface p {
@@ -13,9 +12,6 @@ interface p {
 const MediaCard = ({children}:p) => {
     const url = `https://c327107.parspack.net/${children}`
 
-    const copy = () => {
-        copyToClipboard(url)
-    }
     const remove = () => {
         callModal.prompt("حذف شود؟")
         .yes(() => {
@@ -28,7 +24,7 @@ const MediaCard = ({children}:p) => {
         <Image width={200} height={200} src={url} alt=""/>
         <div className="space-x-1">
             <Copyable toCopy={url}>
-                <Button variant="secondary" onClick={copy}><Copy/></Button>
+                <Button variant="secondary"><Copy/></Button>
             </Copyable>
             <Button variant="secondary" onClick={remove}><Trash className="text-destructive font-bold" /></Button>
         </div>
