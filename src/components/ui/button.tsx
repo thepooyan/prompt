@@ -54,7 +54,7 @@ function Button({
       data-slot="button"
       className={cn(
         buttonVariants({ variant, size, className }),
-        props.loading === false && "gap-0",
+        props.loading !== true && "gap-0",
         props.loading && "opacity-60 pointer-events-none"
       )}
       {...props}>
