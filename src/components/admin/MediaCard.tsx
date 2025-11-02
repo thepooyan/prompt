@@ -33,7 +33,7 @@ const MediaCard = ({children}:p) => {
     }
 
   return (
-    <div className="bg-zinc-900 cursor-pointer transition-colors p-5 w-max rounded flex justify-between items-center flex-col gap-5">
+    <div className="bg-zinc-900 transition-colors p-5 w-max rounded flex justify-between items-center flex-col gap-5">
         <Image width={200} height={200} src={url} alt="" className="my-auto"/>
         <div className="space-x-1">
             <Copyable toCopy={url}>
