@@ -57,7 +57,8 @@ function Button({
       className={cn(
         buttonVariants({ variant, size, className }),
         loading !== true && "gap-0",
-        loading && "opacity-60 pointer-events-none"
+        loading && "opacity-60 pointer-events-none",
+        className
       )}
       {...others}>
         {asChild ?
