@@ -5,5 +5,5 @@ import { env } from "./env"
 
 
 export const getAllFiles = async () => {
-    return await listFiles(env.BUCKET_NAME, "/prompt")
+    return await listFiles(env.BUCKET_NAME, "prompt")
 }

@@ -4,7 +4,7 @@ const page = async () => {
     const files = await getAllFiles()
   return (
     <div>
-        {files.map(f => <div>{f}</div>)}
+        {files.map(f => <div key={f}>{f}</div>)}
     </div>
   )
 }
