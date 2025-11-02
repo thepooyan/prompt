@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "eslint",
     "db": "cross-env NODE_ENV=development bunx drizzle-kit push",
-    "tsc": "tsc --noEmit"
+    "tsc": "tsc --noEmit",
+    "deploy": "git checkout prod && git merge master && git push && git checkout master"
   },
   "dependencies": {
     "@aws-sdk/client-s3": "^3.894.0",
