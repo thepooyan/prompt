@@ -1,4 +1,6 @@
 import { notFound } from "next/navigation"
+import remarkGfm from 'remark-gfm'
+import Markdown from "react-markdown"
 import { Badge } from "@/components/ui/badge"
 import { fetchSingleBlog } from "@/server/dataFetching"
 
@@ -57,7 +59,9 @@ export default async function BlogAsync({ params, }: p) {
 
         {/* Main Content */}
         <div className="prose prose-lg max-w-none mb-16">
-          {blog.description}
+          <Markdown remarkPlugins={[remarkGfm]}>
+            {blog.description}
+          </Markdown>
         </div>
       </div>
     </article>
