@@ -36,6 +36,7 @@ export default function PromptEditor({edit, categories}:p) {
   const inputSchema = z.object({
     title: z.string(),
     description: z.string(),
+    excerpt: z.string(),
     slug: z.string(),
     prompt: z.string(),
     tags: z.string(),
@@ -51,6 +52,7 @@ export default function PromptEditor({edit, categories}:p) {
   const empty:inputType = {
     title: "",
     description: "",
+    excerpt: "",
     slug: "",
     category_id: "",
     prompt: "",
