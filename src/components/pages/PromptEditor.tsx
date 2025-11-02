@@ -40,7 +40,7 @@ export default function PromptEditor({edit, categories}:p) {
     slug: z.string(),
     prompt: z.string(),
     tags: z.string(),
-    category_id: z.string(),
+    category_id: z.string().nullable(),
     picture: z.string(),
     isFree: z.boolean(),
     seoTitle: z.string(),
