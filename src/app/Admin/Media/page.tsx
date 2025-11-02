@@ -10,7 +10,7 @@ const page = async () => {
     <div className="p-5">
       <MediaBtnClient/>
 
-      <div className="grid grid-cols-4 gap-y-4 ">
+      <div className="flex flex-wrap gap-4 ">
         {files.map(f => <MediaCard key={f}>{f}</MediaCard>)}
       </div>
     </div>
