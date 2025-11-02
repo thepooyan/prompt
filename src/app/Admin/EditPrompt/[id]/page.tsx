@@ -1,5 +1,5 @@
 import PromptEditor from "@/components/pages/PromptEditor"
-import { Loading } from "@/components/parts/Loading"
+import { LoadingPage } from "@/components/parts/LoadingPage"
 import { getAllCategories, getPromptById } from "@/server/dataFetching"
 import { Suspense } from "react"
 
@@ -8,7 +8,7 @@ interface p {
 }
 const page = (props:p) => {
   return (
-    <Suspense fallback={<Loading/>}>
+    <Suspense fallback={<LoadingPage/>}>
       <InnerPage {...props}/>
     </Suspense>
   )
