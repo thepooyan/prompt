@@ -17,6 +17,7 @@ import { deletePrompt } from "@/server/mutation";
 import { Loading } from "@/components/parts/Loading";
 import Link from "@/components/ui/link";
 import { editPromptUrl, promptDetailsUrl } from "@/lib/url";
+import { toast } from "sonner";
 
 interface p {
     initialBlogs: Prompt[]
@@ -28,13 +29,13 @@ export default function PromptManagmentClient({initialBlogs}:p) {
   const handleDelete = (post: Prompt) => {
     callModal.prompt(`"${limitChar(post.title, 40)}" حذف شود؟`)
     .yes(async () => {
-        let {ok} = await deletePrompt(post.id)
+        const {ok} = await deletePrompt(post.id)
         if (ok) {
-          callModal.success("با موفقیت حذف شد!")
-          let blogs = await fetchPrompts()
+          toast.success("با موفقیت حذف شد!")
+          const blogs = await fetchPrompts()
           setPosts(blogs)
         }
-        else callModal.fail("خطایی پیش آمده. لطفا مجددا تلاش کنید")
+        else toast.error("خطایی پیش آمده. لطفا مجددا تلاش کنید")
       })
   }
 

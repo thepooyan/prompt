@@ -17,6 +17,7 @@ import { deleteBlog } from "@/server/mutation";
 import { weblogDetailsUrl } from "@/lib/url";
 import Link from "@/components/ui/link";
 import { LoadingPage } from "../parts/LoadingPage";
+import { toast } from "sonner";
 
 interface p {
     initialBlogs: Blog[]
@@ -29,11 +30,11 @@ export default function BlogManagmentClient({initialBlogs}:p) {
     .yes(async () => {
         const {ok} = await deleteBlog(post.id)
         if (ok) {
-          callModal.success("با موفقیت حذف شد!")
+          toast.success("با موفقیت حذف شد!")
           const blogs = await fetchBlogs()
           setPosts(blogs)
         }
-        else callModal.fail("خطایی پیش آمده. لطفا مجددا تلاش کنید")
+        else toast.error("خطایی پیش آمده. لطفا مجددا تلاش کنید")
       })
   }
 
