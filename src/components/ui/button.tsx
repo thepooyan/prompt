@@ -47,6 +47,8 @@ function Button({
     loading?: boolean
   }) {
   const Comp = asChild ? Slot : "button"
+  const {loading, ...others} = props
+
   if (props.loading && asChild ) throw new Error("Can't have loading and asChild true at the same time")
 
   return (
@@ -54,15 +56,15 @@ function Button({
       data-slot="button"
       className={cn(
         buttonVariants({ variant, size, className }),
-        props.loading !== true && "gap-0",
-        props.loading && "opacity-60 pointer-events-none"
+        loading !== true && "gap-0",
+        loading && "opacity-60 pointer-events-none"
       )}
-      {...props}>
+      {...others}>
         {asChild ?
         props.children :  
         <>
           {props.children}
-          <Spinner className={cn("invisible w-0 transition-all ", props.loading && "visible w-5 mr-1")}/>
+          <Spinner className={cn("invisible w-0 transition-all ", loading && "visible w-5 mr-1")}/>
         </>}
     </Comp>
   )

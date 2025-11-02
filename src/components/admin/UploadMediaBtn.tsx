@@ -1,5 +1,4 @@
 "use client"
-import { Upload } from "lucide-react"
 import { Button } from "../ui/button"
 import { ReactNode, useState } from "react"
 import { uploadToS3 } from "@/server/actions"
@@ -20,7 +19,7 @@ const UploadMediaBtn = ({children, onUploaded}:p) => {
         setLoading(true)
         uploadToS3(files[0])
         .then((result) => {
-            onUploaded && onUploaded(result)
+            onUploaded && onUploaded(result);
             toast.success("آپلود موفق بود")
         })
         .catch((e) => {
