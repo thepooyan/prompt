@@ -111,7 +111,7 @@ export default function PromptManagmentClient({initialBlogs}:p) {
                         </h4>
                       </div>
                       <p className="text-sm text-muted-foreground">
-                        {post.description}
+                        {post.excerpt}
                       </p>
                       <div className="flex items-center gap-1 text-xs text-muted-foreground">
                         <Calendar className="h-3 w-3" />
