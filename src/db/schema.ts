@@ -5,7 +5,6 @@ const timestapms = {
   updated_at: timestamp().defaultNow(),
 }
 const pageSeoFields = {
-  canonical: varchar({length: 255}).default("").notNull(),
   seoTitle: varchar({length: 255}).default("").notNull(),
   seoDescription: varchar({length: 255}).default("").notNull(),
   seoKeywords: json().default([]).$type<string[]>().notNull(),

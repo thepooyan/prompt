@@ -1,5 +1,6 @@
 import MidjournyBlog from "@/components/blog/Midjourny"
 import { fetchSingleBlog } from "@/server/dataFetching";
+import { env } from "@/server/env";
 import { Metadata } from "next"
 
 const page = () => {
@@ -17,7 +18,7 @@ export const generateMetadata = async (): Promise<Metadata> => {
     title: data.seoTitle,
     description: data.seoDescription,
     keywords: data.seoKeywords,
-    alternates: {canonical: data.canonical}
+    alternates: {canonical: `${env.BETTER_AUTH_URL}/Blog/${data.slug}`}
   }
 };
 

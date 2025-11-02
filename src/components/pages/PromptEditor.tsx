@@ -46,7 +46,6 @@ export default function PromptEditor({edit, categories}:p) {
     seoTitle: z.string(),
     seoDescription: z.string(),
     seoKeywords: z.array(z.string()),
-    canonical: z.string(),
   })
   type inputType = z.infer<typeof inputSchema>
   const empty:inputType = {
@@ -62,7 +61,6 @@ export default function PromptEditor({edit, categories}:p) {
     seoTitle: "",
     seoDescription: "",
     seoKeywords: [],
-    canonical: ""
   }
   const router = useRouter()
   const [formData, setFormData] = useState<inputType>(edit ? inputSchema.parse(edit) : {...empty});
@@ -285,14 +283,6 @@ export default function PromptEditor({edit, categories}:p) {
                 </div>
               </div>
 
-              {/* Canonical */}
-              <div className="space-y-2">
-                <Label htmlFor="title">Canonical</Label>
-                <Input
-                  value={formData.canonical}
-                  onChange={(e) => handleInputChange("canonical", e.target.value)}
-                />
-              </div>
               {/* Seo Title */}
               <div className="space-y-2">
                 <Label htmlFor="title">Seo title</Label>

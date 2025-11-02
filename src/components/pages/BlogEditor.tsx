@@ -29,7 +29,6 @@ export default function BlogEditor({edit}:p) {
     tags: z.string(),
     picture: z.string(),
     excerpt: z.string(),
-    canonical: z.string(),
     seoTitle: z.string(),
     seoDescription: z.string(),
     seoKeywords: z.array(z.string()),
@@ -42,7 +41,6 @@ export default function BlogEditor({edit}:p) {
     tags: "",
     picture: "",
     excerpt: "",
-    canonical: "",
     seoTitle: "",
     seoDescription: "",
     seoKeywords: [],
@@ -231,15 +229,6 @@ export default function BlogEditor({edit}:p) {
                 )}
               </div>
 
-              {/* Canonical */}
-              <div className="space-y-2">
-                <Label>Canonical</Label>
-                <Input
-                  value={formData.canonical}
-                  onChange={(e) => handleInputChange("canonical", e.target.value)}
-                  className="text-right"
-                />
-              </div>
               {/* Seo title */}
               <div className="space-y-2">
                 <Label>Seo title</Label>
