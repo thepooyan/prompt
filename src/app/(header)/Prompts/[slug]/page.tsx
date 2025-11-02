@@ -1,6 +1,7 @@
 import PromptPageClient from "@/components/pages/PromptPageClient"
 import { LoadingPage } from "@/components/parts/LoadingPage"
 import { fetchSinglePrompt } from "@/server/dataFetching"
+import { env } from "@/server/env"
 import { Metadata } from "next"
 import { notFound } from "next/navigation"
 import { Suspense } from "react"
@@ -38,7 +39,7 @@ export async function generateMetadata( { params }: p ): Promise<Metadata> {
     description: data.seoDescription,
     keywords: data.seoKeywords,
     alternates: {
-      canonical: data.canonical
+      canonical: `${env.BETTER_AUTH_URL}/Prompts/${data.slug}`
     }
   }
 }

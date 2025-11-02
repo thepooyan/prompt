@@ -1,7 +1,8 @@
 import BlogAsync from "@/components/pages/BlogAsync"
 import { Loading } from "@/components/parts/Loading"
 import { fetchSingleBlog } from "@/server/dataFetching"
-import { Metadata, ResolvingMetadata } from "next"
+import { env } from "@/server/env"
+import { Metadata } from "next"
 import { Suspense } from "react"
 
 interface props {
@@ -15,7 +16,7 @@ const page = (props:props) => {
   )
 }
 
-export async function generateMetadata( { params }: props, parent: ResolvingMetadata): Promise<Metadata> {
+export async function generateMetadata( { params }: props): Promise<Metadata> {
   
   const { slug } = await params
   const data = await fetchSingleBlog(slug)
@@ -27,7 +28,7 @@ export async function generateMetadata( { params }: props, parent: ResolvingMeta
     description: data.seoDescription,
     keywords: data.seoKeywords,
     alternates: {
-      canonical: data.canonical
+      canonical: `${env.BETTER_AUTH_URL}/Blog/${data.slug}`
     }
   }
 }
