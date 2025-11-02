@@ -28,6 +28,7 @@ export const promptsTable = pgTable("prompts", {
   tags: text().notNull(),
   picture: varchar({ length: 255 }).notNull(),
   isFree: boolean().notNull().default(false),
+  excerpt: varchar({ length: 255 }).notNull(),
   description: text().notNull(),
   prompt: text().notNull(),
   ...pageSeoFields,
