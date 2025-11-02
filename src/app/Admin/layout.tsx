@@ -51,7 +51,7 @@ export default function AdminLayout({children}:{children: ReactNode}) {
         <main className="flex-1 overflow-auto ">{children}</main>
 
         {/* Right Sidebar */}
-        <aside className="w-64 border-l border-border bg-card">
+        <aside className="w-64 border-r border-border bg-card">
           <nav className="p-4">
             <div className="space-y-1">
                 {items.map(i => <Link
