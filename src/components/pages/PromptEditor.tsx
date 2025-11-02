@@ -20,7 +20,6 @@ import { Badge } from "@/components/ui/badge"
 import { X, Plus, Upload } from "lucide-react"
 import Link from "next/link"
 import { toast } from "sonner"
-import UploadBtn from "../parts/UploadBtn"
 import {  updatePrompt,  insertPrompt } from "@/server/mutation"
 import { Category, Prompt } from "@/db/schema"
 import { useRouter } from "next/navigation"
@@ -55,7 +54,7 @@ export default function PromptEditor({edit, categories}:p) {
     description: "",
     excerpt: "",
     slug: "",
-    category_id: "",
+    category_id: null,
     prompt: "",
     tags: "",
     picture: "",
@@ -68,6 +67,7 @@ export default function PromptEditor({edit, categories}:p) {
   const router = useRouter()
   const [formData, setFormData] = useState<inputType>(edit ? inputSchema.parse(edit) : {...empty});
   const [tagInput, setTagInput] = useState("");
+  const [loading, setLoading] = useState(false)
   
   const [parsedTags, setParsedTags] = useState<string[]>([])
 
@@ -104,7 +104,9 @@ export default function PromptEditor({edit, categories}:p) {
   }
 
   const submitNew = async () => {
+    setLoading(true)
     const result = await insertPrompt(formData)
+    setLoading(false)
     if (result.ok) {
       toast.success("پرامپت جدید با موفقیت ایجاد شد")
       router.push("/Admin/PromptManagment")
@@ -114,7 +116,9 @@ export default function PromptEditor({edit, categories}:p) {
     }
   }
   const submitEdit = async (id: number) => {
+    setLoading(true)
     const result = await updatePrompt(id, formData)
+    setLoading(false)
     if (result.ok) {
       toast.success("ویرایش با موفقیت ایجاد شد")
       router.push("/Admin/PromptManagment")
@@ -160,7 +164,7 @@ export default function PromptEditor({edit, categories}:p) {
               {/* Cate */}
               <div className="space-y-2">
                 <Label>دسته بندی *</Label>
-                <Select onValueChange={e => handleInputChange("category_id", e)}>
+                <Select onValueChange={e => handleInputChange("category_id", e)} value={formData.category_id || ""} >
                   <SelectTrigger className="w-full" >
                     <SelectValue placeholder="دسته بندی" />
                   </SelectTrigger>
@@ -317,7 +321,7 @@ export default function PromptEditor({edit, categories}:p) {
 
               {/* Submit Button */}
               <div className="flex gap-3 pt-4">
-                <Button type="submit" className="flex-1">
+                <Button type="submit" className="flex-1" loading={loading}>
                   {edit ? "ویرایش پرامپت" : "ایجاد پرامپت"}
                 </Button>
                 <Button type="button" variant="outline" asChild>
