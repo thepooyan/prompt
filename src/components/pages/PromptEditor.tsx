@@ -171,17 +171,29 @@ export default function PromptEditor({edit, categories}:p) {
                 </Select>
               </div>
 
-              {/* Description */}
+              {/* Excerpt */}
               <div className="space-y-2">
-                <Label htmlFor="description">توضیحات *</Label>
+                <Label>خلاصه *</Label>
                 <Textarea
-                  id="description"
-                  value={formData.description}
-                  onChange={(e) => handleInputChange("description", e.target.value)}
+                  value={formData.excerpt}
+                  onChange={(e) => handleInputChange("excerpt", e.target.value)}
                   placeholder="توضیح مختصری از پرامپت ارائه دهید"
                   className="text-right min-h-[100px]"
                 />
               </div>
+
+              {/* Description */}
+              <div className="space-y-2">
+                <Label htmlFor="description">توضیحات کامل *</Label>
+                <Textarea
+                  id="description"
+                  value={formData.description}
+                  onChange={(e) => handleInputChange("description", e.target.value)}
+                  placeholder="توضیح کامل از پرامپت ارائه دهید"
+                  className="text-right min-h-[100px]"
+                />
+              </div>
+
 
               {/* Prompt Content */}
               <div className="space-y-2">
