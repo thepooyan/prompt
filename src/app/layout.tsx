@@ -41,7 +41,7 @@ export default function RootLayout({
         className={`${vazirmatn.className} antialiased dark`}
       >
         {children}
-        <Toaster/>
+        <Toaster richColors  theme="dark" className="text-2xl" dir="rtl" />
         <Modal/>
       </body>
     </html>
