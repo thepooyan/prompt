@@ -14,10 +14,10 @@ import { callModal } from "@/components/layout/Modal";
 import { Calendar, Edit, Eye, Plus, Trash2 } from "lucide-react";
 import { fetchPrompts } from "@/server/dataFetching";
 import { deletePrompt } from "@/server/mutation";
-import { Loading } from "@/components/parts/Loading";
 import Link from "@/components/ui/link";
 import { editPromptUrl, promptDetailsUrl } from "@/lib/url";
 import { toast } from "sonner";
+import { LoadingPage } from "../parts/LoadingPage";
 
 interface p {
     initialBlogs: Prompt[]
@@ -89,7 +89,7 @@ export default function PromptManagmentClient({initialBlogs}:p) {
       <div className="space-y-4">
         <h3 className="text-xl font-semibold">آخرین {name} ها</h3>
         <div className="space-y-3">
-          <Suspense fallback={<Loading />}>
+          <Suspense fallback={<LoadingPage/>}>
             {posts?.length === 0 && <>
               <div className="bg-card rounded-md p-5 text-center flex flex-col gap-3 items-center">
                 {name}ی یافت نشد!

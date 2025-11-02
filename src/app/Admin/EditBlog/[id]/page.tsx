@@ -1,5 +1,5 @@
 import BlogEditor from "@/components/pages/BlogEditor"
-import { Loading } from "@/components/parts/Loading"
+import { LoadingPage } from "@/components/parts/LoadingPage"
 import { getBlogById } from "@/server/dataFetching"
 import { Suspense } from "react"
 
@@ -8,7 +8,7 @@ interface p {
 }
 const page = (props:p) => {
   return (
-    <Suspense fallback={<Loading/>}>
+    <Suspense fallback={<LoadingPage/>}>
       <InnerPage {...props}/>
     </Suspense>
   )
