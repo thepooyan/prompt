@@ -6,6 +6,7 @@ import { Prompt } from "@/db/schema"
 import { useState } from "react"
 import { Button } from "../ui/button"
 import { Check, Copy } from "lucide-react"
+import Markdown from "react-markdown"
 
 interface p { prompt: Prompt }
 export default function PromptPageClient({ prompt }:p ) {
@@ -58,7 +59,7 @@ export default function PromptPageClient({ prompt }:p ) {
       <div className="mx-auto max-w-4xl px-4 py-12">
         {/* Description */}
         <div className="mb-12">
-          <p className="text-pretty text-lg leading-relaxed text-muted-foreground">{prompt.description}</p>
+          <p className="text-pretty text-lg leading-relaxed text-muted-foreground">{prompt.excerpt}</p>
         </div>
 
         {/* Prompt Display */}
@@ -94,29 +95,11 @@ export default function PromptPageClient({ prompt }:p ) {
           </li>
         </ul>
         </div> */}
-        <h2 className="text-3xl font-bold mb-8 text-white text-center">راهنمای استفاده</h2>
-    <div className="space-y-6">
-         <div className="flex items-start gap-4">
-            <div className="step-number-blue text-white font-bold text-xl rounded-full flex items-center justify-center flex-shrink-0">۱</div>
-            <p className="text-gray-300 text-lg flex-1 pt-1">ابتدا با <a href="/what-is-prompt" className="text-blue-400 hover:underline">مفهوم پرامپت</a> آشنا شوید.</p>
+        <div className="mb-12">
+          <div className="prose-lg prose-zinc   p-10 rounded mt-10">
+            <Markdown>{prompt.description}</Markdown>
+          </div>
         </div>
-        <div className="flex items-start gap-4">
-            <div className="step-number-blue text-white font-bold text-xl rounded-full flex items-center justify-center flex-shrink-0">۲</div>
-            <p className="text-gray-300 text-lg flex-1 pt-1">وارد اپلیکیشن دیسکورد و سرور <a href="/Blog/midjourney-prompt-guide" className="text-blue-400 hover:underline">میدجرنی</a> شوید.</p>
-        </div>
-        <div className="flex items-start gap-4">
-            <div className="step-number-blue text-white font-bold text-xl rounded-full flex items-center justify-center flex-shrink-0">۳</div>
-            <p className="text-gray-300 text-lg flex-1 pt-1">پرامپت انگلیسی بالا را کپی کرده و جلوی دستور <code>/imagine</code> پیست کنید.</p>
-        </div>
-         <div className="flex items-start gap-4">
-            <div className="step-number-blue text-white font-bold text-xl rounded-full flex items-center justify-center flex-shrink-0">۴</div>
-            <p className="text-gray-300 text-lg flex-1 pt-1">بخش‌های داخل براکت <code>[ ]</code> را با مشخصات خودتان (جنسیت و توضیحات کوتاه چهره/لباس) ویرایش کنید.</p>
-        </div>
-         <div className="flex items-start gap-4">
-            <div className="step-number-blue text-white font-bold text-xl rounded-full flex items-center justify-center flex-shrink-0">۵</div>
-            <p className="text-gray-300 text-lg flex-1 pt-1">دکمه Enter را بزنید و منتظر نتیجه حرفه‌ای خود باشید!</p>
-        </div>
-    </div>
       </div>
     </article>
   )

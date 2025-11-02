@@ -1,4 +1,6 @@
 import { notFound } from "next/navigation"
+import remarkGfm from 'remark-gfm'
+import Markdown from "react-markdown"
 import { Badge } from "@/components/ui/badge"
 import { fetchSingleBlog } from "@/server/dataFetching"
 import Image from "next/image"
@@ -17,7 +19,7 @@ export default async function BlogAsync({ params, }: p) {
   const tagArray = blog.tags.split(",").map((tag) => tag.trim())
 
   return (
-    <article className="min-h-screen bg-background">
+    <article className="min-h-screen  ">
       {/* Hero Section */}
       <div className="relative h-[400px] md:h-[500px] w-full overflow-hidden bg-muted">
         {/* <Image src={blog.picture || "/placeholder.svg"} alt={blog.title} fill className="object-cover" priority /> */}
@@ -59,8 +61,10 @@ export default async function BlogAsync({ params, }: p) {
         </div> */}
 
         {/* Main Content */}
-        <div className="prose prose-lg max-w-none mb-16">
-          {blog.description}
+        <div className="  prose-zinc prose-lg max-w-none mb-16">
+          <Markdown remarkPlugins={[remarkGfm]}>
+            {blog.description}
+          </Markdown>
         </div>
       </div>
     </article>

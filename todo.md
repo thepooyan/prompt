@@ -11,3 +11,7 @@ edited tags
 new tag 
 author
 category
+منوی همبرگری
+متون Justify font 4xl
+canonical automatic
+prose links get blue

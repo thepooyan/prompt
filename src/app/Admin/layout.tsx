@@ -18,6 +18,10 @@ export default function AdminLayout({children}:{children: ReactNode}) {
       name: "دسته بندی",
       slug: "CateManagment"
     }, 
+    {
+      name: "مدیا",
+      slug: "Media"
+    }, 
   ]
   return (
     <>
