@@ -41,7 +41,7 @@ export default async function BlogAsync({ params, }: p) {
         </div>
 
         {/* Title */}
-        <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-6 text-balance leading-tight">
+        <h1 className="text-4xl font-bold text-foreground mb-6 text-balance leading-tight">
           {blog.title}
         </h1>
 
@@ -61,7 +61,7 @@ export default async function BlogAsync({ params, }: p) {
         </div> */}
 
         {/* Main Content */}
-        <div className="  prose-zinc prose-lg max-w-none mb-16">
+        <div className="  prose-zinc prose-lg max-w-none mb-16 text-justify">
           <Markdown remarkPlugins={[remarkGfm]}>
             {blog.description}
           </Markdown>

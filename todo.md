@@ -11,7 +11,6 @@ edited tags
 new tag 
 author
 category
-منوی همبرگری
-متون Justify font 4xl
-canonical automatic
+hamburger menu
 prose links get blue
+connect gemini to blog
