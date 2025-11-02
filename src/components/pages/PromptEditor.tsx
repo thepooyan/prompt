@@ -17,7 +17,7 @@ import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
 import { Switch } from "@/components/ui/switch"
 import { Badge } from "@/components/ui/badge"
-import { X, Plus } from "lucide-react"
+import { X, Plus, Upload } from "lucide-react"
 import Link from "next/link"
 import { toast } from "sonner"
 import UploadBtn from "../parts/UploadBtn"
@@ -26,6 +26,7 @@ import { Category, Prompt } from "@/db/schema"
 import { useRouter } from "next/navigation"
 import ArrayInput from "../ui/array-input"
 import z from "zod"
+import UploadMediaBtn from "../admin/UploadMediaBtn"
 
 interface p {
   edit?: Prompt
@@ -232,7 +233,9 @@ export default function PromptEditor({edit, categories}:p) {
                     placeholder="آدرس تصویر را وارد کنید"
                     className="text-right"
                   />
-                  <UploadBtn onUploaded={url => setFormData(prev => ({...prev, picture: url}))}/>
+                  <UploadMediaBtn onUploaded={str => handleInputChange("picture", str)}>
+                    <Upload className="h-4 w-4" />
+                  </UploadMediaBtn>
                 </div>
                 {formData.picture && (
                   <div className="mt-2">
