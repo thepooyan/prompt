@@ -12,6 +12,7 @@ import {
 import { CallbackStore } from "@/lib/utils"
 import { Check, Cross } from "lucide-react"
 import { ReactNode, useEffect, useState } from "react"
+import { Button } from "../ui/button"
 
 
 type state = "" | "prompt" | "success" | "fail"
@@ -43,7 +44,11 @@ export default function Modal() {
           </AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>
-          <AlertDialogAction onClick={() => callbackStore.callYes()}>بله</AlertDialogAction>
+          <AlertDialogAction asChild onClick={() => callbackStore.callYes()}>
+            <Button variant="destructive">
+              بله
+            </Button>
+          </AlertDialogAction>
           <AlertDialogCancel>خیر</AlertDialogCancel>
         </AlertDialogFooter>
       </AlertDialogContent>
