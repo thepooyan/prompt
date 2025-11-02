@@ -4,6 +4,9 @@ import { Button } from "../ui/button"
 import { Copy, Trash } from "lucide-react"
 import { callModal } from "../layout/Modal"
 import Copyable from "../ui/copyable"
+import { useRouter } from "next/navigation"
+import { deleteFile } from "@/server/s3Actions"
+import { toast } from "sonner"
 
 interface p {
     children: string
@@ -12,10 +15,20 @@ interface p {
 const MediaCard = ({children}:p) => {
     const url = `https://c327107.parspack.net/${children}`
 
+    const router = useRouter()
+
     const remove = () => {
         callModal.prompt("حذف شود؟")
-        .yes(() => {
-
+        .yes(async() => {
+            deleteFile(children)
+            .then(() => {
+                toast.success("حذف موفق!")
+                router.refresh()
+            })
+            .catch(e => {
+                console.log(e)
+                toast.error("خطا در حذف")
+            })
         })
     }
 

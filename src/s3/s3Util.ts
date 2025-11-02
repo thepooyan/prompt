@@ -1,4 +1,4 @@
-import { ListObjectsV2Command } from "@aws-sdk/client-s3"
+import { DeleteObjectCommand, ListObjectsV2Command } from "@aws-sdk/client-s3"
 import { s3 } from "."
 
 export async function listFiles(bucket: string, prefix?: string) {
@@ -18,4 +18,9 @@ export async function listFiles(bucket: string, prefix?: string) {
   } while (continuationToken)
 
   return files
+}
+
+export async function deleteFileFromS3(bucket: string, key: string) {
+  const cmd = new DeleteObjectCommand({ Bucket: bucket, Key: key })
+  await s3.send(cmd)
 }
