@@ -1,5 +1,4 @@
 put n8n in homepage
-new menu
 
 prompt inner page
 compelete login
@@ -14,4 +13,3 @@ author
 breadcrumb for blog
 category
 hamburger menu
-prose links get blue
