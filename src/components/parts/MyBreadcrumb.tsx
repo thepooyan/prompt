@@ -6,6 +6,7 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb"
+import { Fragment } from "react/jsx-runtime"
 
 interface p {
   items: {
@@ -19,12 +20,15 @@ const MyBreadcrumb = ({items}:p) => {
   return (
     <Breadcrumb className="mb-5">
       <BreadcrumbList>
-        {items.map((item, index) => <BreadcrumbItem key={index}>
-          <BreadcrumbLink href={item.href}>{item.title}</BreadcrumbLink>
-          <BreadcrumbSeparator/>
-        </BreadcrumbItem>)}
+        {items.map((item, index) => <Fragment key={index}>
+            <BreadcrumbItem>
+              <BreadcrumbLink href={item.href}>{item.title}</BreadcrumbLink>
+            </BreadcrumbItem>
+            <BreadcrumbSeparator/>
+          </Fragment>
+        )}
         <BreadcrumbItem>
-          <BreadcrumbPage>{lastItem?.title}</BreadcrumbPage>
+          <BreadcrumbPage>{lastItem?.title || ""}</BreadcrumbPage>
         </BreadcrumbItem>
       </BreadcrumbList>
     </Breadcrumb>

@@ -1,12 +1,11 @@
-"use client"
 
 import Image from "next/image"
 import { Badge } from "@/components/ui/badge"
 import { Prompt } from "@/db/schema"
-import { useState } from "react"
-import { Button } from "../ui/button"
-import { Check, Copy } from "lucide-react"
 import Markdown from "react-markdown"
+import MyBreadcrumb from "../parts/MyBreadcrumb"
+import { promptBreadcrumb } from "../ts/breadcrumb"
+import { PromptCopyButton } from "./PromptCopyButton"
 
 interface p { prompt: Prompt }
 export default function PromptPageClient({ prompt }:p ) {
@@ -57,6 +56,8 @@ export default function PromptPageClient({ prompt }:p ) {
 
       {/* Content Section */}
       <div className="mx-auto max-w-4xl px-4 py-12">
+
+        <MyBreadcrumb items={promptBreadcrumb(prompt.title)}/>
         {/* Description */}
         <div className="mb-12">
           <p className="text-pretty text-lg leading-relaxed text-muted-foreground">{prompt.excerpt}</p>
@@ -66,7 +67,7 @@ export default function PromptPageClient({ prompt }:p ) {
         <div className="rounded-lg border bg-card">
           <div className="flex items-center justify-between border-b px-6 py-4">
             <h2 className="text-xl font-semibold">پرامپت</h2>
-            <CopyButton text={prompt.prompt} />
+            <PromptCopyButton text={prompt.prompt} />
           </div>
           <div className="p-6">
             <pre className="ltr whitespace-pre-wrap font-mono text-sm leading-relaxed">{prompt.prompt}</pre>
@@ -105,28 +106,3 @@ export default function PromptPageClient({ prompt }:p ) {
   )
 }
 
-function CopyButton({ text }: { text: string }) {
-  const [copied, setCopied] = useState(false)
-
-  const handleCopy = async () => {
-    await navigator.clipboard.writeText(text)
-    setCopied(true)
-    setTimeout(() => setCopied(false), 2000)
-  }
-
-  return (
-    <Button onClick={handleCopy} variant="outline" size="sm" className="gap-2 bg-transparent cursor-pointer">
-      {copied ? (
-        <>
-          <Check className="h-4 w-4" />
-          کپی شد!
-        </>
-      ) : (
-        <>
-          <Copy className="h-4 w-4" />
-          کپی پرامپت
-        </>
-      )}
-    </Button>
-  )
-}

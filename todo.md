@@ -8,7 +8,7 @@ add comment and rate to prompt model
 edited tags
 new tag 
 author
-breadcrumb for blog
+breadcrumb for manual blogs
 category
 hamburger menu
 
