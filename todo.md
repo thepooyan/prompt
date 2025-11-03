@@ -1,3 +1,6 @@
+put n8n in homepage
+new menu
+
 prompt inner page
 compelete login
 search like sokan
@@ -8,6 +11,7 @@ add comment and rate to prompt model
 edited tags
 new tag 
 author
+breadcrumb for blog
 category
 hamburger menu
 prose links get blue
