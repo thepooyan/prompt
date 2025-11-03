@@ -12,7 +12,7 @@ const envSchema = z.object({
     googleClientId: z.string(),
     BETTER_AUTH_SECRET: z.string(),
     BETTER_AUTH_URL: z.string(),
-    GEMINI_TOKEN: z.string()
+    GOOGLE_GENERATIVE_AI_API_KEY: z.string()
 })
 
 if (!process || !process.env) throw new Error("Attemp to access env in client")

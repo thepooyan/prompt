@@ -1,4 +1,6 @@
 "use server"
+import { generateText } from "ai"
+import { google } from "@ai-sdk/google"
 
 import { s3 } from "@/s3"
 import { PutObjectCommand } from "@aws-sdk/client-s3"
@@ -19,4 +21,13 @@ export async function uploadToS3(file: File) {
   }))
 
   return `https://${env.BUCKET_URL}/${key}`
+}
+
+export const aiSingleResponse = async (q: string) => {
+  const result = await generateText({
+    model: google('gemini-2.5-flash'),
+    // system: prompt.telegram,
+    prompt: q
+  });
+  return result.text
 }

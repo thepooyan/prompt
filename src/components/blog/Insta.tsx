@@ -1,5 +1,6 @@
 "use client"
 
+import { aiSingleResponse } from "@/server/actions"
 import { useState } from "react"
 
 export default function InstaBlog() {
@@ -20,6 +21,7 @@ export default function InstaBlog() {
     setError("")
     setOutput("")
 
+
     try {
       const prompt = `برای یک پست اینستاگرام با موضوع "${captionTopic}" یک کپشن جذاب بنویس.
 لحن کپشن "${captionTone}" باشد.
@@ -27,12 +29,9 @@ export default function InstaBlog() {
 در انتهای کپشن یک فراخوان به اقدام (Call to Action) واضح برای "${captionGoal}" قرار بده.
 طول کپشن حداکثر ۱۰۰ کلمه باشد.`
 
-    //   const { text } = await generateText({
-    //     model: "openai/gpt-4o-mini",
-    //     prompt,
-    //   })
+      const res = await aiSingleResponse(prompt)
 
-    //   setOutput(text)
+      setOutput(res)
     } catch (err) {
       setError("خطا در تولید کپشن. لطفاً دوباره تلاش کنید.")
       console.error("[v0] Error generating caption:", err)
