@@ -4,6 +4,8 @@ import Markdown from "react-markdown"
 import { Badge } from "@/components/ui/badge"
 import { fetchSingleBlog } from "@/server/dataFetching"
 import Image from "next/image"
+import MyBreadcrumb from "../parts/MyBreadcrumb"
+import { blogBreadcrumb } from "../ts/breadcrumb"
 
 interface p {
   params: Promise<{ slug: string }>
@@ -31,6 +33,8 @@ export default async function BlogAsync({ params, }: p) {
 
       {/* Content Container */}
       <div className="container max-w-4xl mx-auto px-4 -mt-32 relative z-10">
+        <MyBreadcrumb items={blogBreadcrumb(blog.title, blog.slug)}/>
+
         {/* Tags */}
         <div className="flex flex-wrap gap-2 mb-6">
           {tagArray.map((tag) => (
