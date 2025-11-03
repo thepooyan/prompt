@@ -48,6 +48,7 @@ export default function BlogEditor({edit}:p) {
   const [formData, setFormData] = useState<inputsType>(edit ? inputsSchema.parse(edit) : empty)
   const [tagInput, setTagInput] = useState("")
   const [parsedTags, setParsedTags] = useState<string[]>(edit ? edit.tags.split(",") : [])
+  const [loading, setLoading] = useState(false)
   const router = useRouter()
 
   const handleInputChange = (field: string, value: string | boolean) => {
@@ -86,7 +87,9 @@ export default function BlogEditor({edit}:p) {
   }
 
   const submitNew = async () => {
+    setLoading(true)
     const result = await insertBlog(formData)
+    setLoading(false)
     if (result.ok) {
       toast.success("بلاگ جدید با موفقیت ایجاد شد")
       router.push("/Admin/BlogManagment")
@@ -96,8 +99,9 @@ export default function BlogEditor({edit}:p) {
     }
   }
   const submitEdit = async (id: number) => {
-    console.log(formData)
+    setLoading(true)
     const result = await updateBlog(id, formData)
+    setLoading(false)
     if (result.ok) {
       toast.success("ویرایش موفقیت آمیز بود")
       router.push("/Admin/BlogManagment")
@@ -259,7 +263,7 @@ export default function BlogEditor({edit}:p) {
 
               {/* Submit Button */}
               <div className="flex gap-3 pt-4">
-                <Button type="submit" className="flex-1">
+                <Button type="submit" className="flex-1" loading={loading}>
                   {!edit ? "ایجاد بلاگ" : "ویرایش بلاگ"}
                 </Button>
                 <Button type="button" variant="outline" asChild>
