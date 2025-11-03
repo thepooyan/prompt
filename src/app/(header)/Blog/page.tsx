@@ -1,4 +1,6 @@
 import BlogCard from "@/components/parts/BlogCard";
+import MyBreadcrumb from "@/components/parts/MyBreadcrumb";
+import { allblogBreadcrumb } from "@/components/ts/breadcrumb";
 import { fetchBlogs } from "@/server/dataFetching";
 import { Metadata } from "next";
 
@@ -7,8 +9,11 @@ const page = async () => {
   const posts = await fetchBlogs()
 
   return (
-    <div className="grid grid-cols-3 gap-10 max-w-7xl m-auto py-20 ">
-      {posts.map(p => <BlogCard blog={p} key={p.id}/>)}
+    <div className="max-w-7xl m-auto py-20">
+      <MyBreadcrumb items={allblogBreadcrumb}/>
+      <div className="grid grid-cols-3 gap-10  ">
+        {posts.map(p => <BlogCard blog={p} key={p.id}/>)}
+      </div>
     </div>
   )
 }
