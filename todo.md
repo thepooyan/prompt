@@ -1,5 +1,3 @@
-put n8n in homepage
-
 prompt inner page
 compelete login
 search like sokan
@@ -13,3 +11,5 @@ author
 breadcrumb for blog
 category
 hamburger menu
+
+n8n

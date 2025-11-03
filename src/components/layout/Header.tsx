@@ -19,7 +19,7 @@ const Header = () => {
             <Link href="/Blog" className="hover:text-primary">وبلاگ</Link>
             <HeaderSub title='کتابخانه' items={[
               {title: "دانلود پرامپت", link: "/Prompts"},
-              {title: "دانلود n8n", link: "/Workflows"}
+              {title: "دانلود n8n", link: "/n8n"}
             ]}/>
           </nav>
         <Suspense fallback={<Spinner/>}>
