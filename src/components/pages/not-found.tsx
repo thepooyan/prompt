@@ -11,7 +11,7 @@ export default function NotFound({name}:{name: string}) {
         </div>
         <h1 className="text-4xl font-bold">{name} یافت نشد</h1>
         <p className="text-muted-foreground text-lg">
-          متاسفانه {name}ی که به دنبال آن میگردید حذف شده یا وجود ندارد
+          متاسفانه {name} مورد نظر حذف شده یا وجود ندارد
         </p>
         <Button asChild>
           <Link href="/">بازگشت به خانه</Link>
