@@ -106,7 +106,7 @@ export default function PromptPageClient({ prompt, relatedPrompts }:p ) {
 
         <div className='flex flex-col items-center'>
           <p className='text-2xl font-bold mb-4'>اشتراک گذاری</p>
-           <div className='flex items-center gap-4'>
+           <div className='flex items-center gap-6 mt-10'>
             <a href={telegramLink} target='_blank'>
               <SimpleIcon i={siTelegram} className='fill-blue-700 p-1 bg-white rounded'/>
             </a>
