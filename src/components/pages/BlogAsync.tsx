@@ -1,11 +1,10 @@
 import { notFound } from "next/navigation"
-import remarkGfm from 'remark-gfm'
-import Markdown from "react-markdown"
 import { Badge } from "@/components/ui/badge"
 import { fetchSingleBlog } from "@/server/dataFetching"
 import Image from "next/image"
 import MyBreadcrumb from "../parts/MyBreadcrumb"
 import { blogBreadcrumb } from "../ts/breadcrumb"
+import Markdwon from "../util/Markdwon"
 
 interface p {
   params: Promise<{ slug: string }>
@@ -66,9 +65,9 @@ export default async function BlogAsync({ params, }: p) {
 
         {/* Main Content */}
         <div className="  prose-zinc prose-lg max-w-none mb-16 text-justify">
-          <Markdown remarkPlugins={[remarkGfm]}>
+          <Markdwon>
             {blog.description}
-          </Markdown>
+          </Markdwon>
         </div>
       </div>
     </article>

@@ -2,10 +2,10 @@
 import Image from "next/image"
 import { Badge } from "@/components/ui/badge"
 import { Prompt } from "@/db/schema"
-import Markdown from "react-markdown"
 import MyBreadcrumb from "../parts/MyBreadcrumb"
 import { promptBreadcrumb } from "../ts/breadcrumb"
 import { PromptCopyButton } from "./PromptCopyButton"
+import Markdwon from "../util/Markdwon"
 
 interface p { prompt: Prompt }
 export default function PromptPageClient({ prompt }:p ) {
@@ -98,7 +98,7 @@ export default function PromptPageClient({ prompt }:p ) {
         </div> */}
         <div className="mb-12">
           <div className="prose-lg prose-zinc   p-10 rounded mt-10">
-            <Markdown>{prompt.description}</Markdown>
+            <Markdwon>{prompt.description}</Markdwon>
           </div>
         </div>
       </div>
