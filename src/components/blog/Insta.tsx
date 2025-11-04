@@ -48,12 +48,12 @@ export default function InstaBlog() {
 
   // رندر کردن کامپوننت صفحه
   return (
-    <main className="container mx-auto px-4 py-12 md:py-16 max-w-4xl bg-white text-gray-900">
+    <main className="container mx-auto px-4 py-12 md:py-16 max-w-4xl text-justify">
       {/* --- بخش اول: معرفی مقاله --- */}
-      <h1 className="text-3xl md:text-4xl font-bold mb-6 text-balance text-gray-900">
-        ساخت محتوای اینستاگرام با هوش مصنوعی (پرامپت‌های آماده)
+      <h1 className="text-3xl md:text-4xl font-bold mb-6 ">
+        ساخت محتوای اینستاگرام با هوش مصنوعی (پرامپت های آماده)
       </h1>
-      <h2 className="text-2xl md:text-3xl font-bold mb-6 text-balance text-gray-700">
+      <h2 className="text-2xl md:text-3xl font-bold mb-6 ">
         چطور با هوش مصنوعی برای اینستاگرام محتوای جذاب بسازیم؟
       </h2>
 
@@ -122,7 +122,7 @@ export default function InstaBlog() {
 
       <p className="mb-6 leading-relaxed text-lg">
         این پرامپت‌ها رو می‌تونید مستقیماً کپی کنید و تو ChatGPT یا Gemini پیست کنید. فقط کافیه بخش‌هایی که داخل{" "}
-        <code className="bg-gray-100 px-2 py-1 rounded text-sm text-gray-800">
+        <code className="bg-gray-100 px-2 py-1 rounded text-sm text-black">
           {"{"} آکولاد {"}"}
         </code>{" "}
         هستن رو با اطلاعات خودتون عوض کنید.
@@ -131,7 +131,7 @@ export default function InstaBlog() {
       {/* پرامپت ۱ */}
       <h3 className="text-xl font-bold mb-3 mt-8">۱. پرامپت ایده‌یابی برای پست (تقویم محتوایی)</h3>
       <p className="mb-3 leading-relaxed text-lg">دیگه نگران نباشید که فردا چی پست کنید!</p>
-      <pre className="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto mb-8 text-sm leading-relaxed">
+      <pre className="bg-gray-900  p-4 rounded-lg overflow-x-auto mb-8 text-sm leading-relaxed">
         <code>{`من یک پیج اینستاگرام با موضوع "{موضوع اصلی پیج شما}" دارم. مخاطبان من "{گروه مخاطب شما، مثلا: فریلنسرها}" هستند.
 لطفاً یک جدول تقویم محتوایی برای ۷ روز آینده به من پیشنهاد بده که شامل موارد زیر باشد:
 - روز هفته
@@ -143,7 +143,7 @@ export default function InstaBlog() {
       {/* پرامپت ۲ */}
       <h3 className="text-xl font-bold mb-3 mt-8">۲. پرامپت نوشتن کپشن جذاب</h3>
       <p className="mb-3 leading-relaxed text-lg">کپشن‌نویسی سخت‌ترین قسمت کاره؟ دیگه نه! با Gemini امتحانش کنید:</p>
-      <pre className="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto mb-6 text-sm leading-relaxed">
+      <pre className="bg-gray-900  p-4 rounded-lg overflow-x-auto mb-6 text-sm leading-relaxed">
         <code>{`برای یک پست اینستاگرام با موضوع "{موضوع پست شما}" یک کپشن جذاب بنویس.
 لحن کپشن "{لحن مورد نظر، مثلا: صمیمی و خودمونی}" باشد.
 در ابتدای کپشن از یک "{نوع قلاب، مثلا: سوال جذاب یا آمار تکان‌دهنده}" استفاده کن.
@@ -159,7 +159,7 @@ export default function InstaBlog() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
           {/* فیلد موضوع */}
           <div>
-            <label htmlFor="caption-topic" className="block text-sm font-medium text-gray-300 mb-1">
+            <label htmlFor="caption-topic" className="block text-sm font-medium  mb-1">
               موضوع پست
             </label>
             <input
@@ -173,7 +173,7 @@ export default function InstaBlog() {
           </div>
           {/* فیلد لحن */}
           <div>
-            <label htmlFor="caption-tone" className="block text-sm font-medium text-gray-300 mb-1">
+            <label htmlFor="caption-tone" className="block text-sm font-medium  mb-1">
               لحن کپشن
             </label>
             <input
@@ -187,7 +187,7 @@ export default function InstaBlog() {
           </div>
           {/* فیلد نوع قلاب (جدید) */}
           <div>
-            <label htmlFor="caption-hook" className="block text-sm font-medium text-gray-300 mb-1">
+            <label htmlFor="caption-hook" className="block text-sm font-medium  mb-1">
               نوع قلاب (Hook)
             </label>
             <input
@@ -201,7 +201,7 @@ export default function InstaBlog() {
           </div>
           {/* فیلد هدف (CTA) */}
           <div>
-            <label htmlFor="caption-goal" className="block text-sm font-medium text-gray-300 mb-1">
+            <label htmlFor="caption-goal" className="block text-sm font-medium  mb-1">
               هدف (Call to Action)
             </label>
             <input
@@ -233,7 +233,7 @@ export default function InstaBlog() {
         </button>
         {/* نمایش خروجی */}
         {output && (
-          <div className="mt-4 p-4 bg-gray-900 border border-gray-700 rounded-md text-gray-300 text-sm leading-relaxed whitespace-pre-wrap">
+          <div className="mt-4 p-4 bg-gray-900 border border-gray-700 rounded-md  text-sm leading-relaxed whitespace-pre-wrap">
             {output}
           </div>
         )}
@@ -245,7 +245,7 @@ export default function InstaBlog() {
       {/* پرامپت ۳ */}
       <h3 className="text-xl font-bold mb-3 mt-8">۳. پرامپت پیدا کردن هشتگ‌های مرتبط</h3>
       <p className="mb-3 leading-relaxed text-lg">پست‌هاتون کمتر دیده می‌شه؟ شاید هشتگ‌های درستی استفاده نمی‌کنید.</p>
-      <pre className="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto mb-8 text-sm leading-relaxed">
+      <pre className="bg-gray-900  p-4 rounded-lg overflow-x-auto mb-8 text-sm leading-relaxed">
         <code>{`برای یک پست اینستاگرام با موضوع اصلی "{موضوع پست شما}"، ۱۰ هشتگ مرتبط و پربازدید در سه دسته زیر پیشنهاد بده:
 - هشتگ‌های اصلی و کلی (مرتبط با موضوع)
 - هشتگ‌های خاص‌تر و نیچ (مرتبط با جزئیات پست)
@@ -256,7 +256,7 @@ export default function InstaBlog() {
       {/* پرامپت ۴ */}
       <h3 className="text-xl font-bold mb-3 mt-8">۴. پرامپت ایده برای استوری‌های تعاملی</h3>
       <p className="mb-3 leading-relaxed text-lg">استوری فقط عکس و فیلم نیست، با مخاطب تعامل کنید!</p>
-      <pre className="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto mb-8 text-sm leading-relaxed">
+      <pre className="bg-gray-900  p-4 rounded-lg overflow-x-auto mb-8 text-sm leading-relaxed">
         <code>{`برای پیج اینستاگرامم با موضوع "{موضوع پیج شما}"، ۳ ایده برای استوری‌های تعاملی پیشنهاد بده.
 ایده‌ها باید شامل استفاده از ابزارهای استوری مثل "{ابزار مورد نظر، مثلا: نظرسنجی (Poll)، کوئیز (Quiz)، سوال (Question Box)}" باشند و مخاطب را به مشارکت تشویق کنند.`}</code>
       </pre>
