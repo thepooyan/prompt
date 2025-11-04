@@ -13,10 +13,13 @@ import { Button } from '../ui/button';
 import Copyable from '../ui/copyable';
 import { env } from '@/server/env';
 import { getTelegramShareUrl, getTwitterShareUrl } from '@/lib/utils';
-import { twitch } from 'better-auth/social-providers';
+import { PromptCard } from '../PromptCard';
 
-interface p { prompt: Prompt }
-export default function PromptPageClient({ prompt }:p ) {
+interface p { 
+  prompt: Prompt
+  relatedPrompts?: Prompt[]
+}
+export default function PromptPageClient({ prompt, relatedPrompts }:p ) {
 
   const tagList = prompt.tags.split(",").map((tag) => tag.trim())
 
@@ -117,6 +120,21 @@ export default function PromptPageClient({ prompt }:p ) {
             </Copyable>
           </div> 
         </div>
+
+
+        {relatedPrompts && <>
+          <div className='flex flex-col items-center mt-30'>
+            <div className='text-3xl font-bold'>
+              پرامپت های مرتبط
+            </div>
+
+            <div className='flex gap-15 mt-15'>
+              {relatedPrompts.map(p => <PromptCard prompt={p} key={p.id}/>)}
+            </div>
+
+          </div>
+        </>}
+
       </div>
     </article>
   )
