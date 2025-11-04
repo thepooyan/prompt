@@ -3,6 +3,7 @@
 import { useState } from "react"
 import Image from "next/image"
 import { aiSingleResponse } from "@/server/actions"
+import Link from "../ui/link"
 
 
 export default function InstaBlog() {
@@ -79,9 +80,9 @@ export default function InstaBlog() {
         تو این مقاله قراره چند تا <strong>پرامپت آماده و کاربردی</strong> رو با هم یاد بگیریم که کار تولید محتوای
         اینستاگرام رو براتون خیلی راحت‌تر می‌کنه. اگه هنوز دقیق نمی‌دونید پرامپت چیه، پیشنهاد می‌کنم اول یه نگاهی به
         راهنمای کامل ما در مورد{" "}
-        <a href="/what-is-prompt" className="text-blue-600 hover:underline">
+        <Link href="/what-is-prompt" className="text-blue-600 hover:underline">
           <strong>پرامپت چیست؟</strong>
-        </a>{" "}
+        </Link>{" "}
         بندازید.
       </p>
 
@@ -301,9 +302,9 @@ export default function InstaBlog() {
         <strong>دوست دارید پرامپت‌های بیشتری رو امتحان کنید؟</strong>
         <br />
         یه سر به{" "}
-        <a href="/prompts" className="text-blue-600 hover:underline">
+        <Link href="/Prompts" className="text-blue-600 hover:underline">
           <strong>کتابخانه پرامپت‌های آماده</strong>
-        </a>{" "}
+        </Link>{" "}
         ما بزنید! اونجا کلی پرامپت حرفه‌ای دیگه برای اینستاگرام، تولید محتوا، سئو و کلی کاربرد دیگه منتظر شماست که
         می‌تونید ازشون ایده بگیرید یا مستقیماً کپی کنید.
       </p>
