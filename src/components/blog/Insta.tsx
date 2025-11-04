@@ -1,6 +1,7 @@
 "use client"
 
 import { aiSingleResponse } from "@/server/actions"
+import Image from "next/image"
 import { useState } from "react"
 
 export default function InstaBlog() {
@@ -53,9 +54,12 @@ export default function InstaBlog() {
         اینستاگرام کار خیلی سختیه! ایده‌ها تموم می‌شن، وقت کم میاد و گاهی اوقات واقعاً نمی‌دونیم چی پست کنیم. 😥
       </p>
 
-      <div className="w-full h-64 bg-gray-200 rounded-lg flex items-center justify-center mb-6">
-        <span className="text-gray-500">[تصویر تقویم محتوایی خالی]</span>
-      </div>
+      <Image src="https://c327107.parspack.net/prompt/1762275089146-Untitled5555-2.png"
+        alt="تصویر یک تقویم محتوایی خالی که نشان‌دهنده چالش تولید محتوا برای اینستاگرام است"
+        width={1000}
+        height={540}
+        className="mx-auto rounded my-9"
+      />
 
       <p className="mb-4 leading-relaxed">
         <strong>خبر خوب چیه؟</strong> هوش مصنوعی، مخصوصاً ابزارهای قدرتمندی مثل <strong>ChatGPT</strong> و{" "}
@@ -222,9 +226,13 @@ export default function InstaBlog() {
 ایده‌ها باید شامل استفاده از ابزارهای استوری مثل "{ابزار مورد نظر، مثلا: نظرسنجی (Poll)، کوئیز (Quiz)، سوال (Question Box)}" باشند و مخاطب را به مشارکت تشویق کنند.`}</code>
       </pre>
 
-      <div className="w-full h-80 bg-gray-200 rounded-lg flex items-center justify-center mb-8">
-        <span className="text-gray-500">[تصویر نمونه پست اینستاگرام ساخته شده با هوش مصنوعی]</span>
-      </div>
+      <Image src="https://c327107.parspack.net/prompt/1762274914147-Untitled-2.png"
+        alt="نمونه یک پست اینستاگرام که کپشن و ایده آن با هوش مصنوعی ساخته شده است عکس دوم"
+        width={1000}
+        height={540}
+        className="mx-auto rounded my-9"
+      />
+      
 
       <h2 className="text-2xl md:text-3xl font-bold mb-4 mt-12">نکات مهم برای گرفتن بهترین نتیجه</h2>
 
