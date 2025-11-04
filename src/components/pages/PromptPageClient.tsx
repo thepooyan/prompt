@@ -16,13 +16,6 @@ export default function PromptPageClient({ prompt }:p ) {
     <article className="min-h-screen bg-background">
       {/* Hero Section */}
       <div className="relative h-[400px] w-full overflow-hidden bg-gradient-to-br from-blue-600 to-purple-700">
-        <Image
-          src={prompt.picture || "/placeholder.svg"}
-          alt={prompt.title}
-          fill
-          className="object-cover opacity-40"
-          priority
-        />
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
 
         <div className="relative mx-auto flex h-full max-w-4xl flex-col justify-end px-4 pb-12">
@@ -72,6 +65,19 @@ export default function PromptPageClient({ prompt }:p ) {
           <div className="p-6">
             <pre className="ltr whitespace-pre-wrap font-mono text-sm leading-relaxed">{prompt.prompt}</pre>
           </div>
+        </div>
+
+        <div className="flex flex-col items-center mt-10">
+          <div className="text-3xl font-bold mb-5">نمونه خروجی واقعی</div>
+
+          <Image
+            className="rounded "
+            src={prompt.picture || "/placeholder.svg"}
+            alt={prompt.title}
+            width={500}
+            height={500}
+            priority
+          />
         </div>
 
         {/* Usage Tips */}
