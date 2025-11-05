@@ -68,11 +68,11 @@ export const fetchThreePrompts = async () => {
 export const fetchTwoPrompts = async () => {
   "use cache"
   cacheTag(cacheTags.prompts)
-  const posts = await db.select().from(promptsTable).limit(2)
-    .orderBy(
-      desc(promptsTable.updated_at),
-    )
-  return posts
+  return await db.query.promptsTable.findMany({
+    limit: 2,
+    orderBy: desc(promptsTable.updated_at),
+    with: {category: true}
+  })
 }
 
 export const fetchFiveBlogs = async () => {
