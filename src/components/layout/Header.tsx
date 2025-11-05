@@ -12,7 +12,7 @@ export default async function Header() {
 
   return (
     <header className="border-b border-border bg-background/30 backdrop-blur-xl sticky top-0 z-20 ">
-      <div className="container mx-auto ">
+      <div className="container mx-auto px-5 ">
         <div className="flex py-4 items-center justify-between">
           {/* Logo - Right side in RTL */}
           <Logo/>
