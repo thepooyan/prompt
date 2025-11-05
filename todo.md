@@ -1,3 +1,5 @@
+fix admin security
+
 prompt inner page
 compelete login
 search like sokan

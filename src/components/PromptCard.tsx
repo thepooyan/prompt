@@ -4,13 +4,13 @@ import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { Share2, Heart, ArrowLeft } from "lucide-react"
 import { cn } from "@/lib/utils"
-import type { Prompt } from "@/db/schema"
 import { usePromptCard } from "@/hooks/use-prompt-card"
 import Link from "next/link"
 import Image from "next/image"
+import { PromptWithRelations } from "@/server/dataFetching"
 
 interface PromptCardProps {
-  prompt: Prompt
+  prompt: PromptWithRelations
   className?: string
 }
 
@@ -86,7 +86,7 @@ export function PromptCard({ prompt, className }: PromptCardProps) {
             </Button>
           </div>
           <Button className="cursor-pointer" asChild>
-            <Link href={`/Prompts/${encodeURIComponent(prompt.slug)}`}>
+            <Link href={`/Prompts/${encodeURIComponent(prompt.category?.slug || "none")}/${encodeURIComponent(prompt.slug)}`}>
               مشاهده
               <ArrowLeft/>
             </Link>

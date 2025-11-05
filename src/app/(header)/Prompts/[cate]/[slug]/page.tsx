@@ -1,23 +1,13 @@
 import PromptPageClient from "@/components/pages/PromptPageClient"
-import { LoadingPage } from "@/components/parts/LoadingPage"
 import { fetchSinglePrompt, fetchTwoPrompts } from "@/server/dataFetching"
 import { env } from "@/server/env"
 import { Metadata } from "next"
 import { notFound } from "next/navigation"
-import { Suspense } from "react"
 
 interface p {
   params: Promise<{slug: string}>
 }
-const page = (p:p) => {
-  return (
-    <Suspense fallback={<LoadingPage/>}>
-      <Inner {...p}/>
-    </Suspense>
-  )
-}
-
-const Inner = async ({params}:p) => {
+const page = async ({params}:p) => {
   const {slug} = await params
   const [data, related] = await Promise.all([fetchSinglePrompt(slug), fetchTwoPrompts()])
   if (!data) return notFound()
