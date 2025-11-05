@@ -11,5 +11,7 @@ author
 breadcrumb for manual blogs
 category
 hamburger menu
-
+'
 n8n
+
+admin => seo options => 301 => tripple menu

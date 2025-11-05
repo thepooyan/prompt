@@ -22,6 +22,10 @@ export default function AdminLayout({children}:{children: ReactNode}) {
       name: "مدیا",
       slug: "Media"
     }, 
+    {
+      name: "سؤ",
+      slug: "Seo"
+    }, 
   ]
   return (
     <>

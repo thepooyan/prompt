@@ -1,7 +1,7 @@
 "use server"
 import { revalidateTag as r, cacheTag as c } from 'next/cache'
 import { db } from "@/db"
-import { Blog, blogsTable, promptCateTable, promptsTable } from "@/db/schema"
+import { Blog, blogsTable, promptCateTable, promptsTable, redirectsTable } from "@/db/schema"
 import { desc, eq } from 'drizzle-orm'
 import { cacheTags } from './cache'
 
@@ -87,4 +87,8 @@ export const fetchFiveBlogs = async () => {
 
 export const getAllCategories = async () => {
   return await db.select().from(promptCateTable)
+}
+
+export const getAllRedirects = async () => {
+  return await db.select().from(redirectsTable)
 }
