@@ -40,29 +40,32 @@ export const getPromptById = async (id: number) => {
 
 
 export const fetchPrompts = async () => {
-    "use cache"
-    cacheTag(cacheTags.prompts)
-    return await db.select().from(promptsTable)
-      .orderBy(
-        desc(promptsTable.updated_at),
-      )
+  "use cache"
+  cacheTag(cacheTags.prompts)
+  return await db.query.promptsTable.findMany({
+    with: {category: true},
+    orderBy: desc(promptsTable.updated_at),
+  })
 }
 
 export const fetchSinglePrompt = async (slug: string) => {
-    "use cache"
-    cacheTag(cacheTags.singleBlog)
-    return await db.query.promptsTable.findFirst({with: {category: true}, where: eq(promptsTable.slug, decodeURIComponent(slug))})
+  "use cache"
+  cacheTag(cacheTags.singleBlog)
+  return await db.query.promptsTable.findFirst({
+    with: {category: true},
+    where: eq(promptsTable.slug, decodeURIComponent(slug))
+  })
 } 
 export type PromptWithRelations = NonNullable<Awaited<ReturnType<typeof fetchSinglePrompt>>>
 
 export const fetchThreePrompts = async () => {
-    "use cache"
-    cacheTag(cacheTags.prompts)
-  const posts = await db.select().from(promptsTable).limit(3)
-      .orderBy(
-        desc(promptsTable.updated_at),
-      )
-  return posts
+  "use cache"
+  cacheTag(cacheTags.prompts)
+  return await db.query.promptsTable.findMany({
+    limit: 3,
+    orderBy: desc(promptsTable.updated_at),
+    with: {category: true}
+  })
 }
 
 export const fetchTwoPrompts = async () => {

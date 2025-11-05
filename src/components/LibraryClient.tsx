@@ -6,10 +6,10 @@ import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { Search, Filter, X } from "lucide-react"
 import { PromptCard } from "@/components/PromptCard"
-import { Prompt } from "@/db/schema"
+import { PromptWithRelations } from "@/server/dataFetching"
 
 interface p {
-  prompts: Prompt[]
+  prompts: PromptWithRelations[]
 }
 export default function LibraryClient({prompts}:p) {
   const [searchQuery, setSearchQuery] = useState("")
