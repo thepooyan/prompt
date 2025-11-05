@@ -1,8 +1,6 @@
-
 import { siTelegram, siX} from 'simple-icons';
 import Image from "next/image"
 import { Badge } from "@/components/ui/badge"
-import { Prompt } from "@/db/schema"
 import MyBreadcrumb from "../parts/MyBreadcrumb"
 import { promptBreadcrumb } from "../ts/breadcrumb"
 import { PromptCopyButton } from "./PromptCopyButton"
@@ -14,10 +12,11 @@ import Copyable from '../ui/copyable';
 import { env } from '@/server/env';
 import { getTelegramShareUrl, getTwitterShareUrl } from '@/lib/utils';
 import { PromptCard } from '../PromptCard';
+import { PromptWithRelations } from '@/server/dataFetching';
 
 interface p { 
-  prompt: Prompt
-  relatedPrompts?: Prompt[]
+  prompt: PromptWithRelations
+  relatedPrompts?: PromptWithRelations[]
 }
 export default function PromptPageClient({ prompt, relatedPrompts }:p ) {
 
@@ -53,8 +52,14 @@ export default function PromptPageClient({ prompt, relatedPrompts }:p ) {
                   : "bg-amber-500 text-white hover:bg-amber-600"
               }
             >
-              {prompt.isFree ? "Free" : "Premium"}
+              {prompt.isFree ? "رایگان" : "پریمیوم"}
             </Badge>
+            <Badge
+                className="bg-white/20 text-white backdrop-blur-sm hover:bg-white/30"
+            >
+              دسته بندی: {prompt.category?.name || "-"}
+            </Badge>
+
           </div>
 
           <h1 className="text-balance text-4xl font-bold leading-tight text-white md:text-5xl lg:text-6xl">

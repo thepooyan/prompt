@@ -51,9 +51,9 @@ export const fetchPrompts = async () => {
 export const fetchSinglePrompt = async (slug: string) => {
     "use cache"
     cacheTag(cacheTags.singleBlog)
-    const [p] =  await db.select().from(promptsTable).where(eq(promptsTable.slug, decodeURIComponent(slug))).limit(1)
-    return p
+    return await db.query.promptsTable.findFirst({with: {category: true}, where: eq(promptsTable.slug, decodeURIComponent(slug))})
 } 
+export type PromptWithRelations = NonNullable<Awaited<ReturnType<typeof fetchSinglePrompt>>>
 
 export const fetchThreePrompts = async () => {
     "use cache"
