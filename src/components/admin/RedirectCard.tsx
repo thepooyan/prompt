@@ -30,13 +30,17 @@ export const RedirectCard = ({c}:{c: Redirect}) => {
       <span className="text-muted-foreground ml-2 text-sm">
         از:
       </span>
-      {c.from}
+      <p className="ltr">
+        {c.from}
+      </p>
     </div>
     <div>
       <span className="text-muted-foreground ml-2 text-sm">
         به:
       </span>
-      {c.to}
+      <p className="ltr">
+        {c.to}
+      </p>
     </div>
     <Button variant="ghost" onClick={deleteMe}>
       <Trash className="text-destructive"/>

@@ -30,13 +30,17 @@ export const CategoryCard = ({c}:{c: Category}) => {
       <span className="text-muted-foreground ml-2 text-sm">
         نام:
       </span>
-      {c.name}
+      <p>
+        {c.name}
+      </p>
     </div>
     <div>
       <span className="text-muted-foreground ml-2 text-sm">
         اسلاگ:
       </span>
-      {c.slug}
+      <p>
+        {c.slug}
+      </p>
     </div>
     <Button variant="ghost" onClick={deleteMe}>
       <Trash className="text-destructive"/>
