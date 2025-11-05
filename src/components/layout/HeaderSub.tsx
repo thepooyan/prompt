@@ -106,12 +106,14 @@ const HeaderSub = ({ subMenu }:p) => {
             className="relative"
             onMouseEnter={() => setActiveSubmenu(menu.name)}
           >
-            <button className="w-full px-4 py-3 text-right hover:bg-accent hover:text-accent-foreground
-              flex items-center justify-between transition-colors duration-150">
+            <Link className="w-full px-4 py-3 text-right hover:bg-accent hover:text-accent-foreground
+              flex items-center justify-between transition-colors duration-150"
+              href={menu.slug}
+            >
               <span>{menu.name}</span>
               {menu.cate.length > 0 && 
               <ChevronLeft className={cn(`h-4 w-4 transition-all`, activeSubmenu === menu.name && "rotate-180")}/>}
-            </button>
+            </Link>
 
             {/* Layer 2: Subcategories */}
             <div
@@ -125,10 +127,12 @@ const HeaderSub = ({ subMenu }:p) => {
             >
               {menu.cate.map(sub => (
                   <div key={sub.name} className="relative group/sub">
-                    <button className="w-full px-4 py-3 text-right hover:bg-accent
-                    hover:text-accent-foreground flex items-center justify-between transition-colors duration-150">
+                    <Link className="w-full px-4 py-3 text-right hover:bg-accent
+                    hover:text-accent-foreground flex items-center justify-between transition-colors duration-150"
+                    href={`${menu.slug}/${sub.slug}`}
+                  >
                       <span>{sub.name}</span>
-                    </button>
+                    </Link>
                   </div>
                 ),
               )}

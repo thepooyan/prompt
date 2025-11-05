@@ -96,7 +96,7 @@ export const getAllRedirects = async () => {
   return await db.select().from(redirectsTable)
 }
 
-export type subMenu = {name: string, cate: Category[]}
+export type subMenu = {name: string, slug: string, cate: Category[]}
 export const getAllSubmenus = async ():Promise<subMenu[]> => {
   "use cache"
   cacheTag(cacheTags.menuItems)
@@ -105,8 +105,8 @@ export const getAllSubmenus = async ():Promise<subMenu[]> => {
   ])
   
   return [
-    {name: "پرامپت", cate: result1},
-    {name: "n8n", cate: []},
-    {name: "ابزار", cate: []},
+    {name: "پرامپت",slug: "/Prompts", cate: result1},
+    {name: "n8n",slug: "/n8n", cate: []},
+    {name: "ابزار", slug: "/Tools",cate: []},
   ]
 }
