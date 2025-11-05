@@ -14,6 +14,6 @@ export const allblogBreadcrumb = [
 export const promptBreadcrumb = (pr: PromptWithRelations):returnType => [
   {title: "خانه", href:"/"},
   {title: "پرامپت", href:"/Prompts"},
-  {title: pr.category?.name || "", href:`/Prompts/${pr.category?.slug}`},
+  {title: pr.category.name , href:`/Prompts/${pr.category.slug}`},
   {title: pr.title, href:""},
 ]

@@ -21,7 +21,7 @@ export type NewCategory = InferInsertModel<typeof promptCateTable>
 
 export const promptsTable = pgTable("prompts", {
   id: integer().primaryKey().generatedAlwaysAsIdentity(),
-  category_id: uuid().references(() => promptCateTable.id, {onDelete: "restrict"}),
+  category_id: uuid().references(() => promptCateTable.id, {onDelete: "restrict"}).notNull(),
   title: varchar({ length: 255 }).notNull(),
   slug: varchar({ length: 255 }).notNull(),
   tags: text().notNull(),
