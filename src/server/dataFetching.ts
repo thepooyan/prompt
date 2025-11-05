@@ -96,8 +96,8 @@ export const getAllRedirects = async () => {
   return await db.select().from(redirectsTable)
 }
 
-export type subMenu = {name: string, slug: string, cate: Category[]}
-export const getAllSubmenus = async ():Promise<subMenu[]> => {
+export type menuItems = {name: string, slug: string, cate: Category[]}
+export const getAllMenuItems = async ():Promise<menuItems[]> => {
   "use cache"
   cacheTag(cacheTags.menuItems)
   const [result1] = await Promise.all([

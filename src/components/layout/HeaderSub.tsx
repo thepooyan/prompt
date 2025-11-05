@@ -3,14 +3,13 @@ import { ChevronDown, ChevronLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import Link from "../ui/link";
-import { subMenu } from "@/server/dataFetching";
+import { menuItems } from "@/server/dataFetching";
 import { cn } from "@/lib/utils";
 
 interface p {
-  subMenu: subMenu[]
+  menuItems: menuItems[]
 }
-const HeaderSub = ({ subMenu }:p) => {
-  console.log(subMenu)
+const HeaderSub = ({ menuItems }:p) => {
   const [open, setOpen] = useState<boolean>(false);
   const [activeSubmenu, setActiveSubmenu] = useState<string | null>(null);
   return (
@@ -35,7 +34,7 @@ const HeaderSub = ({ subMenu }:p) => {
           :
           "opacity-0 invisible scale-y-95 -translate-y-2 pointer-events-none")}
       >
-        {subMenu.map(menu => (
+        {menuItems.map(menu => (
           <div
             key={menu.name}
             className="relative"
@@ -51,6 +50,7 @@ const HeaderSub = ({ subMenu }:p) => {
             </Link>
 
             {/* Layer 2: Subcategories */}
+            {menu.cate.length > 0 &&
             <div
               className={cn(
                 "absolute right-full top-0 -mr-px w-56 rounded-lg border border-border bg-popover shadow-lg transition-all duration-200 origin-right",
@@ -71,7 +71,7 @@ const HeaderSub = ({ subMenu }:p) => {
                   </div>
                 ),
               )}
-            </div>
+            </div>}
           </div>
         ))}
       </div>
