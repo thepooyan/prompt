@@ -13,6 +13,7 @@ import { env } from '@/server/env';
 import { getTelegramShareUrl, getTwitterShareUrl } from '@/lib/utils';
 import { PromptCard } from '../PromptCard';
 import { PromptWithRelations } from '@/server/dataFetching';
+import Link from '../ui/link';
 
 interface p { 
   prompt: PromptWithRelations
@@ -54,17 +55,17 @@ export default function PromptPageClient({ prompt, relatedPrompts }:p ) {
             >
               {prompt.isFree ? "رایگان" : "پریمیوم"}
             </Badge>
-            <Badge
-                className="bg-white/20 text-white backdrop-blur-sm hover:bg-white/30"
-            >
-              دسته بندی: {prompt.category?.name || "-"}
-            </Badge>
 
           </div>
 
           <h1 className="text-balance text-4xl font-bold leading-tight text-white md:text-5xl lg:text-6xl">
             {prompt.title}
           </h1>
+          <Badge className="bg-white/20 text-white backdrop-blur-sm hover:bg-white/30 mt-5 " asChild >
+            <Link href={`/Prompts/${prompt.category.slug}`}>
+              دسته بندی: {prompt.category?.name || "-"}
+            </Link>
+          </Badge>
         </div>
       </div>
 
@@ -73,7 +74,7 @@ export default function PromptPageClient({ prompt, relatedPrompts }:p ) {
 
         <MyBreadcrumb items={promptBreadcrumb(prompt)}/>
         {/* Description */}
-        <div className="mb-12">
+        <div className="my-12 ">
           <p className="text-pretty text-lg leading-relaxed text-muted-foreground">{prompt.excerpt}</p>
         </div>
 
