@@ -1,33 +1,185 @@
-import Link from 'next/link'
-import LoginButton from './LoginButton'
-import Logo from '../parts/Logo'
-import { Suspense } from 'react'
-import Spinner from '../parts/Spinner'
-import HeaderSub from './HeaderSub'
+"use client"
 
-const Header = () => {
+import { useState } from "react"
+import Link from "next/link"
+import { Button } from "@/components/ui/button"
+import { ChevronDown } from "lucide-react"
+import Logo from "../parts/Logo"
+
+// Product categories structure
+const productCategories = {
+  prompts: {
+    name: "پرامپت",
+    subcategories: {
+      writing: {
+        name: "نوشتاری",
+        items: ["مقاله نویسی", "داستان نویسی", "محتوای تبلیغاتی", "ایمیل رسمی"],
+      },
+      coding: {
+        name: "برنامه‌نویسی",
+        items: ["پایتون", "جاوااسکریپت", "ری‌اکت", "بک‌اند"],
+      },
+      business: {
+        name: "کسب و کار",
+        items: ["بازاریابی", "فروش", "مدیریت", "استراتژی"],
+      },
+      creative: {
+        name: "خلاقانه",
+        items: ["طراحی", "موسیقی", "ویدیو", "هنر دیجیتال"],
+      },
+    },
+  },
+  workflows: {
+    name: "n8n",
+    subcategories: {
+      automation: {
+        name: "اتوماسیون",
+        items: ["ایمیل", "شبکه‌های اجتماعی", "گزارش‌گیری", "یادآوری"],
+      },
+      integration: {
+        name: "یکپارچه‌سازی",
+        items: ["CRM", "پایگاه داده", "API", "وب‌هوک"],
+      },
+      dataProcessing: {
+        name: "پردازش داده",
+        items: ["تحلیل", "تبدیل", "فیلتر", "ذخیره‌سازی"],
+      },
+      notification: {
+        name: "اعلان‌ها",
+        items: ["تلگرام", "اسلک", "SMS", "پوش"],
+      },
+    },
+  },
+  aiTools: {
+    name: "ابزار",
+    subcategories: {
+      textGeneration: {
+        name: "تولید متن",
+        items: ["GPT-4", "Claude", "Gemini", "مدل‌های محلی"],
+      },
+      imageGeneration: {
+        name: "تولید تصویر",
+        items: ["Midjourney", "DALL-E", "Stable Diffusion", "Leonardo"],
+      },
+      audioVideo: {
+        name: "صوت و تصویر",
+        items: ["تبدیل گفتار به متن", "تولید صدا", "ویرایش ویدیو", "موسیقی"],
+      },
+      analysis: {
+        name: "تحلیل و بررسی",
+        items: ["تحلیل احساسات", "خلاصه‌سازی", "ترجمه", "دسته‌بندی"],
+      },
+    },
+  },
+}
+
+export default function Header() {
+  const [activeMenu, setActiveMenu] = useState<string | null>(null)
+  const [activeSubmenu, setActiveSubmenu] = useState<string | null>(null)
+
   return (
-      <header className="sticky top-0 w-full bg-zinc-900/30 backdrop-blur-xl  z-50 shadow-zinc-800 shadow-md ">
-        <div className="container mx-auto flex items-center justify-between p-2 px-4">
+    <header className="border-b border-border bg-background/30 backdrop-blur-xl sticky top-0 z-20 ">
+      <div className="container mx-auto ">
+        <div className="flex py-4 items-center justify-between">
+          {/* Logo - Right side in RTL */}
           <Logo/>
-          <nav className="hidden md:flex gap-6 items-center">
-            <Link href="/" className="hover:text-primary">خانه</Link>
-            <HeaderSub title='راهنمای جامع' items={[
-              {title: "آموزش پرامپت", link: "/what-is-prompt"},
-              {title: "آموزش n8n", link: "/what-is-n8n"}
-            ]}/>
-            <Link href="/Blog" className="hover:text-primary">وبلاگ</Link>
-            <HeaderSub title='کتابخانه' items={[
-              {title: "دانلود پرامپت", link: "/Prompts"},
-              {title: "دانلود n8n", link: "/n8n"}
-            ]}/>
+
+          {/* Navigation - Center */}
+          <nav className="hidden md:flex items-center gap-1">
+            {/* خانه */}
+            <Link href="/">
+              <Button variant="ghost" className="text-base">
+                خانه
+              </Button>
+            </Link>
+
+            {/* راهنما */}
+            <Link href="/guide">
+              <Button variant="ghost" className="text-base">
+                راهنما
+              </Button>
+            </Link>
+
+            {/* جامع */}
+            <Link href="/comprehensive">
+              <Button variant="ghost" className="text-base">
+                جامع
+              </Button>
+            </Link>
+
+            {/* محصولات - Three-layer dropdown */}
+            <div
+              className="relative"
+              onMouseEnter={() => setActiveMenu("products")}
+              onMouseLeave={() => {
+                setActiveMenu(null)
+                setActiveSubmenu(null)
+              }}
+            >
+              <Button variant="ghost" className="text-base gap-1">
+                محصولات
+                <ChevronDown className="h-4 w-4" />
+              </Button>
+
+              {/* Layer 1: Main Categories */}
+              <div
+                className={`absolute left-0 top-full w-56 rounded-lg border border-border bg-popover shadow-lg z-50 transition-all duration-200 origin-top ${
+                  activeMenu === "products"
+                    ? "opacity-100 visible scale-y-100 translate-y-0"
+                    : "opacity-0 invisible scale-y-95 -translate-y-2 pointer-events-none"
+                }`}
+              >
+                {Object.entries(productCategories).map(([key, category]) => (
+                  <div key={key} className="relative" onMouseEnter={() => setActiveSubmenu(key)}>
+                    <button className="w-full px-4 py-3 text-right hover:bg-accent hover:text-accent-foreground flex items-center justify-between transition-colors duration-150">
+                      <span>{category.name}</span>
+                      <ChevronDown className="h-4 w-4 -rotate-90" />
+                    </button>
+
+                    {/* Layer 2: Subcategories */}
+                    <div
+                      className={`absolute right-full top-0 -mr-px w-56 rounded-lg border border-border bg-popover shadow-lg transition-all duration-200 origin-right ${
+                        activeSubmenu === key
+                          ? "opacity-100 visible scale-x-100 translate-x-0"
+                          : "opacity-0 invisible scale-x-95 translate-x-2 pointer-events-none"
+                      }`}
+                    >
+                      {Object.entries(category.subcategories).map(([subKey, subcategory]) => (
+                        <div key={subKey} className="relative group/sub">
+                          <button className="w-full px-4 py-3 text-right hover:bg-accent hover:text-accent-foreground flex items-center justify-between transition-colors duration-150">
+                            <span>{subcategory.name}</span>
+                            <ChevronDown className="h-4 w-4 -rotate-90" />
+                          </button>
+
+                          {/* Layer 3: Items */}
+                          <div className="absolute right-full top-0 -mr-px w-48 rounded-lg border border-border bg-popover shadow-lg opacity-0 invisible group-hover/sub:opacity-100 group-hover/sub:visible transition-all duration-200 origin-right group-hover/sub:scale-x-100 scale-x-95 translate-x-2 group-hover/sub:translate-x-0 pointer-events-none group-hover/sub:pointer-events-auto">
+                            {subcategory.items.map((item, idx) => (
+                              <Link
+                                key={idx}
+                                href={`/products/${key}/${subKey}/${item}`}
+                                className="block px-4 py-2.5 text-right hover:bg-accent hover:text-accent-foreground transition-colors duration-150 text-sm"
+                              >
+                                {item}
+                              </Link>
+                            ))}
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
           </nav>
-        <Suspense fallback={<Spinner/>}>
-          <LoginButton/>
-        </Suspense>
+
+          {/* Login Button - Left side in RTL */}
+          {/*
+          <Suspense fallback={<Spinner/>}>
+            <LoginButton/>
+          </Suspense>*/}
+        </div>
       </div>
     </header>
   )
 }
 
-export default Header
