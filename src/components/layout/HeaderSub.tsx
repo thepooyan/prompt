@@ -3,10 +3,8 @@ import { ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import Link from "../ui/link";
+import { subMenu } from "@/server/dataFetching";
 
-// interface p {
-//   productCategories: any;
-// }
 const productCategories = {
   prompts: {
     name: "پرامپت",
@@ -72,7 +70,11 @@ const productCategories = {
     },
   },
 }
-const HeaderSub = ({  }) => {
+interface p {
+  subMenu: subMenu[]
+}
+const HeaderSub = ({ subMenu }:p) => {
+  console.log(subMenu)
   const [activeMenu, setActiveMenu] = useState<string | null>(null);
   const [activeSubmenu, setActiveSubmenu] = useState<string | null>(null);
   return (

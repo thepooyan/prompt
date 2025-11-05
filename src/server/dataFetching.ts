@@ -1,7 +1,7 @@
 "use server"
 import { revalidateTag as r, cacheTag as c } from 'next/cache'
 import { db } from "@/db"
-import { Blog, blogsTable, promptCateTable, promptsTable, redirectsTable } from "@/db/schema"
+import { Blog, blogsTable, Category, promptCateTable, promptsTable, redirectsTable } from "@/db/schema"
 import { desc, eq } from 'drizzle-orm'
 import { cacheTags } from './cache'
 
@@ -94,4 +94,19 @@ export const getAllCategories = async () => {
 
 export const getAllRedirects = async () => {
   return await db.select().from(redirectsTable)
+}
+
+export type subMenu = {name: string, cate: Category[]}
+export const getAllSubmenus = async ():Promise<subMenu[]> => {
+  "use cache"
+  cacheTag(cacheTags.menuItems)
+  const [result1] = await Promise.all([
+    db.query.promptCateTable.findMany()
+  ])
+  
+  return [
+    {name: "پرامپت", cate: result1},
+    {name: "n8n", cate: []},
+    {name: "ابزار", cate: []},
+  ]
 }

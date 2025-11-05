@@ -5,8 +5,10 @@ import HeaderSub from "./HeaderSub"
 import { Suspense } from "react"
 import { Spinner } from "../ui/spinner"
 import LoginButton from "./LoginButton"
+import { getAllSubmenus } from "@/server/dataFetching"
 
-export default function Header() {
+export default async function Header() {
+  const subMenu = await getAllSubmenus()
 
   return (
     <header className="border-b border-border bg-background/30 backdrop-blur-xl sticky top-0 z-20 ">
@@ -39,7 +41,7 @@ export default function Header() {
             </Link>
 
             {/* محصولات - Three-layer dropdown */}
-            <HeaderSub/>
+            <HeaderSub subMenu={subMenu}/>
           </nav>
 
           {/* Login Button - Left side in RTL */}
