@@ -1,39 +1,148 @@
-"use client"
-import { ChevronDown } from "lucide-react"
-import Link from "../ui/link"
-import { useState } from "react"
-import { cn } from "@/lib/utils"
+"use client";
+import { ChevronDown } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { useState } from "react";
+import Link from "../ui/link";
 
-interface p {
-  title: string
-  items: {title: string, link: string}[]
+// interface p {
+//   productCategories: any;
+// }
+const productCategories = {
+  prompts: {
+    name: "پرامپت",
+    subcategories: {
+      writing: {
+        name: "نوشتاری",
+        items: ["مقاله نویسی", "داستان نویسی", "محتوای تبلیغاتی", "ایمیل رسمی"],
+      },
+      coding: {
+        name: "برنامه‌نویسی",
+        items: ["پایتون", "جاوااسکریپت", "ری‌اکت", "بک‌اند"],
+      },
+      business: {
+        name: "کسب و کار",
+        items: ["بازاریابی", "فروش", "مدیریت", "استراتژی"],
+      },
+      creative: {
+        name: "خلاقانه",
+        items: ["طراحی", "موسیقی", "ویدیو", "هنر دیجیتال"],
+      },
+    },
+  },
+  workflows: {
+    name: "n8n",
+    subcategories: {
+      automation: {
+        name: "اتوماسیون",
+        items: ["ایمیل", "شبکه‌های اجتماعی", "گزارش‌گیری", "یادآوری"],
+      },
+      integration: {
+        name: "یکپارچه‌سازی",
+        items: ["CRM", "پایگاه داده", "API", "وب‌هوک"],
+      },
+      dataProcessing: {
+        name: "پردازش داده",
+        items: ["تحلیل", "تبدیل", "فیلتر", "ذخیره‌سازی"],
+      },
+      notification: {
+        name: "اعلان‌ها",
+        items: ["تلگرام", "اسلک", "SMS", "پوش"],
+      },
+    },
+  },
+  aiTools: {
+    name: "ابزار",
+    subcategories: {
+      textGeneration: {
+        name: "تولید متن",
+        items: ["GPT-4", "Claude", "Gemini", "مدل‌های محلی"],
+      },
+      imageGeneration: {
+        name: "تولید تصویر",
+        items: ["Midjourney", "DALL-E", "Stable Diffusion", "Leonardo"],
+      },
+      audioVideo: {
+        name: "صوت و تصویر",
+        items: ["تبدیل گفتار به متن", "تولید صدا", "ویرایش ویدیو", "موسیقی"],
+      },
+      analysis: {
+        name: "تحلیل و بررسی",
+        items: ["تحلیل احساسات", "خلاصه‌سازی", "ترجمه", "دسته‌بندی"],
+      },
+    },
+  },
 }
-const HeaderSub = ({title, items}:p) => {
-
-  const [open, setOpen] = useState(false)
-  
+const HeaderSub = ({  }) => {
+  const [activeMenu, setActiveMenu] = useState<string | null>(null);
+  const [activeSubmenu, setActiveSubmenu] = useState<string | null>(null);
   return (
-    <div className="flex gap-1 items-center cursor-pointer hover:text-primary py-5 group"
-      onMouseEnter={() =>setOpen(true)} 
-      onMouseLeave={() => setOpen(false)}
+    <div
+      className="relative"
+      onMouseEnter={() => setActiveMenu("products")}
+      onMouseLeave={() => {
+        setActiveMenu(null);
+        setActiveSubmenu(null);
+      }}
     >
-      {title}
-      <ChevronDown className="group-hover:rotate-180 transition-all"/>
+      <Button variant="ghost" className="text-base gap-1">
+        محصولات
+        <ChevronDown className="h-4 w-4" />
+      </Button>
 
-      <div className={cn(
-        "absolute bg-zinc-800 flex flex-col rounded transition-all text-white overflow-hidden",
-        "opacity-0 top-[calc(100%-4rem)] invisible",
-        open && "opacity-100 top-[calc(100%-2rem)] visible"
-      )}>
-        {items.map(i => <Link key={i.title} href={i.link}
-          className="p-3 hover:bg-zinc-900 hover:text-primary"
-        >
-          {i.title}
-        </Link>)}
+      {/* Layer 1: Main Categories */}
+      <div
+        className={`absolute left-0 top-full w-56 rounded-lg border border-border bg-popover shadow-lg z-50 transition-all duration-200 origin-top ${activeMenu === "products"
+            ? "opacity-100 visible scale-y-100 translate-y-0"
+            : "opacity-0 invisible scale-y-95 -translate-y-2 pointer-events-none"
+          }`}
+      >
+        {Object.entries(productCategories).map(([key, category]) => (
+          <div
+            key={key}
+            className="relative"
+            onMouseEnter={() => setActiveSubmenu(key)}
+          >
+            <button className="w-full px-4 py-3 text-right hover:bg-accent hover:text-accent-foreground flex items-center justify-between transition-colors duration-150">
+              <span>{category.name}</span>
+              <ChevronDown className="h-4 w-4 -rotate-90" />
+            </button>
+
+            {/* Layer 2: Subcategories */}
+            <div
+              className={`absolute right-full top-0 -mr-px w-56 rounded-lg border border-border bg-popover shadow-lg transition-all duration-200 origin-right ${activeSubmenu === key
+                  ? "opacity-100 visible scale-x-100 translate-x-0"
+                  : "opacity-0 invisible scale-x-95 translate-x-2 pointer-events-none"
+                }`}
+            >
+              {Object.entries(category.subcategories).map(
+                ([subKey, subcategory]) => (
+                  <div key={subKey} className="relative group/sub">
+                    <button className="w-full px-4 py-3 text-right hover:bg-accent hover:text-accent-foreground flex items-center justify-between transition-colors duration-150">
+                      <span>{subcategory.name}</span>
+                      <ChevronDown className="h-4 w-4 -rotate-90" />
+                    </button>
+
+                    {/* Layer 3: Items */}
+                    <div className="absolute right-full top-0 -mr-px w-48 rounded-lg border border-border bg-popover shadow-lg opacity-0 invisible group-hover/sub:opacity-100 group-hover/sub:visible transition-all duration-200 origin-right group-hover/sub:scale-x-100 scale-x-95 translate-x-2 group-hover/sub:translate-x-0 pointer-events-none group-hover/sub:pointer-events-auto">
+                      {subcategory.items.map((item, idx) => (
+                        <Link
+                          key={idx}
+                          href={`/products/${key}/${subKey}/${item}`}
+                          className="block px-4 py-2.5 text-right hover:bg-accent hover:text-accent-foreground transition-colors duration-150 text-sm"
+                        >
+                          {item}
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
+                ),
+              )}
+            </div>
+          </div>
+        ))}
       </div>
-
     </div>
-  )
-}
+  );
+};
 
-export default HeaderSub
+export default HeaderSub;
