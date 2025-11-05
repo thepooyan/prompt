@@ -1,76 +1,11 @@
 "use client";
-import { ChevronDown, ChevronLeft, ChevronLeftCircleIcon } from "lucide-react";
+import { ChevronDown, ChevronLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import Link from "../ui/link";
 import { subMenu } from "@/server/dataFetching";
 import { cn } from "@/lib/utils";
 
-const productCategories = {
-  prompts: {
-    name: "پرامپت",
-    subcategories: {
-      writing: {
-        name: "نوشتاری",
-        items: ["مقاله نویسی", "داستان نویسی", "محتوای تبلیغاتی", "ایمیل رسمی"],
-      },
-      coding: {
-        name: "برنامه‌نویسی",
-        items: ["پایتون", "جاوااسکریپت", "ری‌اکت", "بک‌اند"],
-      },
-      business: {
-        name: "کسب و کار",
-        items: ["بازاریابی", "فروش", "مدیریت", "استراتژی"],
-      },
-      creative: {
-        name: "خلاقانه",
-        items: ["طراحی", "موسیقی", "ویدیو", "هنر دیجیتال"],
-      },
-    },
-  },
-  workflows: {
-    name: "n8n",
-    subcategories: {
-      automation: {
-        name: "اتوماسیون",
-        items: ["ایمیل", "شبکه‌های اجتماعی", "گزارش‌گیری", "یادآوری"],
-      },
-      integration: {
-        name: "یکپارچه‌سازی",
-        items: ["CRM", "پایگاه داده", "API", "وب‌هوک"],
-      },
-      dataProcessing: {
-        name: "پردازش داده",
-        items: ["تحلیل", "تبدیل", "فیلتر", "ذخیره‌سازی"],
-      },
-      notification: {
-        name: "اعلان‌ها",
-        items: ["تلگرام", "اسلک", "SMS", "پوش"],
-      },
-    },
-  },
-  aiTools: {
-    name: "ابزار",
-    subcategories: {
-      textGeneration: {
-        name: "تولید متن",
-        items: ["GPT-4", "Claude", "Gemini", "مدل‌های محلی"],
-      },
-      imageGeneration: {
-        name: "تولید تصویر",
-        items: ["Midjourney", "DALL-E", "Stable Diffusion", "Leonardo"],
-      },
-      audioVideo: {
-        name: "صوت و تصویر",
-        items: ["تبدیل گفتار به متن", "تولید صدا", "ویرایش ویدیو", "موسیقی"],
-      },
-      analysis: {
-        name: "تحلیل و بررسی",
-        items: ["تحلیل احساسات", "خلاصه‌سازی", "ترجمه", "دسته‌بندی"],
-      },
-    },
-  },
-}
 interface p {
   subMenu: subMenu[]
 }
