@@ -71,7 +71,7 @@ export default function PromptPageClient({ prompt, relatedPrompts }:p ) {
       {/* Content Section */}
       <div className="mx-auto max-w-4xl px-4 py-12">
 
-        <MyBreadcrumb items={promptBreadcrumb(prompt.title)}/>
+        <MyBreadcrumb items={promptBreadcrumb(prompt)}/>
         {/* Description */}
         <div className="mb-12">
           <p className="text-pretty text-lg leading-relaxed text-muted-foreground">{prompt.excerpt}</p>
