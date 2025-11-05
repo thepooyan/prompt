@@ -1,28 +1,36 @@
-
+import { siTelegram, siX} from 'simple-icons';
 import Image from "next/image"
 import { Badge } from "@/components/ui/badge"
-import { Prompt } from "@/db/schema"
-import Markdown from "react-markdown"
 import MyBreadcrumb from "../parts/MyBreadcrumb"
 import { promptBreadcrumb } from "../ts/breadcrumb"
 import { PromptCopyButton } from "./PromptCopyButton"
+import Markdwon from "../util/Markdwon"
+import SimpleIcon from '../icons/SimpleIcon';
+import { Copy } from 'lucide-react';
+import { Button } from '../ui/button';
+import Copyable from '../ui/copyable';
+import { env } from '@/server/env';
+import { getTelegramShareUrl, getTwitterShareUrl } from '@/lib/utils';
+import { PromptCard } from '../PromptCard';
+import { PromptWithRelations } from '@/server/dataFetching';
 
-interface p { prompt: Prompt }
-export default function PromptPageClient({ prompt }:p ) {
+interface p { 
+  prompt: PromptWithRelations
+  relatedPrompts?: PromptWithRelations[]
+}
+export default function PromptPageClient({ prompt, relatedPrompts }:p ) {
 
   const tagList = prompt.tags.split(",").map((tag) => tag.trim())
+
+  const pageLink = `${env.BETTER_AUTH_URL}/Prompts/${prompt.slug}`
+
+  const telegramLink = getTelegramShareUrl(prompt.title, pageLink)
+  const twitterLink = getTwitterShareUrl(prompt.title, pageLink)
 
   return (
     <article className="min-h-screen bg-background">
       {/* Hero Section */}
       <div className="relative h-[400px] w-full overflow-hidden bg-gradient-to-br from-blue-600 to-purple-700">
-        <Image
-          src={prompt.picture || "/placeholder.svg"}
-          alt={prompt.title}
-          fill
-          className="object-cover opacity-40"
-          priority
-        />
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
 
         <div className="relative mx-auto flex h-full max-w-4xl flex-col justify-end px-4 pb-12">
@@ -44,8 +52,14 @@ export default function PromptPageClient({ prompt }:p ) {
                   : "bg-amber-500 text-white hover:bg-amber-600"
               }
             >
-              {prompt.isFree ? "Free" : "Premium"}
+              {prompt.isFree ? "رایگان" : "پریمیوم"}
             </Badge>
+            <Badge
+                className="bg-white/20 text-white backdrop-blur-sm hover:bg-white/30"
+            >
+              دسته بندی: {prompt.category?.name || "-"}
+            </Badge>
+
           </div>
 
           <h1 className="text-balance text-4xl font-bold leading-tight text-white md:text-5xl lg:text-6xl">
@@ -74,33 +88,58 @@ export default function PromptPageClient({ prompt }:p ) {
           </div>
         </div>
 
+        {/* Sample pic */}
+        <div className="flex flex-col items-center mt-10">
+          <div className="text-3xl font-bold mb-5">نمونه خروجی واقعی</div>
+
+          <Image
+            className="rounded "
+            src={prompt.picture || "/placeholder.svg"}
+            alt={prompt.title}
+            width={500}
+            height={500}
+            priority
+          />
+        </div>
+
         {/* Usage Tips */}
-        {/* <div className="mt-12 rounded-lg border bg-muted/50 p-6">
-        <h3 className="mb-3 text-lg font-semibold">نحوه استفاده</h3>
-        <ul className="space-y-2 text-sm leading-relaxed text-muted-foreground">
-          <li className="flex gap-2">
-            <span className="text-primary">•</span>
-            <span>پرامپت را با دکمه بالا کپی کرده و در دستیار هوش مصنوعی خود پیست کنید </span>
-          </li>
-          <li className="flex gap-2">
-            <span className="text-primary">•</span>
-            <span>بخش‌های داخل براکت را با اطلاعات مخصوص خودتان پر کنید</span>
-          </li>
-          <li className="flex gap-2">
-            <span className="text-primary">•</span>
-            <span>لحن و پارامترها را متناسب با نیاز خود تنظیم کنید</span>
-          </li>
-          <li className="flex gap-2">
-            <span className="text-primary">•</span>
-            <span>با نسخه‌های مختلف آزمایش کنید تا بهترین نتیجه را بگیرید</span>
-          </li>
-        </ul>
-        </div> */}
         <div className="mb-12">
           <div className="prose-lg prose-zinc   p-10 rounded mt-10">
-            <Markdown>{prompt.description}</Markdown>
+            <Markdwon>{prompt.description}</Markdwon>
           </div>
         </div>
+
+        <div className='flex flex-col items-center'>
+          <p className='text-2xl font-bold mb-4'>اشتراک گذاری</p>
+           <div className='flex items-center gap-6 mt-10'>
+            <a href={telegramLink} target='_blank'>
+              <SimpleIcon i={siTelegram} className='fill-blue-700 p-1 bg-white rounded'/>
+            </a>
+            <a href={twitterLink} target='_blank'>
+              <SimpleIcon i={siX} className='bg-white p-1 rounded'/>
+            </a>
+            <Copyable toCopy={pageLink}>
+              <Button variant="secondary">
+                <Copy/>
+              </Button>
+            </Copyable>
+          </div> 
+        </div>
+
+
+        {relatedPrompts && <>
+          <div className='flex flex-col items-center mt-30'>
+            <div className='text-3xl font-bold'>
+              پرامپت های مرتبط
+            </div>
+
+            <div className='flex gap-15 mt-15'>
+              {relatedPrompts.map(p => <PromptCard prompt={p} key={p.id}/>)}
+            </div>
+
+          </div>
+        </>}
+
       </div>
     </article>
   )

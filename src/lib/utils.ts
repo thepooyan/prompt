@@ -84,3 +84,11 @@ function fallbackCopyTextToClipboard(text: string): void {
     
     document.body.removeChild(textArea);
 }
+
+
+
+export const getTelegramShareUrl = (url:string , text:string) =>
+  `https://t.me/share/url?url=${encodeURIComponent(url)}&text=${encodeURIComponent(text)}`
+
+export const getTwitterShareUrl = (url: string, text: string) =>
+  `https://twitter.com/intent/tweet?url=${encodeURIComponent(url)}&text=${encodeURIComponent(text)}`

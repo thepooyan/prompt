@@ -1,20 +1,20 @@
 "use client"
-import { Category } from "@/db/schema";
+import { Redirect } from "@/db/schema";
 import { Trash } from "lucide-react";
 import { Button } from "../ui/button";
-import { deleteCategory } from "@/server/mutation";
+import { deleteRedirect } from "@/server/mutation";
 import { callModal } from "../layout/Modal";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 
-export const CategoryCard = ({c}:{c: Category}) => {
+export const RedirectCard = ({c}:{c: Redirect}) => {
 
   const router = useRouter()
 
   const deleteMe = async () => {
-    callModal.prompt(`${c.name} خذف شود؟`)
+    callModal.prompt(`${c.from} خذف شود؟`)
     .yes(async() => {
-      const {ok} = await deleteCategory(c.id)
+      const {ok} = await deleteRedirect(c.id)
         if (ok) {
           toast.success("حذف شد!")
           router.refresh()
@@ -28,18 +28,18 @@ export const CategoryCard = ({c}:{c: Category}) => {
     hover:bg-zinc-900 cursor-pointer transition-colors">
     <div>
       <span className="text-muted-foreground ml-2 text-sm">
-        نام:
+        از:
       </span>
-      <p>
-        {c.name}
+      <p className="ltr">
+        {c.from}
       </p>
     </div>
     <div>
       <span className="text-muted-foreground ml-2 text-sm">
-        اسلاگ:
+        به:
       </span>
-      <p>
-        {c.slug}
+      <p className="ltr">
+        {c.to}
       </p>
     </div>
     <Button variant="ghost" onClick={deleteMe}>

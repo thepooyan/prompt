@@ -59,3 +59,13 @@ export const blogsTable = pgTable("blogs", {
 
 export type Blog = InferSelectModel<typeof blogsTable>
 export type NewBlog = InferInsertModel<typeof blogsTable>
+
+
+export const redirectsTable = pgTable("redirects", {
+  id: integer().primaryKey().generatedAlwaysAsIdentity(),
+  from: varchar({ length: 50 }).notNull(),
+  to: varchar({ length: 50 }).notNull(),
+})
+
+export type Redirect = InferSelectModel<typeof redirectsTable>
+export type NewRedirect = InferInsertModel<typeof redirectsTable>

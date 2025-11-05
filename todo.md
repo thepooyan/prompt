@@ -11,6 +11,8 @@ author
 breadcrumb for manual blogs
 category
 hamburger menu
-
+'
 n8n
 redirect 6-ai-tools to essential-ai-tools
+
+admin => seo options => 301 => tripple menu

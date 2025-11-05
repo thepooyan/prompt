@@ -1,7 +1,7 @@
 "use server"
 import { revalidateTag as r, cacheTag as c } from 'next/cache'
 import { db } from "@/db"
-import { Blog, blogsTable, promptCateTable, promptsTable } from "@/db/schema"
+import { Blog, blogsTable, promptCateTable, promptsTable, redirectsTable } from "@/db/schema"
 import { desc, eq } from 'drizzle-orm'
 import { cacheTags } from './cache'
 
@@ -51,9 +51,9 @@ export const fetchPrompts = async () => {
 export const fetchSinglePrompt = async (slug: string) => {
     "use cache"
     cacheTag(cacheTags.singleBlog)
-    const [p] =  await db.select().from(promptsTable).where(eq(promptsTable.slug, decodeURIComponent(slug))).limit(1)
-    return p
+    return await db.query.promptsTable.findFirst({with: {category: true}, where: eq(promptsTable.slug, decodeURIComponent(slug))})
 } 
+export type PromptWithRelations = NonNullable<Awaited<ReturnType<typeof fetchSinglePrompt>>>
 
 export const fetchThreePrompts = async () => {
     "use cache"
@@ -62,6 +62,16 @@ export const fetchThreePrompts = async () => {
       .orderBy(
         desc(promptsTable.updated_at),
       )
+  return posts
+}
+
+export const fetchTwoPrompts = async () => {
+  "use cache"
+  cacheTag(cacheTags.prompts)
+  const posts = await db.select().from(promptsTable).limit(2)
+    .orderBy(
+      desc(promptsTable.updated_at),
+    )
   return posts
 }
 
@@ -77,4 +87,8 @@ export const fetchFiveBlogs = async () => {
 
 export const getAllCategories = async () => {
   return await db.select().from(promptCateTable)
+}
+
+export const getAllRedirects = async () => {
+  return await db.select().from(redirectsTable)
 }

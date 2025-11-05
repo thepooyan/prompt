@@ -18,4 +18,24 @@ const envSchema = z.object({
 if (!process || !process.env) throw new Error("Attemp to access env in client")
 
 
-export const env = envSchema.parse(process.env)
+function lazySafeParse<S extends z.ZodObject<any>>(
+  schema: S,
+  data: unknown
+): z.infer<S> {
+  const shape = schema.shape
+  return new Proxy({} as z.infer<S>, {
+    get(_, key: string) {
+      if (key in (data as any)) {
+        const fieldSchema = shape[key as keyof typeof shape]
+        if (fieldSchema) {
+          const res = fieldSchema.safeParse((data as any)[key])
+          return res.success ? res.data : undefined
+        }
+        return (data as any)[key]
+      }
+      return undefined
+    }
+  })
+}
+
+export const env = lazySafeParse(envSchema, process.env)
