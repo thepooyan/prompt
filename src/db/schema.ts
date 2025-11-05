@@ -66,3 +66,6 @@ export const redirectsTable = pgTable("redirects", {
   from: varchar({ length: 50 }).notNull(),
   to: varchar({ length: 50 }).notNull(),
 })
+
+export type Redirect = InferSelectModel<typeof redirectsTable>
+export type NewRedirect = InferInsertModel<typeof redirectsTable>
