@@ -1,9 +1,10 @@
 "use client";
-import { ChevronDown } from "lucide-react";
+import { ChevronDown, ChevronLeft, ChevronLeftCircleIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import Link from "../ui/link";
 import { subMenu } from "@/server/dataFetching";
+import { cn } from "@/lib/utils";
 
 const productCategories = {
   prompts: {
@@ -75,28 +76,29 @@ interface p {
 }
 const HeaderSub = ({ subMenu }:p) => {
   console.log(subMenu)
-  const [activeMenu, setActiveMenu] = useState<string | null>(null);
+  const [open, setOpen] = useState<boolean>(false);
   const [activeSubmenu, setActiveSubmenu] = useState<string | null>(null);
   return (
     <div
       className="relative"
-      onMouseEnter={() => setActiveMenu("products")}
+      onMouseEnter={() => setOpen(true)}
       onMouseLeave={() => {
-        setActiveMenu(null);
+        setOpen(false);
         setActiveSubmenu(null);
       }}
     >
       <Button variant="ghost" className="text-base gap-1">
         محصولات
-        <ChevronDown className="h-4 w-4" />
+        <ChevronDown className={cn(`h-4 w-4 transition-all`, open && "rotate-180")} />
       </Button>
 
       {/* Layer 1: Main Categories */}
       <div
-        className={`absolute left-0 top-full w-56 rounded-lg border border-border bg-popover shadow-lg z-50 transition-all duration-200 origin-top ${activeMenu === "products"
-            ? "opacity-100 visible scale-y-100 translate-y-0"
-            : "opacity-0 invisible scale-y-95 -translate-y-2 pointer-events-none"
-          }`}
+        className={cn(`absolute left-0 top-full w-56 rounded-lg border border-border bg-popover shadow-lg z-50 transition-all duration-200 origin-top`,
+          open ?
+          "opacity-100 visible scale-y-100 translate-y-0"
+          :
+          "opacity-0 invisible scale-y-95 -translate-y-2 pointer-events-none")}
       >
         {subMenu.map(menu => (
           <div
@@ -104,21 +106,27 @@ const HeaderSub = ({ subMenu }:p) => {
             className="relative"
             onMouseEnter={() => setActiveSubmenu(menu.name)}
           >
-            <button className="w-full px-4 py-3 text-right hover:bg-accent hover:text-accent-foreground flex items-center justify-between transition-colors duration-150">
+            <button className="w-full px-4 py-3 text-right hover:bg-accent hover:text-accent-foreground
+              flex items-center justify-between transition-colors duration-150">
               <span>{menu.name}</span>
-              <ChevronDown className="h-4 w-4 -rotate-90" />
+              {menu.cate.length > 0 && 
+              <ChevronLeft className={cn(`h-4 w-4 transition-all`, activeSubmenu === menu.name && "rotate-180")}/>}
             </button>
 
             {/* Layer 2: Subcategories */}
             <div
-              className={`absolute right-full top-0 -mr-px w-56 rounded-lg border border-border bg-popover shadow-lg transition-all duration-200 origin-right ${activeSubmenu === menu.name
-                  ? "opacity-100 visible scale-x-100 translate-x-0"
-                  : "opacity-0 invisible scale-x-95 translate-x-2 pointer-events-none"
-                }`}
+              className={cn(
+                "absolute right-full top-0 -mr-px w-56 rounded-lg border border-border bg-popover shadow-lg transition-all duration-200 origin-right",
+                activeSubmenu === menu.name ?
+                  "opacity-100 visible scale-x-100 translate-x-0"
+                  :
+                  "opacity-0 invisible scale-x-95 translate-x-2 pointer-events-none"
+              )}
             >
               {menu.cate.map(sub => (
                   <div key={sub.name} className="relative group/sub">
-                    <button className="w-full px-4 py-3 text-right hover:bg-accent hover:text-accent-foreground flex items-center justify-between transition-colors duration-150">
+                    <button className="w-full px-4 py-3 text-right hover:bg-accent
+                    hover:text-accent-foreground flex items-center justify-between transition-colors duration-150">
                       <span>{sub.name}</span>
                     </button>
                   </div>
