@@ -27,16 +27,14 @@ export default async function Header() {
             </Link>
 
             {/* راهنما */}
-            <Link href="/guide">
-              <Button variant="ghost" className="text-base">
-                راهنما
-              </Button>
-            </Link>
+            <Button variant="ghost" className="text-base">
+              راهنما جامع
+            </Button>
 
             {/* جامع */}
-            <Link href="/comprehensive">
+            <Link href="/Blog">
               <Button variant="ghost" className="text-base">
-                جامع
+                بلاگ
               </Button>
             </Link>
 
