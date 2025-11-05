@@ -98,44 +98,29 @@ const HeaderSub = ({ subMenu }:p) => {
             : "opacity-0 invisible scale-y-95 -translate-y-2 pointer-events-none"
           }`}
       >
-        {Object.entries(productCategories).map(([key, category]) => (
+        {subMenu.map(menu => (
           <div
-            key={key}
+            key={menu.name}
             className="relative"
-            onMouseEnter={() => setActiveSubmenu(key)}
+            onMouseEnter={() => setActiveSubmenu(menu.name)}
           >
             <button className="w-full px-4 py-3 text-right hover:bg-accent hover:text-accent-foreground flex items-center justify-between transition-colors duration-150">
-              <span>{category.name}</span>
+              <span>{menu.name}</span>
               <ChevronDown className="h-4 w-4 -rotate-90" />
             </button>
 
             {/* Layer 2: Subcategories */}
             <div
-              className={`absolute right-full top-0 -mr-px w-56 rounded-lg border border-border bg-popover shadow-lg transition-all duration-200 origin-right ${activeSubmenu === key
+              className={`absolute right-full top-0 -mr-px w-56 rounded-lg border border-border bg-popover shadow-lg transition-all duration-200 origin-right ${activeSubmenu === menu.name
                   ? "opacity-100 visible scale-x-100 translate-x-0"
                   : "opacity-0 invisible scale-x-95 translate-x-2 pointer-events-none"
                 }`}
             >
-              {Object.entries(category.subcategories).map(
-                ([subKey, subcategory]) => (
-                  <div key={subKey} className="relative group/sub">
+              {menu.cate.map(sub => (
+                  <div key={sub.name} className="relative group/sub">
                     <button className="w-full px-4 py-3 text-right hover:bg-accent hover:text-accent-foreground flex items-center justify-between transition-colors duration-150">
-                      <span>{subcategory.name}</span>
-                      <ChevronDown className="h-4 w-4 -rotate-90" />
+                      <span>{sub.name}</span>
                     </button>
-
-                    {/* Layer 3: Items */}
-                    <div className="absolute right-full top-0 -mr-px w-48 rounded-lg border border-border bg-popover shadow-lg opacity-0 invisible group-hover/sub:opacity-100 group-hover/sub:visible transition-all duration-200 origin-right group-hover/sub:scale-x-100 scale-x-95 translate-x-2 group-hover/sub:translate-x-0 pointer-events-none group-hover/sub:pointer-events-auto">
-                      {subcategory.items.map((item, idx) => (
-                        <Link
-                          key={idx}
-                          href={`/products/${key}/${subKey}/${item}`}
-                          className="block px-4 py-2.5 text-right hover:bg-accent hover:text-accent-foreground transition-colors duration-150 text-sm"
-                        >
-                          {item}
-                        </Link>
-                      ))}
-                    </div>
                   </div>
                 ),
               )}
