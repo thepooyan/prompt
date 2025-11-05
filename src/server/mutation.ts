@@ -1,5 +1,5 @@
 "use server"
-import { Blog, blogsTable, NewBlog, NewCategory, NewPrompt, Prompt, promptCateTable, promptsTable } from "@/db/schema"
+import { Blog, blogsTable, NewBlog, NewCategory, NewPrompt, NewRedirect, Prompt, promptCateTable, promptsTable, redirectsTable } from "@/db/schema"
 import { eq, InferInsertModel } from "drizzle-orm"
 import { PgTable, TableConfig } from "drizzle-orm/pg-core"
 import { cacheTagKey, cacheTags } from "./cache"
@@ -76,6 +76,24 @@ export const insertCategory = async (c: NewCategory) => {
 export const deleteCategory = async (id: string) => {
   try {
     await db.delete(promptCateTable).where(eq(promptCateTable.id, id))
+    return {ok: true}
+  } catch(e) {
+    return {ok: false, error: e}
+  }
+}
+
+export const insertRedirect = async (c: NewRedirect) => {
+  try {
+    await db.insert(redirectsTable).values(c)
+    return {ok: true}
+  } catch(e) {
+    return {ok: false, error: e}
+  }
+}
+
+export const deleteRedirect = async (id: number) => {
+  try {
+    await db.delete(redirectsTable).where(eq(redirectsTable.id, id))
     return {ok: true}
   } catch(e) {
     return {ok: false, error: e}

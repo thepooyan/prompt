@@ -205,28 +205,42 @@ soft studio lighting, 3/4 angle, natural skin; 1080×1080.
                     <li>
                       <strong className="text-gray-200">پرامپت تولید محتوا:</strong> مقاله، کپشن، خبرنامه —
                       شروع سریع در{" "}
-                      <a href="/prompts/content-creation" className="text-purple-400 hover:text-purple-300">
+                      <a href="/Prompts/seo-content" className="text-purple-400 hover:text-purple-300">
                         پرامپت‌های متنی
+                      </a>
+                    </li>
+                    <li>
+                      <strong className="text-gray-200">پرامپت کسب‌وکار و استراتژی:</strong> بیزینس پلن، تحلیل رقبا، استراتژی محتوا—
+                      شروع سریع در{" "}
+                      <a href="/Prompts/seo-content" className="text-purple-400 hover:text-purple-300">
+                        تصمیم‌گیری‌های مدیریتی
                       </a>
                     </li>
                     <li>
                       <strong className="text-gray-200">پرامپت طراحی و دیزاین:</strong> لوگو، پوستر، وب —
                       نمونه‌ها در{" "}
-                      <a href="/prompts/design" className="text-purple-400 hover:text-purple-300">
+                      <a href="/Prompts/image-design" className="text-purple-400 hover:text-purple-300">
                         بخش طراحی
+                      </a>
+                    </li>
+                    <li>
+                      <strong className="text-gray-200">بازاریابی و شبکه‌های اجتماعی:</strong> کپشن اینستاگرام، سناریو ریلز، ایمیل مارکتینگ—
+                      نمونه‌ها در{" "}
+                      <a href="/Prompts/image-design" className="text-purple-400 hover:text-purple-300">
+                        بازاریابی دیجیتال
                       </a>
                     </li>
                     <li>
                       <strong className="text-gray-200">پرامپت‌های تصویری:</strong> عکس پروفایل، آتلیه‌ای، انیمه —
                       ببینید{" "}
-                      <a href="/prompts/profile-picture" className="text-purple-400 hover:text-purple-300">
+                      <a href="/Prompts/image-design" className="text-purple-400 hover:text-purple-300">
                         پروفایل تصویری
                       </a>
                     </li>
                     <li>
                       <strong className="text-gray-200">پرامپت برنامه‌نویسی:</strong> تولید کد، ریفکتور، تست —
                       نمونه‌ها در{" "}
-                      <a href="/prompts/coding" className="text-purple-400 hover:text-purple-300">
+                      <a href="/Prompts/tech-coding" className="text-purple-400 hover:text-purple-300">
                         کدنویسی
                       </a>
                     </li>

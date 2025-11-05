@@ -33,6 +33,8 @@ export async function generateMetadata( { params }: p ): Promise<Metadata> {
   
   const { slug } = await params
   const data = await fetchSinglePrompt(slug)
+
+  if (!data) return {}
  
   return {
     title: data.seoTitle,
