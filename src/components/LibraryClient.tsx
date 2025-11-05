@@ -10,8 +10,9 @@ import { PromptWithRelations } from "@/server/dataFetching"
 
 interface p {
   prompts: PromptWithRelations[]
+  category?: string
 }
-export default function LibraryClient({prompts}:p) {
+export default function LibraryClient({prompts, category}:p) {
   const [searchQuery, setSearchQuery] = useState("")
   const [selectedTags, setSelectedTags] = useState<string[]>([])
   const [showFreeOnly, setShowFreeOnly] = useState(false)
@@ -24,7 +25,7 @@ export default function LibraryClient({prompts}:p) {
       tags.forEach((tag) => tagSet.add(tag))
     })
     return Array.from(tagSet)
-  }, [])
+  }, [prompts])
 
   // Filter prompts based on search query, selected tags, and free filter
   const filteredPrompts = useMemo(() => {
@@ -50,7 +51,7 @@ export default function LibraryClient({prompts}:p) {
 
       return searchMatch && tagMatch && freeMatch
     })
-  }, [searchQuery, selectedTags, showFreeOnly])
+  }, [searchQuery, selectedTags, showFreeOnly, prompts])
 
   const toggleTag = (tag: string) => {
     setSelectedTags((prev) => (prev.includes(tag) ? prev.filter((t) => t !== tag) : [...prev, tag]))
@@ -66,7 +67,9 @@ export default function LibraryClient({prompts}:p) {
     <div className="container mx-auto px-4 py-8" dir="rtl">
       {/* Header */}
       <div className="mb-8">
-        <h1 className="text-3xl font-bold text-foreground mb-2">کتابخانه پرامپت‌ها</h1>
+        <h1 className="text-3xl font-bold text-foreground mb-2">
+          کتابخانه پرامپت‌ها {category}
+        </h1>
         <p className="text-muted-foreground">مجموعه‌ای از بهترین پرامپت‌ها برای نیازهای مختلف شما</p>
       </div>
 
