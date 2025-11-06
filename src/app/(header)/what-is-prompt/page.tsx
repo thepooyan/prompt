@@ -269,7 +269,7 @@ soft studio lighting, 3/4 angle, natural skin; 1080×1080.
                     وقت کم داری؟ از <strong className="text-gray-200">پرامپت‌های آماده</strong> شروع کن یا با <a href="/what-is-n8n" className="text-purple-400 hover:text-purple-300">آموزش n8n</a> فرآیندهایت را خودکار کن.
                   </p>
                   <div className="flex gap-4 justify-center">
-                    <a href="/prompts" className="bg-purple-600 hover:bg-purple-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors">
+                    <a href="/Prompts" className="bg-purple-600 hover:bg-purple-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors">
                       مشاهده همه پرامپت‌ها
                     </a>
                   </div>

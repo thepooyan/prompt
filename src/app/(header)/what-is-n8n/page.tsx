@@ -214,7 +214,7 @@ export default function N8nTutorialPageForIran() {
                   </p>
                   <div className="flex gap-4 justify-center">
                     <a
-                      href="/download-prompts#n8n-workflows"
+                      href="/n8n"
                       className="bg-purple-600 hover:bg-purple-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors"
                     >
                       مشاهده و دانلود ورک‌فلوهای آماده
