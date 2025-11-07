@@ -8,8 +8,9 @@ import { cn } from "@/lib/utils";
 
 interface p {
   menuItems: menuItems[]
+  title: string
 }
-const HeaderSub = ({ menuItems }:p) => {
+const HeaderSub = ({ menuItems, title }:p) => {
   const [open, setOpen] = useState<boolean>(false);
   const [activeSubmenu, setActiveSubmenu] = useState<string | null>(null);
   return (
@@ -22,7 +23,7 @@ const HeaderSub = ({ menuItems }:p) => {
       }}
     >
       <Button variant="ghost" className="text-base gap-1">
-        محصولات
+        {title}
         <ChevronDown className={cn(`h-4 w-4 transition-all`, open && "rotate-180")} />
       </Button>
 

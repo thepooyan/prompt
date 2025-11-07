@@ -5,10 +5,16 @@ import HeaderSub from "./HeaderSub"
 import { Suspense } from "react"
 import { Spinner } from "../ui/spinner"
 import LoginButton from "./LoginButton"
-import { getAllMenuItems } from "@/server/dataFetching"
+import { getAllMenuItems, menuItems } from "@/server/dataFetching"
 
 export default async function Header() {
   const subMenu = await getAllMenuItems()
+
+  const guideSubmenu:menuItems[] = [
+    {name: "پرامپت چیست؟", slug: "what-is-prompt", cate: []},
+    {name: "n8n چیست؟", slug: "what-is-n8n", cate: []},
+    {name: "آموزش نصب n8n", slug: "download-install-n8n", cate: []},
+  ]
 
   return (
     <header className="border-b border-border bg-background/30 backdrop-blur-xl sticky top-0 z-20 ">
@@ -27,9 +33,7 @@ export default async function Header() {
             </Link>
 
             {/* راهنما */}
-            <Button variant="ghost" className="text-base">
-              راهنما جامع
-            </Button>
+            <HeaderSub menuItems={guideSubmenu} title="راهنما جامع"/>
 
             {/* جامع */}
             <Link href="/Blog">
@@ -39,7 +43,7 @@ export default async function Header() {
             </Link>
 
             {/* محصولات - Three-layer dropdown */}
-            <HeaderSub menuItems={subMenu}/>
+            <HeaderSub menuItems={subMenu} title="محصولات"/>
           </nav>
 
           {/* Login Button - Left side in RTL */}
