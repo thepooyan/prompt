@@ -4,14 +4,15 @@ import LatestBlogsFetcher from "@/components/landing/LatestBlogsFetcher"
 import Hero from "@/components/landing/Hero"
 import BentoGrid from "@/components/landing/BentoGrid"
 import { Metadata } from "next"
-import Latest from "@/components/landing/Latest"
+import LatestPrompts from "@/components/landing/LatestPrompts"
+
 
 export default function Home() {
   return (
     <>
       <Hero/>
       <BentoGrid/>
-      <Latest/>
+      <LatestPrompts/>
       <LatestBlogsFetcher/>
       <FAQSection/>
     </>

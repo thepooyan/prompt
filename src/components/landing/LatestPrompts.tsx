@@ -4,7 +4,7 @@ import Link from "../ui/link"
 import { Button } from "../ui/button"
 import { ArrowLeft, Library } from "lucide-react"
 
-export default async function Latest() {
+export default async function LatestPrompts() {
 
   const posts = await fetchThreePrompts()
 
