@@ -27,7 +27,7 @@ export default async function Header() {
           <nav className="hidden md:flex items-center gap-1">
             {/* خانه */}
             <Link href="/">
-              <Button variant="ghost" className="text-base">
+              <Button variant="ghost">
                 خانه
               </Button>
             </Link>
