@@ -11,7 +11,7 @@ export default function BlogCard({ blog }: BlogCardProps) {
   const tags = blog.tags.split(",").map((tag) => tag.trim())
 
   return (
-    <Link href={`/Blog/${encodeURIComponent(blog.slug)}`} className="block group rtl w-73 h-120 m-auto "> 
+    <Link href={`/Blog/${encodeURIComponent(blog.slug)}`} className="block group rtl w-73 h-125 m-auto "> 
       <Card className="overflow-hidden h-full transition-all duration-300 hover:shadow-lg ">
         <CardHeader className="p-0">
           <div className="relative w-full aspect-video overflow-hidden">
