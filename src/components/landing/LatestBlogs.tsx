@@ -10,13 +10,13 @@ interface p {
 }
 export default function LatestBlogs({blogs}:p) {
   return (
-    <section id="blog" className="py-16 bg-zinc-900">
+    <section id="blog" className="py-16 bg-sidebar text-sidebar-foreground ">
       <div className="container mx-auto px-6">
         <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold text-white">
+          <h2 className="text-3xl font-bold ">
             آخرین مقالات از وبلاگ پرامپت بازار
           </h2>
-          <p className="text-lg text-gray-400 mt-4">
+          <p className="text-lg text-muted-foreground mt-4">
             دانش خود را در دنیای هوش مصنوعی و مهندسی پرامپت به‌روز نگه دارید. با مطالعه این مقالات می‌توانید از ابزارهای جدید و استراتژی‌های بهینه برای پیشرفت در دنیای هوش مصنوعی استفاده کنید.
           </p>
           <Button className="mt-4 text-white" size="lg" asChild>

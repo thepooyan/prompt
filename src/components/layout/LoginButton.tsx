@@ -21,7 +21,7 @@ const LoginButton = async () => {
       {session !== null ? 
           <UserDropdown user={session.user}/>
           :
-          <Link href="/Login" className="bg-primary text-background px-4 py-2 rounded-lg font-medium">ثبت‌نام / ورود</Link>
+          <Link href="/Login" className="bg-primary text-primary-foreground px-4 py-2 rounded-lg font-medium">ثبت‌نام / ورود</Link>
       }
     </div>
   )
