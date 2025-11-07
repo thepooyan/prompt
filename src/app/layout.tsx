@@ -34,7 +34,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="">
+    <html lang="en" className="theme-dark">
       <GoogleTagManager gtmId={env.NEXT_PUBLIC_GTM_ID}/>
     
       <body
