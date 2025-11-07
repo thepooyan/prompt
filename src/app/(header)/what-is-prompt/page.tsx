@@ -1,5 +1,7 @@
 import PromptAccordion from "@/components/parts/PromptAccordion"
+import { Button } from "@/components/ui/button"
 import {Metadata} from "next"
+import Link from "next/link"
 
 export const metadata:Metadata = {
   title: "پرامپت چیست؟ راهنمای جامع مهندسی پرامپت | پرامپت بازار",
@@ -9,19 +11,19 @@ export const metadata:Metadata = {
 
 export default function PromptGuide() {
   return (
-    <div className="min-h-screen bg-gray-900 text-gray-200 font-sans" dir="rtl">
+    <div className="min-h-screen">
        <main>
         {/* Hero Section */}
-        <section className="bg-gradient-to-br from-purple-900/20 to-gray-900/10 py-20 border-b border-gray-700">
+        <section className="bg-gradient-to-br from-secondary to-secondary/5 py-20 border-b border-border text-secondary-foreground ">
           <div className="container mx-auto px-4 text-center">
             <div className="flex gap-2 justify-center mb-4 flex-wrap">
-              <span className="inline-flex items-center gap-2 px-3 py-2 rounded-full border border-gray-600 bg-gray-800 text-gray-300 text-sm">
+              <span className="inline-flex items-center gap-2 px-3 py-2 rounded-full bg-accent text-accent-foreground text-sm">
                 <span className="text-yellow-400">⚡</span> پرامپت چیست
               </span>
-              <span className="inline-flex items-center gap-2 px-3 py-2 rounded-full border border-gray-600 bg-gray-800 text-gray-300 text-sm">
+              <span className="inline-flex items-center gap-2 px-3 py-2 rounded-full bg-accent text-accent-foreground text-sm">
                 <span className="text-blue-400">🛠</span> آموزش پرامپت‌نویسی
               </span>
-              <span className="inline-flex items-center gap-2 px-3 py-2 rounded-full border border-gray-600 bg-gray-800 text-gray-300 text-sm">
+              <span className="inline-flex items-center gap-2 px-3 py-2 rounded-full bg-accent text-accent-foreground text-sm">
                 <span className="text-purple-400">✏️</span> مهندسی پرامپت
               </span>
             </div>
@@ -30,14 +32,16 @@ export default function PromptGuide() {
               پرامپت چیست؟ راهنمای جامع مهندسی پرامپت
             </h1>
 
-            <p className="text-lg md:text-xl text-gray-400 max-w-4xl mx-auto leading-relaxed mb-8">
-              پرامپت به زبان ساده، همان دستوری است که به مدل‌های هوش مصنوعی می‌دهیم تا خروجی دلخواه را دریافت کنیم. در این صفحه، با مفهوم پرامپت آشنا می‌شوید و خواهید فهمید که چگونه با مهندسی پرامپت می‌توانید نتایج دقیقی دریافت کنید.<strong className="text-gray-200">تولید محتوا</strong> تا <strong className="text-gray-200">طراحی لوگو</strong> و <strong className="text-gray-200">عکس پروفایل</strong>.
+            <p className="text-lg md:text-xl text-primary-foreground max-w-4xl mx-auto leading-relaxed mb-8">
+              پرامپت به زبان ساده، همان دستوری است که به مدل‌های هوش مصنوعی می‌دهیم تا خروجی دلخواه را دریافت کنیم. در این صفحه، با مفهوم پرامپت آشنا می‌شوید و خواهید فهمید که چگونه با مهندسی پرامپت می‌توانید نتایج دقیقی دریافت کنید.<strong className="text-accent-foreground">تولید محتوا</strong> تا <strong className="text-accent-foreground">طراحی لوگو</strong> و <strong className="text-accent-foreground">عکس پروفایل</strong>.
             </p>
 
             <div className="flex gap-4 justify-center">
-              <a href="/Prompts" className="bg-purple-600 hover:bg-purple-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors">
+              <Button asChild>
+              <Link href="/Prompts">
                 دانلود پرامپت
-              </a>
+              </Link>
+              </Button>
         
             </div>
           </div>
@@ -49,9 +53,9 @@ export default function PromptGuide() {
             <div className="flex gap-8">
               {/* TOC */}
               <aside className="hidden lg:block w-80 flex-shrink-0">
-                <div className="sticky top-24 p-6 rounded-lg border border-gray-700 bg-gray-800">
+                <div className="sticky top-24 p-6 rounded-lg border bg-sidebar text-sidebar-foreground">
                   <h6 className="flex items-center gap-2 mb-4 font-semibold">
-                    <span className="text-purple-400">📋</span> سرفصل‌ها
+                    <span>📋</span> سرفصل‌ها
                   </h6>
                   <nav className="space-y-2 text-sm">
                     {[
@@ -66,7 +70,7 @@ export default function PromptGuide() {
                       { id: "cta", title: "شرو÷ع سریع" },
                       { id: "faq", title: "پرسش‌های پرتکرار" },
                     ].map(item => (
-                      <a key={item.id} href={`#${item.id}`} className="block p-2 rounded text-gray-400 hover:text-white hover:bg-gray-700 transition-colors">
+                      <a key={item.id} href={`#${item.id}`} className="block p-2 rounded hover:bg-sidebar-accent hover:text-sidebar-accent-foreground   transition-colors">
                         • {item.title}
                       </a>
                     ))}
