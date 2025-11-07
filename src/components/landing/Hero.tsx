@@ -11,7 +11,7 @@ export default function Hero() {
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
               <span className="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
             </span>
-            <span className="text-sm text-muted-foreground ">بازار پرامپت‌های هوش مصنوعی</span>
+            <span className="text-sm text-accent-foreground ">بازار پرامپت‌های هوش مصنوعی</span>
           </div>
 
           <Image src="/logo.png" width={250} height={250} alt="prompt Bazar's logo" className="m-auto"/>
@@ -28,13 +28,13 @@ export default function Hero() {
             </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <button className="group relative px-8 py-4 bg-gradient-to-l from-primary to-secondary/70 text-white rounded-xl font-medium transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-primary/20">
+            <button className="group relative px-8 py-4 bg-gradient-to-l from-primary to-primary text-primary-foreground rounded-xl font-medium transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-primary/20">
             <Link href="/what-is-prompt">
-              <span className="relative z-10">آموزش پرامپت‌ها را شروع کنی</span>
+              <span className="relative z-10">آموزش پرامپت‌ها را شروع کنید</span>
               <div className="absolute inset-0 rounded-xl bg-gradient-to-l from-secondary to-secondary/70 opacity-0 group-hover:opacity-100 transition-opacity" />
             </Link>
             </button>
-            <button className="px-8 py-4 bg-accent/90 backdrop-blur-sm text-accent-foreground rounded-xl font-medium border border-accent-foreground/5 hover:border-accent-foreground/10 transition-all duration-300 hover:bg-accent">
+            <button className="px-8 py-4 bg-secondary text-secondary-foreground backdrop-blur-sm rounded-xl font-medium border border-accent-foreground/5 hover:border-accent-foreground/10 transition-all duration-300 hover:bg-accent">
             <Link href="/Prompts">
               پرامپت‌های آماده را دانلود کنید
             </Link>

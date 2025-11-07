@@ -51,7 +51,7 @@ export default function BentoGrid() {
               <Link
                 href={feature.href}
                 key={index}
-                className="group relative overflow-hidden rounded-2xl bg-accent border p-8 hover:border-primary/30 transition-all duration-500 "
+                className="group relative overflow-hidden rounded-2xl bg-muted border p-8 hover:border-primary/30 transition-all duration-500 "
               >
                 <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                 <div className="relative z-10 h-full flex flex-col">

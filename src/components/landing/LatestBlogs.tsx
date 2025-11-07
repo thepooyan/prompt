@@ -19,7 +19,7 @@ export default function LatestBlogs({blogs}:p) {
           <p className="text-lg text-muted-foreground mt-4">
             دانش خود را در دنیای هوش مصنوعی و مهندسی پرامپت به‌روز نگه دارید. با مطالعه این مقالات می‌توانید از ابزارهای جدید و استراتژی‌های بهینه برای پیشرفت در دنیای هوش مصنوعی استفاده کنید.
           </p>
-          <Button className="mt-4 text-white" size="lg" asChild>
+          <Button className="mt-4" size="lg" asChild>
             <Link href="/Blog">
               مشاهده همه
             </Link>
