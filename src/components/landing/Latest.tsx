@@ -1,5 +1,8 @@
 import { PromptCard } from "../PromptCard"
 import { fetchThreePrompts } from "@/server/dataFetching"
+import Link from "../ui/link"
+import { Button } from "../ui/button"
+import { ArrowLeft, Library } from "lucide-react"
 
 export default async function Latest() {
 
@@ -19,6 +22,13 @@ export default async function Latest() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {posts.map(p => <PromptCard prompt={p} key={p.id}/>)}
         </div>
+        <Link href="/Prompts" className="flex justify-center mt-15">
+          <Button className="mb-8" dir="rtl">
+            <Library className="h-4 w-4 ml-2" />
+            مشاهده کتابخانه کامل
+            <ArrowLeft className="h-4 w-4 mr-2" />
+          </Button>
+        </Link>
       </div>
     </section>
   )
