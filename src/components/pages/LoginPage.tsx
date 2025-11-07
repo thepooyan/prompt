@@ -13,8 +13,8 @@ export default function LoginPage() {
     <div className="min-h-screen bg-zinc-950 flex items-center justify-center p-4">
       {/* Background gradient effect */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-1/4 right-1/4 w-96 h-96 bg-[#8a2be2]/5 rounded-full blur-3xl" />
-        <div className="absolute bottom-1/4 left-1/4 w-96 h-96 bg-[#8a2be2]/5 rounded-full blur-3xl" />
+        <div className="absolute top-1/4 right-1/4 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
+        <div className="absolute bottom-1/4 left-1/4 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
       </div>
 
       <div className="w-full max-w-md relative z-10">
@@ -38,7 +38,7 @@ export default function LoginPage() {
                     id="email"
                     type="email"
                     placeholder="example@email.com"
-                    className="pr-10 bg-zinc-800/50 border-zinc-700 text-zinc-100 placeholder:text-zinc-500 focus:border-[#8a2be2]/50 focus:ring-[#8a2be2]/20"
+                    className="pr-10 bg-zinc-800/50 border-zinc-700 text-zinc-100 placeholder:text-zinc-500 focus:border-primary/50 focus:ring-primary/20"
                   />
                 </div>
               </div>
@@ -51,7 +51,7 @@ export default function LoginPage() {
                   </Label>
                   <Link
                     href="/forgot-password"
-                    className="text-xs text-[#8a2be2] hover:text-[#9a3bf2] transition-colors"
+                    className="text-xs text-primary hover:text-[#9a3bf2] transition-colors"
                   >
                     فراموشی رمز عبور؟
                   </Link>
@@ -62,7 +62,7 @@ export default function LoginPage() {
                     id="password"
                     type="password"
                     placeholder="••••••••"
-                    className="pr-10 bg-zinc-800/50 border-zinc-700 text-zinc-100 placeholder:text-zinc-500 focus:border-[#8a2be2]/50 focus:ring-[#8a2be2]/20"
+                    className="pr-10 bg-zinc-800/50 border-zinc-700 text-zinc-100 placeholder:text-zinc-500 focus:border-primary/50 focus:ring-primary/20"
                   />
                 </div>
               </div>
@@ -70,7 +70,7 @@ export default function LoginPage() {
               {/* Login Button */}
               <Button
                 type="submit"
-                className="w-full bg-gradient-to-l from-[#8a2be2] to-[#6a1bb2] hover:from-[#9a3bf2] hover:to-[#7a2bc2] text-white font-medium glow-purple-sm transition-all duration-300 h-10"
+                className="w-full bg-gradient-to-l from-primary to-[#6a1bb2] hover:from-[#9a3bf2] hover:to-[#7a2bc2] text-white font-medium glow-purple-sm transition-all duration-300 h-10"
               >
                 ورود
               </Button>
@@ -90,7 +90,7 @@ export default function LoginPage() {
               {/* Sign Up Link */}
               <div className="text-center text-sm text-zinc-400">
                 حساب کاربری ندارید؟{" "}
-                <Link href="/signup" className="text-[#8a2be2] hover:text-[#9a3bf2] font-medium transition-colors">
+                <Link href="/signup" className="text-primary hover:text-[#9a3bf2] font-medium transition-colors">
                   ثبت نام کنید
                 </Link>
               </div>
@@ -101,7 +101,7 @@ export default function LoginPage() {
         {/* Footer */}
         <p className="text-center text-xs text-zinc-600 mt-6">
           با ورود به سایت، شما{" "}
-          <Link href="#terms" className="text-zinc-500 hover:text-[#8a2be2] transition-colors">
+          <Link href="#terms" className="text-zinc-500 hover:text-primary transition-colors">
             شرایط و قوانین
           </Link>{" "}
           را می‌پذیرید

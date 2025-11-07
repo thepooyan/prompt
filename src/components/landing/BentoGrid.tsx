@@ -51,12 +51,12 @@ export default function BentoGrid() {
               <Link
                 href={feature.href}
                 key={index}
-                className="group relative overflow-hidden rounded-2xl bg-zinc-800/80 border border-zinc-700/50 p-8 hover:border-[#8a2be2]/30 transition-all duration-500 hover:bg-zinc-800"
+                className="group relative overflow-hidden rounded-2xl bg-zinc-800/80 border border-zinc-700/50 p-8 hover:border-primary/30 transition-all duration-500 hover:bg-zinc-800"
               >
-                <div className="absolute inset-0 bg-gradient-to-br from-[#8a2be2]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                 <div className="relative z-10 h-full flex flex-col">
-                  <div className="inline-flex items-center justify-center w-14 h-14 rounded-xl bg-zinc-700/50 mb-6 group-hover:bg-[#8a2be2]/20 transition-colors duration-500">
-                    <Icon className="h-7 w-7 text-zinc-400 group-hover:text-[#8a2be2] transition-colors duration-500" />
+                  <div className="inline-flex items-center justify-center w-14 h-14 rounded-xl bg-zinc-700/50 mb-6 group-hover:bg-primary/20 transition-colors duration-500">
+                    <Icon className="h-7 w-7 text-zinc-400 group-hover:text-primary transition-colors duration-500" />
                   </div>
                   <h3 className="text-xl font-bold mb-3 text-zinc-100">{feature.title}</h3>
                   <p className="text-zinc-400 leading-relaxed text-sm">{feature.p}</p>

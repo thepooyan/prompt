@@ -34,11 +34,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className="theme-dark">
       <GoogleTagManager gtmId={env.NEXT_PUBLIC_GTM_ID}/>
     
       <body
-        className={`${vazirmatn.className} antialiased dark`}
+        className={`${vazirmatn.className} antialiased`}
       >
         {children}
         <Toaster richColors  theme="dark" className="text-2xl" dir="rtl" />
