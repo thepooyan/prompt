@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Vazirmatn } from "next/font/google";
-import "@/styles/global.css";
+import "@/styles/app.css";
 import { Toaster } from "sonner";
 import Modal from "@/components/layout/Modal";
 import { env } from "@/server/env";

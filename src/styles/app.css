@@ -1,0 +1,6 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+@import "./shadcn.css";
+@import "./scrollbar.css";
+@import "./proseOverride.scss";
+@import "./global.scss";
