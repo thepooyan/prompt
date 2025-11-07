@@ -1,0 +1,7 @@
+@layer base {
+  .prose-lg  {
+    a {
+      @apply text-blue-700 underline;
+    }
+  }
+}
