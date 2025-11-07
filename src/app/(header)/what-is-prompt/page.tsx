@@ -28,7 +28,7 @@ export default function PromptGuide() {
               </span>
             </div>
 
-            <h1 className="text-4xl md:text-5xl font-bold mt-4 mb-6 text-balance">
+            <h1 className="text-4xl md:text-5xl font-bold mt-8 mb-6 text-balance">
               پرامپت چیست؟ راهنمای جامع مهندسی پرامپت
             </h1>
 
