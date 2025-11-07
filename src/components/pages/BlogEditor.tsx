@@ -17,6 +17,8 @@ import { Blog } from "@/db/schema"
 import { useRouter } from "next/navigation"
 import ArrayInput from "../ui/array-input"
 import UploadMediaBtn from "../admin/UploadMediaBtn"
+import { Switch } from "../ui/switch"
+
 
 interface p {
   edit?: Blog
@@ -29,6 +31,7 @@ export default function BlogEditor({edit}:p) {
     tags: z.string(),
     picture: z.string(),
     excerpt: z.string(),
+    isActive: z.boolean(),
     seoTitle: z.string(),
     seoDescription: z.string(),
     seoKeywords: z.array(z.string()),
@@ -37,6 +40,7 @@ export default function BlogEditor({edit}:p) {
   const empty:inputsType = {
     slug: "",
     title: "",
+    isActive: false,
     description: "",
     tags: "",
     picture: "",
@@ -175,6 +179,25 @@ export default function BlogEditor({edit}:p) {
                   className="text-right min-h-[100px]"
                 />
               </div>
+
+              {/* Free/Premium Toggle */}
+              <div className="flex items-center justify-between">
+                <div className="space-y-1">
+                  <Label>نوع پرامپت</Label>
+                  <p className="text-sm text-muted-foreground">
+                    {formData.isActive ? "این بلاگ فعال است" : "این بلاگ غیرفعال است"}
+                  </p>
+                </div>
+                <div className="flex items-center gap-2 ltr">
+                  <span className="text-sm">غیرفعال</span>
+                  <Switch
+                    checked={formData.isActive}
+                    onCheckedChange={(checked) => handleInputChange("isActive", checked)}
+                  />
+                  <span className="text-sm">فعال</span>
+                </div>
+              </div>
+
 
 
               {/* Tags */}
