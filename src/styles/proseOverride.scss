@@ -1,7 +1,7 @@
 @layer base {
   .prose-lg  {
     a {
-      @apply text-accent-foreground underline;
+      @apply text-primary underline;
     }
   }
 }

@@ -1,49 +1,35 @@
-import "server-only"
-import { Button } from "@/components/ui/button"
-import Link from "next/link"
-import { Library, ArrowLeft } from "lucide-react"
-import { PromptCard } from "@/components/PromptCard"
-import { fetchPrompts } from "@/server/dataFetching"
+import { PromptCard } from "../PromptCard"
+import { fetchThreePrompts } from "@/server/dataFetching"
+import Link from "../ui/link"
+import { Button } from "../ui/button"
+import { ArrowLeft, Library } from "lucide-react"
 
-export default async function Home() {
-  const featuredPrompts = await fetchPrompts()
+export default async function LatestPrompts() {
+
+  const posts = await fetchThreePrompts()
 
   return (
-    <div className="min-h-screen bg-background">
-      <div className="container mx-auto py-8">
-        <div className="text-center mb-8">
-          <h1 className="text-3xl font-bold text-foreground mb-2">مجموعه پرامپت‌های هوش مصنوعی</h1>
-          <p className="text-muted-foreground mb-6">بهترین پرامپت‌ها برای کارهای مختلف شما</p>
+    <section id="latest" className="py-16  bg-sidebar text-sidebar-foreground ">
+      <div className="container mx-auto px-6">
+        <div className="text-center mb-12">
+          <h3 className="text-3xl font-bold ">جدیدترین پرامپت‌های آماده</h3>
+          <p className="text-lg text-muted-foreground mt-4">
+                        جدیدترین پرامپت‌های هوش مصنوعی آماده برای استفاده در پروژه‌های شما. این پرامپت‌ها به‌طور ویژه برای کسب بهترین نتایج بهینه‌شده‌اند.
 
-          <Link href="/Prompts">
-            <Button className="mb-8" dir="rtl">
-              <Library className="h-4 w-4 ml-2" />
-              مشاهده کتابخانه کامل
-              <ArrowLeft className="h-4 w-4 mr-2" />
-            </Button>
-          </Link>
+          </p>
         </div>
 
-        <div className="mb-8">
-          <h2 className="text-xl font-semibold text-foreground mb-4 text-center">پرامپت‌های ویژه</h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {posts.map(p => <PromptCard prompt={p} key={p.id}/>)}
         </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 justify-items-center">
-          {featuredPrompts.map((prompt) => (
-            <PromptCard key={prompt.id} prompt={prompt} />
-          ))}
-        </div>
-
-        <div className="text-center mt-12">
-          <p className="text-muted-foreground mb-4">{featuredPrompts.length - 3} پرامپت دیگر در کتابخانه موجود است</p>
-          <Link href="/Prompts">
-            <Button variant="outline" dir="rtl">
-              مشاهده همه پرامپت‌ها
-              <ArrowLeft className="h-4 w-4 mr-2" />
-            </Button>
-          </Link>
-        </div>
+        <Link href="/Prompts" className="flex justify-center mt-15">
+          <Button className="mb-8" dir="rtl">
+            <Library className="h-4 w-4 ml-2" />
+            مشاهده کتابخانه کامل
+            <ArrowLeft className="h-4 w-4 mr-2" />
+          </Button>
+        </Link>
       </div>
-    </div>
+    </section>
   )
 }

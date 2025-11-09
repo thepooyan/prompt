@@ -16,7 +16,7 @@ export async function proxy(req: NextRequest) {
 
 export const config = {
   matcher: [
-    '/Blog/:slug',
-    '/Prompts/:slug',
+    '/:slug*',
+   
   ],
 }
