@@ -11,8 +11,8 @@ export default function BlogCard({ blog }: BlogCardProps) {
   const tags = blog.tags.split(",").map((tag) => tag.trim())
 
   return (
-    <Link href={`/Blog/${encodeURIComponent(blog.slug)}`} className="block group rtl w-73 h-125 m-auto "> 
-      <Card className="overflow-hidden h-full transition-all duration-300 hover:shadow-lg ">
+    <Link href={`/Blog/${encodeURIComponent(blog.slug)}`} className="block group rtl w-xs h-125 m-auto "> 
+      <Card className="overflow-hidden h-full transition-all duration-300 hover:shadow-lg py-6">
         <CardHeader className="p-0">
           <div className="relative w-full aspect-video overflow-hidden">
             <Image
@@ -24,7 +24,7 @@ export default function BlogCard({ blog }: BlogCardProps) {
             />
           </div>
         </CardHeader>
-        <CardContent className="p-6">
+        <CardContent className="px-6">
           <h3 className="  text-2xl font-bold text-card-foreground mb-3 line-clamp-2 text-balance">
             {blog.title}
           </h3>
