@@ -17,9 +17,8 @@ import Link from '../ui/link';
 
 interface p { 
   prompt: PromptWithRelations
-  relatedPrompts?: PromptWithRelations[]
 }
-export default function PromptPage({ prompt, relatedPrompts }:p ) {
+export default function PromptPage({ prompt }:p ) {
 
   const tagList = prompt.tags.split(",").map((tag) => tag.trim())
 
@@ -72,7 +71,6 @@ export default function PromptPage({ prompt, relatedPrompts }:p ) {
       {/* Content Section */}
       <div className="mx-auto max-w-4xl px-4 py-12">
 
-        <MyBreadcrumb items={promptBreadcrumb(prompt)}/>
         {/* Description */}
         <div className="my-12 ">
           <p className="text-pretty text-lg leading-relaxed text-muted-foreground">{prompt.excerpt}</p>
@@ -128,18 +126,7 @@ export default function PromptPage({ prompt, relatedPrompts }:p ) {
         </div>
 
 
-        {relatedPrompts && <>
-          <div className='flex flex-col items-center mt-30'>
-            <div className='text-3xl font-bold'>
-              پرامپت های مرتبط
-            </div>
 
-            <div className='flex gap-15 mt-15'>
-              {relatedPrompts.map(p => <PromptCard prompt={p} key={p.id}/>)}
-            </div>
-
-          </div>
-        </>}
 
       </div>
     </article>
