@@ -28,7 +28,7 @@ export async function generateMetadata( { params }: props): Promise<Metadata> {
     description: data.seoDescription,
     keywords: data.seoKeywords,
     alternates: {
-      canonical: `${env.BETTER_AUTH_URL}/Blog/${data.slug}`
+      canonical: `${env.NEXT_PUBLIC_BETTER_AUTH_URL}/Blog/${data.slug}`
     }
   }
 }

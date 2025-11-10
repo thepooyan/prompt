@@ -23,7 +23,7 @@ export default function PromptPageClient({ prompt, relatedPrompts }:p ) {
 
   const tagList = prompt.tags.split(",").map((tag) => tag.trim())
 
-  const pageLink = `${env.BETTER_AUTH_URL}/Prompts/${prompt.slug}`
+  const pageLink = `${env.NEXT_PUBLIC_BETTER_AUTH_URL}/Prompts/${prompt.slug}`
 
   const telegramLink = getTelegramShareUrl(prompt.title, pageLink)
   const twitterLink = getTwitterShareUrl(prompt.title, pageLink)
