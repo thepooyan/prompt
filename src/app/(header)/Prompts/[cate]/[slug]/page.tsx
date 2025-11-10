@@ -31,7 +31,7 @@ export async function generateMetadata( { params }: p ): Promise<Metadata> {
     description: data.seoDescription,
     keywords: data.seoKeywords,
     alternates: {
-      canonical: `${env.BETTER_AUTH_URL}/Prompts/${data.slug}`
+      canonical: `https://promptbazar.ir/Prompts/${data.slug}`
     }
   }
 }
