@@ -1,4 +1,4 @@
-import PromptPageClient from "@/components/pages/PromptPageClient"
+import PromptPage from "@/components/pages/PromptPageClient"
 import { fetchSinglePrompt, fetchTwoPrompts } from "@/server/dataFetching"
 import { Metadata } from "next"
 import { notFound } from "next/navigation"
@@ -12,7 +12,7 @@ const page = async ({params}:p) => {
   if (!data) return notFound()
   return (
     <>
-      <PromptPageClient prompt={data} relatedPrompts={related}/>
+      <PromptPage prompt={data} relatedPrompts={related}/>
     </>
   )
 }

@@ -19,7 +19,7 @@ interface p {
   prompt: PromptWithRelations
   relatedPrompts?: PromptWithRelations[]
 }
-export default function PromptPageClient({ prompt, relatedPrompts }:p ) {
+export default function PromptPage({ prompt, relatedPrompts }:p ) {
 
   const tagList = prompt.tags.split(",").map((tag) => tag.trim())
 
