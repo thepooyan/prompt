@@ -1,17 +1,13 @@
 import { siTelegram, siX} from 'simple-icons';
 import Image from "next/image"
 import { Badge } from "@/components/ui/badge"
-import MyBreadcrumb from "../parts/MyBreadcrumb"
-import { promptBreadcrumb } from "../ts/breadcrumb"
 import { PromptCopyButton } from "./PromptCopyButton"
 import Markdwon from "../util/Markdwon"
 import SimpleIcon from '../icons/SimpleIcon';
 import { Copy } from 'lucide-react';
 import { Button } from '../ui/button';
 import Copyable from '../ui/copyable';
-import { env } from '@/server/env';
 import { getTelegramShareUrl, getTwitterShareUrl } from '@/lib/utils';
-import { PromptCard } from '../PromptCard';
 import { PromptWithRelations } from '@/server/dataFetching';
 import Link from '../ui/link';
 
@@ -22,7 +18,7 @@ export default function PromptPage({ prompt }:p ) {
 
   const tagList = prompt.tags.split(",").map((tag) => tag.trim())
 
-  const pageLink = `${env.NEXT_PUBLIC_BETTER_AUTH_URL}/Prompts/${prompt.slug}`
+  const pageLink = `/Prompts/${prompt.slug}`
 
   const telegramLink = getTelegramShareUrl(prompt.title, pageLink)
   const twitterLink = getTwitterShareUrl(prompt.title, pageLink)
