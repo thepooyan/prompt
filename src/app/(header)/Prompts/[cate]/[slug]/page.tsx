@@ -1,6 +1,5 @@
 import PromptPageClient from "@/components/pages/PromptPageClient"
 import { fetchSinglePrompt, fetchTwoPrompts } from "@/server/dataFetching"
-import { env } from "@/server/env"
 import { Metadata } from "next"
 import { notFound } from "next/navigation"
 
