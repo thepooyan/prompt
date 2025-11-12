@@ -8,7 +8,7 @@ interface p {
 }
 const page = async ({params}:p) => {
   const {slug} = await params
-  const [data, ] = await Promise.all([fetchSinglePrompt(slug), ])
+  const [data, ] = await Promise.all([fetchSinglePrompt(slug) ])
   if (!data) return notFound()
   return (
     <>
