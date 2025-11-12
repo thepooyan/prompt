@@ -29,9 +29,6 @@ export async function generateMetadata( { params }: p ): Promise<Metadata> {
     title: data.seoTitle,
     description: data.seoDescription,
     keywords: data.seoKeywords,
-    alternates: {
-      canonical: `https://promptbazar.ir/Prompts/${data.slug}`
-    }
   }
 }
 

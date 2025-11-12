@@ -18,7 +18,6 @@ export const generateMetadata = async (): Promise<Metadata> => {
     title: data.seoTitle,
     description: data.seoDescription,
     keywords: data.seoKeywords,
-    alternates: {canonical: `${env.NEXT_PUBLIC_BETTER_AUTH_URL}/Blog/${data.slug}`}
   }
 };
 

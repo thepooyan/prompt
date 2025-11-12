@@ -7,9 +7,6 @@ export const metadata:Metadata = {
   title: "پرامپت چیست؟ راهنمای جامع مهندسی پرامپت | پرامپت بازار",
   description: "پرامپت چیست؟ با راهنمای جامع مهندسی پرامپت در پرامپت بازار، اصول پرامپت نویسی حرفه‌ای را یاد بگیرید و پرامپت‌های آماده را دانلود کنید. آموزش n8n.",
   keywords: "پرامپت چیست, مهندسی پرامپت, آموزش پرامپت نویسی, پرامپت, پرامپت نویسی چیست, دانلود پرامپت, n8n, پرامپت بازار",
-  alternates: {
-    canonical: "https://promptbazar.ir/what-is-prompt"
-  }
 }
 
 export default function PromptGuide() {
