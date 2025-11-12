@@ -23,7 +23,7 @@ export default function N8nTutorialPageForIran() {
   ]
 
   return (
-    <div className="min-h-screen bg-background text-foreground font-sans" dir="rtl">
+    <div className="min-h-screen bg-background text-foreground" dir="rtl">
       <main>
         {/* Hero Section - زبان گفتاری و جذاب */}
         <section className="bg-secondary/50 py-20 border-b border-border">
