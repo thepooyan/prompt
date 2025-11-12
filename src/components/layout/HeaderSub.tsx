@@ -43,7 +43,7 @@ const HeaderSub = ({ menuItems, title }:p) => {
           >
             <Link className="w-full px-4 py-3 text-right hover:bg-accent hover:text-accent-foreground
               flex items-center justify-between transition-colors duration-150"
-              href={menu.slug}
+              href={"/" + menu.slug}
             >
               <span>{menu.name}</span>
               {menu.cate.length > 0 && 
@@ -65,7 +65,7 @@ const HeaderSub = ({ menuItems, title }:p) => {
                   <div key={sub.name} className="relative group/sub">
                     <Link className="w-full px-4 py-3 text-right hover:bg-accent
                     hover:text-accent-foreground flex items-center justify-between transition-colors duration-150"
-                    href={`${menu.slug}/${sub.slug}`}
+                    href={`/${menu.slug}/${sub.slug}`}
                   >
                       <span>{sub.name}</span>
                     </Link>
