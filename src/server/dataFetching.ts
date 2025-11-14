@@ -76,6 +76,7 @@ export const fetchThreePrompts = async () => {
   return await db.query.promptsTable.findMany({
     limit: 3,
     orderBy: desc(promptsTable.updated_at),
+    where: eq(promptsTable.type, "prompt"),
     with: {category: true}
   })
 }
@@ -86,6 +87,7 @@ export const fetchTwoPrompts = async () => {
   return await db.query.promptsTable.findMany({
     limit: 2,
     orderBy: desc(promptsTable.updated_at),
+    where: eq(promptsTable.type, "prompt"),
     with: {category: true}
   })
 }
