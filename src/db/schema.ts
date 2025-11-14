@@ -11,6 +11,7 @@ const pageSeoFields = {
 }
 
 export const promptTypeEnum = pgEnum('promptType', ['prompt', 'n8n']);
+export type promptType = (typeof promptTypeEnum.enumValues)[number]
 
 export const promptCateTable = pgTable("prompt_category", {
   id: uuid().defaultRandom().primaryKey(),

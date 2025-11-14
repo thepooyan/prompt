@@ -1,3 +1,3 @@
-import LoadingPage from "../CateManagment/loading";
+import {LoadingPage} from "@/components/parts/LoadingPage"
 
 export default LoadingPage
