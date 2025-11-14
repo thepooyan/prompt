@@ -1,3 +1,4 @@
+import { capitalize, getEntityName } from "@/lib/utils"
 import { PromptWithRelations } from "@/server/dataFetching"
 
 type returnType = {title: string, href: string}[]
@@ -13,7 +14,7 @@ export const allblogBreadcrumb = [
 ]
 export const promptBreadcrumb = (pr: PromptWithRelations):returnType => [
   {title: "خانه", href:"/"},
-  {title: "پرامپت", href:"/Prompts"},
-  {title: pr.category.name , href:`/Prompts/${pr.category.slug}`},
+  {title: getEntityName(pr.type), href: `/${capitalize(pr.type)}`},
+  {title: pr.category.name , href:`/${capitalize(pr.type)}/${pr.category.slug}`},
   {title: pr.title, href:""},
 ]

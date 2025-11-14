@@ -10,7 +10,8 @@ export default function Home() {
     <>
       <Hero/>
       <BentoGrid/>
-      <LatestPrompts/>
+      <LatestPrompts type={"prompt" as const}/>
+      <LatestPrompts type={"n8n" as const}/>
       <LatestBlogsFetcher/>
       <FAQSection/>
     </>

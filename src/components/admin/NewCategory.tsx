@@ -5,9 +5,12 @@ import { useState } from "react";
 import { insertCategory } from "@/server/mutation";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
+import { promptType } from "@/db/schema";
 
-
-const NewCategory = () => {
+interface p {
+  type: promptType
+}
+const NewCategory = ({type}:p) => {
 
   const [name, setName] = useState("")
   const [slug, setSlug] = useState("")
@@ -16,7 +19,7 @@ const NewCategory = () => {
 
   const submit = async () => {
     setLoading(true)
-    const {ok} = await insertCategory({name, slug})
+    const {ok} = await insertCategory({name, slug, type})
     setLoading(false)
     if (ok) {
       toast.success("موفقیت!")

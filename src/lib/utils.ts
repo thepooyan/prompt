@@ -1,3 +1,4 @@
+import { promptType } from "@/db/schema"
 import { clsx, type ClassValue } from "clsx"
 import { twMerge } from "tailwind-merge"
 
@@ -92,3 +93,21 @@ export const getTelegramShareUrl = (url:string , text:string) =>
 
 export const getTwitterShareUrl = (url: string, text: string) =>
   `https://twitter.com/intent/tweet?url=${encodeURIComponent(url)}&text=${encodeURIComponent(text)}`
+
+export function capitalize(type: promptType): string {
+  switch (type) {
+    case "prompt":
+      return "Prompts"
+    case "n8n":
+      return "n8n"
+  }
+}
+
+export const getEntityName = (type: promptType) => {
+  switch (type) {
+    case "prompt":
+      return "پرامپت"
+    case "n8n":
+      return "n8n"
+  }
+}
