@@ -17,7 +17,6 @@ export const promptCateTable = pgTable("prompt_category", {
 })
 
 export type Category = InferSelectModel<typeof promptCateTable>
-export type HeaderLink = Category
 export type NewCategory = InferInsertModel<typeof promptCateTable>
 
 export const promptsTable = pgTable("prompts", {

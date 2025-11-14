@@ -107,19 +107,19 @@ export const getAllMenuItems = async ():Promise<HeaderSub[]> => {
   return [
     {
       mainItem: {
-        name: "پرامپت", slug: "Prompts", id: ""
+        name: "پرامپت", slug: "Prompts", 
       },
       subItems: result1
     },
     {
       mainItem: {
-        name: "n8n", slug: "n8n", id: ""
+        name: "n8n", slug: "n8n", 
       },
       subItems: []
     },
     {
       mainItem: {
-        name: "ابزار", slug: "Tools", id: ""
+        name: "ابزار", slug: "Tools", 
       },
       subItems: []
     },

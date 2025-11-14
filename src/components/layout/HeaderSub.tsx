@@ -4,15 +4,24 @@ import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import Link from "../ui/link";
 import { cn } from "@/lib/utils";
-import { HeaderLink } from "@/db/schema";
+
+type HeaderLink = {
+  name: string
+  slug: string
+}
+type HeaderCategory = {
+  name: string
+  slug?: string
+}
 
 export interface HeaderSub {
   subItems: HeaderLink[]
-  mainItem: HeaderLink
+  mainItem: HeaderCategory
 }
 const HeaderSub = ({ mainItem, subItems }:HeaderSub) => {
 
   const [open, setOpen] = useState<boolean>(false);
+  const OptionalLink = mainItem.slug ? Link : "div";
 
   return (
     <div
@@ -21,11 +30,11 @@ const HeaderSub = ({ mainItem, subItems }:HeaderSub) => {
       onMouseLeave={() => { setOpen(false); }}
     >
       <Button variant="ghost" className="text-base gap-1" asChild>
-        <Link href={"/" + mainItem.slug}>
+        <OptionalLink href={"/" + mainItem.slug}>
           {mainItem.name}
           {subItems.length > 0 && 
           <ChevronDown className={cn(`h-4 w-4 transition-all`, open && "rotate-180")} />}
-        </Link>
+        </OptionalLink>
       </Button>
 
       {/* Layer 1: Main Categories */}
