@@ -23,6 +23,8 @@ const HeaderSub = ({ mainItem, subItems }:HeaderSub) => {
   const [open, setOpen] = useState<boolean>(false);
   const OptionalLink = mainItem.slug ? Link : "div";
 
+  const getSubItemLink = (slug: string) => mainItem.slug ? `/${mainItem.slug}/${slug}` : `/${slug}`
+
   return (
     <div
       className="relative"
@@ -53,7 +55,7 @@ const HeaderSub = ({ mainItem, subItems }:HeaderSub) => {
           >
             <Link className="w-full px-4 py-3 text-right hover:bg-accent hover:text-accent-foreground
               flex items-center justify-between transition-colors duration-150"
-              href={"/" + sub.slug}
+              href={getSubItemLink(sub.slug)}
             >
               <span>{sub.name}</span>
             </Link>
