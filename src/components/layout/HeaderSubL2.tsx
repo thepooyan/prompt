@@ -3,11 +3,10 @@ import { ChevronDown, ChevronLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import Link from "../ui/link";
-import { menuItems } from "@/server/dataFetching";
 import { cn } from "@/lib/utils";
 
 interface p {
-  menuItems: menuItems[]
+  menuItems: any[]
   title: string
 }
 const HeaderSubL2 = ({ menuItems, title }:p) => {
@@ -61,7 +60,7 @@ const HeaderSubL2 = ({ menuItems, title }:p) => {
                   "opacity-0 invisible scale-x-95 translate-x-2 pointer-events-none"
               )}
             >
-              {menu.cate.map(sub => (
+              {menu.cate.map( (sub:any) => (
                   <div key={sub.name} className="relative group/sub">
                     <Link className="w-full px-4 py-3 text-right hover:bg-accent
                     hover:text-accent-foreground flex items-center justify-between transition-colors duration-150"
