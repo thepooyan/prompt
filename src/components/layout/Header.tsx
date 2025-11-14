@@ -6,7 +6,7 @@ import { Spinner } from "../ui/spinner"
 import LoginButton from "./LoginButton"
 import HeaderSub, { HeaderSub as H } from "./HeaderSub"
 
-export default async function Header() {
+export default function Header() {
 
   const guideSubmenu:H = {
     mainItem: {name: "آموزش"},
