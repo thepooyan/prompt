@@ -48,7 +48,19 @@ const HeaderSub = ({ mainItem, subItems }:HeaderSub) => {
           :
           "opacity-0 invisible scale-y-95 -translate-y-2 pointer-events-none")}
       >
-        
+        {subItems.map(sub => (
+          <div
+            key={sub.name}
+            className="relative"
+          >
+            <Link className={`w-full px-4 py-3 text-right hover:bg-accent hover:text-accent-foreground
+              flex items-center justify-between transition-colors duration-150`}
+              href={getSubItemLink(sub.slug)}
+            >
+              {sub.name}
+            </Link>
+          </div>
+        ))}
       </div>}
     </div>
   );
