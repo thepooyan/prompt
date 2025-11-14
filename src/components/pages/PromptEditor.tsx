@@ -119,7 +119,7 @@ export default function PromptEditor({edit, categories, type}:p) {
     setLoading(false)
     if (result.ok) {
       toast.success(`${entityName} جدید با موفقیت ایجاد شد`)
-      router.push("/Admin/PromptManagment")
+      router.push(`/Admin/${type}Managment`)
       router.refresh()
     } else {
       toast.error("خطا")
@@ -131,7 +131,7 @@ export default function PromptEditor({edit, categories, type}:p) {
     setLoading(false)
     if (result.ok) {
       toast.success("ویرایش با موفقیت ایجاد شد")
-      router.push("/Admin/PromptManagment")
+      router.push(`/Admin/${type}Managment`)
       router.refresh()
     } else {
       toast.error("خطا")
