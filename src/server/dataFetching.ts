@@ -70,13 +70,13 @@ export const fetchSinglePrompt = async (slug: string) => {
 } 
 export type PromptWithRelations = NonNullable<Awaited<ReturnType<typeof fetchSinglePrompt>>>
 
-export const fetchThreePrompts = async () => {
+export const fetchThreePrompts = async (type: promptType) => {
   "use cache"
   cacheTag(cacheTags.prompts)
   return await db.query.promptsTable.findMany({
     limit: 3,
     orderBy: desc(promptsTable.updated_at),
-    where: eq(promptsTable.type, "prompt"),
+    where: eq(promptsTable.type, type),
     with: {category: true}
   })
 }
