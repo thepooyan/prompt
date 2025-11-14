@@ -1,0 +1,1 @@
+export const logoUrl = "/logo-prompt-bazar3.png"

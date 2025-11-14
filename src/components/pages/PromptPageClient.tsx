@@ -1,28 +1,24 @@
 import { siTelegram, siX} from 'simple-icons';
 import Image from "next/image"
 import { Badge } from "@/components/ui/badge"
-import MyBreadcrumb from "../parts/MyBreadcrumb"
-import { promptBreadcrumb } from "../ts/breadcrumb"
 import { PromptCopyButton } from "./PromptCopyButton"
 import Markdwon from "../util/Markdwon"
 import SimpleIcon from '../icons/SimpleIcon';
 import { Copy } from 'lucide-react';
 import { Button } from '../ui/button';
 import Copyable from '../ui/copyable';
-import { env } from '@/server/env';
 import { getTelegramShareUrl, getTwitterShareUrl } from '@/lib/utils';
-import { PromptCard } from '../PromptCard';
 import { PromptWithRelations } from '@/server/dataFetching';
+import Link from '../ui/link';
 
 interface p { 
   prompt: PromptWithRelations
-  relatedPrompts?: PromptWithRelations[]
 }
-export default function PromptPageClient({ prompt, relatedPrompts }:p ) {
+export default function PromptPage({ prompt }:p ) {
 
   const tagList = prompt.tags.split(",").map((tag) => tag.trim())
 
-  const pageLink = `${env.BETTER_AUTH_URL}/Prompts/${prompt.slug}`
+  const pageLink = `/Prompts/${prompt.slug}`
 
   const telegramLink = getTelegramShareUrl(prompt.title, pageLink)
   const twitterLink = getTwitterShareUrl(prompt.title, pageLink)
@@ -54,26 +50,25 @@ export default function PromptPageClient({ prompt, relatedPrompts }:p ) {
             >
               {prompt.isFree ? "رایگان" : "پریمیوم"}
             </Badge>
-            <Badge
-                className="bg-white/20 text-white backdrop-blur-sm hover:bg-white/30"
-            >
-              دسته بندی: {prompt.category?.name || "-"}
-            </Badge>
 
           </div>
 
           <h1 className="text-balance text-4xl font-bold leading-tight text-white md:text-5xl lg:text-6xl">
             {prompt.title}
           </h1>
+          <Badge className="bg-white/20 text-white backdrop-blur-sm hover:bg-white/30 mt-5 " asChild >
+            <Link href={`/Prompts/${prompt.category.slug}`}>
+              دسته بندی: {prompt.category?.name || "-"}
+            </Link>
+          </Badge>
         </div>
       </div>
 
       {/* Content Section */}
       <div className="mx-auto max-w-4xl px-4 py-12">
 
-        <MyBreadcrumb items={promptBreadcrumb(prompt)}/>
         {/* Description */}
-        <div className="mb-12">
+        <div className="my-12 ">
           <p className="text-pretty text-lg leading-relaxed text-muted-foreground">{prompt.excerpt}</p>
         </div>
 
@@ -127,18 +122,7 @@ export default function PromptPageClient({ prompt, relatedPrompts }:p ) {
         </div>
 
 
-        {relatedPrompts && <>
-          <div className='flex flex-col items-center mt-30'>
-            <div className='text-3xl font-bold'>
-              پرامپت های مرتبط
-            </div>
 
-            <div className='flex gap-15 mt-15'>
-              {relatedPrompts.map(p => <PromptCard prompt={p} key={p.id}/>)}
-            </div>
-
-          </div>
-        </>}
 
       </div>
     </article>

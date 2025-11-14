@@ -1,43 +1,47 @@
 import PromptAccordion from "@/components/parts/PromptAccordion"
+import { Button } from "@/components/ui/button"
 import {Metadata} from "next"
+import Link from "next/link"
 
 export const metadata:Metadata = {
   title: "پرامپت چیست؟ راهنمای جامع مهندسی پرامپت | پرامپت بازار",
   description: "پرامپت چیست؟ با راهنمای جامع مهندسی پرامپت در پرامپت بازار، اصول پرامپت نویسی حرفه‌ای را یاد بگیرید و پرامپت‌های آماده را دانلود کنید. آموزش n8n.",
-  keywords: "پرامپت چیست, مهندسی پرامپت, آموزش پرامپت نویسی, پرامپت, پرامپت نویسی چیست, دانلود پرامپت, n8n, پرامپت بازار"
+  keywords: "پرامپت چیست, مهندسی پرامپت, آموزش پرامپت نویسی, پرامپت, پرامپت نویسی چیست, دانلود پرامپت, n8n, پرامپت بازار",
 }
 
 export default function PromptGuide() {
   return (
-    <div className="min-h-screen bg-gray-900 text-gray-200 font-sans" dir="rtl">
+    <div className="min-h-screen">
        <main>
         {/* Hero Section */}
-        <section className="bg-gradient-to-br from-purple-900/20 to-gray-900/10 py-20 border-b border-gray-700">
+        <section className="bg-gradient-to-br from-primary/5 to-secondary/5 py-20 border-b border-border   ">
           <div className="container mx-auto px-4 text-center">
             <div className="flex gap-2 justify-center mb-4 flex-wrap">
-              <span className="inline-flex items-center gap-2 px-3 py-2 rounded-full border border-gray-600 bg-gray-800 text-gray-300 text-sm">
+              <span className="inline-flex items-center gap-2 px-3 py-2 rounded-full bg-accent text-accent-foreground text-sm">
                 <span className="text-yellow-400">⚡</span> پرامپت چیست
               </span>
-              <span className="inline-flex items-center gap-2 px-3 py-2 rounded-full border border-gray-600 bg-gray-800 text-gray-300 text-sm">
+              <span className="inline-flex items-center gap-2 px-3 py-2 rounded-full bg-accent text-accent-foreground text-sm">
                 <span className="text-blue-400">🛠</span> آموزش پرامپت‌نویسی
               </span>
-              <span className="inline-flex items-center gap-2 px-3 py-2 rounded-full border border-gray-600 bg-gray-800 text-gray-300 text-sm">
+              <span className="inline-flex items-center gap-2 px-3 py-2 rounded-full bg-accent text-accent-foreground text-sm">
                 <span className="text-purple-400">✏️</span> مهندسی پرامپت
               </span>
             </div>
 
-            <h1 className="text-4xl md:text-5xl font-bold mt-4 mb-6 text-balance">
-              پرامپت چیست؟ راهنمای جامع مهندسی پرامپت
+            <h1 className="text-4xl md:text-5xl font-bold mt-8 mb-6 text-balance">
+              <p className="text-primary">پرامپت چیست؟</p> راهنمای جامع مهندسی پرامپت
             </h1>
 
-            <p className="text-lg md:text-xl text-gray-400 max-w-4xl mx-auto leading-relaxed mb-8">
-              پرامپت به زبان ساده، همان دستوری است که به مدل‌های هوش مصنوعی می‌دهیم تا خروجی دلخواه را دریافت کنیم. در این صفحه، با مفهوم پرامپت آشنا می‌شوید و خواهید فهمید که چگونه با مهندسی پرامپت می‌توانید نتایج دقیقی دریافت کنید.<strong className="text-gray-200">تولید محتوا</strong> تا <strong className="text-gray-200">طراحی لوگو</strong> و <strong className="text-gray-200">عکس پروفایل</strong>.
+            <p className="text-lg md:text-xl text-primary-foreground max-w-4xl mx-auto leading-relaxed mb-8">
+              پرامپت به زبان ساده، همان دستوری است که به مدل‌های هوش مصنوعی می‌دهیم تا خروجی دلخواه را دریافت کنیم. در این صفحه، با مفهوم پرامپت آشنا می‌شوید و خواهید فهمید که چگونه با مهندسی پرامپت می‌توانید نتایج دقیقی دریافت کنید.<strong className="text-accent-foreground">تولید محتوا</strong> تا <strong className="text-accent-foreground">طراحی لوگو</strong> و <strong className="text-accent-foreground">عکس پروفایل</strong>.
             </p>
 
             <div className="flex gap-4 justify-center">
-              <a href="/Prompts" className="bg-purple-600 hover:bg-purple-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors">
+              <Button asChild>
+              <Link href="/Prompts">
                 دانلود پرامپت
-              </a>
+              </Link>
+              </Button>
         
             </div>
           </div>
@@ -49,9 +53,9 @@ export default function PromptGuide() {
             <div className="flex gap-8">
               {/* TOC */}
               <aside className="hidden lg:block w-80 flex-shrink-0">
-                <div className="sticky top-24 p-6 rounded-lg border border-gray-700 bg-gray-800">
+                <div className="sticky top-24 p-6 rounded-lg border bg-sidebar text-sidebar-foreground">
                   <h6 className="flex items-center gap-2 mb-4 font-semibold">
-                    <span className="text-purple-400">📋</span> سرفصل‌ها
+                    <span>📋</span> سرفصل‌ها
                   </h6>
                   <nav className="space-y-2 text-sm">
                     {[
@@ -66,7 +70,7 @@ export default function PromptGuide() {
                       { id: "cta", title: "شرو÷ع سریع" },
                       { id: "faq", title: "پرسش‌های پرتکرار" },
                     ].map(item => (
-                      <a key={item.id} href={`#${item.id}`} className="block p-2 rounded text-gray-400 hover:text-white hover:bg-gray-700 transition-colors">
+                      <a key={item.id} href={`#${item.id}`} className="block p-2 rounded hover:bg-sidebar-accent hover:text-sidebar-accent-foreground   transition-colors">
                         • {item.title}
                       </a>
                     ))}
@@ -78,11 +82,11 @@ export default function PromptGuide() {
               <div className="flex-1 max-w-4xl">
                 {/* s1 */}
                 <section id="s1" className="mb-12">
-                  <h2 className="flex items-center gap-3 text-2xl font-bold mb-6 pb-3 border-b border-gray-700">
+                  <h2 className="flex items-center gap-3 text-2xl font-bold mb-6 pb-3 border-b  ">
                     <span className="text-purple-400">💡</span> پرامپت به زبان خیلی ساده
                   </h2>
-                  <p className="text-gray-400 leading-relaxed text-lg">
-                    <strong className="text-gray-200">پرامپت</strong> متن یا دستوری است که به مدل هوش مصنوعی می‌دهی. هرچه دقیق‌تر بنویسی، خروجی بهتر می‌شود.
+                  <p className="  leading-relaxed text-lg">
+                    <strong className="text-accent">پرامپت</strong> متن یا دستوری است که به مدل هوش مصنوعی می‌دهی. هرچه دقیق‌تر بنویسی، خروجی بهتر می‌شود.
                     <br/>نمونهٔ روشن:
                     <br/>– «یک کپشن اینستاگرام برای فروش کفش ورزشی بنویس، لحن خودمانی، حداکثر ۲ خط.»
                     <br/>– «۴ ایده‌تیتر زیر ۶۰ کاراکتر برای مقالهٔ خواب سالم بده.»
@@ -91,10 +95,10 @@ export default function PromptGuide() {
 
                 {/* s2 */}
                 <section id="s2" className="mb-12">
-                  <h2 className="flex items-center gap-3 text-2xl font-bold mb-6 pb-3 border-b border-gray-700">
+                  <h2 className="flex items-center gap-3 text-2xl font-bold mb-6 pb-3 border-b  ">
                     <span className="text-purple-400">📐</span> پرامپت‌نویسی و اهمیت آن
                   </h2>
-                  <p className="text-gray-400 leading-relaxed text-lg">
+                  <p className=" leading-relaxed text-lg">
                     پرامپت‌نویسی (Prompt Engineering) یعنی تبدیل خواستهٔ ذهنی به دستور قابل‌فهم برای AI.
                     نتیجه‌اش: آزمون‌وخطای کمتر، کنترل روی لحن/طول/فرمت و خروجی حرفه‌ای برای محتوا، طراحی، تصویر و حتی کدنویسی.
                   </p>
@@ -269,7 +273,7 @@ soft studio lighting, 3/4 angle, natural skin; 1080×1080.
                     وقت کم داری؟ از <strong className="text-gray-200">پرامپت‌های آماده</strong> شروع کن یا با <a href="/what-is-n8n" className="text-purple-400 hover:text-purple-300">آموزش n8n</a> فرآیندهایت را خودکار کن.
                   </p>
                   <div className="flex gap-4 justify-center">
-                    <a href="/prompts" className="bg-purple-600 hover:bg-purple-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors">
+                    <a href="/Prompts" className="bg-purple-600 hover:bg-purple-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors">
                       مشاهده همه پرامپت‌ها
                     </a>
                   </div>

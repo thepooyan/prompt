@@ -22,10 +22,10 @@ export default async function BlogAsync({ params, }: p) {
   return (
     <article className="min-h-screen  ">
       {/* Hero Section */}
-      <div className="relative h-[400px] md:h-[500px] w-full overflow-hidden bg-muted">
+      <div className="relative h-[30dvw] w-full overflow-hidden bg-muted">
         {/* <Image src={blog.picture || "/placeholder.svg"} alt={blog.title} fill className="object-cover" priority /> */}
-        <Image src={blog.picture || "/placeholder.svg"} alt={blog.title} className="object-cover m-auto"
-          width={600} height={600}
+        <Image src={blog.picture || "/placeholder.svg"} alt={blog.title} className="object-cover m-auto object-top"
+        fill
         />
         <div className="absolute inset-0 bg-gradient-to-t from-background via-background/60 to-transparent" />
       </div>

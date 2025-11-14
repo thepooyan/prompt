@@ -23,27 +23,27 @@ export default function FAQSection() {
   const [openIndex, setOpenIndex] = useState(0)
 
   return (
-    <section id="faq" className="py-16 bg-zinc-900">
+    <section id="faq" className="py-16 bg-sidebar text-accent-foreground ">
       <div className="container mx-auto px-6">
         <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold text-white">سوالات پرتکرار</h2>
-          <p className="text-lg text-gray-400 mt-4">
+          <h2 className="text-3xl font-bold ">سوالات پرتکرار</h2>
+          <p className="text-lg text-muted-foreground mt-4">
             پاسخ سوالات رایج شما را در اینجا آماده کرده‌ایم.
           </p>
         </div>
 
         <div className="max-w-3xl mx-auto space-y-4">
           {faqs.map((faq, i) => (
-            <div key={i} className="border border-zinc-700 rounded-xl overflow-hidden">
+            <div key={i} className="border border-muted-foreground/20 rounded-xl overflow-hidden">
               <button
-                className="w-full text-right px-6 py-4 bg-zinc-800/40 cursor-pointer text-white font-medium flex justify-between items-center"
+                className="w-full text-right px-6 py-4 cursor-pointer  font-medium flex justify-between items-center"
                 onClick={() => setOpenIndex(openIndex === i ? -1 : i)}
               >
                 {faq.question}
                 <span>{openIndex === i ? "−" : "+"}</span>
               </button>
               {openIndex === i && (
-                <div className="px-6 py-4 bg-zinc-700 text-gray-300">
+                <div className="px-6 py-4  text-muted-foreground  ">
                   {faq.answer}
                 </div>
               )}
@@ -52,13 +52,13 @@ export default function FAQSection() {
         </div>
 
         <div className="text-center mt-10">
-          <h5 className="text-lg font-bold text-white">پاسخ خود را پیدا نکردید؟</h5>
+          <h5 className="text-lg font-bold  ">پاسخ خود را پیدا نکردید؟</h5>
           <p className="text-gray-400 mt-2">
             تیم پشتیبانی ما آماده پاسخگویی و ارائه مشاوره تخصصی به شماست.
           </p>
           <a
             href="/contact"
-            className="inline-block mt-4 bg-blue-600 hover:bg-blue-700 text-white font-medium px-6 py-3 rounded-xl"
+            className="inline-block mt-4 bg-primary text-primary-foreground hover:bg-blue-700 font-medium px-6 py-3 rounded-xl"
           >
             تماس با بخش مشاوره
           </a>

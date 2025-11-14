@@ -74,19 +74,11 @@ export function PromptCard({ prompt, className }: PromptCardProps) {
                 اشتراک
               </Button>
             </div>
-
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={handleLike}
-              className={cn("h-8 px-2 transition-colors", isLiked && "text-red-500 hover:text-red-600")}
-            >
-              <Heart className={cn("h-4 w-4 ml-1", isLiked && "fill-current")} />
-              <span className="text-xs">{likeCount}</span>
-            </Button>
           </div>
           <Button className="cursor-pointer" asChild>
-            <Link href={`/Prompts/${encodeURIComponent(prompt.category?.slug || "none")}/${encodeURIComponent(prompt.slug)}`}>
+            <Link href={`/Prompts/${encodeURIComponent(prompt.category?.slug || "none")}/${encodeURIComponent(prompt.slug)}`}
+              className="flex gap-2"
+            >
               مشاهده
               <ArrowLeft/>
             </Link>

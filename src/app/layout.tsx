@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Vazirmatn } from "next/font/google";
-import "@/styles/global.css";
+import "@/styles/app.css";
 import { Toaster } from "sonner";
 import Modal from "@/components/layout/Modal";
 import { env } from "@/server/env";
@@ -18,14 +18,15 @@ export const metadata: Metadata = {
   openGraph: {
     title: "پرامپت بازار - مرجع پرامپت آماده و آموزش n8n",
     description: "در پرامپت بازار، با آموزش‌های تخصصی ما برای پرامپت نویسی و n8n، به یک متخصص هوش مصنوعی تبدیل شوید و به بزرگترین کتابخانه پرامپت‌های آماده و ورک‌فلوها دسترسی پیدا کنید.",
-  
-
   },
    robots: {
     index: true,
     follow: true,
   },
-
+  metadataBase: new URL(env.NEXT_PUBLIC_BETTER_AUTH_URL),
+  alternates: {
+    canonical: "./"
+  }
 };
 
 export default function RootLayout({
@@ -34,11 +35,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className="theme-amber">
       <GoogleTagManager gtmId={env.NEXT_PUBLIC_GTM_ID}/>
     
       <body
-        className={`${vazirmatn.className} antialiased dark`}
+        className={`${vazirmatn.className} antialiased`}
       >
         {children}
         <Toaster richColors  theme="dark" className="text-2xl" dir="rtl" />

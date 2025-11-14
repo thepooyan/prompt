@@ -10,7 +10,7 @@ interface p {
 const page = async ({params}:p) => {
 
   const {cate} = await params
-  console.log(cate)
+
   const data = await db.query.promptCateTable.findFirst({
     where: eq(promptCateTable.slug, cate),
     with: {posts: true}

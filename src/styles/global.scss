@@ -1,0 +1,15 @@
+html {
+  font-size: 15px;
+
+  @media (min-width: 800) {
+    font-size: 20px;
+  }
+}
+
+
+.ltr {
+  direction: ltr;
+}
+.rtl {
+  direction: rtl;
+}
