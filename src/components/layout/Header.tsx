@@ -8,9 +8,13 @@ import HeaderSub, { HeaderSub as H } from "./HeaderSub"
 
 export default async function Header() {
 
-  const folan:H = {
-    mainItem: {name: "hi"},
-    subItems: []
+  const guideSubmenu:H = {
+    mainItem: {name: "آموزش"},
+    subItems: [
+      {name: "پرامپت چیست؟", slug: "what-is-prompt"},
+      {name: "n8n چیست؟", slug: "what-is-n8n"},
+      {name: "آموزش نصب n8n", slug: "download-install-n8n"},
+    ]
   }
 
   return (
@@ -30,7 +34,7 @@ export default async function Header() {
             </Link>
 
             {/* راهنما */}
-            <HeaderSub {...folan}/>
+            <HeaderSub {...guideSubmenu}/>
 
             {/* جامع */}
             <Link href="/Blog">
