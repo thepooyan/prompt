@@ -21,7 +21,7 @@ import { X, Plus, Upload } from "lucide-react"
 import Link from "next/link"
 import { toast } from "sonner"
 import {  updatePrompt,  insertPrompt } from "@/server/mutation"
-import { Category, Prompt } from "@/db/schema"
+import { PromptCategory, Prompt } from "@/db/schema"
 import { useRouter } from "next/navigation"
 import ArrayInput from "../ui/array-input"
 import z from "zod"
@@ -29,7 +29,7 @@ import UploadMediaBtn from "../admin/UploadMediaBtn"
 
 interface p {
   edit?: Prompt
-  categories: Category[]
+  categories: PromptCategory[]
 }
 export default function PromptEditor({edit, categories}:p) {
   

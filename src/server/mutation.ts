@@ -1,5 +1,5 @@
 "use server"
-import { Blog, blogsTable, NewBlog, NewCategory, NewPrompt, NewRedirect, Prompt, promptCateTable, promptsTable, redirectsTable } from "@/db/schema"
+import { Blog, blogsTable, NewBlog, PromptNewCategory, NewPrompt, NewRedirect, Prompt, promptCateTable, promptsTable, redirectsTable } from "@/db/schema"
 import { eq, InferInsertModel } from "drizzle-orm"
 import { PgTable, TableConfig } from "drizzle-orm/pg-core"
 import { cacheTagKey, cacheTags } from "./cache"
@@ -64,7 +64,7 @@ export const updatePrompt = async (id:number, en: promptEdit) => {
   }
 }
 
-export const insertCategory = async (c: NewCategory) => {
+export const insertCategory = async (c: PromptNewCategory) => {
   try {
     await db.insert(promptCateTable).values(c)
     return {ok: true}
