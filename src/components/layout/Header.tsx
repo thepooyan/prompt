@@ -4,8 +4,14 @@ import Logo from "../parts/Logo"
 import { Suspense } from "react"
 import { Spinner } from "../ui/spinner"
 import LoginButton from "./LoginButton"
+import HeaderSub, { HeaderSub as H } from "./HeaderSub"
 
 export default async function Header() {
+
+  const folan:H = {
+    mainItem: {name: "hi"},
+    subItems: []
+  }
 
   return (
     <header className="border-b border-border bg-background/30 backdrop-blur-xl sticky top-0 z-20 ">
@@ -24,6 +30,7 @@ export default async function Header() {
             </Link>
 
             {/* راهنما */}
+            <HeaderSub {...folan}/>
 
             {/* جامع */}
             <Link href="/Blog">
