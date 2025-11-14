@@ -356,7 +356,7 @@ export default function PromptEditor({edit, categories, type}:p) {
                   {edit ? `ویرایش ${entityName}` : `ایجاد ${entityName}`}
                 </Button>
                 <Button type="button" variant="outline" asChild>
-                  <Link href="/Admin/PromptManagment">انصراف</Link>
+                  <Link href={`/Admin/${type}Managment`}>انصراف</Link>
                 </Button>
               </div>
             </form>
