@@ -17,7 +17,7 @@ export const promptCateTable = pgTable("prompt_category", {
   id: uuid().defaultRandom().primaryKey(),
   name: varchar({length: 100}).notNull(),
   slug: varchar({length: 100}).notNull().unique(),
-  type: promptTypeEnum().default("prompt")
+  type: promptTypeEnum().default("prompt").notNull()
 })
 
 export type PromptCategory = InferSelectModel<typeof promptCateTable>
@@ -25,7 +25,7 @@ export type PromptNewCategory = InferInsertModel<typeof promptCateTable>
 
 export const promptsTable = pgTable("prompts", {
   id: integer().primaryKey().generatedAlwaysAsIdentity(),
-  type: promptTypeEnum().default("prompt"),
+  type: promptTypeEnum().default("prompt").notNull(),
   category_id: uuid().references(() => promptCateTable.id, {onDelete: "restrict"}).notNull(),
   title: varchar({ length: 255 }).notNull(),
   slug: varchar({ length: 255 }).notNull(),
