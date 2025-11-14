@@ -26,7 +26,15 @@ interface p {
 export default function PromptManagmentClient({initialBlogs, type}:p) {
   const [posts, setPosts] = useState<Prompt[]>(initialBlogs)
 
-  const name = "پرامپت"
+  const name = (() => {
+    switch (type) {
+      case "prompt":
+        return "پرامپت"
+      case "n8n":
+        return "n8n"
+    }
+  })()
+
   const handleDelete = (post: Prompt) => {
     callModal.prompt(`"${limitChar(post.title, 40)}" حذف شود؟`)
     .yes(async () => {
