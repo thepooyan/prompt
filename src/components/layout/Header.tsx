@@ -47,9 +47,6 @@ export default async function Header() {
           </nav>
 
           {/* Login Button - Left side in RTL */}
-          <Suspense fallback={<Spinner/>}>
-            <LoginButton/>
-          </Suspense>
         </div>
       </div>
     </header>
