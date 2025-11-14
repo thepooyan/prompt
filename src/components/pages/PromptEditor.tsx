@@ -115,7 +115,7 @@ export default function PromptEditor({edit, categories, type}:p) {
 
   const submitNew = async () => {
     setLoading(true)
-    const result = await insertPrompt(formData)
+    const result = await insertPrompt({...formData, type: type})
     setLoading(false)
     if (result.ok) {
       toast.success(`${entityName} جدید با موفقیت ایجاد شد`)
@@ -127,7 +127,7 @@ export default function PromptEditor({edit, categories, type}:p) {
   }
   const submitEdit = async (id: number) => {
     setLoading(true)
-    const result = await updatePrompt(id, formData)
+    const result = await updatePrompt(id, {...formData, type: type})
     setLoading(false)
     if (result.ok) {
       toast.success("ویرایش با موفقیت ایجاد شد")
