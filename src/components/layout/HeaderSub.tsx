@@ -2,8 +2,8 @@
 import { ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
-import Link from "../ui/link";
 import { cn } from "@/lib/utils";
+import Link from "next/link";
 
 type HeaderLink = {
   name: string
@@ -48,19 +48,7 @@ const HeaderSub = ({ mainItem, subItems }:HeaderSub) => {
           :
           "opacity-0 invisible scale-y-95 -translate-y-2 pointer-events-none")}
       >
-        {subItems.map(sub => (
-          <div
-            key={sub.name}
-            className="relative"
-          >
-            <Link className="w-full px-4 py-3 text-right hover:bg-accent hover:text-accent-foreground
-              flex items-center justify-between transition-colors duration-150"
-              href={getSubItemLink(sub.slug)}
-            >
-              <span>{sub.name}</span>
-            </Link>
-          </div>
-        ))}
+        
       </div>}
     </div>
   );
