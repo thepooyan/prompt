@@ -5,7 +5,7 @@ import HeaderSub from "./HeaderSub"
 import { Suspense } from "react"
 import { Spinner } from "../ui/spinner"
 import LoginButton from "./LoginButton"
-import { getAllMenuItems, menuItems } from "@/server/dataFetching"
+import { getAllMenuItems } from "@/server/dataFetching"
 
 export default async function Header() {
   const subMenu = await getAllMenuItems()
@@ -33,7 +33,7 @@ export default async function Header() {
             </Link>
 
             {/* راهنما */}
-            <HeaderSub menuItems={guideSubmenu} title="راهنما جامع"/>
+            {/* <HeaderSub subItems={guideSubmenu} mainItem={{}} title="راهنما جامع"/> */}
 
             {/* جامع */}
             <Link href="/Blog">
@@ -43,7 +43,7 @@ export default async function Header() {
             </Link>
 
             {/* محصولات - Three-layer dropdown */}
-            <HeaderSub menuItems={subMenu} title="محصولات"/>
+            {subMenu.map(s => <HeaderSub {...s} />)}
           </nav>
 
           {/* Login Button - Left side in RTL */}

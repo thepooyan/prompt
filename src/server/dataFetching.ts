@@ -4,6 +4,7 @@ import { db } from "@/db"
 import { Blog, blogsTable, Category, promptCateTable, promptsTable, redirectsTable } from "@/db/schema"
 import { desc, eq } from 'drizzle-orm'
 import { cacheTags } from './cache'
+import { HeaderSub } from '@/components/layout/HeaderSub'
 
 export const cacheTag = async (tag: typeof cacheTags[keyof typeof cacheTags]) => {
     return c(tag)
@@ -96,8 +97,7 @@ export const getAllRedirects = async () => {
   return await db.select().from(redirectsTable)
 }
 
-export type menuItems = {name: string, slug: string, cate: Category[]}
-export const getAllMenuItems = async ():Promise<menuItems[]> => {
+export const getAllMenuItems = async ():Promise<HeaderSub[]> => {
   "use cache"
   cacheTag(cacheTags.menuItems)
   const [result1] = await Promise.all([
@@ -105,8 +105,23 @@ export const getAllMenuItems = async ():Promise<menuItems[]> => {
   ])
   
   return [
-    {name: "پرامپت",slug: "/Prompts", cate: result1},
-    {name: "n8n",slug: "/n8n", cate: []},
-    {name: "ابزار", slug: "/Tools",cate: []},
+    {
+      mainItem: {
+        name: "پرامپت", slug: "Prompts", id: ""
+      },
+      subItems: result1
+    },
+    {
+      mainItem: {
+        name: "n8n", slug: "n8n", id: ""
+      },
+      subItems: []
+    },
+    {
+      mainItem: {
+        name: "ابزار", slug: "Tools", id: ""
+      },
+      subItems: []
+    },
   ]
 }
