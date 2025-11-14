@@ -1,18 +1,11 @@
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import Logo from "../parts/Logo"
-import HeaderSub, { HeaderSub as H } from "./HeaderSub"
+import { Suspense } from "react"
+import { Spinner } from "../ui/spinner"
+import LoginButton from "./LoginButton"
 
 export default async function Header() {
-
-  const guideSubmenu:H = {
-    mainItem: {name: "آموزش"},
-    subItems: [
-      {name: "پرامپت چیست؟", slug: "what-is-prompt"},
-      {name: "n8n چیست؟", slug: "what-is-n8n"},
-      {name: "آموزش نصب n8n", slug: "download-install-n8n"},
-    ]
-  }
 
   return (
     <header className="border-b border-border bg-background/30 backdrop-blur-xl sticky top-0 z-20 ">
@@ -31,7 +24,6 @@ export default async function Header() {
             </Link>
 
             {/* راهنما */}
-            <HeaderSub {...guideSubmenu}/>
 
             {/* جامع */}
             <Link href="/Blog">
@@ -44,6 +36,9 @@ export default async function Header() {
           </nav>
 
           {/* Login Button - Left side in RTL */}
+          <Suspense fallback={<Spinner/>}>
+            <LoginButton/>
+          </Suspense>
         </div>
       </div>
     </header>
