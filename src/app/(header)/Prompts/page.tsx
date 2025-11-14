@@ -1,9 +1,9 @@
 import LibraryClient from "@/components/LibraryClient"
-import { fetchPrompts } from "@/server/dataFetching"
+import { getAllPrompts } from "@/server/dataFetching"
 
 const page = async () => {
 
-    let p = await fetchPrompts()
+    let p = await getAllPrompts()
 
   return (
     <LibraryClient prompts={p}/>

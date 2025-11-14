@@ -40,7 +40,7 @@ export const getPromptById = async (id: number) => {
 }
 
 
-export const fetchPrompts = async () => {
+export const getAllPrompts = async () => {
   "use cache"
   cacheTag(cacheTags.prompts)
   return await db.query.promptsTable.findMany({

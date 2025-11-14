@@ -12,7 +12,7 @@ import { Suspense, useState } from "react";
 import { limitChar } from "@/lib/utils";
 import { callModal } from "@/components/layout/Modal";
 import { Calendar, Edit, Eye, Plus, Trash2 } from "lucide-react";
-import { fetchPrompts } from "@/server/dataFetching";
+import { getAllPrompts } from "@/server/dataFetching";
 import { deletePrompt } from "@/server/mutation";
 import Link from "@/components/ui/link";
 import { editPromptUrl, promptDetailsUrl } from "@/lib/url";
@@ -41,7 +41,7 @@ export default function PromptManagmentClient({initialBlogs, type}:p) {
         const {ok} = await deletePrompt(post.id)
         if (ok) {
           toast.success("با موفقیت حذف شد!")
-          const blogs = await fetchPrompts()
+          const blogs = await getAllPrompts()
           setPosts(blogs)
         }
         else toast.error("خطایی پیش آمده. لطفا مجددا تلاش کنید")
