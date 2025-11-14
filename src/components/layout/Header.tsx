@@ -1,6 +1,5 @@
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
-import Logo from "../parts/Logo"
 import HeaderSub, { HeaderSub as H } from "./HeaderSub"
 import { Suspense } from "react"
 import { Spinner } from "../ui/spinner"
@@ -22,7 +21,6 @@ export default async function Header() {
       <div className="container mx-auto px-5 ">
         <div className="flex py-4 items-center justify-between">
           {/* Logo - Right side in RTL */}
-          <Logo/>
 
           {/* Navigation - Center */}
           <nav className="hidden md:flex items-center gap-1">
@@ -47,6 +45,9 @@ export default async function Header() {
           </nav>
 
           {/* Login Button - Left side in RTL */}
+          <Suspense fallback={<Spinner/>}>
+            <LoginButton/>
+          </Suspense>
         </div>
       </div>
     </header>
