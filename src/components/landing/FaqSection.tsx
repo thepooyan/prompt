@@ -52,8 +52,8 @@ export default function FAQSection() {
         </div>
 
         <div className="text-center mt-10">
-          <h5 className="text-lg font-bold  ">پاسخ خود را پیدا نکردید؟</h5>
-          <p className="text-gray-400 mt-2">
+          <h5 className="text-lg font-bold ">پاسخ خود را پیدا نکردید؟</h5>
+          <p className="mt-2">
             تیم پشتیبانی ما آماده پاسخگویی و ارائه مشاوره تخصصی به شماست.
           </p>
           <a
