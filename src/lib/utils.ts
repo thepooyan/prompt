@@ -1,3 +1,4 @@
+import { promptType } from "@/db/schema"
 import { clsx, type ClassValue } from "clsx"
 import { twMerge } from "tailwind-merge"
 
@@ -97,4 +98,13 @@ export function capitalize(str: string): string {
   if (!str) return ''
   if (str === "n8n") return "n8n"
   return str[0].toUpperCase() + str.slice(1)
+}
+
+export const getEntityName = (type: promptType) => {
+  switch (type) {
+    case "prompt":
+      return "پرامپت"
+    case "n8n":
+      return "n8n"
+  }
 }
