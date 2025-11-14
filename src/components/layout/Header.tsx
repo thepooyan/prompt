@@ -4,9 +4,21 @@ import Logo from "../parts/Logo"
 import { Suspense } from "react"
 import { Spinner } from "../ui/spinner"
 import LoginButton from "./LoginButton"
-import HeaderGuide from "./HeaderGuide"
+import HeaderSub, { HeaderSub as H } from "./HeaderSub"
+import { getAllMenuItems } from "@/server/dataFetching"
 
-export default function Header() {
+export default async function Header() {
+  const subMenu = await getAllMenuItems()
+
+  const guideSubmenu:H = {
+    mainItem: {name: "آموزش"},
+    subItems: [
+      {name: "پرامپت چیست؟", slug: "what-is-prompt"},
+      {name: "n8n چیست؟", slug: "what-is-n8n"},
+      {name: "آموزش نصب n8n", slug: "download-install-n8n"},
+    ]
+  }
+
   return (
     <header className="border-b border-border bg-background/30 backdrop-blur-xl sticky top-0 z-20 ">
       <div className="container mx-auto px-5 ">
@@ -24,7 +36,7 @@ export default function Header() {
             </Link>
 
             {/* راهنما */}
-            <HeaderGuide/>
+            <HeaderSub {...guideSubmenu}/>
 
             {/* جامع */}
             <Link href="/Blog">
@@ -34,6 +46,8 @@ export default function Header() {
             </Link>
 
             {/* محصولات - Three-layer dropdown */}
+            {subMenu.map((s,i) => <HeaderSub {...s} key={i}/>)}
+
           </nav>
 
           {/* Login Button - Left side in RTL */}
