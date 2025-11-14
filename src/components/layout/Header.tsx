@@ -46,7 +46,7 @@ export default async function Header() {
             </Link>
 
             {/* محصولات - Three-layer dropdown */}
-            {subMenu.map(s => <HeaderSub {...s} />)}
+            {subMenu.map((s,i) => <HeaderSub {...s} key={i}/>)}
           </nav>
 
           {/* Login Button - Left side in RTL */}

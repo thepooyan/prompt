@@ -1,7 +1,7 @@
 "use server"
 import { revalidateTag as r, cacheTag as c } from 'next/cache'
 import { db } from "@/db"
-import { Blog, blogsTable, Category, promptCateTable, promptsTable, redirectsTable } from "@/db/schema"
+import { Blog, blogsTable, promptCateTable, promptsTable, redirectsTable } from "@/db/schema"
 import { desc, eq } from 'drizzle-orm'
 import { cacheTags } from './cache'
 import { HeaderSub } from '@/components/layout/HeaderSub'
