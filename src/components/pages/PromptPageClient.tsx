@@ -10,6 +10,8 @@ import Copyable from '../ui/copyable';
 import { getTelegramShareUrl, getTwitterShareUrl } from '@/lib/utils';
 import { PromptWithRelations } from '@/server/dataFetching';
 import Link from '../ui/link';
+import MyBreadcrumb from '../parts/MyBreadcrumb';
+import { promptBreadcrumb } from '../ts/breadcrumb';
 
 interface p { 
   prompt: PromptWithRelations
@@ -26,9 +28,11 @@ export default function PromptPage({ prompt }:p ) {
   return (
     <article className="min-h-screen bg-background">
       {/* Hero Section */}
-      <div className="relative h-[400px] w-full overflow-hidden bg-gradient-to-br from-blue-600 to-purple-700">
-        <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-
+      <div className="relative h-[30dvw] w-full overflow-hidden bg-muted">
+        <Image src={prompt.picture || "/placeholder.svg"} alt={prompt.title} className="object-cover m-auto object-top"
+        fill
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-background via-background/60 to-transparent" />
         <div className="relative mx-auto flex h-full max-w-4xl flex-col justify-end px-4 pb-12">
           <div className="mb-4 flex flex-wrap items-center gap-2">
             {tagList.map((tag) => (
@@ -64,8 +68,10 @@ export default function PromptPage({ prompt }:p ) {
         </div>
       </div>
 
+
       {/* Content Section */}
       <div className="mx-auto max-w-4xl px-4 py-12">
+        <MyBreadcrumb items={promptBreadcrumb(prompt)}/>
 
         {/* Description */}
         <div className="my-12 ">
@@ -79,7 +85,7 @@ export default function PromptPage({ prompt }:p ) {
             <PromptCopyButton text={prompt.prompt} />
           </div>
           <div className="p-6">
-            <pre className="ltr whitespace-pre-wrap font-mono text-sm leading-relaxed">{prompt.prompt}</pre>
+            <pre className="ltr whitespace-pre-wrap overflow-hidden font-mono text-sm leading-relaxed">{prompt.prompt}</pre>
           </div>
         </div>
 
@@ -89,11 +95,10 @@ export default function PromptPage({ prompt }:p ) {
 
           <Image
             className="rounded "
-            src={prompt.picture || "/placeholder.svg"}
+            src={prompt.samplePicture || "/placeholder.svg"}
             alt={prompt.title}
-            width={500}
-            height={500}
-            priority
+            width={1023}
+            height={1023}
           />
         </div>
 

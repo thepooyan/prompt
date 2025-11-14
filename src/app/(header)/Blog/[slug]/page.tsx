@@ -1,7 +1,6 @@
 import BlogAsync from "@/components/pages/BlogAsync"
 import { LoadingPage } from "@/components/parts/LoadingPage"
 import { fetchSingleBlog } from "@/server/dataFetching"
-import { env } from "@/server/env"
 import { Metadata } from "next"
 import { Suspense } from "react"
 
