@@ -45,6 +45,17 @@ export const fetchPrompts = async () => {
   cacheTag(cacheTags.prompts)
   return await db.query.promptsTable.findMany({
     with: {category: true},
+    where: eq(promptsTable.type, "prompt"),
+    orderBy: desc(promptsTable.updated_at),
+  })
+}
+
+export const getAllN8n = async () => {
+  "use cache"
+  cacheTag(cacheTags.n8n)
+  return await db.query.promptsTable.findMany({
+    with: {category: true},
+    where: eq(promptsTable.type, "n8n"),
     orderBy: desc(promptsTable.updated_at),
   })
 }

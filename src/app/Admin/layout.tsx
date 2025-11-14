@@ -15,6 +15,10 @@ export default function AdminLayout({children}:{children: ReactNode}) {
       slug: "PromptManagment"
     }, 
     {
+      name: "n8n",
+      slug: "N8nManagment"
+    }, 
+    {
       name: "دسته بندی پرامپت",
       slug: "PromptCate"
     }, 

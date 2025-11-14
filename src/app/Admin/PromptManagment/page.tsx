@@ -6,7 +6,7 @@ const page = async () => {
   const data = await fetchPrompts()
 
   return (
-    <PromptManagmentClient initialBlogs={data}/>
+    <PromptManagmentClient initialBlogs={data} type="prompt"/>
   )
 }
 

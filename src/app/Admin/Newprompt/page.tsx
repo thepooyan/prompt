@@ -4,7 +4,7 @@ import { getAllCategories } from "@/server/dataFetching"
 const page = async () => {
   const cate = await getAllCategories("prompt")
   return (
-    <PromptEditor categories={cate}/>
+    <PromptEditor categories={cate} type="prompt"/>
   )
 }
 

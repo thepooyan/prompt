@@ -19,7 +19,7 @@ const InnerPage = async ({params}:p) => {
 
   return (
     <>
-      <PromptEditor edit={data} categories={cate}/>
+      <PromptEditor edit={data} categories={cate} type="prompt"/>
     </>
   )
 }
