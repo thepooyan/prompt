@@ -3,7 +3,7 @@ import { getAllPrompts } from "@/server/dataFetching"
 
 const page = async () => {
 
-    let p = await getAllPrompts()
+  const p = await getAllPrompts("prompt")
 
   return (
     <LibraryClient prompts={p}/>

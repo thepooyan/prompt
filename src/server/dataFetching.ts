@@ -40,12 +40,12 @@ export const getPromptById = async (id: number) => {
 }
 
 
-export const getAllPrompts = async () => {
+export const getAllPrompts = async (type: promptType) => {
   "use cache"
   cacheTag(cacheTags.prompts)
   return await db.query.promptsTable.findMany({
     with: {category: true},
-    where: eq(promptsTable.type, "prompt"),
+    where: eq(promptsTable.type, type),
     orderBy: desc(promptsTable.updated_at),
   })
 }
