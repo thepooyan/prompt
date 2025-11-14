@@ -26,6 +26,7 @@ export const promptsTable = pgTable("prompts", {
   slug: varchar({ length: 255 }).notNull(),
   tags: text().notNull(),
   picture: varchar({ length: 255 }).notNull(),
+  samplePicture: varchar({ length: 255 }).notNull(),
   isFree: boolean().notNull().default(false),
   isActive: boolean().notNull().default(false),
   excerpt: varchar({ length: 255 }).notNull(),

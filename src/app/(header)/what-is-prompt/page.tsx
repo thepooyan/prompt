@@ -14,7 +14,7 @@ export default function PromptGuide() {
     <div className="min-h-screen">
        <main>
         {/* Hero Section */}
-        <section className="bg-gradient-to-br from-primary/5 to-secondary/5 py-20 border-b border-border   ">
+        <section className="bg-gradient-to-br from-primary/5 to-transparent py-20 border-b border-border   ">
           <div className="container mx-auto px-4 text-center">
             <div className="flex gap-2 justify-center mb-4 flex-wrap">
               <span className="inline-flex items-center gap-2 px-3 py-2 rounded-full bg-accent text-accent-foreground text-sm">

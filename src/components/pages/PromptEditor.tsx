@@ -42,6 +42,7 @@ export default function PromptEditor({edit, categories}:p) {
     tags: z.string(),
     category_id: z.string(),
     picture: z.string(),
+    samplePicture: z.string(),
     isFree: z.boolean(),
     seoTitle: z.string(),
     seoDescription: z.string(),
@@ -57,6 +58,7 @@ export default function PromptEditor({edit, categories}:p) {
     prompt: "",
     tags: "",
     picture: "",
+    samplePicture: "",
     isFree: true,
     seoTitle: "",
     seoDescription: "",
@@ -255,6 +257,35 @@ export default function PromptEditor({edit, categories}:p) {
                   <div className="mt-2">
                     <img
                       src={formData.picture || "/placeholder.svg"}
+                      alt="پیش‌نمایش"
+                      className="w-full h-32 object-cover rounded-md"
+                      onError={(e) => {
+                        e.currentTarget.style.display = "none"
+                      }}
+                    />
+                  </div>
+                )}
+              </div>
+
+              {/* Picture URL */}
+              <div className="space-y-2">
+                <Label htmlFor="picture">نمونه خروجی</Label>
+                <div className="flex gap-2">
+                  <Input
+                    id="picture"
+                    value={formData.samplePicture}
+                    onChange={(e) => handleInputChange("samplePicture", e.target.value)}
+                    placeholder="آدرس تصویر را وارد کنید"
+                    className="text-right"
+                  />
+                  <UploadMediaBtn onUploaded={str => handleInputChange("samplePicture", str)}>
+                    <Upload className="h-4 w-4" />
+                  </UploadMediaBtn>
+                </div>
+                {formData.samplePicture && (
+                  <div className="mt-2">
+                    <img
+                      src={formData.samplePicture || "/placeholder.svg"}
                       alt="پیش‌نمایش"
                       className="w-full h-32 object-cover rounded-md"
                       onError={(e) => {
