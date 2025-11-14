@@ -92,3 +92,9 @@ export const getTelegramShareUrl = (url:string , text:string) =>
 
 export const getTwitterShareUrl = (url: string, text: string) =>
   `https://twitter.com/intent/tweet?url=${encodeURIComponent(url)}&text=${encodeURIComponent(text)}`
+
+export function capitalize(str: string): string {
+  if (!str) return ''
+  if (str === "n8n") return "n8n"
+  return str[0].toUpperCase() + str.slice(1)
+}
