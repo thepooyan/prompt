@@ -52,7 +52,7 @@ export const fetchPrompts = async () => {
 
 export const getAllN8n = async () => {
   "use cache"
-  cacheTag(cacheTags.n8n)
+  cacheTag(cacheTags.prompts)
   return await db.query.promptsTable.findMany({
     with: {category: true},
     where: eq(promptsTable.type, "n8n"),
