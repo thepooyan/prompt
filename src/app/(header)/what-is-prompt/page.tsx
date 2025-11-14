@@ -14,7 +14,7 @@ export default function PromptGuide() {
     <div className="min-h-screen">
        <main>
         {/* Hero Section */}
-        <section className="bg-gradient-to-br from-secondary to-secondary/5 py-20 border-b border-border text-secondary-foreground ">
+        <section className="bg-gradient-to-br from-primary/5 to-secondary/5 py-20 border-b border-border   ">
           <div className="container mx-auto px-4 text-center">
             <div className="flex gap-2 justify-center mb-4 flex-wrap">
               <span className="inline-flex items-center gap-2 px-3 py-2 rounded-full bg-accent text-accent-foreground text-sm">
@@ -29,7 +29,7 @@ export default function PromptGuide() {
             </div>
 
             <h1 className="text-4xl md:text-5xl font-bold mt-8 mb-6 text-balance">
-              پرامپت چیست؟ راهنمای جامع مهندسی پرامپت
+              <p className="text-primary">پرامپت چیست؟</p> راهنمای جامع مهندسی پرامپت
             </h1>
 
             <p className="text-lg md:text-xl text-primary-foreground max-w-4xl mx-auto leading-relaxed mb-8">
@@ -82,11 +82,11 @@ export default function PromptGuide() {
               <div className="flex-1 max-w-4xl">
                 {/* s1 */}
                 <section id="s1" className="mb-12">
-                  <h2 className="flex items-center gap-3 text-2xl font-bold mb-6 pb-3 border-b border-gray-700">
+                  <h2 className="flex items-center gap-3 text-2xl font-bold mb-6 pb-3 border-b  ">
                     <span className="text-purple-400">💡</span> پرامپت به زبان خیلی ساده
                   </h2>
-                  <p className="text-gray-400 leading-relaxed text-lg">
-                    <strong className="text-gray-200">پرامپت</strong> متن یا دستوری است که به مدل هوش مصنوعی می‌دهی. هرچه دقیق‌تر بنویسی، خروجی بهتر می‌شود.
+                  <p className="  leading-relaxed text-lg">
+                    <strong className="text-accent">پرامپت</strong> متن یا دستوری است که به مدل هوش مصنوعی می‌دهی. هرچه دقیق‌تر بنویسی، خروجی بهتر می‌شود.
                     <br/>نمونهٔ روشن:
                     <br/>– «یک کپشن اینستاگرام برای فروش کفش ورزشی بنویس، لحن خودمانی، حداکثر ۲ خط.»
                     <br/>– «۴ ایده‌تیتر زیر ۶۰ کاراکتر برای مقالهٔ خواب سالم بده.»
@@ -95,10 +95,10 @@ export default function PromptGuide() {
 
                 {/* s2 */}
                 <section id="s2" className="mb-12">
-                  <h2 className="flex items-center gap-3 text-2xl font-bold mb-6 pb-3 border-b border-gray-700">
+                  <h2 className="flex items-center gap-3 text-2xl font-bold mb-6 pb-3 border-b  ">
                     <span className="text-purple-400">📐</span> پرامپت‌نویسی و اهمیت آن
                   </h2>
-                  <p className="text-gray-400 leading-relaxed text-lg">
+                  <p className=" leading-relaxed text-lg">
                     پرامپت‌نویسی (Prompt Engineering) یعنی تبدیل خواستهٔ ذهنی به دستور قابل‌فهم برای AI.
                     نتیجه‌اش: آزمون‌وخطای کمتر، کنترل روی لحن/طول/فرمت و خروجی حرفه‌ای برای محتوا، طراحی، تصویر و حتی کدنویسی.
                   </p>
