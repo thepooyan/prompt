@@ -41,7 +41,7 @@ export default function PromptManagmentClient({initialBlogs, type}:p) {
         const {ok} = await deletePrompt(post.id)
         if (ok) {
           toast.success("با موفقیت حذف شد!")
-          const blogs = await getAllPrompts()
+          const blogs = await getAllPrompts(type)
           setPosts(blogs)
         }
         else toast.error("خطایی پیش آمده. لطفا مجددا تلاش کنید")
