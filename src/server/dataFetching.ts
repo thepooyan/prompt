@@ -113,9 +113,10 @@ export const getAllRedirects = async () => {
 export const getAllMenuItems = async ():Promise<HeaderSub[]> => {
   "use cache"
   cacheTag(cacheTags.menuItems)
-  const [result1] = await Promise.all([
-    db.query.promptCateTable.findMany()
-  ])
+  const result = await db.query.promptCateTable.findMany()
+
+  const result1 = result.filter(r => r.type === "prompt")
+  const result2 = result.filter(r => r.type === "n8n")
   
   return [
     {
@@ -128,7 +129,7 @@ export const getAllMenuItems = async ():Promise<HeaderSub[]> => {
       mainItem: {
         name: "n8n", slug: "n8n", 
       },
-      subItems: []
+      subItems: result2
     },
     {
       mainItem: {
