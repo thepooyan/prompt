@@ -4,6 +4,7 @@ import { Button } from "../ui/button"
 import { useState } from "react"
 import Link from "../ui/link"
 import HeaderSub, { HeaderSub as H } from "./HeaderSub"
+import { cn } from "@/lib/utils"
 
 interface p {
   guideSubmenu: H
@@ -21,11 +22,9 @@ const Burger = ({guideSubmenu, subMenu}:p) => {
 
       {open && <>
         <div className="h-dvh bg-muted text-muted-foreground fixed right-0 top-0 w-xs">
-            <Link href="/">
-              <Button variant="ghost">
-                خانه
-              </Button>
-            </Link>
+          <MenuItem title="خانه" href="/" />
+          <MenuItem title={guideSubmenu.mainItem.name} href={guideSubmenu.mainItem.slug || ""} dented/>
+          <MenuItem title="بلاگ" href="/Blog" />
 
             {/* راهنما */}
             <HeaderSub {...guideSubmenu}/>
@@ -44,6 +43,14 @@ const Burger = ({guideSubmenu, subMenu}:p) => {
       </>}
     </div>
   )
+}
+
+const MenuItem = ({title, href, dented}:{title: string, href: string, dented?: boolean}) => {
+  return <Link href={href}
+    className={cn(
+      "block p-5",
+      dented && `mr-5`)}
+  >{title}</Link>
 }
 
 export default Burger
