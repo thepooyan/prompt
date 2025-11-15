@@ -13,6 +13,7 @@ import Link from '../ui/link';
 import MyBreadcrumb from '../parts/MyBreadcrumb';
 import { promptBreadcrumb } from '../ts/breadcrumb';
 import { PromptCard } from '../PromptCard';
+import { AuthorCard } from '../author/AuthorCard';
 
 interface p { 
   prompt: PromptWithRelations
@@ -110,6 +111,8 @@ export default function PromptPage({ prompt, related }:p ) {
             <Markdwon>{prompt.description}</Markdwon>
           </div>
         </div>
+
+        <AuthorCard author={prompt.author}/>
 
         <div className='flex flex-col items-center'>
           <p className='text-2xl font-bold mb-4'>اشتراک گذاری</p>

@@ -29,7 +29,7 @@ export const promptsTable = pgTable("prompts", {
   category_id: uuid().references(() => promptCateTable.id, {onDelete: "restrict"}).notNull(),
   title: varchar({ length: 255 }).notNull(),
   slug: varchar({ length: 255 }).notNull(),
-  author: uuid().references(() => authorsTable.id, {onDelete: "restrict"}).notNull().default("db72e0e5-5a35-48c9-92ed-98c868c83a69"),
+  author_id: uuid().references(() => authorsTable.id, {onDelete: "restrict"}).notNull().default("db72e0e5-5a35-48c9-92ed-98c868c83a69"),
   tags: text().notNull(),
   picture: varchar({ length: 255 }).notNull(),
   samplePicture: varchar({ length: 255 }).notNull(),
@@ -43,7 +43,8 @@ export const promptsTable = pgTable("prompts", {
 });
 
 export const promptsRelations = relations(promptsTable, ({one}) => ({
-  category: one(promptCateTable, {fields: [promptsTable.category_id], references: [promptCateTable.id]})
+  category: one(promptCateTable, {fields: [promptsTable.category_id], references: [promptCateTable.id]}),
+  author: one(authorsTable, {fields: [promptsTable.author_id], references: [authorsTable.id]})
 }))
 
 export const promptCateRelatins = relations(promptCateTable, ({many}) => ({

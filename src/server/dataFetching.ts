@@ -72,7 +72,7 @@ export const fetchSinglePrompt = async (slug: string) => {
   "use cache"
   cacheTag(cacheTags.singleBlog)
   return await db.query.promptsTable.findFirst({
-    with: {category: true},
+    with: {category: true, author: true},
     where: eq(promptsTable.slug, decodeURIComponent(slug))
   })
 } 
