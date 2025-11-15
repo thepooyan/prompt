@@ -5,6 +5,7 @@ import { Blog, blogsTable, promptCateTable, promptsTable, promptType, redirectsT
 import { desc, eq } from 'drizzle-orm'
 import { cacheTags } from './cache'
 import { HeaderSub } from '@/components/layout/HeaderSub'
+import { navItem } from '@/components/layout/Burger'
 
 export const cacheTag = async (tag: typeof cacheTags[keyof typeof cacheTags]) => {
     return c(tag)
@@ -136,6 +137,50 @@ export const getAllMenuItems = async ():Promise<HeaderSub[]> => {
         name: "ابزار", slug: "Tools", 
       },
       subItems: []
+    },
+  ]
+}
+
+export const getAllNavItems = async ():Promise<navItem[]> => {
+  "use cache"
+  cacheTag(cacheTags.menuItems)
+  const result = await db.query.promptCateTable.findMany()
+
+  const result1 = result.filter(r => r.type === "prompt")
+  const result2 = result.filter(r => r.type === "n8n")
+  
+  return [
+    {
+      label: "خانه",
+      href: "/",
+    },
+    {
+      label: "بلاگ",
+      href: "Blog",
+    },
+    {
+      label: "آموزش",
+      href: "#",
+      submenu: [
+        {label: "پرامپت چیست؟", href: "what-is-prompt"},
+        {label: "n8n چیست؟", href: "what-is-n8n"},
+        {label: "آموزش نصب n8n", href: "download-install-n8n"},
+      ]
+    },
+    {
+      label: "پرامپت",
+      href: "/Prompts",
+      submenu: result1.map(r => ({label: r.name, href: `/Prompts/${r.slug}` }))
+    },
+    {
+      label: "n8n",
+      href: "/n8n",
+      submenu: result2.map(r => ({label: r.name, href: `/n8n/${r.slug}` }))
+    },
+    {
+      label: "ابزار",
+      href: "/Tools",
+      submenu: []
     },
   ]
 }

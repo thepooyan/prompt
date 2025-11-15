@@ -5,12 +5,12 @@ import { Suspense } from "react"
 import { Spinner } from "../ui/spinner"
 import LoginButton from "./LoginButton"
 import HeaderSub, { HeaderSub as H } from "./HeaderSub"
-import { getAllMenuItems } from "@/server/dataFetching"
+import { getAllMenuItems, getAllNavItems } from "@/server/dataFetching"
 import Burger from "./Burger"
 
 export default async function Header() {
   const subMenu = await getAllMenuItems()
-
+  const navItems = await getAllNavItems()
   const guideSubmenu:H = {
     mainItem: {name: "آموزش"},
     subItems: [
@@ -20,13 +20,14 @@ export default async function Header() {
     ]
   }
 
+
   return (
     <header className="border-b border-border bg-background/30 backdrop-blur-xl sticky top-0 z-20 ">
       <div className="container mx-auto px-5 ">
         <div className="flex py-4 items-center justify-between">
           {/* Logo - Right side in RTL */}
           <div className="flex items-center gap-5 ">
-            <Burger subMenu={subMenu} guideSubmenu={guideSubmenu}/>
+            <Burger navItems={navItems}/>
             <Logo/>
           </div>
 
