@@ -7,8 +7,23 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Mail, Lock } from "lucide-react"
 import Link from "next/link"
 import ContinueWithGoogle from "../auth/Google"
+import { useState } from "react"
+import { authClient } from "@/lib/auth-client"
 
 export default function LoginPage() {
+  const [email, setEmail] = useState("")
+  const [pass, setPass] = useState("")
+
+  const submit = async () => {
+    await authClient.signIn.email({
+      email: email,
+      password: pass,
+      rememberMe: true,
+      callbackURL: "/"
+    })
+
+  }
+
   return (
     <div className="min-h-screen bg-muted flex items-center justify-center p-4">
       {/* Background gradient effect */}
@@ -26,7 +41,7 @@ export default function LoginPage() {
             <CardDescription className="">برای دسترسی به حساب کاربری خود وارد شوید</CardDescription>
           </CardHeader>
           <CardContent>
-            <form className="space-y-5">
+            <form className="space-y-5" onSubmit={e => {e.preventDefault();submit()}}>
               {/* Email Field */}
               <div className="space-y-2">
                 <Label htmlFor="email" className="">
@@ -39,6 +54,8 @@ export default function LoginPage() {
                     type="email"
                     placeholder="example@email.com"
                     className="pr-10"
+                    value={email}
+                    onChange={e => setEmail(e.currentTarget.value)}
                   />
                 </div>
               </div>
@@ -63,6 +80,8 @@ export default function LoginPage() {
                     type="password"
                     placeholder="••••••••"
                     className="pr-10"
+                    value={pass}
+                    onChange={e => setPass(e.currentTarget.value)}
                   />
                 </div>
               </div>
