@@ -1,5 +1,6 @@
 export const cacheTags =  {
     blogs : "blogs",
+    author : "author",
     singleBlog : "singleBlog",
     prompts : "prompts",
     singlePrompt: "singlePrompt",

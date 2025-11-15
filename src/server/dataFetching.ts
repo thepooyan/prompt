@@ -1,7 +1,7 @@
 "use server"
 import { revalidateTag as r, cacheTag as c } from 'next/cache'
 import { db } from "@/db"
-import { Blog, blogsTable, promptCateTable, promptsTable, promptType, redirectsTable } from "@/db/schema"
+import { authorsTable, Blog, blogsTable, promptCateTable, promptsTable, promptType, redirectsTable } from "@/db/schema"
 import { desc, eq } from 'drizzle-orm'
 import { cacheTags } from './cache'
 import { navItem } from '@/components/layout/Burger'
@@ -37,6 +37,14 @@ export const getBlogById = async (id: number) => {
 export const getPromptById = async (id: number) => {
     const [en] = await db.select().from(promptsTable).where(eq(promptsTable.id, id)).limit(1)
     return en
+}
+
+export const getAuthorById = async (id: string) => {
+  "use cache"
+  cacheTag(cacheTags.author)
+  return await db.query.authorsTable.findFirst({
+    where: eq(authorsTable.id, id)
+  })
 }
 
 

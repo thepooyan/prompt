@@ -29,6 +29,7 @@ export const promptsTable = pgTable("prompts", {
   category_id: uuid().references(() => promptCateTable.id, {onDelete: "restrict"}).notNull(),
   title: varchar({ length: 255 }).notNull(),
   slug: varchar({ length: 255 }).notNull(),
+  author: uuid().references(() => authorsTable.id, {onDelete: "restrict"}).notNull().default("db72e0e5-5a35-48c9-92ed-98c868c83a69"),
   tags: text().notNull(),
   picture: varchar({ length: 255 }).notNull(),
   samplePicture: varchar({ length: 255 }).notNull(),
@@ -77,3 +78,17 @@ export const redirectsTable = pgTable("redirects", {
 
 export type Redirect = InferSelectModel<typeof redirectsTable>
 export type NewRedirect = InferInsertModel<typeof redirectsTable>
+
+export const authorsTable = pgTable("authors", (t) => ({
+  id: t.uuid().defaultRandom().primaryKey(),
+  name: t.varchar({ length: 150 }).notNull(),
+  email: t.varchar({ length: 254 }),
+  picture: t.varchar({ length: 200 }),
+  github: t.varchar({ length: 100 }),
+  linkedin: t.varchar({ length: 100 }),
+  twitter: t.varchar({ length: 100 }),
+  website: t.varchar({ length: 200 })
+}));
+
+export type Author = InferSelectModel<typeof authorsTable>
+export type NewAuthor = InferInsertModel<typeof authorsTable>
