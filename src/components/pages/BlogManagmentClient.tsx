@@ -12,7 +12,7 @@ import { Suspense, useState } from "react";
 import { limitChar } from "@/lib/utils";
 import { callModal } from "@/components/layout/Modal";
 import { Calendar, Edit, Eye, Plus, Trash2 } from "lucide-react";
-import { fetchBlogs } from "@/server/dataFetching";
+import { getAllBlogs } from "@/server/dataFetching";
 import { deleteBlog } from "@/server/mutation";
 import { weblogDetailsUrl } from "@/lib/url";
 import Link from "@/components/ui/link";
@@ -31,7 +31,7 @@ export default function BlogManagmentClient({initialBlogs}:p) {
         const {ok} = await deleteBlog(post.id)
         if (ok) {
           toast.success("با موفقیت حذف شد!")
-          const blogs = await fetchBlogs()
+          const blogs = await getAllBlogs()
           setPosts(blogs)
         }
         else toast.error("خطایی پیش آمده. لطفا مجددا تلاش کنید")

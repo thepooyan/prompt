@@ -1,12 +1,12 @@
 import BlogCard from "@/components/parts/BlogCard";
 import MyBreadcrumb from "@/components/parts/MyBreadcrumb";
 import { allblogBreadcrumb } from "@/components/ts/breadcrumb";
-import { fetchBlogs } from "@/server/dataFetching";
+import { getAllBlogs } from "@/server/dataFetching";
 import { Metadata } from "next";
 
 const page = async () => {
 
-  const posts = await fetchBlogs()
+  const posts = await getAllBlogs()
 
   return (
     <div className="max-w-7xl m-auto py-20 px-5">

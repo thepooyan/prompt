@@ -18,7 +18,7 @@ export const getPromptsByCategory = async (cate: string) => {
   })
 }
 
-export const fetchBlogs = async () => {
+export const getAllBlogs = async () => {
   "use cache"
   cacheTag(cacheTags.blogs)
   return await db.select().from(blogsTable)
