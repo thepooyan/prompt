@@ -1,4 +1,6 @@
+import MyBreadcrumb from "@/components/parts/MyBreadcrumb"
 import PromptAccordion from "@/components/parts/PromptAccordion"
+import { tutorialBreadcrumb } from "@/components/ts/breadcrumb"
 import { Button } from "@/components/ui/button"
 import {Metadata} from "next"
 import Image from "next/image"
@@ -21,6 +23,7 @@ export default function PromptGuide() {
         {/* Hero Section */}
         <section className="bg-gradient-to-br from-primary/5 to-transparent py-20 border-b border-border   ">
           <div className="container mx-auto px-4 text-center">
+            <MyBreadcrumb items={tutorialBreadcrumb("پرامپت چیست؟")}/>
             <div className="flex gap-2 justify-center mb-4 flex-wrap">
               <span className="inline-flex items-center gap-2 px-3 py-2 rounded-full bg-accent text-accent-foreground text-sm">
                 <span className="text-yellow-400">⚡</span> پرامپت چیست

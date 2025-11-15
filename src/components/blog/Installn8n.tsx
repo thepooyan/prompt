@@ -18,6 +18,8 @@ import {
 } from "lucide-react"
 import Link from "next/link"
 import Image from "next/image"
+import MyBreadcrumb from "../parts/MyBreadcrumb"
+import { tutorialBreadcrumb } from "../ts/breadcrumb"
 
 export default function InstallN8nPage() {
   // استیت برای مدیریت وضعیت دکمه کپی
@@ -65,17 +67,7 @@ volumes:
         <div className="max-w-4xl mx-auto">
           
           {/* --- Breadcrumbs --- */}
-          <nav className="text-sm mb-8 text-muted-foreground flex items-center gap-2">
-            <Link href="/" className="hover:text-primary transition-colors flex items-center gap-1">
-              <Home className="w-3 h-3" /> خانه
-            </Link>
-            <span className="mx-2">/</span>
-            <Link href="/what-is-n8n" className="hover:text-primary transition-colors">
-              آموزش جامع n8n
-            </Link>
-            <span className="mx-2">/</span>
-            <span className="text-foreground font-medium">دانلود و نصب n8n</span>
-          </nav>
+          <MyBreadcrumb items={tutorialBreadcrumb("آموزش دانلود و نصب n8n")}/>
 
           {/* --- Hero Section --- */}
           <header className="mb-16 text-center space-y-6">

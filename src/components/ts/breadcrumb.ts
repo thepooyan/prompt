@@ -8,6 +8,7 @@ export const blogBreadcrumb = (title: string) => [
   {title: "بلاگ", href:"/Blog"},
   {title: title, href:""},
 ]
+
 export const allblogBreadcrumb = [
   {title: "خانه", href:"/"},
   {title: "بلاگ", href:"/Blog"},
@@ -17,4 +18,10 @@ export const promptBreadcrumb = (pr: PromptWithRelations):returnType => [
   {title: getEntityName(pr.type), href: `/${capitalize(pr.type)}`},
   {title: pr.category.name , href:`/${capitalize(pr.type)}/${pr.category.slug}`},
   {title: pr.title, href:""},
+]
+
+export const tutorialBreadcrumb = (title: string) => [
+  {title: "خانه", href:"/"},
+  {title: "آموزش", href:"#"},
+  {title: title, href:""},
 ]

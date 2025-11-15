@@ -16,11 +16,13 @@ interface p {
 
 }
 const MyBreadcrumb = ({items}:p) => {
-  const lastItem = items.pop()
+  const last = items.length - 1
+  const start = items.slice(0, last)
+  const finish = items.at(last)
   return (
     <Breadcrumb className="mb-5">
       <BreadcrumbList>
-        {items.map((item, index) => <Fragment key={index}>
+        {start.map((item, index) => <Fragment key={index}>
             <BreadcrumbItem>
               <BreadcrumbLink href={item.href}>{item.title}</BreadcrumbLink>
             </BreadcrumbItem>
@@ -28,7 +30,7 @@ const MyBreadcrumb = ({items}:p) => {
           </Fragment>
         )}
         <BreadcrumbItem>
-          <BreadcrumbPage>{lastItem?.title || ""}</BreadcrumbPage>
+          <BreadcrumbPage>{finish?.title}</BreadcrumbPage>
         </BreadcrumbItem>
       </BreadcrumbList>
     </Breadcrumb>
