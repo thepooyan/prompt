@@ -1,6 +1,6 @@
 import PromptEditor from "@/components/pages/PromptEditor"
 import { LoadingPage } from "@/components/parts/LoadingPage"
-import { getAllCategories, getPromptById } from "@/server/dataFetching"
+import { getAllAuthors, getAllCategories, getPromptById } from "@/server/dataFetching"
 import { Suspense } from "react"
 
 interface p {
@@ -15,11 +15,11 @@ const page = (props:p) => {
 }
 const InnerPage = async ({params}:p) => {
   const {id} = await params
-  const [data, cate] = await Promise.all([getPromptById(id), getAllCategories("prompt")])
+  const [data, cate, auth] = await Promise.all([getPromptById(id), getAllCategories("prompt"), getAllAuthors()])
 
   return (
     <>
-      <PromptEditor edit={data} categories={cate} type="prompt"/>
+      <PromptEditor edit={data} categories={cate} type="prompt" authors={auth}/>
     </>
   )
 }

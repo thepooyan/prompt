@@ -21,7 +21,7 @@ import { X, Plus, Upload } from "lucide-react"
 import Link from "next/link"
 import { toast } from "sonner"
 import {  updatePrompt,  insertPrompt } from "@/server/mutation"
-import { PromptCategory, Prompt, promptType } from "@/db/schema"
+import { PromptCategory, Prompt, promptType, Author } from "@/db/schema"
 import { useRouter } from "next/navigation"
 import ArrayInput from "../ui/array-input"
 import z from "zod"
@@ -31,9 +31,10 @@ import { getEntityName } from "@/lib/utils"
 interface p {
   edit?: Prompt
   categories: PromptCategory[]
+  authors: Author[]
   type: promptType
 }
-export default function PromptEditor({edit, categories, type}:p) {
+export default function PromptEditor({edit, categories, type, authors}:p) {
 
   const entityName = getEntityName(type)
   
@@ -45,6 +46,7 @@ export default function PromptEditor({edit, categories, type}:p) {
     prompt: z.string(),
     tags: z.string(),
     category_id: z.string(),
+    author_id: z.string(),
     picture: z.string(),
     samplePicture: z.string(),
     isFree: z.boolean(),
@@ -59,6 +61,7 @@ export default function PromptEditor({edit, categories, type}:p) {
     excerpt: "",
     slug: "",
     category_id: "",
+    author_id: "",
     prompt: "",
     tags: "",
     picture: "",
@@ -175,6 +178,20 @@ export default function PromptEditor({edit, categories, type}:p) {
                   <SelectContent>
                     {categories.map(c => 
                       <SelectItem key={c.slug} value={c.id}>{c.name}</SelectItem>)}
+                  </SelectContent>
+                </Select>
+              </div>
+
+              {/* Auth */}
+              <div className="space-y-2">
+                <Label>نویسنده *</Label>
+                <Select onValueChange={e => handleInputChange("author_id", e)} value={formData.author_id || ""} >
+                  <SelectTrigger className="w-full" >
+                    <SelectValue placeholder="نویسنده" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {authors.map(c => 
+                      <SelectItem key={c.id} value={c.id}>{c.name}</SelectItem>)}
                   </SelectContent>
                 </Select>
               </div>

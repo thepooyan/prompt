@@ -125,8 +125,11 @@ export const getAuthorById = async (id: string) => {
   })
 }
 
+export const getAllAuthors = async () => {
+  return await db.query.authorsTable.findMany()
+}
 
-
+// other
 
 export const getAllCategories = async (type: promptType) => {
   return await db.query.promptCateTable.findMany({where: eq(promptCateTable.type, type)})
