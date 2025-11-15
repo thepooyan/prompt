@@ -5,9 +5,11 @@ import { Button } from "@/components/ui/button"
 import Link from "next/link"
 import { 
   CheckCircle2, Zap, CloudCog, Code, TrendingUp, Cpu, 
-  Download, Bell, MessageSquare, LineChart, ShieldCheck, 
-  DollarSign, Server, XCircle, Scale, Rocket 
+  Download, DollarSign,  XCircle, Scale, Rocket 
 } from "lucide-react"
+import Image from "next/image"
+import MyBreadcrumb from "../parts/MyBreadcrumb"
+import { allblogBreadcrumb } from "../ts/breadcrumb"
 
 export default function WhatIsn8n() {
   const [activeAccordion, setActiveAccordion] = useState("f1")
@@ -29,16 +31,13 @@ export default function WhatIsn8n() {
 
   return (
     <div className="min-h-screen bg-background text-foreground" dir="rtl">
-      
-      
       <main>
-        {/* Hero Section */}
-        <section className="relative py-20 border-b border-border/40 overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-b from-primary/5 to-transparent pointer-events-none" />
-
-
-          
-          <div className="container mx-auto px-4 text-center relative z-10">
+        <section className="relative pb-20 border-b border-border/40 overflow-hidden">
+          <div className="relative h-[30dvw] w-full overflow-hidden bg-muted">
+            <Image src="https://c327107.parspack.net/prompt/1763220443864-what-is-n8n.webp" alt="what-is-n8n" className="object-cover m-auto object-top" fill />
+            <div className="absolute inset-0 bg-gradient-to-t from-background via-background/60 to-transparent" ></div>
+          </div>
+          <div className="flex flex-col items-center text-center -m-32 z-20 container max-w-4xl mx-auto px-4 -mt-32 relative  ">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-secondary/50 border border-secondary text-secondary-foreground text-xs font-medium mb-6">
               <span className="flex h-2 w-2 rounded-full bg-green-500 animate-pulse"></span>
               راهنمای جامع ۲۰۲۵
@@ -47,6 +46,10 @@ export default function WhatIsn8n() {
               <span className="text-primary">n8n چیست؟</span> <br className="hidden md:block" />
               قدرت اتوماسیون رایگان و بدون تحریم
             </h1>
+
+
+          
+          <div className="container mx-auto px-4 text-center relative z-10">
 
             <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed mb-8 text-pretty">
               اگر به دنبال پاسخی برای سوال <strong>"n8n چیست و چگونه کار می‌کند؟"</strong> هستید و می‌خواهید بدون هزینه دلاری، کارهای تکراری خود را به ربات‌ها بسپارید، جای درستی آمده‌اید.
@@ -66,6 +69,7 @@ export default function WhatIsn8n() {
               </Button>
             </div>
           </div>
+        </div>
         </section>
 
         {/* Main Content */}
