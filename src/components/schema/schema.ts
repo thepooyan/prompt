@@ -1,3 +1,5 @@
+import { Author } from "@/db/schema"
+
 export type schema = Record<string, string | object>
 
 // export const mainSchema:schema = {
@@ -12,3 +14,22 @@ export type schema = Record<string, string | object>
 //         logo: 'https://yourwebsite.com/logo.png',
 //     },
 // }
+//
+
+
+export function getAuthorSchema(author: Author) {
+  const schema: Record<string, any> = {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    name: author.name
+  };
+
+  if (author.email) schema.email = `mailto:${author.email}`;
+  if (author.website) schema.url = author.website;
+  if (author.picture) schema.image = author.picture;
+
+  const sameAs = [author.github, author.linkedin, author.twitter, author.website].filter(Boolean);
+  if (sameAs.length > 0) schema.sameAs = sameAs;
+
+  return schema;
+}

@@ -3,6 +3,8 @@ import { Card } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Mail, Github, Linkedin, Twitter, Globe } from 'lucide-react'
 import { Author } from '@/db/schema'
+import RenderSchema from '../schema/RenderSchema'
+import { getAuthorSchema } from '../schema/schema'
 
 interface AuthorProfileProps {
   author: Author
@@ -17,6 +19,7 @@ export function AuthorProfile({ author }: AuthorProfileProps) {
 
   return (
     <div className="min-h-screen bg-background">
+      <RenderSchema schema={getAuthorSchema(author)}/>
       <div className="mx-auto max-w-4xl px-6 py-16 md:py-24">
         <div className="space-y-12">
           {/* Header Section */}
