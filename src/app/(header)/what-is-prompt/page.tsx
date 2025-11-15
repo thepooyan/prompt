@@ -1,6 +1,7 @@
 import PromptAccordion from "@/components/parts/PromptAccordion"
 import { Button } from "@/components/ui/button"
 import {Metadata} from "next"
+import Image from "next/image"
 import Link from "next/link"
 
 export const metadata:Metadata = {
@@ -12,7 +13,11 @@ export const metadata:Metadata = {
 export default function PromptGuide() {
   return (
     <div className="min-h-screen">
-       <main>
+          <div className="relative h-[30dvw] w-full overflow-hidden bg-muted">
+            <Image src="https://c327107.parspack.net/prompt/1763220436802-prompt.webp" alt="what-is-n8n" className="object-cover m-auto object-top" fill />
+            <div className="absolute inset-0 bg-gradient-to-t from-background via-background/60 to-transparent" ></div>
+          </div>
+       <main className=" mx-auto px-4 -mt-48 relative z-10">
         {/* Hero Section */}
         <section className="bg-gradient-to-br from-primary/5 to-transparent py-20 border-b border-border   ">
           <div className="container mx-auto px-4 text-center">

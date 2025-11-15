@@ -8,8 +8,6 @@ import {
   Download, DollarSign,  XCircle, Scale, Rocket 
 } from "lucide-react"
 import Image from "next/image"
-import MyBreadcrumb from "../parts/MyBreadcrumb"
-import { allblogBreadcrumb } from "../ts/breadcrumb"
 
 export default function WhatIsn8n() {
   const [activeAccordion, setActiveAccordion] = useState("f1")
@@ -37,7 +35,7 @@ export default function WhatIsn8n() {
             <Image src="https://c327107.parspack.net/prompt/1763220443864-what-is-n8n.webp" alt="what-is-n8n" className="object-cover m-auto object-top" fill />
             <div className="absolute inset-0 bg-gradient-to-t from-background via-background/60 to-transparent" ></div>
           </div>
-          <div className="flex flex-col items-center text-center -m-32 z-20 container max-w-4xl mx-auto px-4 -mt-32 relative  ">
+          <div className="flex flex-col items-center text-center -m-32 z-20  mx-auto px-4 -mt-32 relative  ">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-secondary/50 border border-secondary text-secondary-foreground text-xs font-medium mb-6">
               <span className="flex h-2 w-2 rounded-full bg-green-500 animate-pulse"></span>
               راهنمای جامع ۲۰۲۵
