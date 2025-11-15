@@ -1,5 +1,5 @@
 import PromptPage from "@/components/pages/PromptPageClient"
-import { fetchSinglePrompt, fetchTwoPrompts } from "@/server/dataFetching"
+import { getPromptBySlug, getTwoPrompts } from "@/server/dataFetching"
 import { Metadata } from "next"
 import { notFound } from "next/navigation"
 
@@ -8,7 +8,7 @@ interface p {
 }
 const page = async ({params}:p) => {
   const {slug} = await params
-  const [data, related ] = await Promise.all([fetchSinglePrompt(slug), fetchTwoPrompts() ])
+  const [data, related ] = await Promise.all([getPromptBySlug(slug), getTwoPrompts() ])
   if (!data) return notFound()
   return (
     <>
@@ -21,7 +21,7 @@ const page = async ({params}:p) => {
 export async function generateMetadata( { params }: p ): Promise<Metadata> {
   
   const { slug } = await params
-  const data = await fetchSinglePrompt(slug)
+  const data = await getPromptBySlug(slug)
 
   if (!data) return {}
  

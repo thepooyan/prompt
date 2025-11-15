@@ -1,5 +1,5 @@
 import { PromptCard } from "../PromptCard"
-import { fetchThreePrompts } from "@/server/dataFetching"
+import { getThreePrompts } from "@/server/dataFetching"
 import Link from "../ui/link"
 import { Button } from "../ui/button"
 import { ArrowLeft, Library } from "lucide-react"
@@ -8,7 +8,7 @@ import { capitalize, getEntityName } from "@/lib/utils"
 
 export default async function LatestPrompts({type}: {type: promptType}) {
 
-  const posts = await fetchThreePrompts(type)
+  const posts = await getThreePrompts(type)
   const name = getEntityName(type)
 
   return (

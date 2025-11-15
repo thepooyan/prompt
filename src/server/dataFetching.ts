@@ -44,16 +44,6 @@ export const getFiveBlogs = async () => {
 
 const promptWith = {with: {category: true, author: true}} as const
 
-export const getPromptsByCategory = async (cate: string) => {
-  return await db.query.promptCateTable.findFirst({
-    where: eq(promptCateTable.slug, cate),
-    with: {
-      posts: {
-        ...promptWith,
-      }
-    },
-  })
-}
 
 export const getPromptById = async (id: number) => {
     const [en] = await db.select().from(promptsTable).where(eq(promptsTable.id, id)).limit(1)
@@ -79,7 +69,7 @@ export const getAllN8n = async () => {
   })
 }
 
-export const fetchSinglePrompt = async (slug: string) => {
+export const getPromptBySlug = async (slug: string) => {
   "use cache"
   cacheTag(cacheTags.singleBlog)
   return await db.query.promptsTable.findFirst({
@@ -87,9 +77,23 @@ export const fetchSinglePrompt = async (slug: string) => {
     where: eq(promptsTable.slug, decodeURIComponent(slug))
   })
 } 
-export type PromptWithRelations = NonNullable<Awaited<ReturnType<typeof fetchSinglePrompt>>>
 
-export const fetchThreePrompts = async (type: promptType) => {
+export const getPromptsByCategory = async (cate: string) => {
+  "use cache"
+  cacheTag(cacheTags.prompts)
+  return await db.query.promptCateTable.findFirst({
+    where: eq(promptCateTable.slug, cate),
+    with: {
+      posts: {
+        ...promptWith,
+      }
+    },
+  })
+}
+
+export type PromptWithRelations = NonNullable<Awaited<ReturnType<typeof getPromptBySlug>>>
+
+export const getThreePrompts = async (type: promptType) => {
   "use cache"
   cacheTag(cacheTags.prompts)
   return await db.query.promptsTable.findMany({
@@ -100,7 +104,7 @@ export const fetchThreePrompts = async (type: promptType) => {
   })
 }
 
-export const fetchTwoPrompts = async () => {
+export const getTwoPrompts = async () => {
   "use cache"
   cacheTag(cacheTags.prompts)
   return await db.query.promptsTable.findMany({
