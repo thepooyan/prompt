@@ -8,11 +8,11 @@ interface p {
 }
 const page = async ({params}:p) => {
   const {slug} = await params
-  const [data, ] = await Promise.all([fetchSinglePrompt(slug) ])
+  const [data, related] = await Promise.all([fetchSinglePrompt(slug) , fetchTwoPrompts()])
   if (!data) return notFound()
   return (
     <>
-      <PromptPage prompt={data} />
+      <PromptPage prompt={data} related={related}/>
     </>
   )
 }

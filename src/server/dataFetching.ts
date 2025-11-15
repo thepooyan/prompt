@@ -96,7 +96,7 @@ export const fetchTwoPrompts = async () => {
     limit: 2,
     orderBy: desc(promptsTable.updated_at),
     where: eq(promptsTable.type, "prompt"),
-    with: {category: true}
+    with: {category: true, author: true}
   })
 }
 
