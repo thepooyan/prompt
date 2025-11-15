@@ -26,6 +26,7 @@ import { useRouter } from "next/navigation"
 import ArrayInput from "../ui/array-input"
 import z from "zod"
 import UploadMediaBtn from "../admin/UploadMediaBtn"
+import { getEntityName } from "@/lib/utils"
 
 interface p {
   edit?: Prompt
@@ -34,14 +35,7 @@ interface p {
 }
 export default function PromptEditor({edit, categories, type}:p) {
 
-  const entityName = (() => {
-    switch (type) {
-      case "prompt":
-        return "پرامپت"
-      case "n8n":
-        return "n8n"
-    }
-  })()
+  const entityName = getEntityName(type)
   
   const inputSchema = z.object({
     title: z.string(),
