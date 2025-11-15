@@ -70,7 +70,7 @@ export default function LoginPage() {
               {/* Login Button */}
               <Button
                 type="submit"
-                className="w-full bg-gradient-to-l from-primary to-[#6a1bb2] hover:from-[#9a3bf2] hover:to-[#7a2bc2] text-white font-medium glow-purple-sm transition-all duration-300 h-10"
+                className="w-full bg-gradient-to-l from-primary/70 to-secondary/70 hover:from-primary hover:to-secondary text-primary-foreground font-medium glow-purple-sm transition-all duration-200 h-10"
               >
                 ورود
               </Button>
