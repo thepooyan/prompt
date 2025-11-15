@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import { logoUrl } from "@/config/config";
+import { getLogoUrl } from "@/config/config";
 
 export default function Hero() {
   return (
@@ -15,7 +15,7 @@ export default function Hero() {
             <span className="text-sm text-accent-foreground ">بازار پرامپت‌های هوش مصنوعی</span>
           </div>
 
-          <Image src={logoUrl} width={250} height={250} alt="prompt Bazar's logo" className="m-auto"/>
+          <Image src={getLogoUrl()} width={250} height={250} alt="prompt Bazar's logo" className="m-auto"/>
 
           {/* ----- این بخش تغییر کرده است ----- */}
           <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold mb-6 leading-tight text-balance  ">

@@ -5,6 +5,7 @@ import { Toaster } from "sonner";
 import Modal from "@/components/layout/Modal";
 import { env } from "@/server/env";
 import {GoogleTagManager} from "@next/third-parties/google"
+import { theme } from "@/config/config";
 
 const vazirmatn = Vazirmatn({
   variable: "--font-vazirmatn",
@@ -35,7 +36,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="theme-amber">
+    <html lang="en" className={`theme-${theme}`}>
       <GoogleTagManager gtmId={env.NEXT_PUBLIC_GTM_ID}/>
     
       <body
