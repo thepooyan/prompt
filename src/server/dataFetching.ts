@@ -6,6 +6,19 @@ import { desc, eq } from 'drizzle-orm'
 import { cacheTags } from './cache'
 import { navItem } from '@/components/layout/Burger'
 
+const promptWith = {with: {category: true, author: true}} as const
+
+export const getPromptByCategory = async (cate: string) => {
+  return await db.query.promptCateTable.findFirst({
+    where: eq(promptCateTable.slug, cate),
+    with: {
+      posts: {
+        ...promptWith,
+      }
+    },
+  })
+}
+
 export const cacheTag = async (tag: typeof cacheTags[keyof typeof cacheTags]) => {
     return c(tag)
 }
@@ -52,7 +65,7 @@ export const getAllPrompts = async (type: promptType) => {
   "use cache"
   cacheTag(cacheTags.prompts)
   return await db.query.promptsTable.findMany({
-    with: {category: true},
+    ...promptWith,
     where: eq(promptsTable.type, type),
     orderBy: desc(promptsTable.updated_at),
   })
@@ -62,7 +75,7 @@ export const getAllN8n = async () => {
   "use cache"
   cacheTag(cacheTags.prompts)
   return await db.query.promptsTable.findMany({
-    with: {category: true},
+    ...promptWith,
     where: eq(promptsTable.type, "n8n"),
     orderBy: desc(promptsTable.updated_at),
   })
@@ -72,7 +85,7 @@ export const fetchSinglePrompt = async (slug: string) => {
   "use cache"
   cacheTag(cacheTags.singleBlog)
   return await db.query.promptsTable.findFirst({
-    with: {category: true, author: true},
+    ...promptWith,
     where: eq(promptsTable.slug, decodeURIComponent(slug))
   })
 } 
@@ -85,7 +98,7 @@ export const fetchThreePrompts = async (type: promptType) => {
     limit: 3,
     orderBy: desc(promptsTable.updated_at),
     where: eq(promptsTable.type, type),
-    with: {category: true}
+    ...promptWith,
   })
 }
 
@@ -96,7 +109,7 @@ export const fetchTwoPrompts = async () => {
     limit: 2,
     orderBy: desc(promptsTable.updated_at),
     where: eq(promptsTable.type, "prompt"),
-    with: {category: true, author: true}
+    ...promptWith,
   })
 }
 

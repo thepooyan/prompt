@@ -1,7 +1,5 @@
 import LibraryClient from "@/components/LibraryClient"
-import { db } from "@/db"
-import { promptCateTable } from "@/db/schema"
-import { eq } from "drizzle-orm"
+import { getPromptByCategory } from "@/server/dataFetching"
 import { notFound } from "next/navigation"
 
 interface p {
@@ -11,17 +9,12 @@ const page = async ({params}:p) => {
 
   const {cate} = await params
 
-  const data = await db.query.promptCateTable.findFirst({
-    where: eq(promptCateTable.slug, cate),
-    with: {posts: true}
-  })
+  const data = await getPromptByCategory(cate)
 
   if (!data) return notFound()
 
-  const posts = data.posts.map(p => ({...p, category: {slug: cate, name: data.name, id: data.id, type: "n8n" as const}}))
-
   return (
-    <LibraryClient prompts={posts} category={data.name} type="n8n"/>
+    <LibraryClient prompts={data.posts} category={data.name} type="n8n"/>
   )
 }
 
