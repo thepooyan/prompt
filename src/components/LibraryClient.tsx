@@ -7,15 +7,19 @@ import { Badge } from "@/components/ui/badge"
 import { Search, Filter, X } from "lucide-react"
 import { PromptCard } from "@/components/PromptCard"
 import { PromptWithRelations } from "@/server/dataFetching"
+import { getEntityName } from "@/lib/utils"
+import { promptType } from "@/db/schema"
 
 interface p {
   prompts: PromptWithRelations[]
   category?: string
+  type: promptType
 }
-export default function LibraryClient({prompts, category}:p) {
+export default function LibraryClient({prompts, category, type}:p) {
   const [searchQuery, setSearchQuery] = useState("")
   const [selectedTags, setSelectedTags] = useState<string[]>([])
   const [showFreeOnly, setShowFreeOnly] = useState(false)
+  const name = getEntityName(type)
 
   // Extract all unique tags from prompts
   const allTags = useMemo(() => {
@@ -68,9 +72,9 @@ export default function LibraryClient({prompts, category}:p) {
       {/* Header */}
       <div className="mb-8">
         <h1 className="text-3xl font-bold text-foreground mb-2">
-          کتابخانه پرامپت‌ها {category}
+          کتابخانه {name}‌ها {category}
         </h1>
-        <p className="text-muted-foreground">مجموعه‌ای از بهترین پرامپت‌ها برای نیازهای مختلف شما</p>
+        <p className="text-muted-foreground">مجموعه‌ای از بهترین {name}‌ها برای نیازهای مختلف شما</p>
       </div>
 
       {/* Search and Filters */}
@@ -130,7 +134,7 @@ export default function LibraryClient({prompts, category}:p) {
       {/* Results Count */}
       <div className="mb-6">
         <p className="text-sm text-muted-foreground">
-          {filteredPrompts.length} پرامپت از {prompts.length} پرامپت یافت شد
+          {filteredPrompts.length} {name} از {prompts.length} پرامپت یافت شد
         </p>
       </div>
 
@@ -143,7 +147,7 @@ export default function LibraryClient({prompts, category}:p) {
         </div>
       ) : (
         <div className="text-center py-12">
-          <p className="text-muted-foreground text-lg mb-4">هیچ پرامپتی یافت نشد</p>
+          <p className="text-muted-foreground text-lg mb-4">هیچ {name}ی یافت نشد</p>
           <p className="text-sm text-muted-foreground mb-6">
             لطفاً فیلترهای خود را تغییر دهید یا جستجوی جدیدی انجام دهید
           </p>

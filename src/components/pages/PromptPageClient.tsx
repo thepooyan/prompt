@@ -12,11 +12,13 @@ import { PromptWithRelations } from '@/server/dataFetching';
 import Link from '../ui/link';
 import MyBreadcrumb from '../parts/MyBreadcrumb';
 import { promptBreadcrumb } from '../ts/breadcrumb';
+import { PromptCard } from '../PromptCard';
 
 interface p { 
   prompt: PromptWithRelations
+  related: PromptWithRelations[]
 }
-export default function PromptPage({ prompt }:p ) {
+export default function PromptPage({ prompt, related }:p ) {
 
   const tagList = prompt.tags.split(",").map((tag) => tag.trim())
 
@@ -126,9 +128,12 @@ export default function PromptPage({ prompt }:p ) {
           </div> 
         </div>
 
-
-
-
+        {related.length > 0 && <>
+          <p className='text-center text-3xl mt-40 font-bold  '>مطالب مرتبط</p>
+          <div className='grid grid-cols-1 md:grid-cols-2 justify-items-center gap-5  mt-20'>
+            {related.map(r => <PromptCard prompt={r} key={r.slug}/>)}
+          </div>
+        </>}
       </div>
     </article>
   )
