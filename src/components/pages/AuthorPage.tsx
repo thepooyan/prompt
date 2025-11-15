@@ -40,16 +40,16 @@ export function AuthorProfile({ author }: AuthorProfileProps) {
               </div>
 
               <p className="text-pretty text-base leading-relaxed text-muted-foreground md:text-lg">
-                علاقه‌مند به خلق داستان‌های جذاب و به اشتراک گذاشتن دیدگاه‌ها درباره‌ی فناوری، طراحی و فرآیند خلاقانه. با من در سفری پر از ایده‌ها و نوآوری همراه شوید.
+                {author.description}
               </p>
             </div>
           </div>
 
           {/* Contact & Social Section */}
           <Card className="border-2 bg-card p-8">
-            <h2 className="mb-6 text-2xl font-semibold text-card-foreground">Connect</h2>
+            <h2 className="mb-6 text-2xl font-semibold text-card-foreground">تماس</h2>
 
-            <div className="grid gap-6 sm:grid-cols-2">
+            <div className="grid gap-6 sm:grid-cols-2 ltr">
               {/* Email */}
               {author.email && (
                 <div className="space-y-2">
