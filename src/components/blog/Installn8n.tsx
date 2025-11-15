@@ -2,7 +2,7 @@
 
 import { useState } from "react"
 import { Button } from "@/components/ui/button"
-import { Card, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
+import { Card, CardTitle, CardDescription } from "@/components/ui/card"
 import { 
   ArrowRight, 
   Download, 
@@ -61,12 +61,7 @@ volumes:
       </div>
 
       {/* Content Container */}
-      <div className="container max-w-4xl mx-auto px-4 -mt-32 relative z-10">
-       
-
-          
-        </div>
-      <main className="container mx-auto px-4 py-12 md:py-20">
+      <main className="container max-w-4xl mx-auto px-4 -mt-32 relative z-10">
         <div className="max-w-4xl mx-auto">
           
           {/* --- Breadcrumbs --- */}
@@ -291,7 +286,6 @@ volumes:
               </div>
             </Card>
           </section>
-
         </div>
       </main>
     </div>
