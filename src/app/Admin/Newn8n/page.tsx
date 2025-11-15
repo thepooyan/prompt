@@ -1,10 +1,10 @@
 import PromptEditor from "@/components/pages/PromptEditor"
-import { getAllCategories } from "@/server/dataFetching"
+import { getAllAuthors, getAllCategories } from "@/server/dataFetching"
 
 const page = async () => {
-  const cate = await getAllCategories("n8n")
+  const [cate, authors] = await Promise.all([ getAllCategories("n8n"), getAllAuthors() ])
   return (
-    <PromptEditor categories={cate} type="n8n"/>
+    <PromptEditor categories={cate} type="n8n" authors={authors}/>
   )
 }
 
