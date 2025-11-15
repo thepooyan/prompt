@@ -8,9 +8,7 @@ interface p {
 const page = async ({params}:p) => {
 
   const {cate} = await params
-
   const data = await getPromptsByCategory(cate)
-
   if (!data) return notFound()
 
 
