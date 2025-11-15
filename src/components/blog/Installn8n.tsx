@@ -17,6 +17,7 @@ import {
   Check 
 } from "lucide-react"
 import Link from "next/link"
+import Image from "next/image"
 
 export default function InstallN8nPage() {
   // استیت برای مدیریت وضعیت دکمه کپی
@@ -50,6 +51,20 @@ volumes:
   return (
     <div className="min-h-screen bg-background text-foreground" dir="rtl">
       
+      <div className="relative h-[30dvw] w-full overflow-hidden bg-muted">
+        {/* <Image src={blog.picture || "/placeholder.svg"} alt={blog.title} fill className="object-cover" priority /> */}
+        <Image src="" alt="" className="object-cover m-auto object-top"
+        fill
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-background via-background/60 to-transparent" />
+      </div>
+
+      {/* Content Container */}
+      <div className="container max-w-4xl mx-auto px-4 -mt-32 relative z-10">
+       
+
+          
+        </div>
       <main className="container mx-auto px-4 py-12 md:py-20">
         <div className="max-w-4xl mx-auto">
           
