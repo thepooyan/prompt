@@ -1,5 +1,5 @@
 import InstaBlog from "@/components/blog/Insta";
-import { fetchSingleBlog } from "@/server/dataFetching";
+import { getBlogBySlug } from "@/server/dataFetching";
 import { env } from "@/server/env";
 import { Metadata } from "next"
 
@@ -10,7 +10,7 @@ const page = () => {
 }
 
 export const generateMetadata = async (): Promise<Metadata> => { 
-  const data = await fetchSingleBlog("ai-instagram-content")
+  const data = await getBlogBySlug("ai-instagram-content")
 
   if (!data) throw new Error("ai-instagram-content not found")
 

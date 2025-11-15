@@ -1,6 +1,6 @@
 import BlogAsync from "@/components/pages/BlogAsync"
 import { LoadingPage } from "@/components/parts/LoadingPage"
-import { fetchSingleBlog } from "@/server/dataFetching"
+import { getBlogBySlug } from "@/server/dataFetching"
 import { Metadata } from "next"
 import { Suspense } from "react"
 
@@ -18,7 +18,7 @@ const page = (props:props) => {
 export async function generateMetadata( { params }: props): Promise<Metadata> {
   
   const { slug } = await params
-  const data = await fetchSingleBlog(slug)
+  const data = await getBlogBySlug(slug)
 
   if (!data) return {}
  

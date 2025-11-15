@@ -1,5 +1,5 @@
 import MidjournyBlog from "@/components/blog/Midjourny"
-import { fetchSingleBlog } from "@/server/dataFetching";
+import { getBlogBySlug } from "@/server/dataFetching";
 import { env } from "@/server/env";
 import { Metadata } from "next"
 
@@ -10,7 +10,7 @@ const page = () => {
 }
 
 export const generateMetadata = async (): Promise<Metadata> => { 
-  const data = await fetchSingleBlog("midjourney-prompt-guide")
+  const data = await getBlogBySlug("midjourney-prompt-guide")
 
   if (!data) throw new Error("midjourney-prompt-guide not found")
 

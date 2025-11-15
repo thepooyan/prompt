@@ -26,7 +26,7 @@ export const getAllBlogs = async () => {
         desc(blogsTable.updated_at),
       )
 }
-export const fetchSingleBlog = async (slug: string): Promise<Blog | null> => {
+export const getBlogBySlug = async (slug: string): Promise<Blog | null> => {
     "use cache"
     cacheTag(cacheTags.singleBlog)
     const [blog] = await db.select().from(blogsTable).where(eq(blogsTable.slug, decodeURIComponent(slug))).limit(1)

@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation"
 import { Badge } from "@/components/ui/badge"
-import { fetchSingleBlog } from "@/server/dataFetching"
+import { getBlogBySlug } from "@/server/dataFetching"
 import Image from "next/image"
 import MyBreadcrumb from "../parts/MyBreadcrumb"
 import { blogBreadcrumb } from "../ts/breadcrumb"
@@ -11,7 +11,7 @@ interface p {
 }
 export default async function BlogAsync({ params, }: p) {
   const { slug } = await params
-  const blog = await fetchSingleBlog(slug)
+  const blog = await getBlogBySlug(slug)
 
   if (!blog) {
     notFound()
