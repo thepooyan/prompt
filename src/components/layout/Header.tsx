@@ -1,25 +1,13 @@
-import Link from "next/link"
-import { Button } from "@/components/ui/button"
 import Logo from "../parts/Logo"
 import { Suspense } from "react"
 import { Spinner } from "../ui/spinner"
 import LoginButton from "./LoginButton"
 import HeaderSub, { HeaderSub as H } from "./HeaderSub"
-import { getAllMenuItems, getAllNavItems } from "@/server/dataFetching"
+import { getAllNavItems } from "@/server/dataFetching"
 import Burger from "./Burger"
 
 export default async function Header() {
-  const subMenu = await getAllMenuItems()
   const navItems = await getAllNavItems()
-  const guideSubmenu:H = {
-    mainItem: {name: "آموزش"},
-    subItems: [
-      {name: "پرامپت چیست؟", slug: "what-is-prompt"},
-      {name: "n8n چیست؟", slug: "what-is-n8n"},
-      {name: "آموزش نصب n8n", slug: "download-install-n8n"},
-    ]
-  }
-
 
   return (
     <header className="border-b border-border bg-background/30 backdrop-blur-xl sticky top-0 z-20 ">
@@ -33,26 +21,7 @@ export default async function Header() {
 
           {/* Navigation - Center */}
           <nav className="hidden md:flex items-center gap-1">
-            {/* خانه */}
-            <Link href="/">
-              <Button variant="ghost">
-                خانه
-              </Button>
-            </Link>
-
-            {/* راهنما */}
-            <HeaderSub {...guideSubmenu}/>
-
-            {/* جامع */}
-            <Link href="/Blog">
-              <Button variant="ghost" className="text-base">
-                بلاگ
-              </Button>
-            </Link>
-
-            {/* محصولات - Three-layer dropdown */}
-            {subMenu.map((s,i) => <HeaderSub {...s} key={i}/>)}
-
+            {navItems.map(nav => <HeaderSub item={nav} key={nav.label}/>)}
           </nav>
 
           {/* Login Button - Left side in RTL */}

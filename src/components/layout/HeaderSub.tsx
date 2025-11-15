@@ -4,26 +4,16 @@ import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
-
-type HeaderLink = {
-  name: string
-  slug: string
-}
-type HeaderCategory = {
-  name: string
-  slug?: string
-}
+import { navItem } from "./Burger";
 
 export interface HeaderSub {
-  subItems: HeaderLink[]
-  mainItem: HeaderCategory
+  item: navItem
 }
-const HeaderSub = ({ mainItem, subItems }:HeaderSub) => {
+const HeaderSub = ({ item }:HeaderSub) => {
 
   const [open, setOpen] = useState<boolean>(false);
-  const OptionalLink = mainItem.slug ? Link : "div";
-
-  const getSubItemLink = (slug: string) => mainItem.slug ? `/${mainItem.slug}/${slug}` : `/${slug}`
+  const OptionalLink = item.href ? Link : "div";
+  const hasSubMenu = (item.submenu && item.submenu.length > 0)
 
   return (
     <div
@@ -32,15 +22,15 @@ const HeaderSub = ({ mainItem, subItems }:HeaderSub) => {
       onMouseLeave={() => { setOpen(false); }}
     >
       <Button variant="ghost" className="text-base gap-1" asChild>
-        <OptionalLink href={"/" + mainItem.slug}>
-          {mainItem.name}
-          {subItems.length > 0 && 
+        <OptionalLink href={item.href}>
+          {item.label}
+          {hasSubMenu && 
           <ChevronDown className={cn(`h-4 w-4 transition-all`, open && "rotate-180")} />}
         </OptionalLink>
       </Button>
 
       {/* Layer 1: Main Categories */}
-      {subItems.length > 0 && 
+      {hasSubMenu && 
       <div
         className={cn(`absolute left-0 top-full w-56 rounded-lg overflow-hidden border border-border bg-popover shadow-lg z-50 transition-all duration-200 origin-top`,
           open ?
@@ -48,16 +38,16 @@ const HeaderSub = ({ mainItem, subItems }:HeaderSub) => {
           :
           "opacity-0 invisible scale-y-95 -translate-y-2 pointer-events-none")}
       >
-        {subItems.map(sub => (
+        {item.submenu?.map(sub => (
           <div
-            key={sub.name}
+            key={sub.label}
             className="relative"
           >
             <Link className={`w-full px-4 py-3 text-right hover:bg-accent hover:text-accent-foreground
               flex items-center justify-between transition-colors duration-150`}
-              href={getSubItemLink(sub.slug)}
+              href={sub.href}
             >
-              {sub.name}
+              {sub.label}
             </Link>
           </div>
         ))}
