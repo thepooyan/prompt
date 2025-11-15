@@ -136,8 +136,6 @@ export const getAllCategories = async (type: promptType) => {
 }
 
 export const getAllRedirects = async () => {
-  "use cache"
-  cacheTag(cacheTags.redirects)
   return await db.select().from(redirectsTable)
 }
 
