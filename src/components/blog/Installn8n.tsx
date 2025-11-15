@@ -53,7 +53,8 @@ volumes:
       
       <div className="relative h-[30dvw] w-full overflow-hidden bg-muted">
         {/* <Image src={blog.picture || "/placeholder.svg"} alt={blog.title} fill className="object-cover" priority /> */}
-        <Image src="" alt="" className="object-cover m-auto object-top"
+        <Image src="https://c327107.parspack.net/prompt/1763216771500-download-install-n8n.webp" alt="آموزش جامع دانلود و نصب n8n
+" className="object-cover m-auto object-top"
         fill
         />
         <div className="absolute inset-0 bg-gradient-to-t from-background via-background/60 to-transparent" />
