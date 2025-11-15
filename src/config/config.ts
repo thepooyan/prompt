@@ -1,7 +1,7 @@
 
 type theme = "dark" | "amber" | ""
 
-export const theme:theme = "" as theme
+export const theme:theme = "amber" as theme
 
 export const getLogoUrl = () => {
   switch (theme) {
