@@ -5,6 +5,43 @@ import { desc, eq } from 'drizzle-orm'
 import { cacheTag, cacheTags } from './cache'
 import { navItem } from '@/components/layout/Burger'
 
+// Blog
+
+export const getAllBlogs = async () => {
+  "use cache"
+  cacheTag(cacheTags.blogs)
+  return await db.select().from(blogsTable)
+      .orderBy(
+        desc(blogsTable.updated_at),
+      )
+}
+
+export const getBlogBySlug = async (slug: string): Promise<Blog | null> => {
+    "use cache"
+    cacheTag(cacheTags.singleBlog)
+    const [blog] = await db.select().from(blogsTable).where(eq(blogsTable.slug, decodeURIComponent(slug))).limit(1)
+    return blog
+}
+
+export const getBlogById = async (id: number) => {
+  "use cache"
+  cacheTag(cacheTags.singleBlog)
+    const [blog] = await db.select().from(blogsTable).where(eq(blogsTable.id, id)).limit(1)
+    return blog
+}
+
+export const getFiveBlogs = async () => {
+    "use cache"
+    cacheTag(cacheTags.blogs)
+    const data = await db.select().from(blogsTable).limit(5)
+      .orderBy(
+        desc(blogsTable.updated_at),
+      )
+    return data
+}
+
+// prompt 
+
 const promptWith = {with: {category: true, author: true}} as const
 
 export const getPromptsByCategory = async (cate: string) => {
@@ -18,40 +55,10 @@ export const getPromptsByCategory = async (cate: string) => {
   })
 }
 
-export const getAllBlogs = async () => {
-  "use cache"
-  cacheTag(cacheTags.blogs)
-  return await db.select().from(blogsTable)
-      .orderBy(
-        desc(blogsTable.updated_at),
-      )
-}
-export const getBlogBySlug = async (slug: string): Promise<Blog | null> => {
-    "use cache"
-    cacheTag(cacheTags.singleBlog)
-    const [blog] = await db.select().from(blogsTable).where(eq(blogsTable.slug, decodeURIComponent(slug))).limit(1)
-    return blog
-}
-
-export const getBlogById = async (id: number) => {
-    const [blog] = await db.select().from(blogsTable).where(eq(blogsTable.id, id)).limit(1)
-    return blog
-}
-
 export const getPromptById = async (id: number) => {
     const [en] = await db.select().from(promptsTable).where(eq(promptsTable.id, id)).limit(1)
     return en
 }
-
-export const getAuthorById = async (id: string) => {
-  "use cache"
-  cacheTag(cacheTags.author)
-  return await db.query.authorsTable.findFirst({
-    where: eq(authorsTable.id, id)
-  })
-}
-
-
 export const getAllPrompts = async (type: promptType) => {
   "use cache"
   cacheTag(cacheTags.prompts)
@@ -104,15 +111,18 @@ export const fetchTwoPrompts = async () => {
   })
 }
 
-export const fetchFiveBlogs = async () => {
-    "use cache"
-    cacheTag(cacheTags.blogs)
-    const data = await db.select().from(blogsTable).limit(5)
-      .orderBy(
-        desc(blogsTable.updated_at),
-      )
-    return data
+// author
+
+export const getAuthorById = async (id: string) => {
+  "use cache"
+  cacheTag(cacheTags.author)
+  return await db.query.authorsTable.findFirst({
+    where: eq(authorsTable.id, id)
+  })
 }
+
+
+
 
 export const getAllCategories = async (type: promptType) => {
   return await db.query.promptCateTable.findMany({where: eq(promptCateTable.type, type)})

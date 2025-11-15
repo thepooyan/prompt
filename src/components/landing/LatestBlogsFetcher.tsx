@@ -1,9 +1,9 @@
 import "server-only"
 import LatestBlogs from "./LatestBlogs"
-import { fetchFiveBlogs } from "@/server/dataFetching"
+import { getFiveBlogs } from "@/server/dataFetching"
 
 const LatestBlogsFetcher = async () => {
-    let data = await fetchFiveBlogs()
+    let data = await getFiveBlogs()
   return (
     <LatestBlogs blogs={data}/>
   )
