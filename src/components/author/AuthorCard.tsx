@@ -1,9 +1,11 @@
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { Card } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
-import { Mail, ArrowRight } from 'lucide-react'
+import { Mail, ArrowLeft } from 'lucide-react'
 import Link from 'next/link'
 import { Author } from '@/db/schema'
+import RenderSchema from '../schema/RenderSchema'
+import { getAuthorSchema } from '../schema/schema'
 
 interface AuthorCardProps {
   author: Author
@@ -17,7 +19,8 @@ export function AuthorCard({ author }: AuthorCardProps) {
     .toUpperCase()
 
   return (
-    <Card className="p-6">
+    <Card className="p-6 max-w-md m-auto">
+      <RenderSchema schema={getAuthorSchema(author)}/>
       <div className="flex items-start gap-4">
         <Avatar className="h-16 w-16 border-2 border-border">
           <AvatarImage src={author.picture || undefined} alt={author.name} />
@@ -41,9 +44,9 @@ export function AuthorCard({ author }: AuthorCardProps) {
           </div>
 
           <Button variant="outline" size="sm" className="w-full gap-2" asChild>
-            <Link href={`/author/${author.id}`}>
-              View Full Profile
-              <ArrowRight className="h-4 w-4" />
+            <Link href={`/Author/${author.id}`}>
+              در مورد نویسنده
+              <ArrowLeft className="h-4 w-4" />
             </Link>
           </Button>
         </div>

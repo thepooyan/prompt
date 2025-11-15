@@ -112,7 +112,10 @@ export default function PromptPage({ prompt, related }:p ) {
           </div>
         </div>
 
-        <AuthorCard author={prompt.author}/>
+        <div className='mb-20'>
+          <p className='text-2xl font-bold text-center mb-4'>نویسنده:</p>
+          <AuthorCard author={prompt.author}/>
+        </div>
 
         <div className='flex flex-col items-center'>
           <p className='text-2xl font-bold mb-4'>اشتراک گذاری</p>
