@@ -18,3 +18,4 @@ n8n {
 make manual blogs look like normal (and tutorial pages)
 tick active and deactive all (admin)
 check author schema is ok
+authors in admin
