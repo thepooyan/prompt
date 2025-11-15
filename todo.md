@@ -1,27 +1,23 @@
-fix admin security
-
-prompt inner page
-compelete login
-search like sokan
+compelete login => fix admin security
+search with query params
 make tags searchable
-add sitemap
-ADD RObots.txt
-add comment and rate to prompt model
-edited tags
-new tag 
-author
-breadcrumb for manual blogs
-category
-hamburger menu
-'
-n8n
-redirect 6-ai-tools to essential-ai-tools
+add sitemap and RObots.txt
 
-admin => seo options => 301 => tripple menu
+prompt {
+    author
+    comments
+    rating
+    better related items
+    handle premium case
+    new tag
+    updated tag
+}
+n8n {
+    change some text?
+}
 
-tick active and deactive all
-pulte color site
-
+make manual blogs look like normal (and tutorial pages)
+tick active and deactive all (admin)
 
 https://www.promptbazar.ir/contact            ?
 https://www.promptbazar.ir/prompts        ?
