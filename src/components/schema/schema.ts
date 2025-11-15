@@ -18,7 +18,7 @@ export type schema = Record<string, string | object>
 
 
 export function getAuthorSchema(author: Author) {
-  const schema: Record<string, any> = {
+  const schema: Record<string, string | object> = {
     "@context": "https://schema.org",
     "@type": "Person",
     name: author.name
