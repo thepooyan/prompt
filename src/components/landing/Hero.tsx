@@ -32,14 +32,14 @@ export default function Hero() {
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <button className="group relative px-8 py-4 bg-gradient-to-l from-primary to-primary text-primary-foreground rounded-xl font-medium transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-primary/20">
             {/* پیشنهاد می‌شود لینک را به حروف کوچک تغییر دهید: /prompt -> /prompts */}
-            <Link href="/Prompt"> 
+            <Link href="/Prompts"> 
               <span className="relative z-10">کتابخانه پرامپت‌ها</span>
               <div className="absolute inset-0 rounded-xl bg-gradient-to-l from-secondary to-secondary/70 opacity-0 group-hover:opacity-100 transition-opacity" />
             </Link>
             </button>
             <button className="px-8 py-4 bg-secondary text-secondary-foreground backdrop-blur-sm rounded-xl font-medium border border-accent-foreground/5 hover:border-accent-foreground/10 transition-all duration-300 hover:bg-accent">
              {/* پیشنهاد می‌شود لینک را به حروف کوچک تغییر دهید: /N8N -> /workflows */}
-            <Link href="/N8N">
+            <Link href="/n8n">
               کتابخانه N8N
             </Link>
             </button>
