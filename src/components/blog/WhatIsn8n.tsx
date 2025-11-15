@@ -29,10 +29,15 @@ export default function WhatIsn8n() {
 
   return (
     <div className="min-h-screen bg-background text-foreground" dir="rtl">
+      
+      
       <main>
         {/* Hero Section */}
         <section className="relative py-20 border-b border-border/40 overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-b from-primary/5 to-transparent pointer-events-none" />
+
+
+          
           <div className="container mx-auto px-4 text-center relative z-10">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-secondary/50 border border-secondary text-secondary-foreground text-xs font-medium mb-6">
               <span className="flex h-2 w-2 rounded-full bg-green-500 animate-pulse"></span>
