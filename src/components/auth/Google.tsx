@@ -10,6 +10,8 @@ const ContinueWithGoogle = () => {
       errorCallbackURL: "/error",
       callbackURL: "/",
       newUserCallbackURL: "/welcome"
+    }).catch(err => {
+      alert(err)
     })
   }
   return (

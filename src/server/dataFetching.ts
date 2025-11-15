@@ -154,7 +154,7 @@ export const getAllNavItems = async ():Promise<navItem[]> => {
     },
     {
       label: "بلاگ",
-      href: "Blog",
+      href: "/Blog",
     },
     {
       label: "آموزش",
