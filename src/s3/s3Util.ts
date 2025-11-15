@@ -17,7 +17,7 @@ export async function listFiles(bucket: string, prefix?: string) {
     continuationToken = res.NextContinuationToken
   } while (continuationToken)
 
-  return files
+  return files.reverse()
 }
 
 export async function deleteFileFromS3(bucket: string, key: string) {

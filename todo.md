@@ -1,6 +1,5 @@
 compelete login => fix admin security
-search with query params
-make tags searchable
+search with query params => make tags searchable
 add sitemap and RObots.txt
 
 prompt {
