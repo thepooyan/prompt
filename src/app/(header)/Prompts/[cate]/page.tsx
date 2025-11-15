@@ -1,5 +1,5 @@
 import LibraryClient from "@/components/LibraryClient"
-import { getPromptByCategory } from "@/server/dataFetching"
+import { getPromptsByCategory } from "@/server/dataFetching"
 import { notFound } from "next/navigation"
 
 interface p {
@@ -9,7 +9,7 @@ const page = async ({params}:p) => {
 
   const {cate} = await params
 
-  const data = await getPromptByCategory(cate)
+  const data = await getPromptsByCategory(cate)
 
   if (!data) return notFound()
 

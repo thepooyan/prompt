@@ -8,7 +8,7 @@ import { navItem } from '@/components/layout/Burger'
 
 const promptWith = {with: {category: true, author: true}} as const
 
-export const getPromptByCategory = async (cate: string) => {
+export const getPromptsByCategory = async (cate: string) => {
   return await db.query.promptCateTable.findFirst({
     where: eq(promptCateTable.slug, cate),
     with: {
