@@ -13,9 +13,9 @@ const ContinueWithGoogle = () => {
     })
   }
   return (
-    <button onClick={clickHndlr} className="  border-1 bg-zinc-700 rounded-lg w-full  flex justify-center 
-      py-3 gap-3 items-center cursor-pointer hover:bg-zinc-800
-      ">
+    <button onClick={clickHndlr} className={`  border-1 bg-input rounded-lg w-full  flex justify-center 
+      py-3 gap-3 items-center cursor-pointer hover:bg-accent transition-colors
+      `}>
       <Image width={40} height={40} src="/google.svg" alt="Google logo"/>
       با گوگل ادامه دهید
     </button>
