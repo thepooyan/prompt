@@ -1,25 +1,66 @@
 "use client"
 
+import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Card, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
-import { ArrowRight, Download, Cloud, Server, BookOpen, CheckCircle2, Terminal, Home, AlertTriangle } from "lucide-react"
+import { 
+  ArrowRight, 
+  Download, 
+  Cloud, 
+  Server, 
+  BookOpen, 
+  CheckCircle2, 
+  Terminal, 
+  Home, 
+  AlertTriangle, 
+  Copy, 
+  Check 
+} from "lucide-react"
 import Link from "next/link"
 
 export default function InstallN8nPage() {
+  // استیت برای مدیریت وضعیت دکمه کپی
+  const [isCopied, setIsCopied] = useState(false)
+
+  // متن کد داکر کامپوز
+  const dockerComposeCode = `version: "3"
+services:
+  n8n:
+    image: n8nio/n8n
+    restart: always
+    ports:
+      - "5678:5678"
+    environment:
+      - N8N_BASIC_AUTH_ACTIVE=true
+      - N8N_BASIC_AUTH_USER=admin
+      - N8N_BASIC_AUTH_PASSWORD=password  # رمز عبور خود را اینجا بنویسید
+      - N8N_HOST=your-domain.com # دامنه خود را اینجا وارد کنید
+    volumes:
+      - n8n_data:/home/node/.n8n
+volumes:
+  n8n_data:`
+
+  // تابع کپی کردن متن
+  const handleCopyCode = () => {
+    navigator.clipboard.writeText(dockerComposeCode)
+    setIsCopied(true)
+    setTimeout(() => setIsCopied(false), 2000) // بعد از ۲ ثانیه به حالت قبل برگردد
+  }
+
   return (
     <div className="min-h-screen bg-background text-foreground" dir="rtl">
       
       <main className="container mx-auto px-4 py-12 md:py-20">
         <div className="max-w-4xl mx-auto">
           
-          {/* --- Breadcrumbs (رعایت ساختار ستون-خوشه) --- */}
+          {/* --- Breadcrumbs --- */}
           <nav className="text-sm mb-8 text-muted-foreground flex items-center gap-2">
             <Link href="/" className="hover:text-primary transition-colors flex items-center gap-1">
               <Home className="w-3 h-3" /> خانه
             </Link>
             <span className="mx-2">/</span>
             <Link href="/what-is-n8n" className="hover:text-primary transition-colors">
-              آموزش جامع n8n (صفحه اصلی)
+              آموزش جامع n8n
             </Link>
             <span className="mx-2">/</span>
             <span className="text-foreground font-medium">دانلود و نصب n8n</span>
@@ -35,7 +76,7 @@ export default function InstallN8nPage() {
               آموزش جامع <span className="text-primary">دانلود و نصب n8n</span>
             </h1>
             <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-              برای شروع جادوی اتوماسیون، اولین قدم <strong>نصب n8n</strong> است. در این راهنما، تمام روش‌ها از <strong>نصب خودکار (نسخه دسکتاپ)</strong> برای شروع سریع تا <strong>نصب دستی (Manual) با داکر</strong> برای استفاده حرفه‌ای روی سرور را به صورت قدم‌به‌قدم یاد می‌گیرید.
+              برای شروع جادوی اتوماسیون، اولین قدم <strong>نصب n8n</strong> است. در این راهنما، تمام روش‌ها از <strong>نصب خودکار (نسخه دسکتاپ)</strong> تا <strong>نصب حرفه‌ای با داکر</strong> را یاد می‌گیرید.
             </p>
           </header>
 
@@ -55,7 +96,7 @@ export default function InstallN8nPage() {
                   <CardTitle className="text-xl mb-2">نصب روی ویندوز/مک</CardTitle>
                   <CardDescription>
                     <strong>(نسخه دسکتاپ)</strong><br/>
-                    ساده‌ترین روش. مناسب برای یادگیری، تست و استفاده شخصی بدون نیاز به سرور.
+                    ساده‌ترین روش. مناسب برای یادگیری، تست و استفاده شخصی.
                   </CardDescription>
                 </Card>
               </a>
@@ -69,7 +110,7 @@ export default function InstallN8nPage() {
                   <CardTitle className="text-xl mb-2">نصب روی سرور (VPS)</CardTitle>
                   <CardDescription>
                     <strong>(روش پیشنهادی ما)</strong><br/>
-                    استفاده از <strong>Docker</strong>. مناسب برای کسب‌وکارها، اجرای ۲۴ ساعته و اتصال به دامنه.
+                    استفاده از <strong>Docker</strong>. مناسب برای استفاده حرفه‌ای و اتصال به وب‌هوک‌ها.
                   </CardDescription>
                 </Card>
               </a>
@@ -82,7 +123,7 @@ export default function InstallN8nPage() {
                   </div>
                   <CardTitle className="text-xl mb-2">نسخه ابری (Cloud)</CardTitle>
                   <CardDescription>
-                    بدون نیاز به نصب. سریع اما با هزینه اشتراک دلاری. (برای کاربران داخل ایران پیشنهاد نمی‌شود)
+                    بدون نیاز به نصب. (به دلیل هزینه دلاری و محدودیت‌ها پیشنهاد نمی‌شود)
                   </CardDescription>
                 </Card>
               </a>
@@ -101,28 +142,28 @@ export default function InstallN8nPage() {
               </div>
               <Card className="p-8 border-l-4 border-l-blue-500 shadow-sm">
                 <p className="text-muted-foreground mb-6 leading-7">
-                  اگر دانش فنی زیادی ندارید یا فقط می‌خواهید n8n را روی لپ‌تاپ خودتان تست کنید، این بهترین گزینه است. این نسخه کاملاً رایگان است.
+                  اگر دانش فنی زیادی ندارید یا فقط می‌خواهید n8n را روی سیستم خودتان تست کنید، این بهترین گزینه است.
                 </p>
                 <ol className="space-y-8 relative border-r border-border pr-8 mr-2">
                   <li className="relative">
                     <span className="absolute -right-[41px] top-0 bg-background border-2 border-blue-500 text-blue-500 w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold">1</span>
                     <h3 className="font-bold text-foreground text-lg mb-2">دانلود نرم‌افزار</h3>
                     <p className="text-sm text-muted-foreground">
-                      به صفحه رسمی <a href="https://n8n.io/download/" target="_blank" rel="nofollow" className="text-blue-500 hover:underline font-medium">دانلود n8n Desktop</a> بروید. نسخه متناسب با سیستم عامل خود (Windows یا Mac) را دانلود کنید.
+                      به صفحه رسمی <a href="https://n8n.io/download/" target="_blank" rel="nofollow" className="text-blue-500 hover:underline font-medium">دانلود n8n Desktop</a> بروید و نسخه Windows یا Mac را دانلود کنید.
                     </p>
                   </li>
                   <li className="relative">
                     <span className="absolute -right-[41px] top-0 bg-background border-2 border-blue-500 text-blue-500 w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold">2</span>
                     <h3 className="font-bold text-foreground text-lg mb-2">نصب و اجرا</h3>
                     <p className="text-sm text-muted-foreground">
-                      فایل دانلود شده را اجرا کنید. مراحل نصب بسیار ساده است (Next, Next, Finish!). پس از پایان، برنامه n8n باز شده و آماده استفاده است. هیچ تنظیمات پیچیده‌ای لازم نیست!
+                      فایل را نصب و اجرا کنید. پس از چند لحظه، پنل n8n در مرورگر یا پنجره اختصاصی باز می‌شود.
                     </p>
                   </li>
                 </ol>
               </Card>
             </section>
 
-            {/* Server Guide (Important for SEO & Pro Users) */}
+            {/* Server Guide (Updated with Copy Button) */}
             <section id="server-install" className="scroll-mt-24">
               <div className="flex items-center gap-3 mb-6">
                 <div className="bg-primary/10 p-3 rounded-lg"><Terminal className="h-6 w-6 text-primary" /></div>
@@ -130,47 +171,52 @@ export default function InstallN8nPage() {
               </div>
               <Card className="p-8 border-l-4 border-l-primary bg-primary/5 shadow-md">
                 <p className="text-muted-foreground mb-6 leading-7">
-                  برای استفاده حرفه‌ای، اجرای مداوم ورک‌فلوها (حتی وقتی سیستم شما خاموش است) و استفاده از وب‌هوک‌ها، باید از روش <strong>نصب manual n8n</strong> روی یک سرور لینوکسی استفاده کنید. ما از <strong>Docker Compose</strong> استفاده می‌کنیم که استانداردترین و تمیزترین روش است.
+                  برای استفاده حرفه‌ای، اجرای ۲۴ ساعته و داشتن IP ثابت، بهترین روش استفاده از <strong>Docker Compose</strong> روی یک سرور لینوکسی (Ubuntu) است.
                 </p>
                 
                 <div className="space-y-8">
                   <div className="bg-card p-5 rounded-xl border border-border shadow-sm">
                     <h4 className="font-bold mb-3 flex items-center gap-2 text-foreground"><CheckCircle2 className="w-5 h-5 text-green-500"/> پیش‌نیازها:</h4>
                     <ul className="list-disc list-inside text-sm text-muted-foreground space-y-2">
-                      <li>یک سرور مجازی (VPS) با سیستم عامل Ubuntu (قابل خرید از هاستینگ‌های ایرانی با قیمت مناسب).</li>
+                      <li>یک سرور مجازی (VPS) با سیستم عامل Ubuntu.</li>
                       <li>نصب بودن Docker و Docker Compose روی سرور.</li>
-                      <li>یک دامنه (Domain) یا ساب‌دامنه متصل به آی‌پی سرور (برای دسترسی راحت‌تر و SSL).</li>
+                      <li>یک دامنه یا ساب‌دامنه (اختیاری اما پیشنهادی).</li>
                     </ul>
                   </div>
 
                   <div className="space-y-3">
                     <h3 className="font-bold text-lg text-foreground">۱. ساخت فایل کانفیگ (docker-compose.yml)</h3>
-                    <p className="text-sm text-muted-foreground">به سرور خود SSH بزنید. یک پوشه بسازید و فایل `docker-compose.yml` را با محتوای زیر ایجاد کنید:</p>
-                    <div className="relative group dir-ltr text-left">
-                        <pre className="bg-gray-950 text-gray-200 p-5 rounded-xl text-xs sm:text-sm overflow-x-auto font-mono border border-gray-800">
-{`version: "3"
-services:
-  n8n:
-    image: n8nio/n8n
-    restart: always
-    ports:
-      - "5678:5678"
-    environment:
-      - N8N_BASIC_AUTH_ACTIVE=true
-      - N8N_BASIC_AUTH_USER=admin
-      - N8N_BASIC_AUTH_PASSWORD=password  # رمز عبور خود را اینجا بنویسید
-      - N8N_HOST=your-domain.com # دامنه خود را اینجا وارد کنید
-    volumes:
-      - n8n_data:/home/node/.n8n
-volumes:
-  n8n_data:`}
+                    <p className="text-sm text-muted-foreground">یک فایل به نام `docker-compose.yml` بسازید و کد زیر را درون آن قرار دهید:</p>
+                    
+                    {/* کد باکس با قابلیت کپی */}
+                    <div className="relative group dir-ltr text-left rounded-xl overflow-hidden border border-gray-800 bg-gray-950">
+                        <div className="absolute top-3 right-3 z-10">
+                            <Button 
+                                size="sm" 
+                                variant="ghost" 
+                                className="h-8 px-2 text-gray-400 hover:text-white hover:bg-gray-800"
+                                onClick={handleCopyCode}
+                            >
+                                {isCopied ? (
+                                    <span className="flex items-center gap-1 text-green-500 text-xs">
+                                        <Check className="w-4 h-4" /> کپی شد
+                                    </span>
+                                ) : (
+                                    <span className="flex items-center gap-1 text-xs">
+                                        <Copy className="w-4 h-4" /> کپی کد
+                                    </span>
+                                )}
+                            </Button>
+                        </div>
+                        <pre className="p-5 pt-10 text-gray-200 text-xs sm:text-sm overflow-x-auto font-mono leading-relaxed">
+{dockerComposeCode}
                         </pre>
                     </div>
                   </div>
 
                   <div className="space-y-3">
-                    <h3 className="font-bold text-lg text-foreground">۲. اجرای کانتینر (نصب نهایی)</h3>
-                    <p className="text-sm text-muted-foreground">در همان پوشه، دستور زیر را وارد کنید تا داکر شروع به دانلود و نصب n8n کند:</p>
+                    <h3 className="font-bold text-lg text-foreground">۲. اجرای کانتینر</h3>
+                    <p className="text-sm text-muted-foreground">در همان مسیری که فایل را ساختید، دستور زیر را اجرا کنید:</p>
                     <pre className="bg-gray-950 text-gray-200 p-4 rounded-xl text-xs sm:text-sm overflow-x-auto dir-ltr text-left font-mono border border-gray-800">
                       docker-compose up -d
                     </pre>
@@ -180,14 +226,14 @@ volumes:
                     <CheckCircle2 className="w-5 h-5 flex-shrink-0 mt-0.5" />
                     <div>
                         <strong>تبریک! نصب تمام شد.</strong><br/>
-                        حالا می‌توانید با وارد کردن آدرس <code>http://YOUR-SERVER-IP:5678</code> (یا دامنه خودتان) در مرورگر، وارد پنل قدرتمند n8n شوید.
+                        حالا می‌توانید با وارد کردن آدرس <code>http://YOUR-SERVER-IP:5678</code> وارد پنل شوید.
                     </div>
                   </div>
                 </div>
               </Card>
             </section>
 
-            {/* Cloud Section (Brief) */}
+            {/* Cloud Section */}
             <section id="cloud-install" className="scroll-mt-24">
                <div className="bg-secondary/30 p-6 rounded-xl border border-secondary">
                   <div className="flex items-start gap-3">
@@ -195,7 +241,7 @@ volumes:
                      <div>
                         <h3 className="font-bold text-lg mb-2">نکته درباره نسخه ابری (Cloud)</h3>
                         <p className="text-sm text-muted-foreground leading-6">
-                           استفاده از نسخه ابری n8n راحت است اما دو مشکل برای کاربران ایرانی دارد: ۱. هزینه اشتراک ماهانه به دلار است. ۲. ممکن است با محدودیت‌های IP ایران مواجه شوید. پیشنهاد ما استفاده از روش <strong>نصب روی سرور شخصی (VPS)</strong> است که هم ارزان‌تر است و هم پایدارتر.
+                           استفاده از نسخه ابری راحت است اما برای کاربران ایرانی به دلیل هزینه دلاری و تحریم‌ها پیشنهاد نمی‌شود. روش <strong>نصب روی سرور شخصی (VPS)</strong> پایدارترین گزینه است.
                         </p>
                      </div>
                   </div>
@@ -204,26 +250,26 @@ volumes:
 
           </div>
 
-          {/* --- CTA (هدایت به محصول / بازگشت به خوشه) --- */}
+          {/* --- CTA --- */}
           <section className="mt-24">
             <Card className="p-10 bg-gradient-to-br from-card to-secondary/20 border-2 border-primary/20 shadow-2xl text-center relative overflow-hidden">
               <div className="absolute top-0 right-0 w-32 h-32 bg-primary/10 rounded-full blur-3xl -z-10"></div>
               
-              <h2 className="text-3xl font-bold mb-4 text-foreground">n8n را نصب کردید؟ حالا وقت جادوست!</h2>
+              <h2 className="text-3xl font-bold mb-4 text-foreground">n8n را نصب کردید؟</h2>
               <p className="text-muted-foreground text-lg mb-8 max-w-2xl mx-auto">
-                نصب فقط قدم اول بود. برای اینکه قدرت واقعی اتوماسیون را ببینید، همین الان به کتابخانه ما بروید و <strong>ورک‌فلوهای آماده فارسی</strong> (مثل اتصال به درگاه پرداخت یا ربات تلگرام) را دانلود کنید.
+                نصب فقط قدم اول بود. برای شروع واقعی، همین الان <strong>ورک‌فلوهای آماده فارسی</strong> را از PromptBazar دانلود کنید.
               </p>
               <div className="flex flex-col sm:flex-row justify-center gap-4">
                 <Button size="lg" className="text-lg px-10 py-6 shadow-xl shadow-primary/20 hover:scale-105 transition-transform" asChild>
                   <Link href="/n8n">
                     <BookOpen className="ml-2 h-5 w-5" />
-                    دانلود ورک‌فلوهای آماده n8n
+                    دانلود ورک‌فلوهای آماده
                   </Link>
                 </Button>
                 <Button size="lg" variant="outline" className="text-lg px-10 py-6 hover:bg-accent" asChild>
                   <Link href="/what-is-n8n">
                     <ArrowRight className="ml-2 h-5 w-5" />
-                    برگشت به آموزش جامع n8n
+                    برگشت به آموزش‌ها
                   </Link>
                 </Button>
               </div>
