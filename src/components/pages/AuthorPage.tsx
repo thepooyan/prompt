@@ -23,7 +23,7 @@ export function AuthorProfile({ author }: AuthorProfileProps) {
       <div className="mx-auto max-w-4xl px-6 py-16 md:py-24">
         <div className="space-y-12">
           {/* Header Section */}
-          <div className="flex flex-col items-center gap-8 text-center md:flex-row md:items-start md:gap-12 md:text-left">
+          <div className="flex flex-col items-center gap-8 text-center md:flex-row-reverse md:items-start md:gap-12 md:text-right">
             <Avatar className="h-32 w-32 border-4 border-border md:h-40 md:w-40">
               <AvatarImage src={author.picture || undefined} alt={author.name} />
               <AvatarFallback className="bg-muted text-3xl font-semibold text-muted-foreground md:text-4xl">
@@ -36,12 +36,11 @@ export function AuthorProfile({ author }: AuthorProfileProps) {
                 <h1 className="text-balance text-4xl font-bold tracking-tight text-foreground md:text-5xl">
                   {author.name}
                 </h1>
-                <p className="mt-2 text-lg text-muted-foreground">Author & Writer</p>
+                <p className="mt-2 text-lg text-muted-foreground">نویسنده در پرامپت بازار</p>
               </div>
 
               <p className="text-pretty text-base leading-relaxed text-muted-foreground md:text-lg">
-                Passionate about crafting compelling stories and sharing insights on technology, design, and the
-                creative process. Join me on a journey through ideas and innovation.
+                علاقه‌مند به خلق داستان‌های جذاب و به اشتراک گذاشتن دیدگاه‌ها درباره‌ی فناوری، طراحی و فرآیند خلاقانه. با من در سفری پر از ایده‌ها و نوآوری همراه شوید.
               </p>
             </div>
           </div>
