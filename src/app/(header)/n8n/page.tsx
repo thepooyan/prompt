@@ -6,7 +6,7 @@ const page = async () => {
   const p = await getAllPrompts("n8n")
 
   return (
-    <LibraryClient prompts={p}/>
+    <LibraryClient prompts={p} type="n8n"/>
   )
 }
 

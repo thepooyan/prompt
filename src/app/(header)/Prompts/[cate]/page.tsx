@@ -21,7 +21,7 @@ const page = async ({params}:p) => {
   const posts = data.posts.map(p => ({...p, category: {slug: cate, name: data.name, id: data.id, type: "prompt" as const}}))
 
   return (
-    <LibraryClient prompts={posts} category={data.name}/>
+    <LibraryClient prompts={posts} category={data.name} type="prompt"/>
   )
 }
 
