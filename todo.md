@@ -19,7 +19,3 @@ n8n {
 make manual blogs look like normal (and tutorial pages)
 tick active and deactive all (admin)
 
-https://www.promptbazar.ir/contact            ?
-https://www.promptbazar.ir/prompts        ?
-https://www.promptbazar.ir/forgot-password          ?
-https://www.promptbazar.ir/signup              ?                 

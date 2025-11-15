@@ -50,7 +50,7 @@ export default function LoginPage() {
                     رمز عبور
                   </Label>
                   <Link
-                    href="/forgot-password"
+                    href="#forgot-password"
                     className="text-xs text-primary hover:text-[#9a3bf2] transition-colors"
                   >
                     فراموشی رمز عبور؟
@@ -90,7 +90,7 @@ export default function LoginPage() {
               {/* Sign Up Link */}
               <div className="text-center text-sm text-zinc-400">
                 حساب کاربری ندارید؟{" "}
-                <Link href="/signup" className="text-primary hover:text-[#9a3bf2] font-medium transition-colors">
+                <Link href="#signup" className="text-primary hover:text-[#9a3bf2] font-medium transition-colors">
                   ثبت نام کنید
                 </Link>
               </div>

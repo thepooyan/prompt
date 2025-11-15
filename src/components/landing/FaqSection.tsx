@@ -57,7 +57,7 @@ export default function FAQSection() {
             تیم پشتیبانی ما آماده پاسخگویی و ارائه مشاوره تخصصی به شماست.
           </p>
           <a
-            href="/contact"
+            href="#contact"
             className="inline-block mt-4 bg-primary text-primary-foreground hover:bg-blue-700 font-medium px-6 py-3 rounded-xl"
           >
             تماس با بخش مشاوره
