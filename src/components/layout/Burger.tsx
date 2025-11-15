@@ -1,56 +1,39 @@
 "use client"
-import { Menu } from "lucide-react"
+import {
+  Drawer,
+  DrawerClose,
+  DrawerContent,
+  DrawerDescription,
+  DrawerFooter,
+  DrawerHeader,
+  DrawerTitle,
+  DrawerTrigger,
+} from "../ui/drawer"
 import { Button } from "../ui/button"
-import { useState } from "react"
-import Link from "../ui/link"
-import HeaderSub, { HeaderSub as H } from "./HeaderSub"
-import { cn } from "@/lib/utils"
+import { Menu } from "lucide-react"
 
-interface p {
-  guideSubmenu: H
-  subMenu: H[]
-}
-const Burger = ({guideSubmenu, subMenu}:p) => {
-
-  const [open , setOpen] = useState(true)
-
+const Burger = () => {
   return (
-    <div className=" md:hidden ">
-      <Button onClick={() => setOpen(prev => !prev)}>
-        <Menu/>
-      </Button>
-
-      {open && <>
-        <div className="h-dvh bg-muted text-muted-foreground fixed right-0 top-0 w-xs">
-          <MenuItem title="خانه" href="/" />
-          <MenuItem title={guideSubmenu.mainItem.name} href={guideSubmenu.mainItem.slug || ""} dented/>
-          <MenuItem title="بلاگ" href="/Blog" />
-
-            {/* راهنما */}
-            <HeaderSub {...guideSubmenu}/>
-
-            {/* جامع */}
-            <Link href="/Blog">
-              <Button variant="ghost" className="text-base">
-                بلاگ
-              </Button>
-            </Link>
-
-            {/* محصولات - Three-layer dropdown */}
-            {subMenu.map((s,i) => <HeaderSub {...s} key={i}/>)}
-
-        </div>
-      </>}
-    </div>
+     <Drawer direction="right">
+      <DrawerTrigger asChild>
+        <Button>
+          <Menu/>
+        </Button>
+      </DrawerTrigger>
+      <DrawerContent>
+        <DrawerHeader>
+          <DrawerTitle>Are you absolutely sure?</DrawerTitle>
+          <DrawerDescription>This action cannot be undone.</DrawerDescription>
+        </DrawerHeader>
+        <DrawerFooter>
+          <Button>Submit</Button>
+          <DrawerClose>
+            <Button variant="outline">Cancel</Button>
+          </DrawerClose>
+        </DrawerFooter>
+      </DrawerContent>
+    </Drawer>
   )
-}
-
-const MenuItem = ({title, href, dented}:{title: string, href: string, dented?: boolean}) => {
-  return <Link href={href}
-    className={cn(
-      "block p-5",
-      dented && `mr-5`)}
-  >{title}</Link>
 }
 
 export default Burger
