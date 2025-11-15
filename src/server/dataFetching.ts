@@ -4,7 +4,6 @@ import { db } from "@/db"
 import { Blog, blogsTable, promptCateTable, promptsTable, promptType, redirectsTable } from "@/db/schema"
 import { desc, eq } from 'drizzle-orm'
 import { cacheTags } from './cache'
-import { HeaderSub } from '@/components/layout/HeaderSub'
 import { navItem } from '@/components/layout/Burger'
 
 export const cacheTag = async (tag: typeof cacheTags[keyof typeof cacheTags]) => {
@@ -109,36 +108,6 @@ export const getAllCategories = async (type: promptType) => {
 
 export const getAllRedirects = async () => {
   return await db.select().from(redirectsTable)
-}
-
-export const getAllMenuItems = async ():Promise<HeaderSub[]> => {
-  "use cache"
-  cacheTag(cacheTags.menuItems)
-  const result = await db.query.promptCateTable.findMany()
-
-  const result1 = result.filter(r => r.type === "prompt")
-  const result2 = result.filter(r => r.type === "n8n")
-  
-  return [
-    {
-      mainItem: {
-        name: "پرامپت", slug: "Prompts", 
-      },
-      subItems: result1
-    },
-    {
-      mainItem: {
-        name: "n8n", slug: "n8n", 
-      },
-      subItems: result2
-    },
-    {
-      mainItem: {
-        name: "ابزار", slug: "Tools", 
-      },
-      subItems: []
-    },
-  ]
 }
 
 export const getAllNavItems = async ():Promise<navItem[]> => {

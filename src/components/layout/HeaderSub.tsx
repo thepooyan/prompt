@@ -6,10 +6,10 @@ import { cn } from "@/lib/utils";
 import Link from "next/link";
 import { navItem } from "./Burger";
 
-export interface HeaderSub {
+interface p {
   item: navItem
 }
-const HeaderSub = ({ item }:HeaderSub) => {
+const NavItem = ({ item }:p) => {
 
   const [open, setOpen] = useState<boolean>(false);
   const OptionalLink = item.href ? Link : "div";
@@ -56,4 +56,4 @@ const HeaderSub = ({ item }:HeaderSub) => {
   );
 };
 
-export default HeaderSub;
+export default NavItem;

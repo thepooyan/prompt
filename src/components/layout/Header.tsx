@@ -2,9 +2,9 @@ import Logo from "../parts/Logo"
 import { Suspense } from "react"
 import { Spinner } from "../ui/spinner"
 import LoginButton from "./LoginButton"
-import HeaderSub, { HeaderSub as H } from "./HeaderSub"
 import { getAllNavItems } from "@/server/dataFetching"
 import Burger from "./Burger"
+import NavItem from "./HeaderSub"
 
 export default async function Header() {
   const navItems = await getAllNavItems()
@@ -21,7 +21,7 @@ export default async function Header() {
 
           {/* Navigation - Center */}
           <nav className="hidden md:flex items-center gap-1">
-            {navItems.map(nav => <HeaderSub item={nav} key={nav.label}/>)}
+            {navItems.map(nav => <NavItem item={nav} key={nav.label}/>)}
           </nav>
 
           {/* Login Button - Left side in RTL */}
