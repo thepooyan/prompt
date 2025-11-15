@@ -12,11 +12,19 @@ export default function AdminLayout({children}:{children: ReactNode}) {
     },
     {
       name: "پرامپت",
-      slug: "PromptManagment"
+      slug: "promptManagment"
     }, 
     {
-      name: "دسته بندی",
-      slug: "CateManagment"
+      name: "n8n",
+      slug: "n8nManagment"
+    }, 
+    {
+      name: "دسته بندی پرامپت",
+      slug: "PromptCate"
+    }, 
+    {
+      name: "دسته بندی n8n",
+      slug: "N8nCate"
     }, 
     {
       name: "مدیا",

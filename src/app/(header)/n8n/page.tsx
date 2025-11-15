@@ -1,6 +1,12 @@
-const page = () => {
+import LibraryClient from "@/components/LibraryClient"
+import { getAllPrompts } from "@/server/dataFetching"
+
+const page = async () => {
+
+  const p = await getAllPrompts("n8n")
+
   return (
-    <div>page</div>
+    <LibraryClient prompts={p}/>
   )
 }
 

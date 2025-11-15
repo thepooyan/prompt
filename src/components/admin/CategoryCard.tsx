@@ -1,5 +1,5 @@
 "use client"
-import { Category } from "@/db/schema";
+import { PromptCategory } from "@/db/schema";
 import { Trash } from "lucide-react";
 import { Button } from "../ui/button";
 import { deleteCategory } from "@/server/mutation";
@@ -7,7 +7,7 @@ import { callModal } from "../layout/Modal";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 
-export const CategoryCard = ({c}:{c: Category}) => {
+export const CategoryCard = ({c}:{c: PromptCategory}) => {
 
   const router = useRouter()
 

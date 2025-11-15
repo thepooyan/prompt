@@ -21,7 +21,7 @@ import { X, Plus, Upload } from "lucide-react"
 import Link from "next/link"
 import { toast } from "sonner"
 import {  updatePrompt,  insertPrompt } from "@/server/mutation"
-import { Category, Prompt } from "@/db/schema"
+import { PromptCategory, Prompt, promptType } from "@/db/schema"
 import { useRouter } from "next/navigation"
 import ArrayInput from "../ui/array-input"
 import z from "zod"
@@ -29,9 +29,19 @@ import UploadMediaBtn from "../admin/UploadMediaBtn"
 
 interface p {
   edit?: Prompt
-  categories: Category[]
+  categories: PromptCategory[]
+  type: promptType
 }
-export default function PromptEditor({edit, categories}:p) {
+export default function PromptEditor({edit, categories, type}:p) {
+
+  const entityName = (() => {
+    switch (type) {
+      case "prompt":
+        return "پرامپت"
+      case "n8n":
+        return "n8n"
+    }
+  })()
   
   const inputSchema = z.object({
     title: z.string(),
@@ -42,6 +52,7 @@ export default function PromptEditor({edit, categories}:p) {
     tags: z.string(),
     category_id: z.string(),
     picture: z.string(),
+    samplePicture: z.string(),
     isFree: z.boolean(),
     seoTitle: z.string(),
     seoDescription: z.string(),
@@ -57,6 +68,7 @@ export default function PromptEditor({edit, categories}:p) {
     prompt: "",
     tags: "",
     picture: "",
+    samplePicture: "",
     isFree: true,
     seoTitle: "",
     seoDescription: "",
@@ -103,11 +115,11 @@ export default function PromptEditor({edit, categories}:p) {
 
   const submitNew = async () => {
     setLoading(true)
-    const result = await insertPrompt(formData)
+    const result = await insertPrompt({...formData, type: type})
     setLoading(false)
     if (result.ok) {
-      toast.success("پرامپت جدید با موفقیت ایجاد شد")
-      router.push("/Admin/PromptManagment")
+      toast.success(`${entityName} جدید با موفقیت ایجاد شد`)
+      router.push(`/Admin/${type}Managment`)
       router.refresh()
     } else {
       toast.error("خطا")
@@ -115,11 +127,11 @@ export default function PromptEditor({edit, categories}:p) {
   }
   const submitEdit = async (id: number) => {
     setLoading(true)
-    const result = await updatePrompt(id, formData)
+    const result = await updatePrompt(id, {...formData, type: type})
     setLoading(false)
     if (result.ok) {
       toast.success("ویرایش با موفقیت ایجاد شد")
-      router.push("/Admin/PromptManagment")
+      router.push(`/Admin/${type}Managment`)
       router.refresh()
     } else {
       toast.error("خطا")
@@ -131,7 +143,7 @@ export default function PromptEditor({edit, categories}:p) {
     <div className="min-h-screen bg-background p-4" dir="rtl">
       <div className="max-w-2xl mx-auto">
         <div className="mb-6">
-          <h1 className="text-3xl font-bold mt-2">{!edit ? "ایجاد پرامپت جدید" : "ویرایش پرامپت"}</h1>
+          <h1 className="text-3xl font-bold mt-2">{!edit ? `ایجاد ${entityName} جدید` : `ویرایش ${entityName}`}</h1>
         </div>
 
         <Card>
@@ -144,7 +156,7 @@ export default function PromptEditor({edit, categories}:p) {
                   id="title"
                   value={formData.title}
                   onChange={(e) => handleInputChange("title", e.target.value)}
-                  placeholder="عنوان پرامپت را وارد کنید"
+                  placeholder={`عنوان ${entityName} را وارد کنید`}
                   className="text-right"
                 />
               </div>
@@ -155,7 +167,7 @@ export default function PromptEditor({edit, categories}:p) {
                 <Input
                   value={formData.slug}
                   onChange={(e) => handleInputChange("slug", e.target.value)}
-                  placeholder="اسلاگ پرامپت را وارد کنید"
+                  placeholder={`اسلاگ ${entityName} را وارد کنید`}
                 />
               </div>
 
@@ -179,7 +191,7 @@ export default function PromptEditor({edit, categories}:p) {
                 <Textarea
                   value={formData.excerpt}
                   onChange={(e) => handleInputChange("excerpt", e.target.value)}
-                  placeholder="توضیح مختصری از پرامپت ارائه دهید"
+                  placeholder={`توضیح مختصری از ${entityName} ارائه دهید`}
                   className="text-right min-h-[100px]"
                 />
               </div>
@@ -191,7 +203,7 @@ export default function PromptEditor({edit, categories}:p) {
                   id="description"
                   value={formData.description}
                   onChange={(e) => handleInputChange("description", e.target.value)}
-                  placeholder="توضیح کامل از پرامپت ارائه دهید"
+                  placeholder={`توضیح کامل از ${entityName} ارائه دهید`}
                   className="text-right min-h-[100px]"
                 />
               </div>
@@ -199,12 +211,12 @@ export default function PromptEditor({edit, categories}:p) {
 
               {/* Prompt Content */}
               <div className="space-y-2">
-                <Label htmlFor="prompt">محتوای پرامپت *</Label>
+                <Label htmlFor="prompt">محتوای {entityName} *</Label>
                 <Textarea
                   id="prompt"
                   value={formData.prompt}
                   onChange={(e) => handleInputChange("prompt", e.target.value)}
-                  placeholder="متن کامل پرامپت را وارد کنید"
+                  placeholder={`متن کامل ${entityName} را وارد کنید`}
                   className="text-right min-h-[150px] font-mono"
                 />
               </div>
@@ -265,12 +277,41 @@ export default function PromptEditor({edit, categories}:p) {
                 )}
               </div>
 
+              {/* Picture URL */}
+              <div className="space-y-2">
+                <Label htmlFor="picture">نمونه خروجی</Label>
+                <div className="flex gap-2">
+                  <Input
+                    id="picture"
+                    value={formData.samplePicture}
+                    onChange={(e) => handleInputChange("samplePicture", e.target.value)}
+                    placeholder="آدرس تصویر را وارد کنید"
+                    className="text-right"
+                  />
+                  <UploadMediaBtn onUploaded={str => handleInputChange("samplePicture", str)}>
+                    <Upload className="h-4 w-4" />
+                  </UploadMediaBtn>
+                </div>
+                {formData.samplePicture && (
+                  <div className="mt-2">
+                    <img
+                      src={formData.samplePicture || "/placeholder.svg"}
+                      alt="پیش‌نمایش"
+                      className="w-full h-32 object-cover rounded-md"
+                      onError={(e) => {
+                        e.currentTarget.style.display = "none"
+                      }}
+                    />
+                  </div>
+                )}
+              </div>
+
               {/* Free/Premium Toggle */}
               <div className="flex items-center justify-between">
                 <div className="space-y-1">
-                  <Label>نوع پرامپت</Label>
+                  <Label>نوع {entityName}</Label>
                   <p className="text-sm text-muted-foreground">
-                    {formData.isFree ? "این پرامپت رایگان است" : "این پرامپت پریمیوم است"}
+                    {formData.isFree ? `این ${entityName} رایگان است` : `این ${entityName} پریمیوم است`}
                   </p>
                 </div>
                 <div className="flex items-center gap-2 ltr">
@@ -312,10 +353,10 @@ export default function PromptEditor({edit, categories}:p) {
               {/* Submit Button */}
               <div className="flex gap-3 pt-4">
                 <Button type="submit" className="flex-1" loading={loading}>
-                  {edit ? "ویرایش پرامپت" : "ایجاد پرامپت"}
+                  {edit ? `ویرایش ${entityName}` : `ایجاد ${entityName}`}
                 </Button>
                 <Button type="button" variant="outline" asChild>
-                  <Link href="/Admin/PromptManagment">انصراف</Link>
+                  <Link href={`/Admin/${type}Managment`}>انصراف</Link>
                 </Button>
               </div>
             </form>

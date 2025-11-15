@@ -1,9 +1,10 @@
 "use server"
 import { revalidateTag as r, cacheTag as c } from 'next/cache'
 import { db } from "@/db"
-import { Blog, blogsTable, Category, promptCateTable, promptsTable, redirectsTable } from "@/db/schema"
+import { Blog, blogsTable, promptCateTable, promptsTable, promptType, redirectsTable } from "@/db/schema"
 import { desc, eq } from 'drizzle-orm'
 import { cacheTags } from './cache'
+import { HeaderSub } from '@/components/layout/HeaderSub'
 
 export const cacheTag = async (tag: typeof cacheTags[keyof typeof cacheTags]) => {
     return c(tag)
@@ -39,11 +40,22 @@ export const getPromptById = async (id: number) => {
 }
 
 
-export const fetchPrompts = async () => {
+export const getAllPrompts = async (type: promptType) => {
   "use cache"
   cacheTag(cacheTags.prompts)
   return await db.query.promptsTable.findMany({
     with: {category: true},
+    where: eq(promptsTable.type, type),
+    orderBy: desc(promptsTable.updated_at),
+  })
+}
+
+export const getAllN8n = async () => {
+  "use cache"
+  cacheTag(cacheTags.prompts)
+  return await db.query.promptsTable.findMany({
+    with: {category: true},
+    where: eq(promptsTable.type, "n8n"),
     orderBy: desc(promptsTable.updated_at),
   })
 }
@@ -58,12 +70,13 @@ export const fetchSinglePrompt = async (slug: string) => {
 } 
 export type PromptWithRelations = NonNullable<Awaited<ReturnType<typeof fetchSinglePrompt>>>
 
-export const fetchThreePrompts = async () => {
+export const fetchThreePrompts = async (type: promptType) => {
   "use cache"
   cacheTag(cacheTags.prompts)
   return await db.query.promptsTable.findMany({
     limit: 3,
     orderBy: desc(promptsTable.updated_at),
+    where: eq(promptsTable.type, type),
     with: {category: true}
   })
 }
@@ -74,6 +87,7 @@ export const fetchTwoPrompts = async () => {
   return await db.query.promptsTable.findMany({
     limit: 2,
     orderBy: desc(promptsTable.updated_at),
+    where: eq(promptsTable.type, "prompt"),
     with: {category: true}
   })
 }
@@ -88,25 +102,40 @@ export const fetchFiveBlogs = async () => {
     return data
 }
 
-export const getAllCategories = async () => {
-  return await db.select().from(promptCateTable)
+export const getAllCategories = async (type: promptType) => {
+  return await db.query.promptCateTable.findMany({where: eq(promptCateTable.type, type)})
 }
 
 export const getAllRedirects = async () => {
   return await db.select().from(redirectsTable)
 }
 
-export type menuItems = {name: string, slug: string, cate: Category[]}
-export const getAllMenuItems = async ():Promise<menuItems[]> => {
+export const getAllMenuItems = async ():Promise<HeaderSub[]> => {
   "use cache"
   cacheTag(cacheTags.menuItems)
-  const [result1] = await Promise.all([
-    db.query.promptCateTable.findMany()
-  ])
+  const result = await db.query.promptCateTable.findMany()
+
+  const result1 = result.filter(r => r.type === "prompt")
+  const result2 = result.filter(r => r.type === "n8n")
   
   return [
-    {name: "پرامپت",slug: "/Prompts", cate: result1},
-    {name: "n8n",slug: "/n8n", cate: []},
-    {name: "ابزار", slug: "/Tools",cate: []},
+    {
+      mainItem: {
+        name: "پرامپت", slug: "Prompts", 
+      },
+      subItems: result1
+    },
+    {
+      mainItem: {
+        name: "n8n", slug: "n8n", 
+      },
+      subItems: result2
+    },
+    {
+      mainItem: {
+        name: "ابزار", slug: "Tools", 
+      },
+      subItems: []
+    },
   ]
 }

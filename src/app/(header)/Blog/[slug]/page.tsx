@@ -1,7 +1,6 @@
 import BlogAsync from "@/components/pages/BlogAsync"
 import { LoadingPage } from "@/components/parts/LoadingPage"
 import { fetchSingleBlog } from "@/server/dataFetching"
-import { env } from "@/server/env"
 import { Metadata } from "next"
 import { Suspense } from "react"
 
@@ -27,9 +26,6 @@ export async function generateMetadata( { params }: props): Promise<Metadata> {
     title: data.seoTitle,
     description: data.seoDescription,
     keywords: data.seoKeywords,
-    alternates: {
-      canonical: `${env.BETTER_AUTH_URL}/Blog/${data.slug}`
-    }
   }
 }
 

@@ -1,280 +1,294 @@
-"use client"
-import { useState } from "react"
-import { Button } from "@/components/ui/button" // اضافه شد
-import Link from "next/link" // اضافه شد
+import PromptAccordion from "@/components/parts/PromptAccordion"
+import { Button } from "@/components/ui/button"
+import {Metadata} from "next"
+import Link from "next/link"
 
-export default function N8nTutorialPageForIran() {
-  const [activeAccordion, setActiveAccordion] = useState("f1")
+export const metadata:Metadata = {
+  title: "پرامپت چیست؟ راهنمای جامع مهندسی پرامپت | پرامپت بازار",
+  description: "پرامپت چیست؟ با راهنمای جامع مهندسی پرامپت در پرامپت بازار، اصول پرامپت نویسی حرفه‌ای را یاد بگیرید و پرامپت‌های آماده را دانلود کنید. آموزش n8n.",
+  keywords: "پرامپت چیست, مهندسی پرامپت, آموزش پرامپت نویسی, پرامپت, پرامپت نویسی چیست, دانلود پرامپت, n8n, پرامپت بازار",
+}
 
-  const toggleAccordion = (id: string) => {
-    setActiveAccordion(activeAccordion === id ? "" : id)
-  }
-
-  const tocItems = [
-    { id: "what-is-n8n", title: "n8n چیست؟ (به زبان ساده)" },
-    { id: "why-n8n-iran", title: "چرا n8n برای ما ایرانی‌ها عالی است؟" },
-    { id: "core-concepts", title: "مفاهیم اصلی: مثل یک کمپین تبلیغاتی!" },
-    { id: "practical-example", title: 'مثال اصلی: ربات "موجود شد خبرم کن"' },
-    { id: "more-examples", title: "کاربردهای n8n در دنیای واقعی" },
-    { id: "cta-section", title: "دانلود ورک‌فلوهای آماده" },
-    { id: "faq", title: "پرسش‌های متداول" },
-  ]
-
+export default function PromptGuide() {
   return (
-    // استایل‌های پایه بدنه
-    <div className="min-h-screen bg-background text-foreground font-sans" dir="rtl">
-      <main>
+    <div className="min-h-screen">
+       <main>
         {/* Hero Section */}
-        {/* استایل هیرو با بخش‌های دیگر هماهنگ شد */}
-        <section className="bg-secondary/50 py-20 border-b border-border">
+        <section className="bg-gradient-to-br from-primary/5 to-transparent py-20 border-b border-border   ">
           <div className="container mx-auto px-4 text-center">
-            <h1 className="text-4xl md:text-5xl font-bold mt-4 mb-6 text-balance">
-              آموزش اتوماسیون با n8n: دستیار دیجیتال خود را بسازید
+            <div className="flex gap-2 justify-center mb-4 flex-wrap">
+              <span className="inline-flex items-center gap-2 px-3 py-2 rounded-full bg-accent text-accent-foreground text-sm">
+                <span className="text-yellow-400">⚡</span> پرامپت چیست
+              </span>
+              <span className="inline-flex items-center gap-2 px-3 py-2 rounded-full bg-accent text-accent-foreground text-sm">
+                <span className="text-blue-400">🛠</span> آموزش پرامپت‌نویسی
+              </span>
+              <span className="inline-flex items-center gap-2 px-3 py-2 rounded-full bg-accent text-accent-foreground text-sm">
+                <span className="text-purple-400">✏️</span> مهندسی پرامپت
+              </span>
+            </div>
+
+            <h1 className="text-4xl md:text-5xl font-bold mt-8 mb-6 text-balance">
+              <p className="text-primary">پرامپت چیست؟</p> راهنمای جامع مهندسی پرامپت
             </h1>
-            <p className="text-lg md:text-xl text-muted-foreground max-w-4xl mx-auto leading-relaxed mb-8">
-              یاد بگیرید چگونه کارهای تکراری و خسته‌کننده را به ربات‌ها بسپارید. با n8n می‌توانید بدون کدنویسی، اپلیکیشن‌های
-              مختلف را به هم وصل کرده و زندگی خود را آسان‌تر کنید.
+
+            <p className="text-lg md:text-xl text-primary-foreground max-w-4xl mx-auto leading-relaxed mb-8">
+              پرامپت به زبان ساده، همان دستوری است که به مدل‌های هوش مصنوعی می‌دهیم تا خروجی دلخواه را دریافت کنیم. در این صفحه، با مفهوم پرامپت آشنا می‌شوید و خواهید فهمید که چگونه با مهندسی پرامپت می‌توانید نتایج دقیقی دریافت کنید.<strong className="text-accent-foreground">تولید محتوا</strong> تا <strong className="text-accent-foreground">طراحی لوگو</strong> و <strong className="text-accent-foreground">عکس پروفایل</strong>.
             </p>
+
             <div className="flex gap-4 justify-center">
-              {/* تبدیل به کامپوننت Button */}
-              <Button size="lg" asChild>
-                <Link href="#practical-example">
-                  شروع یادگیری با یک مثال جذاب
-                </Link>
+              <Button asChild>
+              <Link href="/Prompts">
+                دانلود پرامپت
+              </Link>
               </Button>
+        
             </div>
           </div>
         </section>
 
-        {/* Main Content with TOC */}
-        <section className="container mx-auto px-4 py-12 md:py-20">
-          <div className="flex flex-col lg:flex-row gap-12">
-            
-            {/* Table of Contents (جدول محتوا) */}
-            <aside className="lg:w-80 flex-shrink-0 lg:sticky top-24 self-start">
-              {/* استایل سایدبار با bg-card و border */}
-              <div className="p-6 rounded-lg border border-border bg-card">
-                <h6 className="flex items-center gap-2 mb-4 font-semibold text-lg">
-                  <span className="text-primary">📋</span> فهرست مطالب
-                </h6>
-                <nav className="space-y-2">
-                  {tocItems.map((item) => (
-                    <a
-                      key={item.id}
-                      href={`#${item.id}`}
-                      // استایل لینک‌های سایدبار
-                      className="block p-2 rounded text-muted-foreground hover:text-foreground hover:bg-accent transition-colors"
-                    >
-                      • {item.title}
-                    </a>
-                  ))}
-                </nav>
-              </div>
-            </aside>
-
-            {/* Content Sections */}
-            <div className="flex-1 max-w-4xl">
-              <section id="what-is-n8n" className="mb-16 scroll-mt-20">
-                <h2 className="text-3xl font-bold mb-6">n8n چیست؟ (به زبان ساده)</h2>
-                <p className="text-muted-foreground leading-relaxed text-lg">
-                  <strong className="text-foreground">n8n</strong> (اِن اِیت اِن) یک ابزار رایگان و متن‌باز برای ساخت فرآیندهای خودکار است. فکر کنید یک جعبه لگوی
-                  دیجیتال دارید که هر قطعه آن یک اپلیکیشن (مثل تلگرام، گوگل شیت یا اینستاگرام) است. n8n به شما اجازه
-                  می‌دهد این لگوها را به هر ترتیبی که دوست دارید به هم وصل کنید تا یک ربات کارراه‌انداز برای خودتان
-                  بسازید.
-                </p>
-              </section>
-
-              <section id="why-n8n-iran" className="mb-16 scroll-mt-20">
-                <h2 className="text-3xl font-bold mb-6">چرا n8n برای ما ایرانی‌ها عالی است؟</h2>
-                <div className="grid md:grid-cols-2 gap-8">
-                  {/* استایل کارت‌ها */}
-                  <div className="bg-card p-6 rounded-lg border border-border">
-                    <h3 className="font-bold text-xl mb-2 text-primary">رایگان و بدون تحریم</h3>
-                    <p className="text-muted-foreground">
-                      چون متن‌باز است، می‌توانید آن را روی سرور شخصی خود (Self-host) نصب کنید و نگران تحریم یا پرداخت‌های
-                      دلاری نباشید. کنترل کامل دست شماست.
-                    </p>
-                  </div>
-                  <div className="bg-card p-6 rounded-lg border border-border">
-                    <h3 className="font-bold text-xl mb-2 text-primary">انعطاف‌پذیری بالا</h3>
-                    <p className="text-muted-foreground">
-                      با نود `HTTP Request` می‌توانید به راحتی به API سرویس‌های ایرانی متصل شوید و فرآیندهای کاملاً
-                      بومی‌سازی شده بسازید.
-                    </p>
-                  </div>
+        {/* Main Content */}
+        <section className="py-12">
+          <div className="container mx-auto px-4">
+            <div className="flex gap-8">
+              {/* TOC */}
+              <aside className="hidden lg:block w-80 flex-shrink-0">
+                <div className="sticky top-24 p-6 rounded-lg border bg-sidebar text-sidebar-foreground">
+                  <h6 className="flex items-center gap-2 mb-4 font-semibold">
+                    <span>📋</span> سرفصل‌ها
+                  </h6>
+                  <nav className="space-y-2 text-sm">
+                    {[
+                      { id: "s1", title: "پرامپت به زبان خیلی ساده" },
+                      { id: "s2", title: "پرامپت‌نویسی و اهمیت آن" },
+                      { id: "s3", title: "مثال: ضعیف / حرفه‌ای" },
+                      { id: "s4", title: "اصول طلایی (R T C F C E S)" },
+                      { id: "s5", title: "الگوهای آماده (کپی/پیست)" },
+                      { id: "s6", title: "اشتباهات رایج و راه‌حل" },
+                      { id: "s7", title: "انواع پرامپت‌ها + نمونه" },
+                      { id: "s8", title: "چک‌لیست قبل از ارسال" },
+                      { id: "cta", title: "شرو÷ع سریع" },
+                      { id: "faq", title: "پرسش‌های پرتکرار" },
+                    ].map(item => (
+                      <a key={item.id} href={`#${item.id}`} className="block p-2 rounded hover:bg-sidebar-accent hover:text-sidebar-accent-foreground   transition-colors">
+                        • {item.title}
+                      </a>
+                    ))}
+                  </nav>
                 </div>
-              </section>
+              </aside>
 
-              <section id="core-concepts" className="mb-16 scroll-mt-20">
-                <h2 className="text-3xl font-bold mb-6">مفاهیم اصلی: مثل یک کمپین تبلیغاتی!</h2>
-                <p className="text-muted-foreground leading-relaxed text-lg mb-6">
-                  برای درک n8n، فرآیند راه‌اندازی یک کمپین تبلیغاتی در اینستاگرام را در نظر بگیرید:
-                </p>
-                <ul className="space-y-4 text-lg">
-                  <li className="flex items-start gap-4">
-                    <strong className="text-primary w-32 flex-shrink-0">ورک‌فلو (Workflow):</strong> این همان
-                    <strong className="text-foreground mx-1">استراتژی کامل کمپین</strong> شماست. کل نقشه راه از ایده تا گزارش نهایی.
-                  </li>
-                  <li className="flex items-start gap-4">
-                    <strong className="text-primary w-32 flex-shrink-0">نود (Node):</strong> هر <strong className="text-foreground mx-1">وظیفه (Task)</strong>
-                    مشخص در کمپین. مثلاً "طراحی بنر تبلیغاتی" یک نود است، "نوشتن کپشن" یک نود دیگر و "انتشار پست" یک
-                    نود سوم است.
-                  </li>
-                  <li className="flex items-start gap-4">
-                    <strong className="text-primary w-32 flex-shrink-0">تریگر (Trigger):</strong> <strong className="text-foreground mx-1">زمان شروع
-                    کمپین</strong>! مثلاً "اول ماه" یا "به محض آماده شدن محصول جدید". این همان دستوری است که ورک‌فلو را به
-                    جریان می‌اندازد.
-                  </li>
-                </ul>
-              </section>
+              {/* Content */}
+              <div className="flex-1 max-w-4xl">
+                {/* s1 */}
+                <section id="s1" className="mb-12">
+                  <h2 className="flex items-center gap-3 text-2xl font-bold mb-6 pb-3 border-b  ">
+                    <span className="text-purple-400">💡</span> پرامپت به زبان خیلی ساده
+                  </h2>
+                  <p className="  leading-relaxed text-lg">
+                    <strong className="text-accent">پرامپت</strong> متن یا دستوری است که به مدل هوش مصنوعی می‌دهی. هرچه دقیق‌تر بنویسی، خروجی بهتر می‌شود.
+                    <br/>نمونهٔ روشن:
+                    <br/>– «یک کپشن اینستاگرام برای فروش کفش ورزشی بنویس، لحن خودمانی، حداکثر ۲ خط.»
+                    <br/>– «۴ ایده‌تیتر زیر ۶۰ کاراکتر برای مقالهٔ خواب سالم بده.»
+                  </p>
+                </section>
 
-              <section id="practical-example" className="mb-16 scroll-mt-20">
-                <h2 className="text-3xl font-bold mb-6">مثال اصلی: ساخت ربات "موجود شد خبرم کن" دیجی‌کالا</h2>
-                <p className="text-muted-foreground leading-relaxed text-lg mb-6">
-                  در این مثال پرطرفدار، یک ورک‌fلو می‌سازیم که صفحه یک محصول ناموجود در دیجی‌کالا را هر ساعت چک می‌کند و
-                  به محض موجود شدن، یک پیام به تلگرام ما ارسال می‌کند.
-                </p>
-                {/* استایل خط تایم‌لاین */}
-                <div className="space-y-8 border-l-2 border-primary/30 pl-8">
-                  <div>
-                    <h4 className="font-bold text-xl mb-2">قدم ۱: تریگر زمان‌بندی (Cron)</h4>
-                    <p className="text-muted-foreground">
-                      ورک‌فلو را طوری تنظیم می‌کنیم که هر ساعت یک بار به طور خودکار اجرا شود.
-                    </p>
-                  </div>
-                  <div>
-                    <h4 className="font-bold text-xl mb-2">قدم ۲: دریافت صفحه محصول (HTTP Request)</h4>
-                    <p className="text-muted-foreground">
-                      آدرس صفحه محصول مورد نظر در دیجی‌کالا را به این نود می‌دهیم تا کد HTML آن را دریافت کند.
-                    </p>
-                  </div>
-                  <div>
-                    <h4 className="font-bold text-xl mb-2">قدم ۳: بررسی وضعیت موجودی (HTML Extract)</h4>
-                    <p className="text-muted-foreground">
-                      با استفاده از CSS Selector، بررسی می‌کنیم که آیا دکمه "افزودن به سبد خرید" در صفحه وجود دارد یا
-                      خیر.
-                    </p>
-                  </div>
-                  <div>
-                    <h4 className="font-bold text-xl mb-2">قدم ۴: شرط موجود شدن (IF Node)</h4>
-                    <p className="text-muted-foreground">
-                      یک نود شرطی اضافه می‌کنیم. اگر در مرحله قبل دکمه "افزودن به سبد" پیدا شد، ورک‌فلو ادامه پیدا
-                      می‌کند.
-                    </p>
-                  </div>
-                  <div>
-                    <h4 className="font-bold text-xl mb-2">قدم ۵: ارسال نوتیفیکیشن به تلگرام (Telegram)</h4>
-                    <p className="text-muted-foreground">
-                      در نهایت، یک پیام هیجان‌انگیز به تلگرام خود ارسال می‌کنیم: "خبر خوب! محصولی که منتظرش بودی در
-                      دیجی‌کالا موجود شد! همین الان بخرش!"
-                    </p>
-                  </div>
-                </div>
-              </section>
+                {/* s2 */}
+                <section id="s2" className="mb-12">
+                  <h2 className="flex items-center gap-3 text-2xl font-bold mb-6 pb-3 border-b  ">
+                    <span className="text-purple-400">📐</span> پرامپت‌نویسی و اهمیت آن
+                  </h2>
+                  <p className=" leading-relaxed text-lg">
+                    پرامپت‌نویسی (Prompt Engineering) یعنی تبدیل خواستهٔ ذهنی به دستور قابل‌فهم برای AI.
+                    نتیجه‌اش: آزمون‌وخطای کمتر، کنترل روی لحن/طول/فرمت و خروجی حرفه‌ای برای محتوا، طراحی، تصویر و حتی کدنویسی.
+                  </p>
+                </section>
 
-              <section id="more-examples" className="mb-16 scroll-mt-20">
-                <h2 className="text-3xl font-bold mb-6">کاربردهای n8n در دنیای واقعی (مثال‌های پرکاربرد در ایران)</h2>
-                <div className="space-y-8">
-                  <div className="bg-card p-6 rounded-lg border border-border">
-                    <h3 className="font-bold text-xl mb-2 text-primary">۱. مدیریت هوشمند کامنت‌های اینستاگرام</h3>
-                    <p className="text-muted-foreground mb-4">
-                      دیگر هیچ کامنتی را از دست ندهید! یک ورک‌فلو بسازید که به محض دریافت کامنت جدید زیر پست آخرتان،
-                      متن آن را در یک ردیف در گوگل شیت ذخیره کند. حتی می‌توانید با هوش مصنوعی آن را تحلیل کرده و به
-                      عنوان "سوال"، "نظر مثبت" یا "نظر منفی" دسته‌بندی کنید.
-                    </p>
-                    <p className="text-sm text-muted-foreground/80">
-                      `[تریگر اینستاگرام: کامنت جدید]` → `[پردازش با OpenAI]` → `[افزودن ردیف به Google Sheets]`
-                    </p>
-                  </div>
-
-                  <div className="bg-card p-6 rounded-lg border border-border">
-                    <h3 className="font-bold text-xl mb-2 text-primary">۲. ربات شخصی رصد قیمت ارز دیجیتال</h3>
-                    <p className="text-muted-foreground mb-4">
-                      منتظر قیمت مناسب برای خرید یا فروش تتر هستید؟ یک ربات بسازید که هر ۵ دقیقه قیمت لحظه‌ای تتر را از
-                      API یک صرافی ایرانی (مثل نوبیتکس) چک کند و به محض رسیدن به قیمت مورد نظر شما، یک نوتیفیکیشن فوری
-                      در تلگرام برایتان ارسال کند.
-                    </p>
-                    <p className="text-sm text-muted-foreground/80">
-                      `[تریگر زمان‌بندی: هر ۵ دقیقه]` → `[خواندن قیمت از API]` → `[شرط IF: آیا قیمت مناسب است؟]` →
-                      `[ارسال هشدار به تلگرام]`
-                    </p>
-                  </div>
-
-                  <div className="bg-card p-6 rounded-lg border border-border">
-                    <h3 className="font-bold text-xl mb-2 text-primary">۳. تحلیل هوشمند و خودکار رقیبان (سئو)</h3>
-                    <p className="text-muted-foreground mb-4">
-                      از رقبای خود عقب نمانید! یک ورک‌فلو طراحی کنید که هر روز وبلاگ رقیب شما را چک کند. به محض انتشار
-                      مقاله جدید، آن را با هوش مصنوعی خلاصه کرده و یک تسک در Trello برای تیم محتوای شما با عنوان
-                      "تحلیل و تولید محتوای بهتر" ایجاد کند.
-                    </p>
-                    <p className="text-sm text-muted-foreground/80">
-                      `[خواندن فید RSS رقیب]` → `[خلاصه‌سازی با OpenAI]` → `[ساخت تسک در Trello]`
-                    </p>
-                  </div>
-                </div>
-              </section>
-
-              {/* استایل CTA هماهنگ با فایل install-n8n */}
-              <section id="cta-section" className="text-center p-8 md:p-10 rounded-lg bg-gradient-to-br from-card to-card/50 border-2 border-primary/20 shadow-2xl shadow-primary/10 my-12 scroll-mt-20">
-                <h2 className="text-2xl font-bold mb-4 text-foreground">آیا می‌خواهید این ورک‌فلوها را آماده داشته باشید؟</h2>
-                <p className="text-muted-foreground mb-6">
-                  می‌توانید ورک‌فلو کامل ربات "موجود شد خبرم کن" و ده‌ها ورک‌فلو کاربردی دیگر را از سایت پرامپت بازار
-                  دانلود کرده و مستقیماً در n8n خود استفاده کنید.
-                </p>
-                <div className="flex gap-4 justify-center">
-                  {/* تبدیل به کامپوننت Button */}
-                  <Button
-                    size="lg"
-                    asChild
-                    className="bg-primary hover:bg-primary/90 text-primary-foreground font-bold px-12 py-6 text-lg shadow-lg shadow-primary/30 hover:shadow-xl hover:shadow-primary/40 transition-all hover:scale-105"
-                  >
-                    <Link href="/n8n">
-                      مشاهده و دانلود ورک‌فلوهای آماده
-                    </Link>
-                  </Button>
-                </div>
-              </section>
-
-              <section id="faq" className="scroll-mt-20">
-                <h2 className="text-3xl font-bold mb-6">پرسش‌های متداول</h2>
-                <div className="space-y-4">
-                  {[
-                    {
-                      id: "f1",
-                      q: "آیا برای استفاده از n8n باید برنامه‌نویس باشم؟",
-                      a: "خیر. n8n یک ابزار No-Code/Low-Code است. ۹۵٪ کارها با رابط کاربری گرافیکی و بدون نیاز به کدنویسی انجام می‌شود.",
-                    },
-                    {
-                      id: "f2",
-                      q: "آیا n8n با سرویس‌های ایرانی مثل دیجی‌کالا یا اسنپ کار می‌کند؟",
-                      a: "اگر آن سرویس یک API عمومی داشته باشد، بله، با نود HTTP Request می‌توانید به آن متصل شوید. برای سرویس‌هایی که API ندارند، می‌توان از روش‌های خلاقانه‌تری مثل خواندن اطلاعات از صفحه وب (Web Scraping) مانند مثال بالا استفاده کرد.",
-                    },
-                    {
-                      id: "f3",
-                      q: "آیا نصب n8n روی سرور شخصی پیچیده است؟",
-                      a: "خیر. با استفاده از Docker، نصب آن معمولاً کمتر از ۱۰ دقیقه زمان می‌برد. مستندات کاملی برای این کار وجود دارد.",
-                    },
-                  ].map((faq) => (
-                    // استایل آکاردئون
-                    <div key={faq.id} className="border border-border rounded-lg bg-card overflow-hidden">
-                      <button
-                        className="w-full text-right p-5 font-semibold text-foreground hover:bg-accent transition-colors flex items-center justify-between"
-                        onClick={() => toggleAccordion(faq.id)}
-                      >
-                        {faq.q}
-                        <span
-                          className={`transform transition-transform duration-300 ${activeAccordion === faq.id ? "rotate-180" : ""}`}
-                        >
-                          ▼
-                        </span>
-                      </button>
-                      {activeAccordion === faq.id && (
-                        <div className="p-5 pt-0 text-muted-foreground leading-relaxed">{faq.a}</div>
-                      )}
+                {/* s3 */}
+                <section id="s3" className="mb-12">
+                  <h2 className="flex items-center gap-3 text-2xl font-bold mb-6 pb-3 border-b border-gray-700">
+                    <span className="text-purple-400">📊</span> مثال: ضعیف / حرفه‌ای
+                  </h2>
+                  <div className="grid md:grid-cols-2 gap-6 my-8">
+                    <div className="border border-gray-700 rounded-lg p-6 bg-gray-800 text-center">
+                      <h6 className="text-red-400 font-bold mb-3">❌ پرامپت ضعیف</h6>
+                      <code className="text-gray-300 bg-gray-900 p-2 rounded block">یک لوگو برای کافی‌شاپ طراحی کن.</code>
                     </div>
-                  ))}
-                </div>
-              </section>
+                    <div className="border border-gray-700 rounded-lg p-6 bg-gray-800 text-center">
+                      <h6 className="text-green-400 font-bold mb-3">✅ پرامپت حرفه‌ای</h6>
+                      <code className="text-gray-300 bg-gray-900 p-2 rounded block text-sm">
+                        لوگوی مینیمال برای کافی‌شاپ «کافئین»؛ آیکون فنجان با بخار، فونت ساده و خوانا، پالت قهوه‌ای/کرمی،
+                        نسخهٔ تک‌رنگ هم داشته باشد، خروجی: SVG + PNG.
+                      </code>
+                    </div>
+                  </div>
+
+                  <div className="grid md:grid-cols-2 gap-6 my-8">
+                    <div className="border border-gray-700 rounded-lg p-6 bg-gray-800 text-center">
+                      <h6 className="text-red-400 font-bold mb-3">❌ پرامپت ضعیف</h6>
+                      <code className="text-gray-300 bg-gray-900 p-2 rounded block">یک مقاله درباره خواب بنویس.</code>
+                    </div>
+                    <div className="border border-gray-700 rounded-lg p-6 bg-gray-800 text-center">
+                      <h6 className="text-green-400 font-bold mb-3">✅ پرامپت حرفه‌ای</h6>
+                      <code className="text-gray-300 bg-gray-900 p-2 rounded block text-sm">
+                        مقاله ۶۰۰ کلمه‌ای درباره «فواید خواب عمیق»، ۳ تیتر H2، لحن صمیمی، نتیجه‌گیری کوتاه + ۳ نکتهٔ عملی.
+                      </code>
+                    </div>
+                  </div>
+                </section>
+
+                {/* s4 */}
+                <section id="s4" className="mb-12">
+                  <h2 className="flex items-center gap-3 text-2xl font-bold mb-6 pb-3 border-b border-gray-700">
+                    <span className="text-purple-400">📝</span> اصول طلایی (R T C F C E S)
+                  </h2>
+                  <ul className="space-y-3 text-gray-400 leading-relaxed text-lg">
+                    <li><strong className="text-gray-200">Role (نقش):</strong> مدل را در نقشی مشخص قرار بده. «مثل یک کپی‌رایتر باتجربه…»</li>
+                    <li><strong className="text-gray-200">Task (وظیفه):</strong> دقیق بگو چه می‌خواهی. «۱۰ ایده تیتر…»</li>
+                    <li><strong className="text-gray-200">Context (زمینه):</strong> محصول/مخاطب/هدف. «مخاطب: نوجوان… هدف: آگاهی…»</li>
+                    <li><strong className="text-gray-200">Format (فرمت):</strong> لیست، جدول، JSON، Markdown…</li>
+                    <li><strong className="text-gray-200">Constraints (قیدها):</strong> طول، لحن، ممنوعیات. «بدون ایموجی…»</li>
+                    <li><strong className="text-gray-200">Examples (نمونه):</strong> مرجع سبک/کیفیت بده.</li>
+                    <li><strong className="text-gray-200">Steps (مراحل):</strong> اول طرح کلی، بعد نسخهٔ نهایی.</li>
+                  </ul>
+                </section>
+
+                {/* s5 */}
+                <section id="s5" className="mb-12">
+                  <h2 className="flex items-center gap-3 text-2xl font-bold mb-6 pb-3 border-b border-gray-700">
+                    <span className="text-purple-400">📦</span> الگوهای آماده (کپی/پیست)
+                  </h2>
+
+                  <h3 className="flex items-center gap-2 text-xl font-semibold mb-3">
+                    <span className="text-purple-400">📝</span> الگوی تولید محتوا (وبلاگ/سوشال)
+                  </h3>
+                  <pre className="border border-gray-600 rounded-lg bg-gray-900 text-gray-300 p-4 overflow-x-auto whitespace-pre-wrap text-sm">
+نقش: نویسنده حوزه {"{موضوع}"}. وظیفه: پست {"{وبلاگ/اینستاگرام}"} درباره {"{عنوان}"}.
+زمینه: مخاطب {"{سطح}"}؛ هدف {"{آموزش/اطلاع‌رسانی/خرید}"}.
+فرمت: H1 + مقدمه ۳–۴ خط + ۳ بخش H2 با بولت + جمع‌بندی + CTA.
+قیدها: لحن صمیمی، فارسی معیار، ≤ ۶۰۰ کلمه.
+                  </pre>
+
+                  <h3 className="flex items-center gap-2 text-xl font-semibold mb-3 mt-8">
+                    <span className="text-purple-400">🎨</span> الگوی طراحی لوگو (تصویری)
+                  </h3>
+                  <pre className="border border-gray-600 rounded-lg bg-gray-900 text-gray-300 p-4 overflow-x-auto whitespace-pre-wrap text-sm">
+Minimal logo for “{"{brand}"}”; symbol {"{icon}"},
+flat style, clean sans-serif, palette {"{colors}"},
+include monochrome; output: SVG + 1024px PNG.
+                  </pre>
+
+                  <h3 className="flex items-center gap-2 text-xl font-semibold mb-3 mt-8">
+                    <span className="text-purple-400">👤</span> الگوی عکس پروفایل (AI)
+                  </h3>
+                  <pre className="border border-gray-600 rounded-lg bg-gray-900 text-gray-300 p-4 overflow-x-auto whitespace-pre-wrap text-sm">
+Professional LinkedIn portrait; neutral background,
+soft studio lighting, 3/4 angle, natural skin; 1080×1080.
+                  </pre>
+                </section>
+
+                {/* s6 */}
+                <section id="s6" className="mb-12">
+                  <h2 className="flex items-center gap-3 text-2xl font-bold mb-6 pb-3 border-b border-gray-700">
+                    <span className="text-purple-400">⚠️</span> اشتباهات رایج و راه‌حل
+                  </h2>
+                  <ul className="space-y-4 text-gray-400 leading-relaxed text-lg">
+                    <li>کلی‌گویی → <em className="text-gray-300">راه‌حل:</em> جزئیات، عدد و قید زمانی/سبکی بده.</li>
+                    <li>بی‌فرمتی → <em className="text-gray-300">راه‌حل:</em> قالب خروجی را مشخص کن (لیست/جدول/JSON).</li>
+                    <li>بی‌توجهی به مخاطب → <em className="text-gray-300">راه‌حل:</em> سطح و نیاز مخاطب را بنویس.</li>
+                    <li>یک‌بار پرسیدن → <em className="text-gray-300">راه‌حل:</em> از مدل بخواه طرح کلی بدهد یا نسخه‌های جایگزین ارائه کند.</li>
+                  </ul>
+                </section>
+
+                {/* s7 */}
+                <section id="s7" className="mb-12">
+                  <h2 className="flex items-center gap-3 text-2xl font-bold mb-6 pb-3 border-b border-gray-700">
+                    <span className="text-purple-400">📚</span> انواع پرامپت‌ها + نمونه
+                  </h2>
+                  <ul className="space-y-3 text-gray-400 leading-relaxed text-lg">
+                    <li>
+                      <strong className="text-gray-200">پرامپت تولید محتوا:</strong> مقاله، کپشن، خبرنامه —
+                      شروع سریع در{" "}
+                      <a href="/Prompts/seo-content" className="text-purple-400 hover:text-purple-300">
+                        پرامپت‌های متنی
+                      </a>
+                    </li>
+                    <li>
+                      <strong className="text-gray-200">پرامپت کسب‌وکار و استراتژی:</strong> بیزینس پلن، تحلیل رقبا، استراتژی محتوا—
+                      شروع سریع در{" "}
+                      <a href="/Prompts/seo-content" className="text-purple-400 hover:text-purple-300">
+                        تصمیم‌گیری‌های مدیریتی
+                      </a>
+                    </li>
+                    <li>
+                      <strong className="text-gray-200">پرامپت طراحی و دیزاین:</strong> لوگو، پوستر، وب —
+                      نمونه‌ها در{" "}
+                      <a href="/Prompts/image-design" className="text-purple-400 hover:text-purple-300">
+                        بخش طراحی
+                      </a>
+                    </li>
+                    <li>
+                      <strong className="text-gray-200">بازاریابی و شبکه‌های اجتماعی:</strong> کپشن اینستاگرام، سناریو ریلز، ایمیل مارکتینگ—
+                      نمونه‌ها در{" "}
+                      <a href="/Prompts/image-design" className="text-purple-400 hover:text-purple-300">
+                        بازاریابی دیجیتال
+                      </a>
+                    </li>
+                    <li>
+                      <strong className="text-gray-200">پرامپت‌های تصویری:</strong> عکس پروفایل، آتلیه‌ای، انیمه —
+                      ببینید{" "}
+                      <a href="/Prompts/image-design" className="text-purple-400 hover:text-purple-300">
+                        پروفایل تصویری
+                      </a>
+                    </li>
+                    <li>
+                      <strong className="text-gray-200">پرامپت برنامه‌نویسی:</strong> تولید کد، ریفکتور، تست —
+                      نمونه‌ها در{" "}
+                      <a href="/Prompts/tech-coding" className="text-purple-400 hover:text-purple-300">
+                        کدنویسی
+                      </a>
+                    </li>
+                  </ul>
+                </section>
+
+                {/* s8 */}
+                <section id="s8" className="mb-12">
+                  <h2 className="flex items-center gap-3 text-2xl font-bold mb-6 pb-3 border-b border-gray-700">
+                    <span className="text-purple-400">✅</span> چک‌لیست قبل از ارسال
+                  </h2>
+                  <ul className="space-y-3 text-gray-400 leading-relaxed text-lg">
+                    <li>هدف دقیق را نوشته‌ام.</li>
+                    <li>نقش، فرمت و قیدها مشخص هستند.</li>
+                    <li>مخاطب و لحن روشن است.</li>
+                    <li>نمونه/سبک مرجع داده‌ام.</li>
+                    <li>آمادهٔ بازخورد و نسخهٔ بهتر هستم.</li>
+                  </ul>
+                </section>
+
+                {/* CTA */}
+             
+                <section id="cta" className="text-center p-8 rounded-lg bg-gray-800 my-12 scroll-mt-20">
+                  <h4 className="text-2xl font-bold mb-4">آماده شروع هستید؟</h4>
+                  <p className="text-gray-400 mb-6">
+                    وقت کم داری؟ از <strong className="text-gray-200">پرامپت‌های آماده</strong> شروع کن یا با <a href="/what-is-n8n" className="text-purple-400 hover:text-purple-300">آموزش n8n</a> فرآیندهایت را خودکار کن.
+                  </p>
+                  <div className="flex gap-4 justify-center">
+                    <a href="/Prompts" className="bg-purple-600 hover:bg-purple-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors">
+                      مشاهده همه پرامپت‌ها
+                    </a>
+                  </div>
+                </section>
+
+                {/* FAQ */}
+                <section id="faq" className="mb-12">
+                  <h2 className="flex items-center gap-3 text-2xl font-bold mb-6 pb-3 border-b border-gray-700">
+                    <span className="text-purple-400">❓</span> پرسش‌های پرتکرار
+                  </h2>
+                  <div className="space-y-4">
+                    <PromptAccordion/>
+                  </div>
+                </section>
+              </div>
             </div>
           </div>
         </section>

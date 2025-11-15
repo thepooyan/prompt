@@ -17,27 +17,30 @@ export default function Hero() {
 
           <Image src={logoUrl} width={250} height={250} alt="prompt Bazar's logo" className="m-auto"/>
 
+          {/* ----- این بخش تغییر کرده است ----- */}
           <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold mb-6 leading-tight text-balance  ">
-            آکادمی 
-            <span className="bg-gradient-to-l from-primary to-secondary bg-clip-text text-transparent"> پرامپت </span> 
-            و اتوماسیون n8n
-            <br />
+            <span className="bg-gradient-to-l from-primary to-secondary bg-clip-text text-transparent">
+              قدرت AI، مخصوص بازار ایران.
+            </span>
           </h1>
+          {/* ----- پایان بخش تغییر کرده ----- */}
 
           <p className="text-lg sm:text-xl text-muted-foreground mb-12 max-w-2xl mx-auto leading-relaxed text-pretty">
-            با استفاده از آموزش‌های تخصصی پرامپت نویسی و n8n، به‌طور سریع و آسان مهارت‌های خود را به سطح حرفه‌ای برسانید. با پرامپت‌های آماده و ورک‌فلوهای اختصاصی ما، فرآیندهای کسب‌وکار خود را خودکار کنید و زمان‌تان را صرف کارهای مهم‌تر کنید.
-            </p>
+            پیچیدگی ابزارهای جهانی هوش مصنوعی و اتوماسیون را کنار بگذارید. پرامپت بازار، هوش مصنوعی و n8n را به راه‌حل‌های آماده، فارسی و مخصوص بازار ایران تبدیل می‌کند تا کسب‌وکارها و متخصصان بتوانند سریع‌تر، باکیفیت‌تر و متناسب با نیازهای بومی خود رشد کنند.
+          </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <button className="group relative px-8 py-4 bg-gradient-to-l from-primary to-primary text-primary-foreground rounded-xl font-medium transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-primary/20">
-            <Link href="/what-is-prompt">
-              <span className="relative z-10">آموزش پرامپت‌ها را شروع کنید</span>
+            {/* پیشنهاد می‌شود لینک را به حروف کوچک تغییر دهید: /prompt -> /prompts */}
+            <Link href="/Prompt"> 
+              <span className="relative z-10">کتابخانه پرامپت‌ها</span>
               <div className="absolute inset-0 rounded-xl bg-gradient-to-l from-secondary to-secondary/70 opacity-0 group-hover:opacity-100 transition-opacity" />
             </Link>
             </button>
             <button className="px-8 py-4 bg-secondary text-secondary-foreground backdrop-blur-sm rounded-xl font-medium border border-accent-foreground/5 hover:border-accent-foreground/10 transition-all duration-300 hover:bg-accent">
-            <Link href="/Prompts">
-              پرامپت‌های آماده را دانلود کنید
+             {/* پیشنهاد می‌شود لینک را به حروف کوچک تغییر دهید: /N8N -> /workflows */}
+            <Link href="/N8N">
+              کتابخانه N8N
             </Link>
             </button>
           </div>
@@ -46,4 +49,3 @@ export default function Hero() {
     </section>
   )
 }
-

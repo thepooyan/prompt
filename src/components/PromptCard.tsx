@@ -2,8 +2,8 @@
 import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
-import { Share2, Heart, ArrowLeft } from "lucide-react"
-import { cn } from "@/lib/utils"
+import { Share2, ArrowLeft } from "lucide-react"
+import { capitalize, cn } from "@/lib/utils"
 import { usePromptCard } from "@/hooks/use-prompt-card"
 import Link from "next/link"
 import Image from "next/image"
@@ -15,7 +15,7 @@ interface PromptCardProps {
 }
 
 export function PromptCard({ prompt, className }: PromptCardProps) {
-  const { isLiked, likeCount, parsedTags, handleShare, handleLike } = usePromptCard(prompt)
+  const { parsedTags, handleShare } = usePromptCard(prompt)
 
   return (
     <>
@@ -76,7 +76,7 @@ export function PromptCard({ prompt, className }: PromptCardProps) {
             </div>
           </div>
           <Button className="cursor-pointer" asChild>
-            <Link href={`/Prompts/${encodeURIComponent(prompt.category?.slug || "none")}/${encodeURIComponent(prompt.slug)}`}
+            <Link href={`/${capitalize(prompt.type)}/${encodeURIComponent(prompt.category?.slug || "none")}/${encodeURIComponent(prompt.slug)}`}
               className="flex gap-2"
             >
               مشاهده

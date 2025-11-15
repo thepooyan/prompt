@@ -18,14 +18,15 @@ export const metadata: Metadata = {
   openGraph: {
     title: "پرامپت بازار - مرجع پرامپت آماده و آموزش n8n",
     description: "در پرامپت بازار، با آموزش‌های تخصصی ما برای پرامپت نویسی و n8n، به یک متخصص هوش مصنوعی تبدیل شوید و به بزرگترین کتابخانه پرامپت‌های آماده و ورک‌فلوها دسترسی پیدا کنید.",
-  
-
   },
    robots: {
     index: true,
     follow: true,
   },
-
+ metadataBase: new URL(env.NEXT_PUBLIC_BETTER_AUTH_URLs),
+  alternates: {
+    canonical: "./"
+  }
 };
 
 export default function RootLayout({

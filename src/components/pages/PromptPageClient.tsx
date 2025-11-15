@@ -1,29 +1,26 @@
 import { siTelegram, siX} from 'simple-icons';
 import Image from "next/image"
 import { Badge } from "@/components/ui/badge"
-import MyBreadcrumb from "../parts/MyBreadcrumb"
-import { promptBreadcrumb } from "../ts/breadcrumb"
 import { PromptCopyButton } from "./PromptCopyButton"
 import Markdwon from "../util/Markdwon"
 import SimpleIcon from '../icons/SimpleIcon';
 import { Copy } from 'lucide-react';
 import { Button } from '../ui/button';
 import Copyable from '../ui/copyable';
-import { env } from '@/server/env';
 import { getTelegramShareUrl, getTwitterShareUrl } from '@/lib/utils';
-import { PromptCard } from '../PromptCard';
 import { PromptWithRelations } from '@/server/dataFetching';
 import Link from '../ui/link';
+import MyBreadcrumb from '../parts/MyBreadcrumb';
+import { promptBreadcrumb } from '../ts/breadcrumb';
 
 interface p { 
   prompt: PromptWithRelations
-  relatedPrompts?: PromptWithRelations[]
 }
-export default function PromptPageClient({ prompt, relatedPrompts }:p ) {
+export default function PromptPage({ prompt }:p ) {
 
   const tagList = prompt.tags.split(",").map((tag) => tag.trim())
 
-  const pageLink = `${env.BETTER_AUTH_URL}/Prompts/${prompt.slug}`
+  const pageLink = `/Prompts/${prompt.slug}`
 
   const telegramLink = getTelegramShareUrl(prompt.title, pageLink)
   const twitterLink = getTwitterShareUrl(prompt.title, pageLink)
@@ -31,9 +28,11 @@ export default function PromptPageClient({ prompt, relatedPrompts }:p ) {
   return (
     <article className="min-h-screen bg-background">
       {/* Hero Section */}
-      <div className="relative h-[400px] w-full overflow-hidden bg-gradient-to-br from-blue-600 to-purple-700">
-        <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-
+      <div className="relative h-[30dvw] w-full overflow-hidden bg-muted">
+        <Image src={prompt.picture || "/placeholder.svg"} alt={prompt.title} className="object-cover m-auto object-top"
+        fill
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-background via-background/60 to-transparent" />
         <div className="relative mx-auto flex h-full max-w-4xl flex-col justify-end px-4 pb-12">
           <div className="mb-4 flex flex-wrap items-center gap-2">
             {tagList.map((tag) => (
@@ -69,10 +68,11 @@ export default function PromptPageClient({ prompt, relatedPrompts }:p ) {
         </div>
       </div>
 
+
       {/* Content Section */}
       <div className="mx-auto max-w-4xl px-4 py-12">
-
         <MyBreadcrumb items={promptBreadcrumb(prompt)}/>
+
         {/* Description */}
         <div className="my-12 ">
           <p className="text-pretty text-lg leading-relaxed text-muted-foreground">{prompt.excerpt}</p>
@@ -85,7 +85,7 @@ export default function PromptPageClient({ prompt, relatedPrompts }:p ) {
             <PromptCopyButton text={prompt.prompt} />
           </div>
           <div className="p-6">
-            <pre className="ltr whitespace-pre-wrap font-mono text-sm leading-relaxed">{prompt.prompt}</pre>
+            <pre className="ltr whitespace-pre-wrap overflow-hidden font-mono text-sm leading-relaxed">{prompt.prompt}</pre>
           </div>
         </div>
 
@@ -95,11 +95,10 @@ export default function PromptPageClient({ prompt, relatedPrompts }:p ) {
 
           <Image
             className="rounded "
-            src={prompt.picture || "/placeholder.svg"}
+            src={prompt.samplePicture || "/placeholder.svg"}
             alt={prompt.title}
-            width={500}
-            height={500}
-            priority
+            width={1023}
+            height={1023}
           />
         </div>
 
@@ -128,18 +127,7 @@ export default function PromptPageClient({ prompt, relatedPrompts }:p ) {
         </div>
 
 
-        {relatedPrompts && <>
-          <div className='flex flex-col items-center mt-30'>
-            <div className='text-3xl font-bold'>
-              پرامپت های مرتبط
-            </div>
 
-            <div className='flex gap-15 mt-15'>
-              {relatedPrompts.map(p => <PromptCard prompt={p} key={p.id}/>)}
-            </div>
-
-          </div>
-        </>}
 
       </div>
     </article>

@@ -1,5 +1,5 @@
 import { InferInsertModel, InferSelectModel, relations } from "drizzle-orm";
-import { boolean, integer, json, pgTable, text, timestamp, uuid, varchar } from "drizzle-orm/pg-core";
+import { boolean, integer, json, pgEnum, pgTable, text, timestamp, uuid, varchar } from "drizzle-orm/pg-core";
 
 const timestapms = {
   updated_at: timestamp().defaultNow(),
@@ -10,22 +10,28 @@ const pageSeoFields = {
   seoKeywords: json().default([]).$type<string[]>().notNull(),
 }
 
+export const promptTypeEnum = pgEnum('promptType', ['prompt', 'n8n']);
+export type promptType = (typeof promptTypeEnum.enumValues)[number]
+
 export const promptCateTable = pgTable("prompt_category", {
   id: uuid().defaultRandom().primaryKey(),
   name: varchar({length: 100}).notNull(),
-  slug: varchar({length: 100}).notNull().unique()
+  slug: varchar({length: 100}).notNull().unique(),
+  type: promptTypeEnum().default("prompt").notNull()
 })
 
-export type Category = InferSelectModel<typeof promptCateTable>
-export type NewCategory = InferInsertModel<typeof promptCateTable>
+export type PromptCategory = InferSelectModel<typeof promptCateTable>
+export type PromptNewCategory = InferInsertModel<typeof promptCateTable>
 
 export const promptsTable = pgTable("prompts", {
   id: integer().primaryKey().generatedAlwaysAsIdentity(),
+  type: promptTypeEnum().default("prompt").notNull(),
   category_id: uuid().references(() => promptCateTable.id, {onDelete: "restrict"}).notNull(),
   title: varchar({ length: 255 }).notNull(),
   slug: varchar({ length: 255 }).notNull(),
   tags: text().notNull(),
   picture: varchar({ length: 255 }).notNull(),
+  samplePicture: varchar({ length: 255 }).notNull(),
   isFree: boolean().notNull().default(false),
   isActive: boolean().notNull().default(false),
   excerpt: varchar({ length: 255 }).notNull(),

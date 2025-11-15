@@ -26,10 +26,10 @@ export default function LatestBlogs({blogs}:p) {
           </Button>
         </div>
 
-        <>
-        <Carousel className="m-6 ltr">
+        <div className="flex justify-center overflow-hidden mx-auto m-6">
+        <Carousel className="ltr w-full">
           <CarouselContent>
-            {blogs.map(b => <CarouselItem className="lg:basis-1/3 md:basis-1/2 basis-1/1 " key={b.id}>
+            {blogs.map(b => <CarouselItem className="2xl:basis-1/4 xl:basis-1/3 lg:basis-1/2 basis-1/1" key={b.id}>
                 <BlogCard blog={b}/>
               </CarouselItem>
             )}
@@ -37,7 +37,7 @@ export default function LatestBlogs({blogs}:p) {
           <CarouselPrevious />
           <CarouselNext />
         </Carousel>
-        </>
+        </div>
       </div>
     </section>
   )

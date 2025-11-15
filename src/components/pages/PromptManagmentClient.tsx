@@ -7,12 +7,12 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Prompt } from "@/db/schema";
+import { Prompt, promptType } from "@/db/schema";
 import { Suspense, useState } from "react";
 import { limitChar } from "@/lib/utils";
 import { callModal } from "@/components/layout/Modal";
 import { Calendar, Edit, Eye, Plus, Trash2 } from "lucide-react";
-import { fetchPrompts } from "@/server/dataFetching";
+import { getAllPrompts } from "@/server/dataFetching";
 import { deletePrompt } from "@/server/mutation";
 import Link from "@/components/ui/link";
 import { editPromptUrl, promptDetailsUrl } from "@/lib/url";
@@ -20,19 +20,28 @@ import { toast } from "sonner";
 import { LoadingPage } from "../parts/LoadingPage";
 
 interface p {
-    initialBlogs: Prompt[]
+  initialBlogs: Prompt[],
+  type: promptType
 }
-export default function PromptManagmentClient({initialBlogs}:p) {
+export default function PromptManagmentClient({initialBlogs, type}:p) {
   const [posts, setPosts] = useState<Prompt[]>(initialBlogs)
 
-  const name = "پرامپت"
+  const name = (() => {
+    switch (type) {
+      case "prompt":
+        return "پرامپت"
+      case "n8n":
+        return "n8n"
+    }
+  })()
+
   const handleDelete = (post: Prompt) => {
     callModal.prompt(`"${limitChar(post.title, 40)}" حذف شود؟`)
     .yes(async () => {
         const {ok} = await deletePrompt(post.id)
         if (ok) {
           toast.success("با موفقیت حذف شد!")
-          const blogs = await fetchPrompts()
+          const blogs = await getAllPrompts(type)
           setPosts(blogs)
         }
         else toast.error("خطایی پیش آمده. لطفا مجددا تلاش کنید")
@@ -48,7 +57,7 @@ export default function PromptManagmentClient({initialBlogs}:p) {
           <p className="text-muted-foreground">مدیریت و ایجاد {name} ها</p>
         </div>
         <Button className="gap-2 bg-primary text-primary-foreground hover:bg-primary/90" asChild>
-        <Link href="/Admin/NewPrompt">
+        <Link href={`/Admin/New${type}`}>
           {name} جدید
           <Plus className="h-4 w-4" />
         </Link>
@@ -94,7 +103,7 @@ export default function PromptManagmentClient({initialBlogs}:p) {
               <div className="bg-card rounded-md p-5 text-center flex flex-col gap-3 items-center">
                 {name}ی یافت نشد!
                 <Button>
-                  <Link href="/Admin/NewBlog">
+                  <Link href={`/Admin/New${type}`}>
                     اضافه کردن
                   </Link>
                 </Button>
