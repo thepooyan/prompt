@@ -1,9 +1,8 @@
 "use server"
-import { revalidateTag as r, cacheTag as c } from 'next/cache'
 import { db } from "@/db"
 import { authorsTable, Blog, blogsTable, promptCateTable, promptsTable, promptType, redirectsTable } from "@/db/schema"
 import { desc, eq } from 'drizzle-orm'
-import { cacheTags } from './cache'
+import { cacheTag, cacheTags } from './cache'
 import { navItem } from '@/components/layout/Burger'
 
 const promptWith = {with: {category: true, author: true}} as const
@@ -17,14 +16,6 @@ export const getPromptsByCategory = async (cate: string) => {
       }
     },
   })
-}
-
-export const cacheTag = async (tag: typeof cacheTags[keyof typeof cacheTags]) => {
-    return c(tag)
-}
-
-export const revalidate = async (tag: typeof cacheTags[keyof typeof cacheTags]) => {
-  return r(tag, "max")
 }
 
 export const fetchBlogs = async () => {
