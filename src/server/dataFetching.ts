@@ -178,7 +178,11 @@ export const getAllNavItems = async ():Promise<navItem[]> => {
     {
       label: "ابزار",
       href: "/Tools",
-      submenu: []
+      submenu: [
+        {label: "تعبیر خواب", href: "/Tools/dream-interpreter"},
+        {label: "کپشن اینستا", href: "/Tools/instagram-caption-generator"},
+        {label: "تولید پرامپت", href: "/Tools/prompt-enhancer"},
+      ]
     },
   ]
 }
