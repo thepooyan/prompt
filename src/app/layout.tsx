@@ -23,7 +23,7 @@ export const metadata: Metadata = {
     index: true,
     follow: true,
   },
- metadataBase: new URL(env.NEXT_PUBLIC_BETTER_AUTH_URLs),
+ metadataBase: new URL(env.NEXT_PUBLIC_BETTER_AUTH_URL),
   alternates: {
     canonical: "./"
   }
