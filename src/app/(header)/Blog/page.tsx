@@ -9,9 +9,9 @@ const page = async () => {
   const posts = await fetchBlogs()
 
   return (
-    <div className="max-w-7xl m-auto py-20">
+    <div className="max-w-7xl m-auto py-20 px-5">
       <MyBreadcrumb items={allblogBreadcrumb}/>
-      <div className="grid grid-cols-3 gap-10  ">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 w-max m-auto  ">
         {posts.map(p => <BlogCard blog={p} key={p.id}/>)}
       </div>
     </div>
