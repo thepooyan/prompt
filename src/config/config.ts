@@ -1,7 +1,7 @@
 
-type theme = "dark" | "amber"
+type theme = "dark" | "amber" | ""
 
-export const theme:theme = "amber" as theme
+export const theme:theme = "" as theme
 
 export const getLogoUrl = () => {
   switch (theme) {
@@ -9,5 +9,7 @@ export const getLogoUrl = () => {
       return "/logo.png"
     case "amber":
       return "/logo-prompt-bazar3.png"
+    case "":
+      return "/logo.png"
   }
 }
