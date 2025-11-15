@@ -160,9 +160,9 @@ export const getAllNavItems = async ():Promise<navItem[]> => {
       label: "آموزش",
       href: "#",
       submenu: [
-        {label: "پرامپت چیست؟", href: "what-is-prompt"},
-        {label: "n8n چیست؟", href: "what-is-n8n"},
-        {label: "آموزش نصب n8n", href: "download-install-n8n"},
+        {label: "پرامپت چیست؟", href: "/what-is-prompt"},
+        {label: "n8n چیست؟", href: "/what-is-n8n"},
+        {label: "آموزش نصب n8n", href: "/download-install-n8n"},
       ]
     },
     {
