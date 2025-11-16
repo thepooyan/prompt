@@ -3,15 +3,6 @@ import Link from "next/link";
 import UserDropdown from "../parts/UserDropdown";
 import { authClient } from "@/lib/auth-client";
 
-export type user = {
-    id: string;
-    createdAt: Date;
-    updatedAt: Date;
-    email: string;
-    emailVerified: boolean;
-    name: string;
-    image?: string | null | undefined;
-};
 const LoginButtonClient = () => {
   const {data} = authClient.useSession()
   const user = data?.user
