@@ -1,4 +1,5 @@
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '../ui/card';
+import { Card, CardAction, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '../ui/card';
+import AddComment from './AddComment';
 import StarCounter from './StarCounter';
 
 const comments = [
@@ -12,6 +13,9 @@ const Comments = () => {
       <CardHeader>
         <CardTitle>نظرات</CardTitle>
         <CardDescription>امتیاز و نظر کاربران</CardDescription>
+        <CardAction>
+          <AddComment/>
+        </CardAction>
       </CardHeader>
       <CardContent>
         {comments.map(c => <Box {...c} key={c.name}/>)}
