@@ -1,3 +1,4 @@
+import CheckAdmin from "@/components/admin/CheckAdmin"
 import { Button } from "@/components/ui/button"
 import Link from "@/components/ui/link"
 import { auth } from "@/lib/auth"
@@ -13,6 +14,7 @@ export default async function AdminLayout({children}:{children: ReactNode}) {
   const user = session?.user
   if (!user) return redirect("/")
   if (!isAdmin(user)) return redirect("/")
+
   
 
   const items = [
@@ -48,6 +50,7 @@ export default async function AdminLayout({children}:{children: ReactNode}) {
   return (
     <>
     <style>{`html {overflow: hidden}`}</style>
+    <CheckAdmin/>
     <div className="dark min-h-screen bg-background text-foreground rtl  ">
       {/* Header */}
       <header className="border-b border-border bg-card">
