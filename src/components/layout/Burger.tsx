@@ -45,9 +45,9 @@ export default function Burger({navItems}:p) {
 
       {/* Slide-in menu */}
       <nav
-        className={`fixed top-0 right-0 h-dvh w-80 max-w-[85vw]
+        className={`fixed top-0 left-0 h-dvh w-80 max-w-[85vw]
 bg-card border-l border-border z-50 transform transition-transform duration-300 ease-out ${
-          isOpen ? 'translate-x-0' : 'translate-x-full'
+          isOpen ? 'translate-x-0' : '-translate-x-full'
         }`}
       >
         <div className="flex flex-col h-full">
