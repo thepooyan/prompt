@@ -101,7 +101,7 @@ export default function PromptPage({ prompt, related }:p ) {
 
         {/* Usage Tips */}
         <div className="mb-12">
-          <div className="prose-lg prose-zinc   p-10 rounded mt-10">
+          <div className="prose-lg prose-zinc   sm:p-10 rounded mt-10">
             <Markdwon>{prompt.description}</Markdwon>
           </div>
         </div>
