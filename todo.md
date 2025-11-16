@@ -18,3 +18,5 @@ make manual blogs look like normal
 tick active and deactive all (admin)
 authors in admin
 add sitemap and RObots.txt
+fix pages on mobile
+copy logic => move to single place

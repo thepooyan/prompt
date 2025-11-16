@@ -16,6 +16,7 @@ import { AuthorCard } from '../author/AuthorCard';
 import PromptDisplay from '../parts/PromptDisplay';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../ui/card';
 import Comments from '../prompt/Comments';
+import LockedPrompt from '../prompt/LockedPrompt';
 
 interface p { 
   prompt: PromptWithRelations
@@ -83,7 +84,10 @@ export default function PromptPage({ prompt, related }:p ) {
           <p className="text-pretty text-lg leading-relaxed text-muted-foreground">{prompt.excerpt}</p>
         </div>
 
+        {prompt.isFree ?
         <PromptDisplay prompt={prompt.prompt}/>
+        :
+          <LockedPrompt/>}
 
         {/* Sample pic */}
         {prompt.samplePicture && 
