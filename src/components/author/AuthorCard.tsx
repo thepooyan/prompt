@@ -19,7 +19,7 @@ export function AuthorCard({ author }: AuthorCardProps) {
     .toUpperCase()
 
   return (
-    <Card className="p-6 max-w-md m-auto">
+    <Card className="p-6 max-w-md m-auto border-none">
       <RenderSchema schema={getAuthorSchema(author)}/>
       <div className="flex items-start gap-4">
         <Avatar className="h-16 w-16 border-2 border-border">
@@ -45,7 +45,7 @@ export function AuthorCard({ author }: AuthorCardProps) {
 
           <Button variant="outline" size="sm" className="w-full gap-2" asChild>
             <Link href={`/Author/${author.id}`}>
-              در مورد نویسنده
+              مشاهده بیشتر
               <ArrowLeft className="h-4 w-4" />
             </Link>
           </Button>

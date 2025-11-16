@@ -15,6 +15,7 @@ import { promptBreadcrumb } from '../ts/breadcrumb';
 import { PromptCard } from '../PromptCard';
 import { AuthorCard } from '../author/AuthorCard';
 import PromptDisplay from '../parts/PromptDisplay';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../ui/card';
 
 interface p { 
   prompt: PromptWithRelations
@@ -105,26 +106,40 @@ export default function PromptPage({ prompt, related }:p ) {
           </div>
         </div>
 
-        <div className='mb-20'>
-          <p className='text-2xl font-bold text-center mb-4'>نویسنده:</p>
-          <AuthorCard author={prompt.author}/>
-        </div>
+        <div className='grid grid-cols-1 md:grid-cols-2 gap-5'>
+          <Card>
+              <CardHeader>
+                <CardTitle>
+                  نویسنده
+                </CardTitle>
+                <CardDescription>
+                  با نویسنده این مطلب بیشتر آشنا شوید
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+                <AuthorCard author={prompt.author}/>
+              </CardContent>
+          </Card>
 
-        <div className='flex flex-col items-center'>
-          <p className='text-2xl font-bold mb-4'>اشتراک گذاری</p>
-           <div className='flex items-center gap-6 mt-10'>
-            <a href={telegramLink} target='_blank'>
-              <SimpleIcon i={siTelegram} className='fill-blue-700 p-1 bg-white rounded'/>
-            </a>
-            <a href={twitterLink} target='_blank'>
-              <SimpleIcon i={siX} className='bg-white p-1 rounded'/>
-            </a>
-            <Copyable toCopy={pageLink}>
-              <Button variant="secondary">
-                <Copy/>
-              </Button>
-            </Copyable>
-          </div> 
+          <Card>
+              <CardHeader>
+                <CardTitle>اشتراک گذاری</CardTitle>
+                <CardDescription>این مطلب را با دوستان خود به اشتراک بگذارید</CardDescription>
+              </CardHeader>
+             <CardContent className='flex items-center justify-center h-full gap-6'>
+                <a href={telegramLink} target='_blank'>
+                  <SimpleIcon i={siTelegram} className='fill-blue-700 p-1 bg-white rounded'/>
+                </a>
+                <a href={twitterLink} target='_blank'>
+                  <SimpleIcon i={siX} className='bg-white p-1 rounded'/>
+                </a>
+                <Copyable toCopy={pageLink}>
+                  <Button variant="secondary">
+                    <Copy/>
+                  </Button>
+                </Copyable>
+            </CardContent> 
+          </Card>
         </div>
 
         {related.length > 0 && <>
