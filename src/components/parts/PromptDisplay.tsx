@@ -1,5 +1,5 @@
 "use client"
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { PromptCopyButton } from "../pages/PromptCopyButton";
 import { Button } from "../ui/button";
 import { cn } from "@/lib/utils";
@@ -10,6 +10,14 @@ interface p {
 const PromptDisplay = ({prompt}:p) => {
 
   const [open, setOpen] = useState(false)
+  const [active, setActive] = useState(false)
+  const preRef = useRef<HTMLPreElement>(null)
+
+  useEffect(() => {
+    const el = preRef.current
+    if (!el) return
+    if (el?.clientHeight < el?.scrollHeight) setActive(true)
+  }, [])
   
   return (
     <div className="rounded-lg border bg-card">
@@ -20,12 +28,13 @@ const PromptDisplay = ({prompt}:p) => {
       <div className="p-6">
         <pre className={cn("ltr whitespace-pre-wrap overflow-hidden text-sm leading-relaxed max-h-70 transition-all",
           open && "max-h-200"
-        )}>
+        )} ref={preRef}>
           {prompt}
         </pre>
+        {active && 
         <Button variant="outline" className="m-auto mt-5 block" onClick={() => setOpen(prev => !prev)}>
           مشاهده {open ? "کمتر" : "بیشتر"}
-        </Button>
+        </Button>}
       </div>
     </div>
   );
