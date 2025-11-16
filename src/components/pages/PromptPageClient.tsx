@@ -1,7 +1,6 @@
 import { siTelegram, siX} from 'simple-icons';
 import Image from "next/image"
 import { Badge } from "@/components/ui/badge"
-import { PromptCopyButton } from "./PromptCopyButton"
 import Markdwon from "../util/Markdwon"
 import SimpleIcon from '../icons/SimpleIcon';
 import { Copy } from 'lucide-react';
@@ -16,6 +15,7 @@ import { PromptCard } from '../PromptCard';
 import { AuthorCard } from '../author/AuthorCard';
 import PromptDisplay from '../parts/PromptDisplay';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../ui/card';
+import Comments from '../prompt/Comments';
 
 interface p { 
   prompt: PromptWithRelations
@@ -141,6 +141,8 @@ export default function PromptPage({ prompt, related }:p ) {
             </CardContent> 
           </Card>
         </div>
+
+        <Comments/>
 
         {related.length > 0 && <>
           <p className='text-center text-3xl mt-40 font-bold  '>مطالب مرتبط</p>
