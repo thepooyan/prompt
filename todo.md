@@ -13,6 +13,7 @@ n8n {
     change some text?
 }
 
+theme provider
 make manual blogs look like normal 
 tick active and deactive all (admin)
 authors in admin

@@ -14,6 +14,7 @@ import MyBreadcrumb from '../parts/MyBreadcrumb';
 import { promptBreadcrumb } from '../ts/breadcrumb';
 import { PromptCard } from '../PromptCard';
 import { AuthorCard } from '../author/AuthorCard';
+import PromptDisplay from '../parts/PromptDisplay';
 
 interface p { 
   prompt: PromptWithRelations
@@ -81,16 +82,7 @@ export default function PromptPage({ prompt, related }:p ) {
           <p className="text-pretty text-lg leading-relaxed text-muted-foreground">{prompt.excerpt}</p>
         </div>
 
-        {/* Prompt Display */}
-        <div className="rounded-lg border bg-card">
-          <div className="flex items-center justify-between border-b px-6 py-4">
-            <h2 className="text-xl font-semibold">پرامپت</h2>
-            <PromptCopyButton text={prompt.prompt} />
-          </div>
-          <div className="p-6">
-            <pre className="ltr whitespace-pre-wrap overflow-hidden font-mono text-sm leading-relaxed">{prompt.prompt}</pre>
-          </div>
-        </div>
+        <PromptDisplay prompt={prompt.prompt}/>
 
         {/* Sample pic */}
         <div className="flex flex-col items-center mt-10">
