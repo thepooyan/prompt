@@ -19,13 +19,13 @@ const UserDropdown = ({user}:props) => {
   
   return (
     <>
-    <Popover open={open} onOpenChange={setOpen}>
+    <Popover open={open} onOpenChange={setOpen} >
       <PopoverTrigger asChild>
         <Button  className="relative h-9 w-9 text-white">
           <UserIcon/>
         </Button>
       </PopoverTrigger>
-      <PopoverContent className="w-56 rtl bg-zinc-800 ml-4 mt-2">
+      <PopoverContent className="w-56 rtl bg-zinc-800 ml-4 mt-2 z-150">
         <div className="space-y-4">
           <div className="flex flex-col space-y-1 leading-none">
             <p className="text-sm font-medium">خوش آمدید!</p>

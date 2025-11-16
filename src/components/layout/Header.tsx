@@ -1,10 +1,10 @@
 import Logo from "../parts/Logo"
 import { Suspense } from "react"
 import { Spinner } from "../ui/spinner"
-import LoginButton from "./LoginButton"
 import { getAllNavItems } from "@/server/dataFetching"
 import Burger from "./Burger"
 import NavItem from "./HeaderSub"
+import LoginButtonClient from "./LoginButtonClient"
 
 export default async function Header() {
   const navItems = await getAllNavItems()
@@ -26,7 +26,7 @@ export default async function Header() {
 
           {/* Login Button - Left side in RTL */}
           <Suspense fallback={<Spinner/>}>
-            <LoginButton/>
+            <LoginButtonClient/>
           </Suspense>
         </div>
       </div>
