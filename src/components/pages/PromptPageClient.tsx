@@ -85,6 +85,7 @@ export default function PromptPage({ prompt, related }:p ) {
         <PromptDisplay prompt={prompt.prompt}/>
 
         {/* Sample pic */}
+        {prompt.samplePicture && 
         <div className="flex flex-col items-center mt-10">
           <div className="text-3xl font-bold mb-5">نمونه خروجی واقعی</div>
 
@@ -95,7 +96,7 @@ export default function PromptPage({ prompt, related }:p ) {
             width={1023}
             height={1023}
           />
-        </div>
+        </div>}
 
         {/* Usage Tips */}
         <div className="mb-12">
