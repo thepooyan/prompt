@@ -1,6 +1,4 @@
-compelete login => fix admin security
 search with query params => make tags searchable
-add sitemap and RObots.txt
 
 prompt {
     author
@@ -15,7 +13,7 @@ n8n {
     change some text?
 }
 
-make manual blogs look like normal (and tutorial pages)
+make manual blogs look like normal 
 tick active and deactive all (admin)
-check author schema is ok
 authors in admin
+add sitemap and RObots.txt
