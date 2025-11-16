@@ -1,11 +1,12 @@
 "use client"
-import { LogOut, Settings, User as UserIcon } from "lucide-react"
+import { Cog, LogOut, Settings, User as UserIcon } from "lucide-react"
 import { Button } from "../ui/button"
 import { useState } from "react"
 import { authClient } from "@/lib/auth-client"
 import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover"
 import { User } from "better-auth"
 import Link from "../ui/link"
+import { isAdmin } from "@/server/serverUtil"
 
 interface props {
   user: User
@@ -34,6 +35,13 @@ const UserDropdown = ({user}:props) => {
             <p className="text-xs text-muted-foreground truncate">{user.email}</p>
           </div>
           <div className="flex flex-col space-y-1">
+            {isAdmin(user) &&
+            <Button variant="ghost" className="justify-start hover:bg-accent flex gap-2  " onClick={() => setOpen(false)} asChild>
+                <Link href="/Admin">
+                  <Cog className="mr-2 h-4 w-4" />
+                  <span>ادمین</span>
+                </Link>
+            </Button>}
             <Button variant="ghost" className="justify-start hover:bg-accent flex gap-2  " onClick={() => setOpen(false)} asChild>
                 <Link href="/Panel">
                   <Settings className="mr-2 h-4 w-4" />

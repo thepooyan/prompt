@@ -1,10 +1,20 @@
 import { Button } from "@/components/ui/button"
 import Link from "@/components/ui/link"
+import { auth } from "@/lib/auth"
+import { isAdmin } from "@/server/serverUtil"
 import { ArrowLeft, FileText } from "lucide-react"
+import { headers } from "next/headers"
+import { redirect } from "next/navigation"
 import { ReactNode } from "react"
 
-export default function AdminLayout({children}:{children: ReactNode}) {
-//   getAdminUser()
+export default async function AdminLayout({children}:{children: ReactNode}) {
+
+  const session = await auth.api.getSession({headers: await headers()})
+  const user = session?.user
+  if (!user) return redirect("/")
+  if (!isAdmin(user)) return redirect("/")
+  
+
   const items = [
     {
       name: "بلاگ",
