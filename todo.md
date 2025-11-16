@@ -20,3 +20,4 @@ authors in admin
 add sitemap and RObots.txt
 fix pages on mobile
 copy logic => move to single place
+** interactive prompt **
