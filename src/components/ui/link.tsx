@@ -12,7 +12,7 @@ interface ActiveLinkProps {
   activeClassName?: string
 }
 
-export default function Link({ href, children, className, activeClassName }: ActiveLinkProps) {
+export default function Link({ href, children, className, activeClassName, ...rest }: ActiveLinkProps) {
   const Inner = () => {
     const pathname = usePathname()
     const isActive = pathname === href
@@ -21,6 +21,7 @@ export default function Link({ href, children, className, activeClassName }: Act
       <L
         href={href}
         className={cn(className, isActive && activeClassName)}
+        {...rest}
       >
         {children}
       </L>
