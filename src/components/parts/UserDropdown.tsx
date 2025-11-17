@@ -42,7 +42,7 @@ const UserDropdown = ({user}:props) => {
                   <span>ادمین</span>
                 </Link>
             </Button>}
-            <Button variant="ghost" className="justify-start hover:bg-accent flex gap-2  " onClick={() => setOpen(false)} asChild>
+            <Button variant="ghost" className="justify-start hover:bg-accent flex gap-2  " onClick={() => {setOpen(false);alert("run")}} asChild>
                 <Link href="/Panel">
                   <Settings className="mr-2 h-4 w-4" />
                   <span>پنل کاربری</span>
