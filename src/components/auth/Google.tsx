@@ -2,16 +2,15 @@
 
 import { authClient } from "@/lib/auth-client";
 import Image from "next/image";
+import { toast } from "sonner";
 
 const ContinueWithGoogle = () => {
   const clickHndlr = async () => {
     await authClient.signIn.social({
       provider: "google",
-      errorCallbackURL: "/error",
       callbackURL: "/",
-      newUserCallbackURL: "/welcome"
     }).catch(err => {
-      alert(err)
+      toast.error(err.message)
     })
   }
   return (
