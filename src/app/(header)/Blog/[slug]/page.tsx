@@ -1,5 +1,5 @@
 import BlogPageServer from "@/components/pages/BlogAsync"
-import { getBlogBySlug } from "@/server/dataFetching"
+import { getAllBlogs, getBlogBySlug } from "@/server/dataFetching"
 import { Metadata } from "next"
 
 interface props {
@@ -9,6 +9,14 @@ const page = async (props:props) => {
   return (
     <BlogPageServer {...props}/>
   )
+}
+
+export async function generateStaticParams() {
+  const blogs = await getAllBlogs()
+ 
+  return blogs.map(b => ({
+    slug: b.slug,
+  }))
 }
 
 export async function generateMetadata( { params }: props): Promise<Metadata> {
