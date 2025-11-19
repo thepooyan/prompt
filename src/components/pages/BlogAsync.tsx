@@ -9,7 +9,7 @@ import Markdwon from "../util/Markdwon"
 interface p {
   params: Promise<{ slug: string }>
 }
-export default async function BlogAsync({ params, }: p) {
+export default async function BlogPageServer({ params, }: p) {
   const { slug } = await params
   const blog = await getBlogBySlug(slug)
 
