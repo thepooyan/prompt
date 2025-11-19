@@ -36,18 +36,18 @@ const UserDropdown = ({user}:props) => {
           </div>
           <div className="flex flex-col space-y-1">
             {isAdmin(user) &&
-            <Button variant="ghost" className="justify-start hover:bg-accent flex gap-2  " onClick={() => setOpen(false)} asChild>
+            <Button variant="ghost" className="justify-start hover:bg-accent flex gap-2  " onClickCapture={() => setOpen(false)} asChild>
                 <Link href="/Admin">
                   <Cog className="mr-2 h-4 w-4" />
                   <span>ادمین</span>
                 </Link>
             </Button>}
-            <Button variant="ghost" className="justify-start hover:bg-accent flex gap-2  " onClick={() => {setOpen(false)}} asChild>
+            {/* <Button variant="ghost" className="justify-start hover:bg-accent flex gap-2  " onClick={() => {setOpen(false)}} asChild>
                 <Link href="/Panel">
                   <Settings className="mr-2 h-4 w-4" />
                   <span>پنل کاربری</span>
                 </Link>
-            </Button>
+            </Button> */}
             <Button
               variant="ghost"
               className="justify-start gap-2 text-destructive hover:text-destructive-foreground hover:bg-destructive     "
