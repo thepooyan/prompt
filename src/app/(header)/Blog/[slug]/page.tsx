@@ -1,4 +1,3 @@
-"use cache"
 import BlogPageServer from "@/components/pages/BlogAsync"
 import { getBlogBySlug } from "@/server/dataFetching"
 import { Metadata } from "next"
