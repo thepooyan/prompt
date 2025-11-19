@@ -1,5 +1,5 @@
 import PromptPage from "@/components/pages/PromptPageClient"
-import { getPromptBySlug, getTwoPrompts } from "@/server/dataFetching"
+import { getAllPrompts, getPromptBySlug, getTwoPrompts } from "@/server/dataFetching"
 import { Metadata } from "next"
 import { notFound } from "next/navigation"
 
@@ -15,6 +15,16 @@ const page = async ({params}:p) => {
       <PromptPage prompt={data} related={related}/>
     </>
   )
+}
+
+export async function generateStaticParams() {
+  const n = await getAllPrompts("n8n")
+  const p = await getAllPrompts("prompt")
+  const e = Array.of(...n, ...p)
+ 
+  return e.map(b => ({
+    slug: b.slug,
+  }))
 }
 
  
