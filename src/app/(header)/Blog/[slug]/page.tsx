@@ -1,18 +1,22 @@
-import BlogAsync from "@/components/pages/BlogAsync"
-import { LoadingPage } from "@/components/parts/LoadingPage"
-import { getBlogBySlug } from "@/server/dataFetching"
+import BlogPageServer from "@/components/pages/BlogAsync"
+import { getAllBlogs, getBlogBySlug } from "@/server/dataFetching"
 import { Metadata } from "next"
-import { Suspense } from "react"
 
 interface props {
   params: Promise<{slug: string}>
 }
-const page = (props:props) => {
+const page = async (props:props) => {
   return (
-    <Suspense fallback={<LoadingPage/>}>
-      <BlogAsync {...props}/>
-    </Suspense>
+    <BlogPageServer {...props}/>
   )
+}
+
+export async function generateStaticParams() {
+  const blogs = await getAllBlogs()
+ 
+  return blogs.map(b => ({
+    slug: b.slug,
+  }))
 }
 
 export async function generateMetadata( { params }: props): Promise<Metadata> {
