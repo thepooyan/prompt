@@ -117,11 +117,11 @@ export const getTwoPrompts = async () => {
 
 // author
 
-export const getAuthorById = async (id: string) => {
+export const getAuthorBySlug = async (slug: string) => {
   "use cache"
   cacheTag(cacheTags.author)
   return await db.query.authorsTable.findFirst({
-    where: eq(authorsTable.id, id)
+    where: eq(authorsTable.slug, slug)
   })
 }
 
