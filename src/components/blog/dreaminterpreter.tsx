@@ -58,7 +58,7 @@ export default function Dreaminterpreter() {
   }
 
   return (
-    <main className="min-h-screen bg-gradient-to-br from-[#0d0d2b] via-[#1a0a40] to-[#0d0d2b] text-white relative overflow-hidden font-sans">
+    <main className="min-h-screen bg-gradient-to-br from-[#0d0d2b] via-[#1a0a40] to-[#0d0d2b] text-white relative overflow-hiddens">
       
       {/* --- پس‌زمینه متحرک (تکنولوژیک-عرفانی) --- */}
       <div className="absolute inset-0 z-0 opacity-20 pointer-events-none">
