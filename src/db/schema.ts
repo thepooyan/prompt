@@ -82,6 +82,7 @@ export type NewRedirect = InferInsertModel<typeof redirectsTable>
 
 export const authorsTable = pgTable("authors", (t) => ({
   id: t.uuid().defaultRandom().primaryKey(),
+  slug: t.varchar({ length: 150 }).unique().notNull(),
   name: t.varchar({ length: 150 }).notNull(),
   description: t.varchar({ length: 300 }).notNull(),
   email: t.varchar({ length: 254 }),

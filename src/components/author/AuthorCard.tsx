@@ -44,7 +44,7 @@ export function AuthorCard({ author }: AuthorCardProps) {
           </div>
 
           <Button variant="outline" size="sm" className="w-full gap-2" asChild>
-            <Link href={`/Author/${author.id}`}>
+            <Link href={`/Author/${author.slug}`}>
               مشاهده بیشتر
               <ArrowLeft className="h-4 w-4" />
             </Link>
