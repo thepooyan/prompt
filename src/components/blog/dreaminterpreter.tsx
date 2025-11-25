@@ -7,7 +7,13 @@ import { aiSingleResponse } from "@/server/actions" // مسیر اکشن خود 
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Textarea } from "@/components/ui/textarea"
-import { Brain, Lightbulb, Code2, Rocket, Cloud, Loader2, AlertCircle, Share2, Sparkles, Network, MoonStar, Ghost, Telescope, ScrollText, Binary } from "lucide-react" // آیکون‌های متناسب با تم جدید
+// --- تغییر: حذف ایمپورت‌های Accordion که باعث ارور می‌شدند ---
+// import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
+
+// اضافه کردن آیکون ChevronDown برای نمایش باز/بسته بودن
+import { Brain, Lightbulb, Code2, Rocket, Cloud, Loader2, AlertCircle, Share2, Sparkles, Network, MoonStar, Ghost, Telescope, ScrollText, Binary, HelpCircle, ShieldCheck, ChevronDown } from "lucide-react"
+// برای ترکیب کلاس‌های شرطی (اگر در پروژه دارید استفاده کنید، اگر نه خط بعدی را حذف و در کد پایین دستی کلاس بدهید)
+import { cn } from "@/lib/utils" 
 
 export default function Dreaminterpreter() {
   
@@ -15,6 +21,10 @@ export default function Dreaminterpreter() {
   const [interpretation, setInterpretation] = useState("")
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState("")
+
+  // --- State جدید برای مدیریت باز/بسته بودن سوالات متداول ---
+  // این استیت، ایندکس سوالی که باز است را نگه می‌دارد. اگر null باشد یعنی همه بسته‌اند.
+  const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(null)
 
   const handleInterpret = async () => {
     if (!userDream || userDream.length < 10) {
@@ -57,14 +67,41 @@ export default function Dreaminterpreter() {
     alert("تعبیر خواب کپی شد!")
   }
 
+  // تابع برای باز و بسته کردن آیتم‌های FAQ
+  const toggleFaq = (index: number) => {
+    setOpenFaqIndex(prevIndex => (prevIndex === index ? null : index))
+  }
+
+  // --- داده‌های بخش سوالات متداول (FAQ) ---
+  const faqs = [
+    {
+      question: "آیا هوش مصنوعی واقعاً می‌تواند خواب تعبیر کند؟",
+      answer: "بله، اما نه به روش سنتی. هوش مصنوعی به جای مراجعه به یک کتاب ثابت، با استفاده از مدل‌های زبانی پیشرفته و «پرامپت‌های مهندسی‌شده»، کل بافت (Context) خواب شما، احساساتتان و جزئیات منحصر به فرد آن را تحلیل می‌کند. این روش ترکیبی از دانش وسیع روانشناسی و نمادشناسی است که نتیجه‌ای بسیار شخصی‌سازی‌شده‌تر ارائه می‌دهد.",
+      icon: <Brain className="h-5 w-5 text-teal-300" />
+    },
+    {
+      question: "تفاوت این ابزار با کتاب‌های تعبیر خواب قدیمی چیست؟",
+      answer: "کتاب‌های سنتی برای هر نماد (مثلاً «مار») یک معنی ثابت دارند. اما در این ابزار هوشمند، معنی یک نماد بر اساس سایر اجزای خواب شما تغییر می‌کند. هوش مصنوعی درک می‌کند که دیدن «مار» در یک جنگل سرسبز با دیدن آن در اتاق خواب، تعابیر کاملاً متفاوتی دارد.",
+      icon: <ScrollText className="h-5 w-5 text-yellow-300" />
+    },
+    {
+      question: "اگر خواب بد یا ترسناکی دیدم، تعبیرش حتماً بد است؟",
+      answer: "اصلاً. در دیدگاه روانشناسی تحلیلی، کابوس‌ها دشمن ما نیستند؛ بلکه پیام‌های مهمی از ناخودآگاه برای توجه به یک مسئله نادیده گرفته شده در زندگی هستند. این ابزار به جای پیشگویی‌های ترسناک، به شما کمک می‌کند ریشه اضطراب را پیدا کنید.",
+      icon: <MoonStar className="h-5 w-5 text-fuchsia-300" />
+    },
+    {
+      question: "آیا خواب‌هایی که می‌نویسم جایی ذخیره می‌شوند؟",
+      answer: "امنیت و حریم خصوصی شما اولویت ماست. متن خواب شما صرفاً برای لحظاتی جهت پردازش به مدل هوش مصنوعی ارسال شده و پس از تولید پاسخ، از حافظه موقت پاک می‌شود. ما هیچ داده شخصی از رویاهای شما را ذخیره نمی‌کنیم.",
+      icon: <ShieldCheck className="h-5 w-5 text-green-300" />
+    }
+  ]
+
   return (
-    <main className="min-h-screen bg-gradient-to-br from-[#0d0d2b] via-[#1a0a40] to-[#0d0d2b] text-white relative overflow-hiddens">
+    <main className="min-h-screen bg-gradient-to-br from-[#0d0d2b] via-[#1a0a40] to-[#0d0d2b] text-white relative overflow-hidden font-sans">
       
-      {/* --- پس‌زمینه متحرک (تکنولوژیک-عرفانی) --- */}
+      {/* --- پس‌زمینه متحرک --- */}
       <div className="absolute inset-0 z-0 opacity-20 pointer-events-none">
-        {/* الگوی شبکه عصبی نامحسوس */}
         <div className="absolute top-0 left-0 w-full h-full bg-[url('/images/neural-bg.svg')] bg-cover bg-center animate-pulse-slow"></div>
-        {/* لایه‌های مه و نور برای حس عرفانی */}
         <div className="absolute inset-0 bg-gradient-to-br from-transparent via-[#2a005a]/60 to-transparent opacity-70"></div>
         <div className="absolute -bottom-40 -left-40 w-96 h-96 bg-purple-600 rounded-full mix-blend-screen filter blur-[150px] opacity-40 animate-slow-glow"></div>
         <div className="absolute -top-40 -right-40 w-80 h-80 bg-blue-500 rounded-full mix-blend-screen filter blur-[130px] opacity-30 animate-slow-glow delay-1000"></div>
@@ -72,12 +109,9 @@ export default function Dreaminterpreter() {
 
       <div className="container mx-auto px-4 py-12 md:py-20 max-w-4xl relative z-10">
         
-        {/* --- بخش ۱: هدر و تصویر (با تمرکز بر AI و عرفان) --- */}
+        {/* --- بخش ۱: هدر و تصویر --- */}
         <header className="text-center space-y-6 mb-12 animate-in fade-in slide-in-from-top-10 duration-700">
-          
-          {/* تصویر هیرو (Dream-AI themed) */}
           <div className="relative w-full max-w-lg mx-auto h-64 md:h-80 mb-8 rounded-3xl overflow-hidden shadow-2xl shadow-[#6a00ff]/40 border border-[#4a00ff]/30">
-             {/* این عکس باید حسی از "ورود به دنیای درونی با هوش مصنوعی" را منتقل کند (ترکیب مغز، نور، کهکشان و دروازه) */}
              <Image 
                src="https://c327107.parspack.net/prompt/1763623838427-dream-interpreter.webp" 
                alt="تعبیر خواب هوشمند با هوش مصنوعی"
@@ -166,8 +200,53 @@ export default function Dreaminterpreter() {
             )}
           </CardContent>
         </Card>
+
+        {/* --- تغییر اساسی: پیاده‌سازی دستی آکاردئون بدون نیاز به پکیج خارجی --- */}
+        <section className="mt-20 animate-in fade-in delay-300">
+            <div className="text-center mb-10">
+                <h2 className="text-2xl md:text-3xl font-bold text-white flex items-center justify-center gap-3">
+                  <HelpCircle className="h-8 w-8 text-blue-300 animate-pulse" />
+                  پرسش‌های متداول
+                </h2>
+                 <p className="text-indigo-200 mt-4 text-lg">
+                    پاسخ به ابهامات شما درباره تلفیق تکنولوژی و دنیای اسرارآمیز خواب‌ها
+                  </p>
+            </div>
+
+            <div className="bg-white/5 backdrop-blur-lg border border-white/10 rounded-3xl p-4 md:p-8 shadow-xl space-y-4">
+              {/* حلقه روی داده‌های FAQ */}
+              {faqs.map((faq, index) => {
+                const isOpen = openFaqIndex === index;
+                return (
+                  <div 
+                    key={index} 
+                    className={`border border-white/10 rounded-xl overflow-hidden transition-all duration-300 ${isOpen ? 'bg-white/5 border-blue-500/30' : 'hover:bg-white/5'}`}
+                  >
+                    <button
+                      onClick={() => toggleFaq(index)}
+                      className="w-full flex items-center justify-between py-5 px-4 text-lg font-medium text-indigo-100 hover:text-blue-300 text-right transition-colors focus:outline-none"
+                    >
+                      <div className="flex items-center gap-3">
+                        {faq.icon}
+                        <span>{faq.question}</span>
+                      </div>
+                      {/* آیکون فلش که می‌چرخد */}
+                      <ChevronDown className={`h-5 w-5 text-white/50 transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`} />
+                    </button>
+                    
+                    {/* محتوای پاسخ که به صورت شرطی نمایش داده می‌شود */}
+                    <div 
+                      className={`px-4 text-indigo-200/90 text-base leading-relaxed text-justify pr-10 overflow-hidden transition-all duration-300 ease-in-out ${isOpen ? 'max-h-96 pb-6 opacity-100' : 'max-h-0 pb-0 opacity-0'}`}
+                    >
+                      {faq.answer}
+                    </div>
+                  </div>
+                )
+              })}
+            </div>
+        </section>
         
-        {/* --- بخش ۳: اتصال به هدف اصلی سایت (ستون-خوشه) --- */}
+        {/* --- بخش ۳: اتصال به هدف اصلی سایت --- */}
         <section className="mt-24 bg-gradient-to-r from-blue-900/50 to-purple-900/50 border border-white/10 rounded-3xl p-8 md:p-10 text-center md:text-right shadow-xl shadow-blue-500/20 animate-in fade-in delay-200">
           <div className="flex flex-col md:flex-row items-center justify-between gap-8">
             <div className="space-y-4 md:max-w-2xl">
