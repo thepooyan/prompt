@@ -1,14 +1,13 @@
 "use client"
 
 import React from "react"
-// آیکون‌های فنی‌تر برای برنامه‌نویس
 import { Github, Linkedin, Mail, Terminal, Database, Server, Code2, Layers, Cpu, Globe } from "lucide-react" 
 
 export default function PouyanProfile() {
   return (
     <div className="bg-gray-950 text-gray-100 min-h-screen font-[family-name:var(--font-vazirmatn)]">
       
-      {/* پس‌زمینه با تم "ماتریکس/تکنیکال" (کمی متفاوت از صفحه شما) */}
+      {/* پس‌زمینه با تم "ماتریکس/تکنیکال" */}
       <div className="fixed top-0 left-0 w-full h-full overflow-hidden -z-10 pointer-events-none">
         <div className="absolute top-[-10%] right-[-10%] w-[50%] h-[50%] bg-blue-900/10 rounded-full blur-[120px]"></div>
         <div className="absolute bottom-[-10%] left-[-10%] w-[50%] h-[50%] bg-cyan-900/10 rounded-full blur-[120px]"></div>
@@ -16,19 +15,16 @@ export default function PouyanProfile() {
 
       <div className="container mx-auto p-4 md:p-8 max-w-6xl">
         
-        {/* --- بخش ۱: هدر و پروفایل (Hero Section) --- */}
+        {/* --- بخش ۱: هدر و پروفایل --- */}
         <section className="bg-gray-900/60 border border-gray-800 rounded-2xl p-6 md:p-10 shadow-2xl backdrop-blur-sm mb-12 relative overflow-hidden">
-          {/* نوار گرادینت آبی/سیان برای حس تکنولوژی */}
           <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-500 via-cyan-500 to-blue-600"></div>
           
           <div className="flex flex-col md:flex-row items-center gap-8">
-            
-            {/* عکس پروفایل */}
             <div className="relative group">
               <div className="absolute -inset-1 bg-gradient-to-r from-blue-600 to-cyan-600 rounded-full blur opacity-75 group-hover:opacity-100 transition duration-1000"></div>
-              {/* ⚠️ عکس پویان را اینجا قرار دهید */}
+              {/* عکس پویان */}
               <img 
-                src="https://c327107.parspack.net/prompt/1763288118442-me.webp" // لینک عکس واقعی پویان را جایگزین کنید
+                src="https://c327107.parspack.net/prompt/1763288118442-me.webp" 
                 alt="Pouyan Salmani" 
                 className="relative w-40 h-40 md:w-48 md:h-48 rounded-full border-4 border-gray-900 object-cover shadow-2xl"
               />
@@ -37,7 +33,6 @@ export default function PouyanProfile() {
               </div>
             </div>
 
-            {/* اطلاعات متنی */}
             <div className="text-center md:text-right flex-1">
               <h1 className="text-3xl md:text-5xl font-bold mb-2">
                 <span className="bg-gradient-to-r from-blue-400 via-cyan-500 to-blue-600 bg-clip-text text-transparent">
@@ -62,7 +57,7 @@ export default function PouyanProfile() {
           </div>
         </section>
 
-        {/* --- بخش ۲: آمار فنی (Stats) --- */}
+        {/* --- بخش ۲: آمار فنی --- */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12">
             <StatCard value="Next.js" label="تکنولوژی اصلی" />
             <StatCard value="100%" label="Performance" />
@@ -82,16 +77,21 @@ export default function PouyanProfile() {
                     <div className="prose prose-invert prose-lg max-w-none text-gray-300 leading-relaxed">
                         <p>
                             به عنوان توسعه‌دهنده اصلی (Lead Developer) در <strong className="text-cyan-400">PromptBazar</strong>، مسئولیت من فراتر از نوشتن کد است.
-                            من مسئول خلق تجربه‌ای هستم که کاربر در آن احساس سرعت، امنیت و راحتی کند.
+                            من مسئول خلق زیرساختی هستم که ایده‌های استراتژیک و خلاقانه 
+                            {/* --- لینک‌دهی به پیمان در اینجا انجام شد --- */}
+                            <a href="/AuthorBox/peyman" className="mx-1 text-purple-400 hover:text-purple-300 font-bold underline decoration-dotted underline-offset-4 transition" title="مشاهده پروفایل بنیان‌گذار">
+                                پیمان کلانتر نظری
+                            </a>
+                            (بنیان‌گذار) را به واقعیت تبدیل کند.
                         </p>
                         <p>
                             پلتفرم ما بر پایه آخرین تکنولوژی‌های وب (Next.js 14, React, Tailwind) بنا شده تا بتواند پردازش‌های سنگین هوش مصنوعی را به ساده‌ترین شکل ممکن به کاربر ارائه دهد.
-                            چالش‌های فنی مثل اتصال APIهای هوش مصنوعی، بهینه‌سازی سرعت لود و طراحی رابط کاربری تعاملی، بخشی از روزمرگی‌های من است.
+                            چالش اصلی ما ایجاد تعادل بین "عملکرد فنی بالا" و "تجربه کاربری ساده" است.
                         </p>
                     </div>
                 </section>
 
-                {/* استک تکنولوژی (Tech Stack) */}
+                {/* استک تکنولوژی */}
                 <section className="bg-gray-800/30 border border-gray-700/50 rounded-2xl p-6">
                     <h3 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
                         <Layers className="text-cyan-400" />
@@ -127,7 +127,7 @@ export default function PouyanProfile() {
         </div>
       </div>
 
-      {/* اسکیما برای پویان */}
+      {/* اسکیما برای پویان (بدون تغییر) */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
@@ -150,13 +150,9 @@ export default function PouyanProfile() {
 }
 
 // --- کامپوننت‌های فرعی ---
-
 function SocialButton({ href, icon, label }: { href: string, icon: React.ReactNode, label: string }) {
     return (
-        <a 
-            href={href} 
-            className="flex items-center gap-2 px-4 py-2 bg-gray-800 hover:bg-gray-700 text-gray-300 hover:text-white rounded-lg transition border border-gray-700 hover:border-cyan-500/50"
-        >
+        <a href={href} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 px-4 py-2 bg-gray-800 hover:bg-gray-700 text-gray-300 hover:text-white rounded-lg transition border border-gray-700 hover:border-cyan-500/50" title={label}>
             {icon}
             <span className="hidden md:inline text-sm font-medium">{label}</span>
         </a>
@@ -182,10 +178,7 @@ function SkillBar({ name, percent, color, icon }: { name: string, percent: numbe
                 <span className="text-xs text-gray-500 font-mono">{percent}%</span>
             </div>
             <div className="w-full bg-gray-900 rounded-full h-2">
-                <div 
-                    className={`${color} h-2 rounded-full transition-all duration-1000 ease-out`} 
-                    style={{ width: `${percent}%` }}
-                ></div>
+                <div className={`${color} h-2 rounded-full transition-all duration-1000 ease-out`} style={{ width: `${percent}%` }}></div>
             </div>
         </div>
     )
