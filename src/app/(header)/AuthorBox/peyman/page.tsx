@@ -1,13 +1,14 @@
 "use client"
 
 import React from "react"
-import { Linkedin, Github, Mail, Lightbulb, Target, Rocket, TrendingUp, Users, Download, FileText } from "lucide-react" 
+import Link from "next/link"
+import { Linkedin, Github, Mail, Lightbulb, Target, Rocket, TrendingUp, Users, Download, FileText, Feather, PenTool } from "lucide-react" 
 
 export default function AuthorPage() {
   return (
     <div className="bg-gray-950 text-gray-100 min-h-screen font-[family-name:var(--font-vazirmatn)]">
       
-      {/* پس‌زمینه با تم "ویژنری/خلاقیت" */}
+      {/* پس‌زمینه با تم "خلاقیت و نویسندگی" */}
       <div className="fixed top-0 left-0 w-full h-full overflow-hidden -z-10 pointer-events-none">
         <div className="absolute top-[-10%] left-[-10%] w-[45%] h-[45%] bg-purple-900/20 rounded-full blur-[120px]"></div>
         <div className="absolute bottom-[-10%] right-[-10%] w-[45%] h-[45%] bg-pink-900/20 rounded-full blur-[120px]"></div>
@@ -15,11 +16,13 @@ export default function AuthorPage() {
 
       <div className="container mx-auto p-4 md:p-8 max-w-6xl">
         
-        {/* --- بخش ۱: هدر و پروفایل (Hero Section) --- */}
+        {/* --- بخش ۱: هدر و پروفایل --- */}
         <section className="bg-gray-900/60 border border-gray-800 rounded-2xl p-6 md:p-10 shadow-2xl backdrop-blur-sm mb-12 relative overflow-hidden">
           <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-purple-500 via-pink-500 to-orange-500"></div>
           
           <div className="flex flex-col md:flex-row items-center gap-8">
+            
+            {/* عکس پروفایل */}
             <div className="relative group">
               <div className="absolute -inset-1 bg-gradient-to-r from-purple-600 to-pink-600 rounded-full blur opacity-75 group-hover:opacity-100 transition duration-1000"></div>
               <img 
@@ -27,23 +30,30 @@ export default function AuthorPage() {
                 alt="Peyman Kalantar Nazari" 
                 className="relative w-40 h-40 md:w-48 md:h-48 rounded-full border-4 border-gray-900 object-cover shadow-2xl"
               />
-              <div className="absolute bottom-2 right-2 bg-orange-500 text-white p-1.5 rounded-full border-4 border-gray-900" title="Founder & Visionary">
-                <Lightbulb className="w-5 h-5" />
+              {/* آیکون ترکیبی (لامپ برای ایده + قلم برای نویسندگی) */}
+              <div className="absolute bottom-2 right-2 bg-orange-500 text-white p-1.5 rounded-full border-4 border-gray-900 flex items-center justify-center gap-1 min-w-[3rem]" title="Founder & Author">
+                <Lightbulb className="w-4 h-4" />
+                <Feather className="w-4 h-4" />
               </div>
             </div>
 
+            {/* اطلاعات متنی */}
             <div className="text-center md:text-right flex-1">
               <h1 className="text-3xl md:text-5xl font-bold mb-2">
                 <span className="bg-gradient-to-r from-purple-400 via-pink-500 to-orange-500 bg-clip-text text-transparent">
                   پیمان کلانتر نظری
                 </span>
               </h1>
-              <h2 className="text-xl text-gray-300 font-medium mb-4 flex items-center justify-center md:justify-start gap-2">
-                <Target className="w-5 h-5 text-pink-400" />
-                بنیان‌گذار (Founder) & استراتژیست محصول
+              
+              {/* تایتل شغلی با تاکید بر نویسندگی */}
+              <h2 className="text-xl text-gray-300 font-medium mb-4 flex flex-wrap items-center justify-center md:justify-start gap-3">
+                <span className="flex items-center gap-2"><Target className="w-5 h-5 text-pink-400" /> بنیان‌گذار (Founder)</span>
+                <span className="hidden md:inline text-gray-600">|</span>
+                <span className="flex items-center gap-2"><PenTool className="w-5 h-5 text-purple-400" /> نویسنده ارشد (Lead Author)</span>
               </h2>
+
               <p className="text-gray-400 max-w-2xl leading-relaxed mx-auto md:mx-0">
-                خالق ایده و معمار سیستم PromptBazar. من نیاز بازار را شناسایی می‌کنم و با ترکیب استراتژی مارکتینگ و اتوماسیون، راهکارهای نوآورانه می‌سازم.
+                من خالق PromptBazar و نویسنده تمام مقالات تخصصی این سایت هستم. هدف من انتقال تجربیات واقعی در زمینه سئو و اتوماسیون به زبانی ساده و کاربردی است.
               </p>
               
               <div className="flex flex-col sm:flex-row gap-4 mt-8 justify-center md:justify-start items-center">
@@ -67,37 +77,36 @@ export default function AuthorPage() {
           </div>
         </section>
 
-        {/* --- بخش ۲: آمار مدیریتی --- */}
+        {/* --- بخش ۲: آمار --- */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12">
-            <StatCard value="Vision" label="خالق ایده" />
-            <StatCard value="Strategy" label="مارکتینگ & رشد" />
+            <StatCard value="Founder" label="بنیان‌گذار" />
+            <StatCard value="Author" label="نویسنده مقالات" />
             <StatCard value="5+ Years" label="تجربه EdTech" />
-            <StatCard value="Leader" label="مدیریت محصول" />
+            <StatCard value="Strategist" label="مدیریت محصول" />
         </div>
 
         <div className="grid lg:grid-cols-3 gap-8">
             
-            {/* --- ستون اصلی: داستان و ویژن --- */}
+            {/* --- ستون اصلی: داستان و نویسندگی --- */}
             <div className="lg:col-span-2 space-y-8">
                 <section className="bg-gray-800/30 border border-gray-700/50 rounded-2xl p-6 md:p-8">
                     <h3 className="text-2xl font-bold text-white mb-6 flex items-center gap-2">
                         <span className="w-2 h-8 bg-purple-500 rounded-full"></span>
-                        چشم‌انداز من (My Vision)
+                        چرا من می‌نویسم؟ (My Content Philosophy)
                     </h3>
                     <div className="prose prose-invert prose-lg max-w-none text-gray-300 leading-relaxed">
                         <p>
-                            ایده‌ی <strong>PromptBazar</strong> از یک دغدغه شخصی شروع شد: <span className="text-pink-300 italic">"چرا ابزارهای هوش مصنوعی برای کاربران ایرانی اینقدر پیچیده و دور از دسترس هستند؟"</span>
+                            ایده‌ی <strong>PromptBazar</strong> از یک دغدغه شخصی شروع شد، اما نوشتن در مورد آن اشتیاق اصلی من است. من معتقدم دانش هوش مصنوعی نباید پیچیده باشد.
                         </p>
                         <p>
-                            به عنوان کسی که سال‌ها در حوزه EdTech و دیجیتال مارکتینگ فعالیت کرده، می‌دانستم که "تکنولوژی" به تنهایی کافی نیست. تکنولوژی نیاز به "ترجمه" دارد تا برای کسب‌وکارها قابل استفاده شود.
+                            تمامی مقالات، پرامپت‌ها و آموزش‌هایی که در این سایت می‌خوانید، حاصل تجربیات مستقیم من در پروژه‌های واقعی است. من به عنوان <strong>نویسنده و سردبیر</strong>، شخصاً روی کیفیت و صحت علمی تمام مطالب نظارت دارم.
                         </p>
                         <p>
-                            {/* --- لینک‌دهی به پویان در اینجا انجام شد --- */}
-                            من این پلتفرم را طراحی کردم تا پلی باشد میان پیچیدگی‌های فنی (که تیم توسعه‌دهنده ما به رهبری  
-                            <a href="/AuthorBox/poyan" className="mx-1 text-cyan-400 hover:text-cyan-300 font-bold underline decoration-dotted underline-offset-4 transition" title="مشاهده پروفایل پویان سلمانی">
-                                 پویان سلمانی
-                             </a> 
-                             آن را مدیریت می‌کند) و نیازهای واقعی بازار. تمرکز من روی خلق ارزش، طراحی تجربه کاربری (UX) و استراتژی رشد است.
+                            من استراتژی و محتوا را طراحی می‌کنم و تیم فنی ما به رهبری 
+                            <Link href="/AuthorBox/poyan" className="mx-1 text-cyan-400 hover:text-cyan-300 font-bold underline decoration-dotted underline-offset-4 transition" title="مشاهده پروفایل پویان سلمانی">
+                                پویان سلمانی
+                            </Link>
+                            زیرساخت قدرتمند آن را پیاده‌سازی می‌کند.
                         </p>
                     </div>
                 </section>
@@ -110,13 +119,13 @@ export default function AuthorPage() {
                     <ul className="space-y-4">
                          <li className="flex flex-col md:flex-row justify-between md:items-center border-b border-gray-700 pb-3 last:border-0">
                             <div>
-                                <h4 className="font-bold text-white">بنیان‌گذار (Founder)</h4>
+                                <h4 className="font-bold text-white">بنیان‌گذار و نویسنده ارشد (Founder & Lead Author)</h4>
                                 <span className="text-sm text-gray-400">PromptBazar | ۲۰۲۵ - اکنون</span>
                             </div>
                         </li>
                         <li className="flex flex-col md:flex-row justify-between md:items-center border-b border-gray-700 pb-3 last:border-0">
                             <div>
-                                <h4 className="font-bold text-white">مدیر عملیات و سئو</h4>
+                                <h4 className="font-bold text-white">مدیر عملیات و استراتژیست محتوا</h4>
                                 <span className="text-sm text-gray-400">موسسه تحلیل داده (Tahlil Dadeh)</span>
                             </div>
                         </li>
@@ -134,14 +143,14 @@ export default function AuthorPage() {
             <aside className="space-y-6">
                 <div className="bg-gray-800/50 border border-gray-700 rounded-2xl p-6 sticky top-8">
                     <h3 className="text-xl font-bold text-white mb-6 border-b border-gray-700 pb-2">
-                        تخصص‌های استراتژیک
+                        تخصص‌های من
                     </h3>
                     
                     <div className="space-y-5">
-                        <SkillBar name="Product Strategy" percent={95} color="bg-orange-500" icon={<Target size={16} />} />
-                        <SkillBar name="SEO & Growth" percent={90} color="bg-green-500" icon={<TrendingUp size={16} />} />
-                        <SkillBar name="Automation Logic (n8n)" percent={85} color="bg-pink-500" icon={<Rocket size={16} />} />
-                        <SkillBar name="Team Leadership" percent={80} color="bg-purple-500" icon={<Users size={16} />} />
+                        <SkillBar name="Content Strategy & Writing" percent={100} color="bg-orange-500" icon={<PenTool size={16} />} />
+                        <SkillBar name="SEO & Growth" percent={95} color="bg-green-500" icon={<TrendingUp size={16} />} />
+                        <SkillBar name="Product Management" percent={90} color="bg-purple-500" icon={<Target size={16} />} />
+                        <SkillBar name="Automation Logic" percent={85} color="bg-pink-500" icon={<Rocket size={16} />} />
                     </div>
                 </div>
             </aside>
@@ -149,7 +158,31 @@ export default function AuthorPage() {
         </div>
       </div>
       
-      {/* کد اسکیما در فایل جداگانه یا GTM قرار می‌گیرد */}
+      {/* اسکیما: سیگنال قوی به گوگل برای نویسندگی و مالکیت */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Person",
+            "name": "پیمان کلانتر نظری",
+            "url": "https://promptbazar.ir/author/peyman",
+            // این خط کلیدی است: هم بنیان‌گذار، هم نویسنده ارشد
+            "jobTitle": "Founder & Lead Author", 
+            "worksFor": {
+                "@type": "Organization",
+                "name": "PromptBazar",
+                "role": "Founder"
+            },
+            "sameAs": [
+              "https://www.linkedin.com/in/peyman-kalantar-nazari",
+              "https://github.com/peyman5959"
+            ],
+            "description": "بنیان‌گذار و نویسنده ارشد PromptBazar. متخصص در تولید محتوای تخصصی سئو و اتوماسیون.",
+            "knowsAbout": ["Content Writing", "SEO", "Prompt Engineering", "Business Strategy"]
+          }),
+        }}
+      />
     </div>
   )
 }
