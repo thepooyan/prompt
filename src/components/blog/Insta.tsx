@@ -5,6 +5,39 @@ import Image from "next/image"
 import { aiSingleResponse } from "@/server/actions"
 import Link from "../ui/link"
 
+// --- کامپوننت باکس نویسنده (پیمان) ---
+function AuthorBox() {
+  return (
+    <div className="mt-16 pt-8 border-t border-gray-800">
+      <div className="bg-gray-900/50 border border-gray-800 rounded-xl p-6 flex flex-col md:flex-row items-center gap-6 hover:border-purple-500/30 transition duration-300 group">
+        
+        {/* عکس نویسنده */}
+        <a href="/AuthorBox/peyman" className="shrink-0 relative">
+          <div className="absolute -inset-1 bg-gradient-to-r from-purple-600 to-pink-600 rounded-full blur opacity-50 group-hover:opacity-100 transition duration-500"></div>
+          <img 
+            src="https://c327107.parspack.net/prompt/1763293380820-7da4d49b-0a7d-49ed-bd42-6c1f46d7424b.jpeg" 
+            alt="پیمان کلانتر نظری" 
+            className="relative w-20 h-20 rounded-full object-cover border-2 border-gray-900 shadow-xl"
+          />
+        </a>
+
+        {/* متن معرفی */}
+        <div className="text-center md:text-right flex-1">
+          <h3 className="text-lg font-bold text-white mb-1">
+            نویسنده: <a href="/AuthorBox/peyman" className="hover:text-purple-400 transition">پیمان کلانتر نظری</a>
+          </h3>
+          <p className="text-sm text-gray-400 mb-3 leading-relaxed">
+            متخصص دیجیتال مارکتینگ و اتوماسیون (n8n). با پیش‌زمینه مهندسی نرم‌افزار و مدیریت عملیات آموزشی، به شما کمک می‌کنم تا فرآیندهای کسب‌وکارتان را هوشمند کنید.
+          </p>
+          <a href="/AuthorBox/peyman" className="inline-flex items-center text-xs font-semibold text-purple-400 hover:text-purple-300 transition gap-1 px-3 py-1 bg-purple-500/10 rounded-full border border-purple-500/20 hover:bg-purple-500/20">
+            مشاهده پروفایل و رزومه
+            <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  )
+}
 
 export default function InstaBlog() {
   // Stateها برای فرم تعاملی
@@ -310,6 +343,41 @@ export default function InstaBlog() {
       </p>
 
       <p className="leading-relaxed text-lg">موفق باشید و اینستاگرام‌تون رو بترکونید! 🚀</p>
+
+      {/* >>> اضافه کردن باکس نویسنده <<< */}
+      <AuthorBox />
+
+      {/* --- اسکیمای JSON-LD (برای سئو) --- */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Article",
+            "headline": "ساخت محتوای اینستاگرام با هوش مصنوعی (پرامپت های آماده)",
+            "image": [
+              "https://c327107.parspack.net/prompt/1762275089146-Untitled5555-2.png" 
+            ],
+            "datePublished": "2025-10-26T08:00:00+00:00",
+            "dateModified": new Date().toISOString(),
+            "author": {
+                "@type": "Person",
+                "name": "پیمان کلانتر نظری",
+                "url": "https://promptbazar.ir/AuthorBox/peyman",
+                "@id": "https://promptbazar.ir/AuthorBox/peyman"
+            },
+            "publisher": {
+              "@type": "Organization",
+              "name": "PromptBazar",
+              "logo": {
+                "@type": "ImageObject",
+                "url": "https://promptbazar.ir/logo.png"
+              }
+            },
+            "description": "آموزش کامل ساخت محتوای اینستاگرام با هوش مصنوعی + پرامپت‌های آماده برای کپشن نویسی و ایده‌یابی."
+          }),
+        }}
+      />
     </main>
   )
 }
