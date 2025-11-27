@@ -131,7 +131,7 @@ function AuthorBox() {
   )
 }
 
-export default function CryptoAmberFinal() {
+export default function CryptosignalPage() {
   const [isCopied, setIsCopied] = useState(false);
   const [openStep, setOpenStep] = useState(1);
 
