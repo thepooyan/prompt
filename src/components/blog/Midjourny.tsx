@@ -4,7 +4,41 @@ import { useState, useEffect, useRef } from "react"
 import { Chart, registerables } from "chart.js"
 Chart.register(...registerables)
 
-// کامپوننت تب مقدمه
+// --- کامپوننت باکس نویسنده (اصلاح شده با لینک جدید) ---
+function AuthorBox() {
+  return (
+    <div className="mt-16 pt-8 border-t border-gray-800">
+      <div className="bg-gray-900/50 border border-gray-800 rounded-xl p-6 flex flex-col md:flex-row items-center gap-6 hover:border-purple-500/30 transition duration-300 group">
+        
+        {/* عکس نویسنده (لینک اصلاح شد) */}
+        <a href="/AuthorBox/peyman" className="shrink-0 relative">
+          <div className="absolute -inset-1 bg-gradient-to-r from-purple-600 to-pink-600 rounded-full blur opacity-50 group-hover:opacity-100 transition duration-500"></div>
+          <img 
+            src="https://c327107.parspack.net/prompt/1763293380820-7da4d49b-0a7d-49ed-bd42-6c1f46d7424b.jpeg" 
+            alt="پیمان کلانتر نظری" 
+            className="relative w-20 h-20 rounded-full object-cover border-2 border-gray-900 shadow-xl"
+          />
+        </a>
+
+        {/* متن معرفی (لینک‌ها اصلاح شد) */}
+        <div className="text-center md:text-right flex-1">
+          <h3 className="text-lg font-bold text-white mb-1">
+            نویسنده: <a href="/AuthorBox/peyman" className="hover:text-purple-400 transition">پیمان کلانتر نظری</a>
+          </h3>
+          <p className="text-sm text-gray-400 mb-3 leading-relaxed">
+            متخصص دیجیتال مارکتینگ و اتوماسیون (n8n). با پیش‌زمینه مهندسی نرم‌افزار و مدیریت عملیات آموزشی، به شما کمک می‌کنم تا فرآیندهای کسب‌وکارتان را هوشمند کنید.
+          </p>
+          <a href="/AuthorBox/peyman" className="inline-flex items-center text-xs font-semibold text-purple-400 hover:text-purple-300 transition gap-1 px-3 py-1 bg-purple-500/10 rounded-full border border-purple-500/20 hover:bg-purple-500/20">
+            مشاهده پروفایل و رزومه
+            <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+// --- کامپوننت تب مقدمه ---
 function IntroTab() {
   return (
     <section id="intro" className="tab-content prose max-w-4xl mx-auto leading-relaxed">
@@ -36,7 +70,7 @@ function IntroTab() {
   )
 }
 
-// کامپوننت تب آناتومی پرامپت
+// --- کامپوننت تب آناتومی پرامپت ---
 function AnatomyTab() {
   return (
     <section id="anatomy" className="tab-content">
@@ -47,28 +81,28 @@ function AnatomyTab() {
         </p>
       </div>
       <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-        <div className="bg-gray-800/50 p-6 rounded-lg shadow-md border-t-4 border-purple-500">
+        <div className="bg-gray-800/50 p-6 rounded-lg shadow-md border-t-4 border-purple-500 hover:bg-gray-800 transition">
           <h3 className="font-bold text-xl mb-2 text-white">۱. سوژه اصلی (Subject)</h3>
           <p className="text-gray-300">قلب پرامپت شما. به وضوح بگویید می‌خواهید عکس چه چیزی باشد.</p>
           <p className="mt-4 text-sm bg-gray-900 p-2 rounded font-mono text-left text-gray-300" dir="ltr">
             An old wizard
           </p>
         </div>
-        <div className="bg-gray-800/50 p-6 rounded-lg shadow-md border-t-4 border-pink-500">
+        <div className="bg-gray-800/50 p-6 rounded-lg shadow-md border-t-4 border-pink-500 hover:bg-gray-800 transition">
           <h3 className="font-bold text-xl mb-2 text-white">۲. توصیفات و جزئیات (Details)</h3>
           <p className="text-gray-300">به سوژه خود شخصیت بدهید. از صفت‌ها برای توصیف ظاهر، حس و محیط استفاده کنید.</p>
           <p className="mt-4 text-sm bg-gray-900 p-2 rounded font-mono text-left text-gray-300" dir="ltr">
             in a misty forest
           </p>
         </div>
-        <div className="bg-gray-800/50 p-6 rounded-lg shadow-md border-t-4 border-cyan-500">
+        <div className="bg-gray-800/50 p-6 rounded-lg shadow-md border-t-4 border-cyan-500 hover:bg-gray-800 transition">
           <h3 className="font-bold text-xl mb-2 text-white">۳. سبک هنری (Style)</h3>
           <p className="text-gray-300">به میدجرنی بگویید تصویر را به چه سبکی خلق کند: نقاشی، عکاسی، انیمه و...</p>
           <p className="mt-4 text-sm bg-gray-900 p-2 rounded font-mono text-left text-gray-300" dir="ltr">
             digital painting
           </p>
         </div>
-        <div className="bg-gray-800/50 p-6 rounded-lg shadow-md border-t-4 border-fuchsia-500">
+        <div className="bg-gray-800/50 p-6 rounded-lg shadow-md border-t-4 border-fuchsia-500 hover:bg-gray-800 transition">
           <h3 className="font-bold text-xl mb-2 text-white">۴. پارامترها (Parameters)</h3>
           <p className="text-gray-300">دستورات فنی مانند نسبت تصویر، نسخه مدل و... که همیشه در انتهای پرامپت می‌آیند.</p>
           <p className="mt-4 text-sm bg-gray-900 p-2 rounded font-mono text-left text-gray-300" dir="ltr">
@@ -80,7 +114,7 @@ function AnatomyTab() {
   )
 }
 
-// کامپوننت تب پارامترها (شامل چارت)
+// --- کامپوننت تب پارامترها (شامل چارت) ---
 function ParametersTab() {
   const chartRef = useRef<HTMLCanvasElement>(null)
   const chartInstanceRef = useRef<Chart | null>(null)
@@ -191,7 +225,7 @@ function ParametersTab() {
         </p>
       </div>
       <div className="max-w-4xl mx-auto space-y-3">
-        <details className="bg-gray-800/50 p-4 rounded-lg shadow-sm cursor-pointer group">
+        <details className="bg-gray-800/50 p-4 rounded-lg shadow-sm cursor-pointer group border border-gray-700/50">
           <summary className="font-semibold text-lg flex justify-between items-center text-white">
             --ar (نسبت تصویر)
             <span className="text-purple-400 group-open:rotate-90 transform transition-transform duration-200">▶</span>
@@ -211,7 +245,7 @@ function ParametersTab() {
             </ul>
           </div>
         </details>
-        <details className="bg-gray-800/50 p-4 rounded-lg shadow-sm cursor-pointer group">
+        <details className="bg-gray-800/50 p-4 rounded-lg shadow-sm cursor-pointer group border border-gray-700/50">
           <summary className="font-semibold text-lg flex justify-between items-center text-white">
             --no (پرامپت منفی)
             <span className="text-purple-400 group-open:rotate-90 transform transition-transform duration-200">▶</span>
@@ -229,7 +263,7 @@ function ParametersTab() {
             </ul>
           </div>
         </details>
-        <details className="bg-gray-800/50 p-4 rounded-lg shadow-sm cursor-pointer group">
+        <details className="bg-gray-800/50 p-4 rounded-lg shadow-sm cursor-pointer group border border-gray-700/50">
           <summary className="font-semibold text-lg flex justify-between items-center text-white">
             --s (درجه هنری بودن)
             <span className="text-purple-400 group-open:rotate-90 transform transition-transform duration-200">▶</span>
@@ -241,7 +275,7 @@ function ParametersTab() {
             </p>
           </div>
         </details>
-        <details className="bg-gray-800/50 p-4 rounded-lg shadow-sm cursor-pointer group">
+        <details className="bg-gray-800/50 p-4 rounded-lg shadow-sm cursor-pointer group border border-gray-700/50">
           <summary className="font-semibold text-lg flex justify-between items-center text-white">
             --v / --niji (نسخه مدل)
             <span className="text-purple-400 group-open:rotate-90 transform transition-transform duration-200">▶</span>
@@ -264,7 +298,7 @@ function ParametersTab() {
       </div>
       <div className="mt-10">
         <h3 className="text-center text-2xl font-bold mb-4 text-white">اهمیت پارامترها در عمل</h3>
-        <div className="chart-container">
+        <div className="chart-container h-[300px]">
           <canvas id="parametersChart" ref={chartRef}></canvas>
         </div>
       </div>
@@ -272,7 +306,7 @@ function ParametersTab() {
   )
 }
 
-// کامپوننت تب پرامپت ساز
+// --- کامپوننت تب پرامپت ساز ---
 function BuilderTab() {
   const [subject, setSubject] = useState("")
   const [details, setDetails] = useState("")
@@ -449,7 +483,7 @@ function BuilderTab() {
           <textarea
             id="finalPrompt"
             rows={4}
-            className="w-full bg-black p-3 rounded-md font-mono text-sm text-green-300 resize-none"
+            className="w-full bg-black p-3 rounded-md font-mono text-sm text-green-300 resize-none outline-none focus:ring-1 focus:ring-purple-500"
             readOnly
             value={finalPrompt}
             dir="ltr"
@@ -467,7 +501,7 @@ function BuilderTab() {
   )
 }
 
-// کامپوننت تب ترفندهای پیشرفته
+// --- کامپوننت تب ترفندهای پیشرفته ---
 function AdvancedTab() {
   return (
     <section id="advanced" className="tab-content prose max-w-4xl mx-auto leading-relaxed">
@@ -502,7 +536,7 @@ function AdvancedTab() {
   )
 }
 
-// کامپوننت اصلی
+// --- کامپوننت اصلی ---
 export default function MidjourneyGuide() {
   const [activeTab, setActiveTab] = useState("intro")
 
@@ -532,8 +566,10 @@ export default function MidjourneyGuide() {
   ]
 
   return (
-    <div className="bg-gray-950 text-gray-100 min-h-screen">
+    <div className="bg-gray-950 text-gray-100 min-h-screen font-[family-name:var(--font-vazirmatn)]">
       <div className="container mx-auto p-4 md:p-8">
+        
+        {/* هدر صفحه */}
         <header className="text-center mb-8">
           <h1 className="text-3xl md:text-5xl font-bold bg-gradient-to-r from-purple-400 via-pink-500 to-purple-600 bg-clip-text text-transparent">
             راهنمای جامع پرامپت نویسی میدجرنی
@@ -543,15 +579,16 @@ export default function MidjourneyGuide() {
           </p>
         </header>
 
-        <nav className="mb-8 flex justify-center border-b border-gray-800">
-          <div className="flex flex-wrap -mb-px">
+        {/* نویگیشن تب‌ها */}
+        <nav className="mb-8 flex justify-center border-b border-gray-800 overflow-x-auto">
+          <div className="flex flex-nowrap md:flex-wrap -mb-px">
             {tabs.map((tab) => (
               <button
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id)}
-                className={`tab-btn text-lg border-b-2 py-3 px-4 md:px-6 font-semibold transition ${
+                className={`tab-btn text-lg border-b-2 py-3 px-4 md:px-6 font-semibold transition whitespace-nowrap ${
                   activeTab === tab.id
-                    ? "border-purple-500 text-purple-400 bg-purple-950/30"
+                    ? "border-purple-500 text-purple-400 bg-purple-900/10"
                     : "border-transparent text-gray-500 hover:text-gray-300"
                 }`}
               >
@@ -561,7 +598,13 @@ export default function MidjourneyGuide() {
           </div>
         </nav>
 
-        <main id="main-content">{renderTabContent()}</main>
+        {/* محتوای اصلی */}
+        <main id="main-content" className="min-h-[400px]">
+          {renderTabContent()}
+          
+          {/* باکس نویسنده (اضافه شده در انتهای محتوا) */}
+          <AuthorBox />
+        </main>
       </div>
     </div>
   )
