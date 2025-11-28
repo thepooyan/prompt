@@ -77,8 +77,8 @@ export default function AboutUsPage() {
                         </span>
                     </div>
                     <img 
-                        src="https://via.placeholder.com/150" // عکس پویان را اینجا بگذارید
-                        alt="Pouyan Salmani" 
+                        src="https://c327107.parspack.net/prompt/1763288118442-me.webp" // عکس پویان را اینجا بگذارید
+                        alt="pooyan Salmani" 
                         className="w-20 h-20 rounded-full border-2 border-blue-500/50 object-cover shadow-lg"
                     />
                 </div>
