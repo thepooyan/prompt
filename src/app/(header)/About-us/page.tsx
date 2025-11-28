@@ -1,6 +1,4 @@
 "use client"
-
-import React from "react"
 import Link from "next/link"
 import { Target, Code2, Users, Rocket, ExternalLink, Lightbulb, Terminal } from "lucide-react" 
 

@@ -184,5 +184,9 @@ export const getAllNavItems = async ():Promise<navItem[]> => {
         {label: "تولید پرامپت", href: "/Tools/prompt-enhancer"},
       ]
     },
+    {
+      label: "درباره",
+      href: "/About-us",
+    },
   ]
 }
