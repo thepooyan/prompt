@@ -180,7 +180,7 @@ export const getAllNavItems = async ():Promise<navItem[]> => {
       href: "/Tools",
       submenu: [
         {label: "تعبیر خواب", href: "/Tools/dream-interpreter"},
-        {label: "کپشن اینستا", href: "/Tools/instagram-caption-generator"},
+        // {label: "کپشن اینستا", href: "/Tools/instagram-caption-generator"},
         {label: "تولید پرامپت", href: "/Tools/prompt-enhancer"},
       ]
     },
