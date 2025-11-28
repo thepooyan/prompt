@@ -103,7 +103,7 @@ export default function AuthorPage() {
                         </p>
                         <p>
                             من استراتژی و محتوا را طراحی می‌کنم و تیم فنی ما به رهبری 
-                            <Link href="/AuthorBox/poyan" className="mx-1 text-cyan-400 hover:text-cyan-300 font-bold underline decoration-dotted underline-offset-4 transition" title="مشاهده پروفایل پویان سلمانی">
+                            <Link href="/Authors/pooyan" className="mx-1 text-cyan-400 hover:text-cyan-300 font-bold underline decoration-dotted underline-offset-4 transition" title="مشاهده پروفایل پویان سلمانی">
                                 پویان سلمانی
                             </Link>
                             زیرساخت قدرتمند آن را پیاده‌سازی می‌کند.
