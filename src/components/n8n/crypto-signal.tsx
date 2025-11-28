@@ -97,7 +97,7 @@ function AuthorBox() {
         <div className="absolute top-0 right-0 w-32 h-32 bg-[var(--primary)]/5 rounded-full blur-3xl -mr-16 -mt-16 transition-opacity group-hover:opacity-100 opacity-50"></div>
 
         {/* Author Image */}
-        <a href="/AuthorBox/peyman" className="shrink-0 relative z-10">
+        <a href="/Authors/peyman" className="shrink-0 relative z-10">
           <div className="absolute -inset-1 bg-gradient-to-r from-[var(--primary)] to-[var(--secondary)] rounded-full blur opacity-20 group-hover:opacity-50 transition duration-500"></div>
           <img 
             src="https://c327107.parspack.net/prompt/1763293380820-7da4d49b-0a7d-49ed-bd42-6c1f46d7424b.jpeg" 
@@ -110,7 +110,7 @@ function AuthorBox() {
         <div className="text-center md:text-right flex-1 z-10 space-y-3">
           <div className="flex flex-col md:flex-row items-center md:justify-between gap-2">
              <h3 className="text-xl font-black text-[var(--foreground)] flex items-center gap-2">
-               نویسنده: <a href="/AuthorBox/peyman" className="hover:text-[var(--primary)] transition underline-offset-4 hover:underline decoration-[var(--primary)]">پیمان کلانتر نظری</a>
+               نویسنده: <a href="/Authors/peyman" className="hover:text-[var(--primary)] transition underline-offset-4 hover:underline decoration-[var(--primary)]">پیمان کلانتر نظری</a>
              </h3>
              <Badge variant="secondary">مدرس و طراح اتوماسیون</Badge>
           </div>
@@ -120,7 +120,7 @@ function AuthorBox() {
           </p>
           
           <div className="pt-2 flex justify-center md:justify-start">
-             <a href="/AuthorBox/peyman" className="inline-flex items-center text-xs font-bold text-[var(--primary)] hover:text-[var(--secondary)] transition gap-1.5 px-4 py-2 bg-[var(--primary)]/5 rounded-full border border-[var(--primary)]/20 hover:bg-[var(--primary)]/10">
+             <a href="/Authors/peyman" className="inline-flex items-center text-xs font-bold text-[var(--primary)] hover:text-[var(--secondary)] transition gap-1.5 px-4 py-2 bg-[var(--primary)]/5 rounded-full border border-[var(--primary)]/20 hover:bg-[var(--primary)]/10">
                مشاهده رزومه و سایر آموزش‌ها
                <ExternalLink className="w-3 h-3" />
              </a>
