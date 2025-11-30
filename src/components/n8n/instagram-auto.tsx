@@ -149,16 +149,7 @@ export default function InstagramAutoDM() {
       <style jsx global>{themeStyles}</style>
       <div className="theme-amber min-h-screen bg-[var(--background)] text-[var(--foreground)]" dir="rtl">
         
-        {/* Minimal Header */}
-        <div className="container mx-auto px-4 py-6 flex justify-end">
-          <Button variant="outline" size="sm" asChild>
-            <a href="/" className="flex items-center gap-2 group opacity-70 hover:opacity-100 transition-opacity">
-              بازگشت به خانه
-              <ArrowRight className="w-4 h-4 rotate-180 group-hover:-translate-x-1 transition-transform" />
-            </a>
-          </Button>
-        </div>
-
+    
         {/* Hero Section */}
         <div className="relative pt-10 pb-20 overflow-hidden">
           <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[600px] bg-gradient-to-tr from-purple-600/10 via-pink-600/10 to-[var(--primary)]/5 rounded-full blur-[100px] -z-10"></div>
