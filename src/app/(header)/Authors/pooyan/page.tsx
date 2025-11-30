@@ -79,7 +79,7 @@ export default function PouyanProfile() {
                             به عنوان توسعه‌دهنده اصلی (Lead Developer) در <strong className="text-cyan-400">PromptBazar</strong>، مسئولیت من فراتر از نوشتن کد است.
                             من مسئول خلق زیرساختی هستم که ایده‌های استراتژیک و خلاقانه 
                             {/* --- لینک‌دهی به پیمان در اینجا انجام شد --- */}
-                            <a href="/AuthorBox/peyman" className="mx-1 text-purple-400 hover:text-purple-300 font-bold underline decoration-dotted underline-offset-4 transition" title="مشاهده پروفایل بنیان‌گذار">
+                            <a href="/Authors/peyman" className="mx-1 text-purple-400 hover:text-purple-300 font-bold underline decoration-dotted underline-offset-4 transition" title="مشاهده پروفایل بنیان‌گذار">
                                 پیمان کلانتر نظری
                             </a>
                             (بنیان‌گذار) را به واقعیت تبدیل کند.
