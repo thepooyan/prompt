@@ -147,7 +147,7 @@ export default function InstagramAutoDM() {
   return (
     <>
       <style jsx global>{themeStyles}</style>
-      <div className="theme-amber min-h-screen bg-[var(--background)] text-[var(--foreground)] font-sans" dir="rtl">
+      <div className="theme-amber min-h-screen bg-[var(--background)] text-[var(--foreground)]" dir="rtl">
         
         {/* Minimal Header */}
         <div className="container mx-auto px-4 py-6 flex justify-end">
@@ -194,7 +194,7 @@ export default function InstagramAutoDM() {
                     <a href="/what-is-n8n" className="flex items-center gap-2 px-4 py-2 rounded-lg bg-[var(--card)] border border-[var(--border)] text-[var(--foreground)] hover:border-[var(--primary)] hover:text-[var(--primary)] transition-colors text-sm font-medium">
                        <Bot className="w-4 h-4" /> n8n چیست؟
                     </a>
-                    <a href="/install-n8n" className="flex items-center gap-2 px-4 py-2 rounded-lg bg-[var(--card)] border border-[var(--border)] text-[var(--foreground)] hover:border-[var(--primary)] hover:text-[var(--primary)] transition-colors text-sm font-medium">
+                    <a href="/download-install-n8n" className="flex items-center gap-2 px-4 py-2 rounded-lg bg-[var(--card)] border border-[var(--border)] text-[var(--foreground)] hover:border-[var(--primary)] hover:text-[var(--primary)] transition-colors text-sm font-medium">
                        <Cpu className="w-4 h-4" /> آموزش نصب و راه‌اندازی
                     </a>
                  </div>
