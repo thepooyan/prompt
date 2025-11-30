@@ -21,8 +21,7 @@ import {
   Cpu,
   HelpCircle,
   BarChart3,
-  ExternalLink,
-  Database
+  ExternalLink
 } from "lucide-react";
 
 // --- استایل تم AMBER ---

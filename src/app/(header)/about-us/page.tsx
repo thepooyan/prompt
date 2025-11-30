@@ -1,6 +1,4 @@
 "use client"
-
-import React from "react"
 import Link from "next/link"
 import { Target, Code2, Users, Rocket, ExternalLink, Lightbulb, Terminal } from "lucide-react" 
 
@@ -60,7 +58,7 @@ export default function AboutUsPage() {
                     <li className="flex items-center gap-2"><Rocket size={16} className="text-purple-500"/> اتوماسیون فرآیندها (n8n)</li>
                 </ul>
 
-                <Link href="/AuthorBox/peyman" className="inline-flex items-center text-white bg-purple-600 hover:bg-purple-700 px-6 py-2.5 rounded-lg transition shadow-lg shadow-purple-900/20 group-hover:translate-x-1">
+                <Link href="/Authors/peyman" className="inline-flex items-center text-white bg-purple-600 hover:bg-purple-700 px-6 py-2.5 rounded-lg transition shadow-lg shadow-purple-900/20 group-hover:translate-x-1">
                     پروفایل کامل من
                     <ExternalLink size={16} className="mr-2" />
                 </Link>
@@ -79,8 +77,8 @@ export default function AboutUsPage() {
                         </span>
                     </div>
                     <img 
-                        src="https://via.placeholder.com/150" // عکس پویان را اینجا بگذارید
-                        alt="Pouyan Salmani" 
+                        src="https://c327107.parspack.net/prompt/1763288118442-me.webp" // عکس پویان را اینجا بگذارید
+                        alt="pooyan Salmani" 
                         className="w-20 h-20 rounded-full border-2 border-blue-500/50 object-cover shadow-lg"
                     />
                 </div>
@@ -94,7 +92,7 @@ export default function AboutUsPage() {
                     <li className="flex items-center gap-2"><Code2 size={16} className="text-blue-500"/> توسعه Backend و APIها</li>
                 </ul>
 
-                <Link href="/AuthorBox/poyan" className="inline-flex items-center text-white bg-blue-600 hover:bg-blue-700 px-6 py-2.5 rounded-lg transition shadow-lg shadow-blue-900/20 group-hover:-translate-x-1">
+                <Link href="/Authors/pooyan" className="inline-flex items-center text-white bg-blue-600 hover:bg-blue-700 px-6 py-2.5 rounded-lg transition shadow-lg shadow-blue-900/20 group-hover:-translate-x-1">
                     پروفایل فنی من
                     <ExternalLink size={16} className="mr-2" />
                 </Link>
@@ -129,14 +127,14 @@ export default function AboutUsPage() {
                 "founder": {
                     "@type": "Person",
                     "name": "پیمان کلانتر نظری",
-                    "url": "https://promptbazar.ir/AuthorBox/peyman"
+                    "url": "https://promptbazar.ir/Authors/peyman"
                 },
                 "employee": [
                     {
                         "@type": "Person",
                         "name": "پویان سلمانی",
                         "jobTitle": "Lead Developer",
-                        "url": "https://promptbazar.ir/AuthorBox/poyan"
+                        "url": "https://promptbazar.ir/Authors/pooyan"
                     }
                 ]
             }
