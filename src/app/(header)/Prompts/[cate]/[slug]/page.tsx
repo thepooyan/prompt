@@ -1,15 +1,16 @@
 import PromptPage from "@/components/pages/PromptPageClient"
 import { getAllPrompts, getPromptBySlug, getTwoPrompts } from "@/server/dataFetching"
 import { Metadata } from "next"
-import { notFound } from "next/navigation"
+import { notFound, redirect } from "next/navigation"
 
 interface p {
-  params: Promise<{slug: string}>
+  params: Promise<{slug: string, cate: string}>
 }
 const page = async ({params}:p) => {
-  const {slug} = await params
+  const {slug, cate} = await params
   const [data, related ] = await Promise.all([getPromptBySlug(slug), getTwoPrompts() ])
   if (!data) return notFound()
+  if (data.category.slug !== cate) throw redirect(`/Prompts/${data.category.slug}/${slug}`)
   return (
     <>
       <PromptPage prompt={data} related={related}/>
