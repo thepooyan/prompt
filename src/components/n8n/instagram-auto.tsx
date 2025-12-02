@@ -24,7 +24,6 @@ import {
   ExternalLink,
   Database
 } from "lucide-react";
-import Script from 'next/script'; // برای سئو و اسکیما
 
 // --- استایل تم AMBER ---
 const themeStyles = `
@@ -72,7 +71,7 @@ const AccordionItem = ({ title, children, isOpen, onClick, number }: any) => (
   <div className={`border rounded-xl overflow-hidden transition-all duration-300 ${isOpen ? 'bg-[var(--muted)]/30 border-[var(--primary)]/40 shadow-lg' : 'bg-[var(--card)] border-[var(--border)] hover:border-[var(--muted-foreground)]/30'}`}>
     <button onClick={onClick} className="w-full flex items-center justify-between p-5 text-right cursor-pointer">
       <div className="flex items-center gap-4">
-        {number && <span className={`flex items-center justify-center w-8 h-8 rounded-lg text-sm font-black transition-colors ${isOpen ? 'bg-[var(--primary)] text-white' : 'bg-[var(--muted)] text-[var(--muted-foreground)]'}`}>{number}</span>}
+        <span className={`flex items-center justify-center w-8 h-8 rounded-lg text-sm font-black transition-colors ${isOpen ? 'bg-[var(--primary)] text-white' : 'bg-[var(--muted)] text-[var(--muted-foreground)]'}`}>{number}</span>
         <span className={`font-bold text-lg ${isOpen ? 'text-[var(--foreground)]' : 'text-[var(--muted-foreground)]'}`}>{title}</span>
       </div>
       <div className={`w-8 h-8 rounded-full flex items-center justify-center transition-all ${isOpen ? 'bg-[var(--primary)]/10 text-[var(--primary)] rotate-180' : 'bg-[var(--muted)] text-[var(--muted-foreground)]'}`}><ChevronDown className="w-5 h-5" /></div>
@@ -85,7 +84,7 @@ const AccordionItem = ({ title, children, isOpen, onClick, number }: any) => (
   </div>
 );
 
-// --- AuthorBox (GEO Signal) ---
+// --- AuthorBox (GEO Signal: Authority) ---
 function AuthorBox() {
   return (
     <div className="mt-24 pt-12 border-t border-[var(--border)]">
@@ -121,58 +120,9 @@ function AuthorBox() {
   )
 }
 
-export default function InstagramAutoFinal() {
+export default function InstagramAutoDM() {
   const [isCopied, setIsCopied] = useState(false);
   const [openStep, setOpenStep] = useState(1);
-  const [openFAQ, setOpenFAQ] = useState<number | null>(null);
-
-  // --- SCHEMA FOR AEO/GEO ---
-  const schemaData = {
-    "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": "SoftwareApplication",
-        "name": "ربات ادمین هوشمند اینستاگرام (Auto-DM)",
-        "operatingSystem": "n8n (Self-hosted)",
-        "applicationCategory": "BusinessApplication",
-        "aggregateRating": {
-          "@type": "AggregateRating",
-          "ratingValue": "4.9",
-          "ratingCount": "485"
-        },
-        "offers": {
-          "@type": "Offer",
-          "price": "0",
-          "priceCurrency": "IRR",
-          "availability": "https://schema.org/InStock",
-          "category": "free"
-        },
-        "author": {
-          "@type": "Person",
-          "name": "پیمان کلانتر نظری",
-          "url": "https://promptbazar.ir/AuthorBox/peyman"
-        }
-      },
-      {
-        "@type": "FAQPage",
-        "mainEntity": [{
-          "@type": "Question",
-          "name": "آیا استفاده از این ربات باعث بلاک شدن پیج می‌شود؟",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "خیر، این ربات از API رسمی فیسبوک (Graph API) استفاده می‌کند و کاملاً امن و قانونی است."
-          }
-        }, {
-          "@type": "Question",
-          "name": "هزینه استفاده از این ربات چقدر است؟",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "دانلود این ورک‌فلو از پرامپت بازار کاملاً رایگان است. تنها هزینه شما سرور شخصی برای اجرای n8n است."
-          }
-        }]
-      }
-    ]
-  };
 
   const workflowJson = JSON.stringify({
     "name": "Instagram Auto DM Bot (PromptBazar)",
@@ -197,10 +147,6 @@ export default function InstagramAutoFinal() {
   return (
     <>
       <style jsx global>{themeStyles}</style>
-      
-      {/* INJECT SCHEMA */}
-      <Script id="json-ld" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData) }} />
-
       <div className="theme-amber min-h-screen bg-[var(--background)] text-[var(--foreground)]" dir="rtl">
         
         {/* Minimal Header */}
@@ -238,7 +184,7 @@ export default function InstagramAutoFinal() {
             {/* Content Area */}
             <div className="lg:col-span-8 space-y-12">
               
-              {/* --- Topic Cluster Links --- */}
+              {/* --- INTERNAL LINKING (Pillar-Cluster Strategy) --- */}
               <div className="bg-[var(--muted)]/20 border border-[var(--border)] p-5 rounded-xl shadow-inner">
                  <div className="flex items-center gap-2 mb-3 text-[var(--secondary)] font-bold">
                     <BookOpen className="w-5 h-5" />
@@ -254,10 +200,10 @@ export default function InstagramAutoFinal() {
                  </div>
               </div>
 
-              {/* Problem/Solution Box */}
+              {/* AEO Optimization: Comparison Table (Problem/Solution) */}
               <div className="grid md:grid-cols-2 gap-4">
                  <div className="bg-red-500/5 border border-red-500/20 p-5 rounded-2xl">
-                    <h3 className="text-red-400 font-bold mb-2 flex items-center gap-2"><Clock className="w-5 h-5"/> مشکل: ادمین دستی</h3>
+                    <h3 className="text-red-400 font-bold mb-2 flex items-center gap-2"><Clock className="w-5 h-5"/> مشکل: روش سنتی</h3>
                     <ul className="text-sm text-[var(--muted-foreground)] space-y-2 list-disc list-inside">
                        <li>تاخیر در پاسخگویی (از دست دادن لید)</li>
                        <li>فراموشی دایرکت‌ها در ساعات شلوغی</li>
@@ -301,7 +247,7 @@ export default function InstagramAutoFinal() {
                 </div>
               </div>
 
-              {/* Tutorial Section */}
+              {/* Tutorial Section (AEO: Structured List) */}
               <section id="tutorial">
                  <div className="flex items-center gap-3 mb-6">
                     <Terminal className="w-8 h-8 text-[var(--primary)]" />
@@ -311,11 +257,11 @@ export default function InstagramAutoFinal() {
                 <div className="grid gap-4">
                   <AccordionItem number="۱" title="اتصال اینستاگرام به فیسبوک (پیش‌نیاز)" isOpen={openStep === 1} onClick={() => setOpenStep(openStep === 1 ? 0 : 1)}>
                     <div className="space-y-3 text-[var(--muted-foreground)]">
-                       <p>برای استفاده از API رسمی (بدون خطر بلاک)، باید پیج شما <strong>Business</strong> باشد و به فیسبوک وصل باشد.</p>
+                       <p>برای اینکه ربات بدون مشکل (و بدون خطر بلاک شدن) کار کند، ما از API رسمی متا استفاده می‌کنیم. برای این کار:</p>
                        <ul className="space-y-3 list-none text-sm">
-                         <li className="flex gap-2 items-start"><Check className="w-4 h-4 text-green-500 mt-1"/> در پنل n8n به بخش <strong>Credentials</strong> بروید.</li>
-                         <li className="flex gap-2 items-start"><Check className="w-4 h-4 text-green-500 mt-1"/> گزینه <strong>Facebook Graph API</strong> را انتخاب کنید.</li>
-                         <li className="flex gap-2 items-start"><Check className="w-4 h-4 text-green-500 mt-1"/> دکمه Connect را بزنید و با اکانت فیسبوک لاگین کنید.</li>
+                         <li className="flex gap-2 items-start"><Check className="w-4 h-4 text-green-500 mt-1"/> پیج اینستاگرام خود را به حالت <strong>Business</strong> تغییر دهید.</li>
+                         <li className="flex gap-2 items-start"><Check className="w-4 h-4 text-green-500 mt-1"/> پیج را به یک صفحه (Page) فیسبوک متصل کنید.</li>
+                         <li className="flex gap-2 items-start"><Check className="w-4 h-4 text-green-500 mt-1"/> در پنل n8n، بخش Credentials، گزینه <strong>Facebook Graph API</strong> را انتخاب و لاگین کنید.</li>
                        </ul>
                     </div>
                   </AccordionItem>
@@ -340,27 +286,21 @@ export default function InstagramAutoFinal() {
                 </div>
               </section>
 
-              {/* FAQ Section (ADDED for AEO) */}
+              {/* AEO: FAQ Section (Rich Snippets Target) */}
               <div className="mt-12 pt-8 border-t border-[var(--border)]">
                  <h2 className="text-xl font-bold text-[var(--foreground)] mb-6 flex items-center gap-2">
                     <HelpCircle className="w-5 h-5 text-[var(--secondary)]" />
                     سوالات متداول (FAQ)
                  </h2>
                  <div className="space-y-4">
-                    <AccordionItem 
-                      title="آیا استفاده از این ربات باعث بلاک شدن پیج می‌شود؟" 
-                      isOpen={openFAQ === 1} 
-                      onClick={() => setOpenFAQ(openFAQ === 1 ? null : 1)}
-                    >
-                       خیر، این ربات از API رسمی فیسبوک (Graph API) استفاده می‌کند و کاملاً امن و قانونی است. روش‌های غیرقانونی مثل اسکرپینگ در این ربات استفاده نمی‌شود.
-                    </AccordionItem>
-                    <AccordionItem 
-                      title="هزینه استفاده از این ربات چقدر است؟" 
-                      isOpen={openFAQ === 2} 
-                      onClick={() => setOpenFAQ(openFAQ === 2 ? null : 2)}
-                    >
-                       دانلود فایل این ربات از پرامپت بازار کاملاً رایگان است. تنها هزینه‌ای که باید بپردازید، داشتن یک سرور شخصی (VPS) برای اجرای نرم‌افزار n8n است.
-                    </AccordionItem>
+                    <div className="bg-[var(--card)] p-4 rounded-xl border border-[var(--border)]">
+                       <h3 className="font-bold text-[var(--foreground)] text-sm mb-2">آیا استفاده از این ربات باعث بلاک شدن پیج می‌شود؟</h3>
+                       <p className="text-[var(--muted-foreground)] text-sm">خیر. چون این ربات از API رسمی فیسبوک (Graph API) استفاده می‌کند و از روش‌های غیرقانونی (مثل اسکرپینگ) استفاده نمی‌کند، کاملاً امن و مورد تایید متا است.</p>
+                    </div>
+                    <div className="bg-[var(--card)] p-4 rounded-xl border border-[var(--border)]">
+                       <h3 className="font-bold text-[var(--foreground)] text-sm mb-2">آیا این ربات هزینه ماهانه دارد؟</h3>
+                       <p className="text-[var(--muted-foreground)] text-sm">خیر. فایل این ربات کاملاً رایگان است. تنها هزینه‌ای که دارید، سرور شخصی خودتان برای اجرای n8n است (که بسیار ارزان‌تر از اشتراک ربات‌های آماده است).</p>
+                    </div>
                  </div>
               </div>
 
@@ -374,11 +314,6 @@ export default function InstagramAutoFinal() {
                     <Button size="sm" variant="secondary" className="h-8 text-xs hover:bg-[var(--primary)] hover:text-white border-0 transition-colors" onClick={handleCopyCode}>
                       {isCopied ? <span className="flex gap-1"><Check className="w-3 h-3"/> کپی شد</span> : <span className="flex gap-1"><Copy className="w-3 h-3"/> کپی کد</span>}
                     </Button>
-                  </div>
-                  <div className="flex items-center gap-2 px-4 py-3 bg-[var(--muted)]/20 border-b border-[var(--border)]">
-                    <div className="w-3 h-3 rounded-full bg-red-500/50" />
-                    <div className="w-3 h-3 rounded-full bg-yellow-500/50" />
-                    <div className="w-3 h-3 rounded-full bg-green-500/50" />
                   </div>
                   <div className="p-4 overflow-x-auto dir-ltr max-h-64 custom-scrollbar">
                     <pre className="font-mono text-xs sm:text-sm text-[var(--muted-foreground)] leading-relaxed">{workflowJson}</pre>
