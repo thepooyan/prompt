@@ -12,7 +12,7 @@ import { Suspense, useState } from "react";
 import { limitChar } from "@/lib/utils";
 import { callModal } from "@/components/layout/Modal";
 import { Calendar, Edit, Eye, Plus, Trash2 } from "lucide-react";
-import { getAllPrompts } from "@/server/dataFetching";
+import { getAllPrompts, PromptWithRelations } from "@/server/dataFetching";
 import { deletePrompt } from "@/server/mutation";
 import Link from "@/components/ui/link";
 import { editPromptUrl, promptDetailsUrl } from "@/lib/url";
@@ -20,11 +20,11 @@ import { toast } from "sonner";
 import { LoadingPage } from "../parts/LoadingPage";
 
 interface p {
-  initialBlogs: Prompt[],
+  initialBlogs: PromptWithRelations[],
   type: promptType
 }
 export default function PromptManagmentClient({initialBlogs, type}:p) {
-  const [posts, setPosts] = useState<Prompt[]>(initialBlogs)
+  const [posts, setPosts] = useState<PromptWithRelations[]>(initialBlogs)
 
   const name = (() => {
     switch (type) {
@@ -133,7 +133,7 @@ export default function PromptManagmentClient({initialBlogs, type}:p) {
                         variant="ghost"
                         asChild
                       >
-                        <Link href={promptDetailsUrl(post.slug)}>
+                        <Link href={promptDetailsUrl(post)}>
                           <Eye className="h-4 w-4" />
                         </Link>
                       </Button>
