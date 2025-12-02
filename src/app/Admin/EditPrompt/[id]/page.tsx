@@ -15,11 +15,12 @@ const page = (props:p) => {
 }
 const InnerPage = async ({params}:p) => {
   const {id} = await params
-  const [data, cate, auth] = await Promise.all([getPromptById(id), getAllCategories("prompt"), getAllAuthors()])
+  const data = await getPromptById(id)
+  const [cate, auth] = await Promise.all([getAllCategories(data.type), getAllAuthors()])
 
   return (
     <>
-      <PromptEditor edit={data} categories={cate} type="prompt" authors={auth}/>
+      <PromptEditor edit={data} categories={cate} type={data.type} authors={auth}/>
     </>
   )
 }
