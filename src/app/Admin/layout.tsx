@@ -48,8 +48,7 @@ export default async function AdminLayout({children}:{children: ReactNode}) {
     }, 
   ]
   return (
-    <>
-    <style>{`html {overflow: hidden}`}</style>
+    <div className="overflow-hidden h-dvh">
     <CheckAdmin/>
     <div className="dark min-h-screen bg-background text-foreground rtl  ">
       {/* Header */}
@@ -92,6 +91,6 @@ export default async function AdminLayout({children}:{children: ReactNode}) {
         </aside>
       </div>
     </div>
-    </>
+    </div>
   )
 }
