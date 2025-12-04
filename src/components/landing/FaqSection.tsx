@@ -3,19 +3,19 @@ import { useState } from "react"
 
 const faqs = [
   {
-    question: "پرامپت آماده چیست و چه کمکی به من می‌کند؟",
+    question: "پرامپت‌های آماده پرامپت بازار چه تفاوتی با دستورات معمولی دارند؟",
     answer:
-      "پرامپت آماده، یک دستور از پیش نوشته شده و بهینه‌سازی شده است که شما می‌توانید به سادگی آن را کپی کرده و در ابزار هوش مصنوعی (مانند ChatGPT یا Midjourney) استفاده کنید تا بدون نیاز به دانش فنی، به بهترین نتیجه ممکن برسید.",
+      "پرامپت‌های موجود در سایت ما توسط متخصصین مهندسی پرامپت (Prompt Engineering) طراحی و بارها تست شده‌اند. برخلاف دستورات ساده، این پرامپت‌ها دقیق‌ترین و باکیفیت‌ترین خروجی را از هوش مصنوعی می‌گیرند و شما را از آزمون و خطای طولانی بی‌نیاز می‌کنند.",
   },
   {
-    question: "آیا برای استفاده از پرامپت‌ها باید اشتراک بخرم؟",
+    question: "آیا دانلود پرامپت‌ها و ورک‌فلوهای n8n رایگان است؟",
     answer:
-      "بخشی از پرامپت‌های ما در «پرامپت بازار» به صورت رایگان در دسترس هستند تا با کیفیت کار ما آشنا شوید. برای دسترسی به کتابخانه کامل پرامپت‌های ویژه و حرفه‌ای، نیاز به تهیه اشتراک ماهانه یا سالانه دارید.",
+      "بله، پرامپت بازار به عنوان مرجع پرامپت، بخش بزرگی از منابع، پرامپت‌ها و ورک‌فلوهای آموزشی را به صورت رایگان ارائه می‌دهد. همچنین برای پروژه‌های حرفه‌ای‌تر، محصولات ویژه‌ای داریم که با هزینه اندک قابل دریافت هستند.",
   },
   {
-    question: "ورک‌فلوهای n8n دقیقاً چه کاری انجام می‌دهند؟",
+    question: "ورک‌فلوهای n8n موجود در سایت چه کمکی به کسب‌وکار من می‌کنند؟",
     answer:
-      "ورک‌فلوها، فرآیندهای چند مرحله‌ای هستند که کارهای تکراری شما را به صورت خودکار انجام می‌دهند. برای مثال، یک ورک‌فلو می‌تواند به صورت خودکار محتوای وبلاگ شما را تولید و در سایتتان منتشر کند.",
+      "این ورک‌فلوها فرآیندهای تکراری شما (مثل تولید محتوا، پاسخ به مشتریان، یا مدیریت سوشال مدیا) را به صورت خودکار انجام می‌دهند. با دانلود و اجرای این ورک‌فلوها، می‌توانید بدون نیاز به دانش برنامه‌نویسی پیچیده، یک سیستم هوشمند برای کسب‌وکارتان بسازید.",
   },
 ]
 
@@ -23,42 +23,53 @@ export default function FAQSection() {
   const [openIndex, setOpenIndex] = useState(0)
 
   return (
-    <section id="faq" className="py-16 bg-sidebar text-accent-foreground ">
+    <section id="faq" className="py-16 bg-sidebar text-accent-foreground">
       <div className="container mx-auto px-6">
         <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold ">سوالات پرتکرار</h2>
+          <h2 className="text-3xl font-bold">سوالات متداول کاربران</h2>
           <p className="text-lg text-muted-foreground mt-4">
-            پاسخ سوالات رایج شما را در اینجا آماده کرده‌ایم.
+            پاسخ به پرسش‌های شما درباره خدمات پرامپت بازار؛ مرجع تخصصی پرامپت و اتوماسیون.
           </p>
         </div>
 
         <div className="max-w-3xl mx-auto space-y-4">
           {faqs.map((faq, i) => (
-            <div key={i} className="border border-muted-foreground/20 rounded-xl overflow-hidden">
+            <div
+              key={i}
+              className="border border-muted-foreground/20 rounded-xl overflow-hidden bg-background/50 backdrop-blur-sm transition-all duration-200"
+            >
               <button
-                className="w-full text-right px-6 py-4 cursor-pointer  font-medium flex justify-between items-center"
+                className="w-full text-right px-6 py-4 cursor-pointer font-medium flex justify-between items-center hover:bg-muted/50 transition-colors"
                 onClick={() => setOpenIndex(openIndex === i ? -1 : i)}
+                aria-expanded={openIndex === i}
               >
-                {faq.question}
-                <span>{openIndex === i ? "−" : "+"}</span>
+                <span className="flex-1 ml-4">{faq.question}</span>
+                <span className="text-xl font-bold text-primary">
+                  {openIndex === i ? "−" : "+"}
+                </span>
               </button>
-              {openIndex === i && (
-                <div className="px-6 py-4  text-muted-foreground  ">
+              
+              <div
+                className={`transition-all duration-300 ease-in-out overflow-hidden ${
+                  openIndex === i ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
+                }`}
+              >
+                <div className="px-6 pb-4 pt-0 text-muted-foreground leading-relaxed border-t border-muted-foreground/10 mt-2">
                   {faq.answer}
                 </div>
-              )}
+              </div>
             </div>
           ))}
         </div>
 
-        <div className="text-center mt-10">
-          <h5 className="text-lg font-bold ">پاسخ خود را پیدا نکردید؟</h5>
-          <p className="mt-2">
+        <div className="text-center mt-12 p-6 bg-muted/30 rounded-2xl max-w-2xl mx-auto border border-muted/50">
+          <h5 className="text-lg font-bold">پاسخ خود را پیدا نکردید؟</h5>
+          <p className="mt-2 text-muted-foreground">
             تیم پشتیبانی ما آماده پاسخگویی و ارائه مشاوره تخصصی به شماست.
           </p>
           <a
             href="#contact"
-            className="inline-block mt-4 bg-primary text-primary-foreground hover:bg-blue-700 font-medium px-6 py-3 rounded-xl"
+            className="inline-flex items-center justify-center mt-4 bg-primary text-primary-foreground hover:bg-primary/90 font-medium px-8 py-3 rounded-xl transition-all shadow-lg shadow-primary/20 hover:shadow-primary/40"
           >
             تماس با بخش مشاوره
           </a>
