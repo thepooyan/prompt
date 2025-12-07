@@ -58,7 +58,7 @@ export default function AuthorPage() {
               
               <div className="flex flex-col sm:flex-row gap-4 mt-8 justify-center md:justify-start items-center">
                 <a 
-                  href="https://c327107.parspack.net/prompt/1764836931049-Marketing Manager (1).pdf" 
+                  href="https://c327107.parspack.net/prompt/1765006052358-Marketing Manager new.pdf" 
                   download
                   className="flex items-center gap-2 px-6 py-2.5 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-500 hover:to-pink-500 text-white rounded-lg shadow-lg shadow-purple-900/20 transform hover:-translate-y-1 transition font-medium group"
                 >

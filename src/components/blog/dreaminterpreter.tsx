@@ -1,19 +1,14 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import Image from "next/image"
 import Link from "next/link"
-import { aiSingleResponse } from "@/server/actions" // مسیر اکشن خود را چک کنید
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Textarea } from "@/components/ui/textarea"
-// --- تغییر: حذف ایمپورت‌های Accordion که باعث ارور می‌شدند ---
-// import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
-
-// اضافه کردن آیکون ChevronDown برای نمایش باز/بسته بودن
-import { Brain, Lightbulb, Code2, Rocket, Cloud, Loader2, AlertCircle, Share2, Sparkles, Network, MoonStar, Ghost, Telescope, ScrollText, Binary, HelpCircle, ShieldCheck, ChevronDown } from "lucide-react"
-// برای ترکیب کلاس‌های شرطی (اگر در پروژه دارید استفاده کنید، اگر نه خط بعدی را حذف و در کد پایین دستی کلاس بدهید)
-import { cn } from "@/lib/utils" 
+import { aiSingleResponse } from "@/server/actions" 
+import { 
+  Brain, Lightbulb, Rocket, AlertCircle, Share2, 
+  Sparkles, Moon, ChevronDown, Telescope, ScrollText, Binary, 
+  HelpCircle, Star
+} from "lucide-react"
 
 export default function Dreaminterpreter() {
   
@@ -21,10 +16,13 @@ export default function Dreaminterpreter() {
   const [interpretation, setInterpretation] = useState("")
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState("")
-
-  // --- State جدید برای مدیریت باز/بسته بودن سوالات متداول ---
-  // این استیت، ایندکس سوالی که باز است را نگه می‌دارد. اگر null باشد یعنی همه بسته‌اند.
   const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(null)
+  const [mounted, setMounted] = useState(false)
+
+  // برای جلوگیری از ارورهای هیدریشن انیمیشن‌ها
+  useEffect(() => {
+    setMounted(true)
+  }, [])
 
   const handleInterpret = async () => {
     if (!userDream || userDream.length < 10) {
@@ -37,24 +35,21 @@ export default function Dreaminterpreter() {
     setInterpretation("")
 
     const systemPrompt = `
-      تو یک مفسر خواب خردمند، دلسوز و حرفه‌ای هستی. تخصص تو ترکیبی از "روانشناسی مدرن" (کارل یونگ و فروید) و "نمادشناسی سنتی شرقی" است.
-      وظیفه: خواب کاربر را دریافت کن و یک تحلیل جامع و ساختاریافته به زبان فارسی ارائه بده.
-      خواب کاربر: "${userDream}"
-      دستورالعمل خروجی:
-      پاسخ تو باید دقیقاً شامل بخش‌های زیر باشد و با لحنی آرامش‌بخش، ادبی و کمی شاعرانه نوشته شود:
-      ۱. 🌙 **بینش اصلی:** یک برداشت کلی و کوتاه از پیام عمیق خواب.
-      ۲. ✨ **رمزگشایی نمادها:** ۲ یا ۳ نماد اصلی و معنی پنهان هرکدام.
-      ۳. 🧠 **آینه ناخودآگاه (دیدگاه روانشناسی):** چه چیزی درباره ضمیر ناخودآگاه کاربر فاش می‌کند؟
-      ۴. 📜 **ردپای حکمت کهن:** تعبیر این خواب در حکمت‌های باستانی چگونه است؟
-      ۵. 💡 **رهنمود بیداری:** یک توصیه عملی برای بهبود زندگی بیداری کاربر.
-      نکته مهم: از پیشگویی‌های ترسناک و قطعی پرهیز کن. تمرکزت روی خودشناسی و امید باشد.
+      تو یک مفسر خواب خردمند هستی. بر اساس روانشناسی یونگ تحلیل کن.
+      خواب: "${userDream}"
+      فرمت پاسخ:
+      ۱. 🌙 **بینش اصلی:** ...
+      ۲. ✨ **رمزگشایی نمادها:** ...
+      ۳. 🧠 **آینه ناخودآگاه:** ...
+      ۴. 💡 **رهنمود بیداری:** ...
+      لحن: ادبی، آرامش‌بخش، امیدوارکننده.
     `
 
     try {
       const res = await aiSingleResponse(systemPrompt)
       setInterpretation(res)
     } catch (err) {
-      setError("خطا در پردازش هوش مصنوعی. لطفاً اتصال اینترنت خود را بررسی کرده و دوباره تلاش کنید.")
+      setError("خطا در ارتباط با هوش مصنوعی. لطفاً دوباره تلاش کنید.")
       console.error(err)
     } finally {
       setIsLoading(false)
@@ -67,177 +62,189 @@ export default function Dreaminterpreter() {
     alert("تعبیر خواب کپی شد!")
   }
 
-  // تابع برای باز و بسته کردن آیتم‌های FAQ
   const toggleFaq = (index: number) => {
     setOpenFaqIndex(prevIndex => (prevIndex === index ? null : index))
   }
 
-  // --- داده‌های بخش سوالات متداول (FAQ) ---
   const faqs = [
     {
-      question: "آیا هوش مصنوعی واقعاً می‌تواند خواب تعبیر کند؟",
-      answer: "بله، اما نه به روش سنتی. هوش مصنوعی به جای مراجعه به یک کتاب ثابت، با استفاده از مدل‌های زبانی پیشرفته و «پرامپت‌های مهندسی‌شده»، کل بافت (Context) خواب شما، احساساتتان و جزئیات منحصر به فرد آن را تحلیل می‌کند. این روش ترکیبی از دانش وسیع روانشناسی و نمادشناسی است که نتیجه‌ای بسیار شخصی‌سازی‌شده‌تر ارائه می‌دهد.",
-      icon: <Brain className="h-5 w-5 text-teal-300" />
+      question: "آیا تعبیر خواب آنلاین با هوش مصنوعی دقیق است؟",
+      answer: "بله، هوش مصنوعی برخلاف کتاب‌های قدیمی، کل بافت (Context) خواب شما را تحلیل می‌کند و بر اساس روانشناسی یونگ، دقیق‌ترین تعبیر شخصی‌سازی شده را ارائه می‌دهد."
     },
     {
-      question: "تفاوت این ابزار با کتاب‌های تعبیر خواب قدیمی چیست؟",
-      answer: "کتاب‌های سنتی برای هر نماد (مثلاً «مار») یک معنی ثابت دارند. اما در این ابزار هوشمند، معنی یک نماد بر اساس سایر اجزای خواب شما تغییر می‌کند. هوش مصنوعی درک می‌کند که دیدن «مار» در یک جنگل سرسبز با دیدن آن در اتاق خواب، تعابیر کاملاً متفاوتی دارد.",
-      icon: <ScrollText className="h-5 w-5 text-yellow-300" />
+      question: "تفاوت این ابزار با کتاب‌های قدیمی چیست؟",
+      answer: "کتاب‌های سنتی معانی ثابتی دارند. اما در تعبیر خواب آنلاین هوشمند، نمادها بر اساس احساسات شما در خواب تحلیل می‌شوند."
     },
     {
-      question: "اگر خواب بد یا ترسناکی دیدم، تعبیرش حتماً بد است؟",
-      answer: "اصلاً. در دیدگاه روانشناسی تحلیلی، کابوس‌ها دشمن ما نیستند؛ بلکه پیام‌های مهمی از ناخودآگاه برای توجه به یک مسئله نادیده گرفته شده در زندگی هستند. این ابزار به جای پیشگویی‌های ترسناک، به شما کمک می‌کند ریشه اضطراب را پیدا کنید.",
-      icon: <MoonStar className="h-5 w-5 text-fuchsia-300" />
-    },
-    {
-      question: "آیا خواب‌هایی که می‌نویسم جایی ذخیره می‌شوند؟",
-      answer: "امنیت و حریم خصوصی شما اولویت ماست. متن خواب شما صرفاً برای لحظاتی جهت پردازش به مدل هوش مصنوعی ارسال شده و پس از تولید پاسخ، از حافظه موقت پاک می‌شود. ما هیچ داده شخصی از رویاهای شما را ذخیره نمی‌کنیم.",
-      icon: <ShieldCheck className="h-5 w-5 text-green-300" />
+      question: "آیا استفاده از این ابزار رایگان است؟",
+      answer: "بله، کاملاً رایگان و بدون نیاز به ثبت‌نام است."
     }
   ]
 
   return (
-    <main className="min-h-screen bg-gradient-to-br from-[#0d0d2b] via-[#1a0a40] to-[#0d0d2b] text-white relative overflow-hidden font-sans">
+    <main className="min-h-screen bg-[#050505] text-white relative overflow-hidden font-sans selection:bg-amber-500/30 selection:text-amber-100">
       
-      {/* --- پس‌زمینه متحرک --- */}
-      <div className="absolute inset-0 z-0 opacity-20 pointer-events-none">
-        <div className="absolute top-0 left-0 w-full h-full bg-[url('/images/neural-bg.svg')] bg-cover bg-center animate-pulse-slow"></div>
-        <div className="absolute inset-0 bg-gradient-to-br from-transparent via-[#2a005a]/60 to-transparent opacity-70"></div>
-        <div className="absolute -bottom-40 -left-40 w-96 h-96 bg-purple-600 rounded-full mix-blend-screen filter blur-[150px] opacity-40 animate-slow-glow"></div>
-        <div className="absolute -top-40 -right-40 w-80 h-80 bg-blue-500 rounded-full mix-blend-screen filter blur-[130px] opacity-30 animate-slow-glow delay-1000"></div>
+      {/* --- پس‌زمینه جادویی و متحرک (Aurora Background) --- */}
+      <div className="fixed inset-0 z-0">
+        {/* گرادینت متحرک عظیم */}
+        <div className="absolute top-[-20%] left-[-10%] w-[70%] h-[70%] bg-amber-600/10 rounded-full blur-[120px] animate-pulse"></div>
+        <div className="absolute bottom-[-20%] right-[-10%] w-[70%] h-[70%] bg-orange-600/10 rounded-full blur-[120px] animate-pulse delay-700"></div>
+        <div className="absolute top-[40%] left-[30%] w-[40%] h-[40%] bg-yellow-600/5 rounded-full blur-[100px] animate-pulse delay-1000"></div>
+        
+        {/* نویز و بافت */}
+        <div className="absolute inset-0 bg-[url('/images/neural-bg.svg')] opacity-[0.03] mix-blend-screen"></div>
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]"></div>
+        
+        {/* ذرات معلق (Stars/Particles) */}
+        {mounted && (
+           <>
+             <div className="absolute top-20 left-10 w-1 h-1 bg-white rounded-full animate-ping opacity-20 duration-[3s]"></div>
+             <div className="absolute top-40 right-20 w-1.5 h-1.5 bg-amber-200 rounded-full animate-pulse opacity-30"></div>
+             <div className="absolute bottom-40 left-1/4 w-1 h-1 bg-orange-200 rounded-full animate-ping opacity-20 duration-[5s]"></div>
+           </>
+        )}
       </div>
 
-      <div className="container mx-auto px-4 py-12 md:py-20 max-w-4xl relative z-10">
+      <div className="container mx-auto px-4 py-16 md:py-24 max-w-4xl relative z-10">
         
-        {/* --- بخش ۱: هدر و تصویر --- */}
-        <header className="text-center space-y-6 mb-12 animate-in fade-in slide-in-from-top-10 duration-700">
-          <div className="relative w-full max-w-lg mx-auto h-64 md:h-80 mb-8 rounded-3xl overflow-hidden shadow-2xl shadow-[#6a00ff]/40 border border-[#4a00ff]/30">
-             <Image 
-               src="https://c327107.parspack.net/prompt/1763623838427-dream-interpreter.webp" 
-               alt="تعبیر خواب هوشمند با هوش مصنوعی"
-               fill
-               className="object-cover hover:scale-105 transition-transform duration-700 brightness-90"
-               priority
-             />
-             <div className="absolute inset-0 bg-gradient-to-t from-[#0d0d2b] via-transparent to-transparent opacity-80"></div>
-          </div>
+        {/* --- هدر درخشان --- */}
+        <header className="text-center space-y-8 mb-16 relative">
+            {/* درخشش پشت هدر */}
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] bg-amber-500/20 blur-[100px] rounded-full -z-10"></div>
 
-          <div className="inline-flex items-center justify-center p-3 rounded-full bg-blue-700/20 backdrop-blur-sm border border-blue-500/30 shadow-lg mb-4 text-blue-300 font-medium text-sm gap-2">
-              <Network className="h-5 w-5 text-blue-400 animate-pulse" />
-              <span>پلتفرم هوش مصنوعی PromptBazar</span>
-          </div>
+            <div className="inline-flex items-center justify-center p-1 rounded-full bg-gradient-to-r from-amber-500/20 to-orange-500/20 backdrop-blur-md border border-amber-500/30 shadow-[0_0_15px_rgba(245,158,11,0.2)]">
+               <div className="px-4 py-1.5 rounded-full bg-[#0c0a09]/80 flex items-center gap-2">
+                  <Sparkles className="h-4 w-4 text-amber-400 animate-pulse" />
+                  <span className="text-amber-200 text-sm font-medium tracking-wide">هوش مصنوعی PromptBazar</span>
+               </div>
+            </div>
 
-          <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-teal-300 via-white to-fuchsia-300 drop-shadow-lg leading-tight">
-            رمزگشایی ذهن ناخودآگاه
-          </h1>
-          <p className="text-lg md:text-xl text-indigo-200/90 max-w-2xl mx-auto leading-relaxed">
-            با قدرت هوش مصنوعی، پرده از اسرار رویاهای خود بردارید. تحلیلی عمیق و هوشمندانه از پیام‌های پنهان ذهن شما.
-          </p>
+            <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight text-white leading-tight">
+              تعبیر خواب آنلاین
+              <br className="md:hidden" />
+              <span className="block mt-2 text-transparent bg-clip-text bg-gradient-to-r from-amber-200 via-yellow-400 to-amber-200 animate-text-shimmer bg-[length:200%_auto]">
+                 با هوش مصنوعی
+              </span>
+            </h1>
+            
+            <p className="text-lg md:text-xl text-stone-400 max-w-2xl mx-auto leading-relaxed">
+              سفری به اعماق <strong className="text-amber-100 font-medium border-b border-amber-500/30">ناخودآگاه</strong>. 
+              دقیق‌ترین ابزار تعبیر خواب رایگان، بدون خرافات و مبتنی بر روانشناسی.
+            </p>
         </header>
 
-        {/* --- بخش ۲: ابزار اصلی --- */}
-        <Card className="bg-white/5 backdrop-blur-xl border border-white/10 shadow-3xl shadow-[#6a00ff]/22 rounded-3xl overflow-hidden animate-in fade-in slide-in-from-bottom-10 duration-700">
-          <CardHeader className="p-6 md:p-8 border-b border-white/10 bg-black/30">
-            <CardTitle className="text-2xl font-bold flex items-center gap-3 text-teal-300">
-              <MoonStar className="h-6 w-6 text-fuchsia-300" />
-              رویاهای خود را وارد کنید
-            </CardTitle>
-          </CardHeader>
+        {/* --- کارت جادویی (Glassmorphism + Neon Border) --- */}
+        <div className="group relative rounded-3xl p-[1px] bg-gradient-to-br from-amber-500/50 via-transparent to-orange-500/50 shadow-2xl shadow-amber-900/30">
           
-          <CardContent className="p-6 md:p-8 space-y-6">
-            <div className="space-y-3">
-              <Textarea
-                value={userDream}
-                onChange={(e) => setUserDream(e.target.value)}
-                placeholder="خواب خود را با جزئیات کامل و احساساتی که داشتید توصیف کنید..."
-                className="min-h-[180px] text-lg bg-black/40 border-white/10 focus:border-fuchsia-400 text-white placeholder:text-white/40 rounded-xl resize-y transition-colors"
-              />
+          {/* پس‌زمینه درخشان پشت کارت */}
+          <div className="absolute inset-0 bg-gradient-to-br from-amber-500/10 to-orange-500/10 blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+
+          <div className="relative bg-[#0c0a09]/90 backdrop-blur-2xl rounded-[23px] overflow-hidden h-full">
+            
+            {/* هدر کارت */}
+            <div className="p-8 border-b border-white/5 flex items-center gap-4 bg-gradient-to-r from-white/5 to-transparent">
+               <div className="p-3 rounded-2xl bg-amber-500/10 border border-amber-500/20 shadow-inner">
+                  <Moon className="h-6 w-6 text-amber-400" />
+               </div>
+               <h2 className="text-2xl font-bold text-white tracking-wide">
+                 رویاهاتو بنویس...
+               </h2>
+            </div>
+            
+            <div className="p-8 space-y-8">
+              <div className="relative group/input">
+                <textarea
+                  value={userDream}
+                  onChange={(e) => setUserDream(e.target.value)}
+                  placeholder="دیشب خواب دیدم در یک جنگل طلایی قدم می‌زنم و..."
+                  className="w-full min-h-[200px] bg-black/40 border border-white/10 rounded-2xl p-6 text-lg text-stone-200 placeholder:text-stone-600 focus:outline-none focus:border-amber-500/50 focus:ring-1 focus:ring-amber-500/30 transition-all resize-y shadow-inner"
+                />
+                {/* افکت نوری گوشه تکست‌اریا */}
+                <div className="absolute bottom-4 right-4 text-stone-700 text-xs pointer-events-none group-focus-within/input:text-amber-500/50 transition-colors">
+                   AI Ready
+                </div>
+              </div>
+
               {error && (
-                <div className="flex items-center gap-2 text-red-300 bg-red-900/20 p-3 rounded-lg border border-red-500/30 text-sm shadow-inner">
-                  <AlertCircle className="h-4 w-4" />
+                <div className="flex items-center gap-3 text-red-200 bg-red-900/20 p-4 rounded-xl border border-red-500/20 animate-in fade-in slide-in-from-top-2">
+                  <AlertCircle className="h-5 w-5 text-red-400" />
                   {error}
                 </div>
               )}
-            </div>
 
-            <Button
-              onClick={handleInterpret}
-              disabled={isLoading}
-              size="lg"
-              className="w-full text-lg py-8 bg-gradient-to-r from-fuchsia-600 to-blue-600 hover:from-fuchsia-700 hover:to-blue-700 transition-all shadow-lg shadow-fuchsia-500/30 rounded-xl font-bold uppercase tracking-wider"
-            >
-              {isLoading ? (
-                <>
-                  <Loader2 className="ml-2 h-6 w-6 animate-spin" />
-                  کاوش در عمق ذهن...
-                </>
-              ) : (
-                <>
-                  <Telescope className="ml-2 h-6 w-6" />
-                  تحلیل هوشمند رویا
-                </>
+              {/* دکمه اصلی (Cosmic Button) */}
+              <button
+                onClick={handleInterpret}
+                disabled={isLoading}
+                className="relative w-full group overflow-hidden rounded-2xl p-[2px] focus:outline-none focus:ring-2 focus:ring-amber-500 focus:ring-offset-2 focus:ring-offset-black"
+              >
+                 <span className="absolute inset-[-1000%] animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#F59E0B_0%,#39342f_50%,#F59E0B_100%)]" />
+                 <span className={`inline-flex h-full w-full cursor-pointer items-center justify-center rounded-2xl bg-[#1c1917] px-8 py-6 text-xl font-bold text-white backdrop-blur-3xl transition-all group-hover:bg-[#292524] ${isLoading ? 'opacity-90' : ''}`}>
+                    {isLoading ? (
+                        <div className="flex items-center gap-3">
+                           <Brain className="h-6 w-6 text-amber-400 animate-pulse" />
+                           <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-200 to-orange-200 animate-pulse">
+                              در حال ارتباط با ناخودآگاه...
+                           </span>
+                        </div>
+                    ) : (
+                        <div className="flex items-center gap-3 group-hover:scale-105 transition-transform">
+                           <Telescope className="h-6 w-6 text-amber-400" />
+                           <span>تعبیرش چیه؟</span>
+                           <Star className="h-4 w-4 text-yellow-400 animate-[spin_3s_linear_infinite]" />
+                        </div>
+                    )}
+                 </span>
+              </button>
+
+              {/* نمایش نتیجه (The Revelation) */}
+              {interpretation && (
+                <div className="relative mt-12 rounded-2xl bg-gradient-to-b from-amber-500/5 to-transparent border border-amber-500/10 p-8 animate-in fade-in slide-in-from-bottom-8 duration-700">
+                  {/* نور پس‌زمینه نتیجه */}
+                  <div className="absolute -top-10 left-1/2 -translate-x-1/2 w-40 h-1 bg-gradient-to-r from-transparent via-amber-500 to-transparent blur-sm"></div>
+                  
+                  <div className="flex items-center justify-between mb-6 border-b border-white/5 pb-4">
+                    <h3 className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-amber-100 to-yellow-200 flex items-center gap-3">
+                      <ScrollText className="h-6 w-6 text-amber-500" />
+                      پیام رویای تو
+                    </h3>
+                    <button onClick={copyToClipboard} className="text-stone-500 hover:text-white transition-colors p-2 hover:bg-white/5 rounded-lg">
+                        <Share2 className="h-5 w-5" />
+                    </button>
+                  </div>
+                  
+                  <div className="text-stone-200 leading-[2.2] text-justify text-lg whitespace-pre-wrap font-light tracking-wide">
+                    {interpretation}
+                  </div>
+                </div>
               )}
-            </Button>
-
-            {/* نمایش نتیجه */}
-            {interpretation && (
-              <div className="mt-8 pt-8 border-t border-white/10 animate-in fade-in slide-in-from-bottom-4 duration-700">
-                <div className="flex items-center justify-between mb-4">
-                  <h3 className="text-xl font-bold text-teal-300 flex items-center gap-2">
-                    <ScrollText className="h-6 w-6 text-yellow-300" />
-                    تفسیر و بینش شما
-                  </h3>
-                  <Button variant="ghost" size="sm" onClick={copyToClipboard} className="text-white/60 hover:text-white hover:bg-white/10">
-                      <Share2 className="h-4 w-4 ml-2" />
-                      کپی تحلیل
-                  </Button>
+            </div>
+          </div>
+        </div>
+        
+        {/* --- سوالات متداول --- */}
+        <section className="mt-24">
+            <div className="text-center mb-12">
+                <div className="inline-block p-3 rounded-2xl bg-white/5 border border-white/5 mb-4">
+                    <HelpCircle className="h-8 w-8 text-amber-500" />
                 </div>
-                
-                <div className="bg-black/30 p-6 md:p-8 rounded-xl border border-white/10 text-indigo-100 leading-loose text-justify shadow-inner text-lg whitespace-pre-wrap">
-                  {interpretation}
-                </div>
-              </div>
-            )}
-          </CardContent>
-        </Card>
-
-        {/* --- تغییر اساسی: پیاده‌سازی دستی آکاردئون بدون نیاز به پکیج خارجی --- */}
-        <section className="mt-20 animate-in fade-in delay-300">
-            <div className="text-center mb-10">
-                <h2 className="text-2xl md:text-3xl font-bold text-white flex items-center justify-center gap-3">
-                  <HelpCircle className="h-8 w-8 text-blue-300 animate-pulse" />
-                  پرسش‌های متداول
-                </h2>
-                 <p className="text-indigo-200 mt-4 text-lg">
-                    پاسخ به ابهامات شما درباره تلفیق تکنولوژی و دنیای اسرارآمیز خواب‌ها
-                  </p>
+                <h2 className="text-3xl font-bold text-white">سوالات متداول</h2>
             </div>
 
-            <div className="bg-white/5 backdrop-blur-lg border border-white/10 rounded-3xl p-4 md:p-8 shadow-xl space-y-4">
-              {/* حلقه روی داده‌های FAQ */}
+            <div className="space-y-4 max-w-3xl mx-auto">
               {faqs.map((faq, index) => {
                 const isOpen = openFaqIndex === index;
                 return (
-                  <div 
-                    key={index} 
-                    className={`border border-white/10 rounded-xl overflow-hidden transition-all duration-300 ${isOpen ? 'bg-white/5 border-blue-500/30' : 'hover:bg-white/5'}`}
-                  >
+                  <div key={index} className={`group border rounded-2xl overflow-hidden transition-all duration-300 ${isOpen ? 'bg-amber-950/20 border-amber-500/30' : 'bg-white/5 border-white/5 hover:border-white/10'}`}>
                     <button
                       onClick={() => toggleFaq(index)}
-                      className="w-full flex items-center justify-between py-5 px-4 text-lg font-medium text-indigo-100 hover:text-blue-300 text-right transition-colors focus:outline-none"
+                      className="w-full flex items-center justify-between p-6 text-lg font-medium text-stone-200 hover:text-amber-200 text-right transition-colors focus:outline-none"
                     >
-                      <div className="flex items-center gap-3">
-                        {faq.icon}
-                        <span>{faq.question}</span>
-                      </div>
-                      {/* آیکون فلش که می‌چرخد */}
-                      <ChevronDown className={`h-5 w-5 text-white/50 transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`} />
+                      <span>{faq.question}</span>
+                      <ChevronDown className={`h-5 w-5 text-stone-500 transition-transform duration-300 ${isOpen ? 'rotate-180 text-amber-400' : 'group-hover:text-white'}`} />
                     </button>
                     
-                    {/* محتوای پاسخ که به صورت شرطی نمایش داده می‌شود */}
-                    <div 
-                      className={`px-4 text-indigo-200/90 text-base leading-relaxed text-justify pr-10 overflow-hidden transition-all duration-300 ease-in-out ${isOpen ? 'max-h-96 pb-6 opacity-100' : 'max-h-0 pb-0 opacity-0'}`}
-                    >
+                    <div className={`px-6 text-stone-400 text-base leading-relaxed text-justify overflow-hidden transition-all duration-500 ease-in-out ${isOpen ? 'max-h-96 pb-6 opacity-100' : 'max-h-0 pb-0 opacity-0'}`}>
                       {faq.answer}
                     </div>
                   </div>
@@ -245,36 +252,31 @@ export default function Dreaminterpreter() {
               })}
             </div>
         </section>
-        
-        {/* --- بخش ۳: اتصال به هدف اصلی سایت --- */}
-        <section className="mt-24 bg-gradient-to-r from-blue-900/50 to-purple-900/50 border border-white/10 rounded-3xl p-8 md:p-10 text-center md:text-right shadow-xl shadow-blue-500/20 animate-in fade-in delay-200">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-8">
-            <div className="space-y-4 md:max-w-2xl">
-              <h2 className="text-2xl md:text-3xl font-bold text-white flex items-center gap-3 justify-center md:justify-start">
-                <Binary className="h-8 w-8 text-green-300" />
-                جادوی کد: پشت پرده این ابزار
-              </h2>
-              <p className="text-indigo-200 text-lg leading-relaxed">
-                این ابزار نتیجه قدرت **«مهندسی پرامپت»** و <span className="text-green-300 font-bold">«اتوماسیون با n8n»</span> است. 
-                ما با ترکیب این تکنولوژی‌ها، هوش مصنوعی را به یک تحلیلگر عمیق رویا تبدیل کرده‌ایم. 
-                آیا شما هم آماده‌اید تا چنین سیستم‌های هوشمندی را بسازید؟
-              </p>
-            </div>
-            
-            <div className="flex flex-col gap-3 w-full md:w-auto min-w-[250px]">
-              <Link href="/what-is-prompt">
-                <Button variant="outline" className="w-full py-6 text-lg border-white/20 text-white hover:bg-white/10 hover:text-teal-300 transition-colors rounded-xl">
-                   <Lightbulb className="ml-2 h-5 w-5" />
-                   یادگیری مهندسی پرامپت
-                </Button>
-              </Link>
-              <Link href="/n8n">
-                <Button className="w-full py-6 text-lg bg-teal-600 hover:bg-teal-700 text-white rounded-xl">
-                   <Rocket className="ml-2 h-5 w-5" />
-                   ورک‌فلوهای n8n
-                </Button>
-              </Link>
-            </div>
+
+        {/* --- فوتر بنر --- */}
+        <section className="mt-24 relative overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-r from-[#1c1917] to-[#0c0a09] p-10 md:p-16 text-center">
+          <div className="absolute inset-0 bg-[url('/images/neural-bg.svg')] opacity-5"></div>
+          <div className="relative z-10 flex flex-col items-center gap-6">
+             <div className="p-4 rounded-full bg-gradient-to-br from-amber-500/20 to-orange-600/20 mb-2">
+                <Binary className="h-10 w-10 text-amber-500" />
+             </div>
+             <h2 className="text-3xl md:text-4xl font-bold text-white">هنرِ مهندسی پرامپت</h2>
+             <p className="text-stone-400 text-lg max-w-xl mx-auto">
+               این ابزار تنها گوشه‌ای از قدرت <span className="text-amber-400 font-bold">اتوماسیون و n8n</span> است. 
+               یاد بگیرید چگونه خالق چنین ابزارهایی باشید.
+             </p>
+             <div className="flex flex-wrap justify-center gap-4 mt-4 w-full">
+               <Link href="/what-is-prompt" className="w-full md:w-auto">
+                 <button className="w-full md:w-auto px-8 py-4 rounded-xl border border-white/10 bg-white/5 hover:bg-white/10 text-white font-medium transition-all hover:scale-105">
+                    آموزش پرامپت
+                 </button>
+               </Link>
+               <Link href="/n8n" className="w-full md:w-auto">
+                 <button className="w-full md:w-auto px-8 py-4 rounded-xl bg-gradient-to-r from-amber-600 to-orange-600 text-white font-bold shadow-lg shadow-amber-900/40 hover:shadow-amber-600/40 transition-all hover:scale-105">
+                    دانلود ورک‌فلوها
+                 </button>
+               </Link>
+             </div>
           </div>
         </section>
 
