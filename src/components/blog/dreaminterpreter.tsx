@@ -1,15 +1,87 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import Image from "next/image"
 import Link from "next/link"
 import { aiSingleResponse } from "@/server/actions" 
 import { 
-  Brain, Lightbulb, Rocket, AlertCircle, Share2, 
+  Brain, AlertCircle, Share2, 
   Sparkles, Moon, ChevronDown, Telescope, ScrollText, Binary, 
-  HelpCircle, Star
+  HelpCircle, Star, CloudFog
 } from "lucide-react"
 
+// --- کامپوننت بنر اختصاصی ---
+const DreamBanner = () => {
+  return (
+    <div className="relative w-full h-[350px] md:h-[450px] overflow-hidden z-0">
+      {/* --- استایل انیمیشن شناور (فقط برای این کامپوننت) --- */}
+      <style jsx>{`
+        @keyframes float {
+          0%, 100% { transform: translateY(0px); }
+          50% { transform: translateY(-20px); }
+        }
+        .animate-float {
+          animation: float 6s ease-in-out infinite;
+        }
+      `}</style>
+
+      {/* --- پس‌زمینه اصلی --- */}
+      <div className="absolute inset-0 bg-[#050505]">
+        {/* گرادینت‌های عمیق فضایی */}
+        <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-indigo-950/40 via-[#0c0a09] to-[#050505]"></div>
+        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[150%] h-[80%] bg-gradient-to-t from-amber-900/10 via-orange-900/5 to-transparent blur-[100px] opacity-60"></div>
+      </div>
+
+      {/* --- پترن‌های نوری و عصبی --- */}
+      <div className="absolute inset-0 opacity-10 pointer-events-none">
+        <svg className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <pattern id="neural-net" x="0" y="0" width="100" height="100" patternUnits="userSpaceOnUse">
+              <circle cx="50" cy="50" r="1.5" fill="#f59e0b" opacity="0.5"/>
+              <path d="M50 50 L 80 20 M 50 50 L 20 80 M 50 50 L 80 80 M 50 50 L 20 20" stroke="#f59e0b" strokeWidth="0.5" opacity="0.2" fill="none"/>
+            </pattern>
+          </defs>
+          <rect width="100%" height="100%" fill="url(#neural-net)" />
+        </svg>
+      </div>
+      
+      {/* --- المان‌های متحرک مرکزی --- */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-[45%] text-center z-10">
+        <div className="relative inline-flex items-center justify-center">
+          {/* هاله پشت مغز */}
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-32 h-32 md:w-56 md:h-56 bg-amber-500/20 rounded-full blur-[60px] animate-pulse"></div>
+          
+          {/* آیکون مغز درخشان */}
+          <Brain className="h-24 w-24 md:h-36 md:w-36 text-amber-200/90 relative z-20 animate-float drop-shadow-[0_0_30px_rgba(245,158,11,0.6)]" />
+
+          {/* المان‌های شناور اطراف مغز */}
+          <div className="absolute top-0 left-0 animate-[spin_25s_linear_infinite_reverse] origin-center w-full h-full pointer-events-none">
+             <Moon className="absolute -top-6 -left-6 md:-top-10 md:-left-10 h-6 w-6 md:h-8 md:w-8 text-indigo-300 animate-pulse delay-300 opacity-80" />
+             <Star className="absolute top-1/2 -right-8 md:-right-16 h-5 w-5 md:h-6 md:w-6 text-yellow-200 animate-pulse delay-700 opacity-90" />
+             <CloudFog className="absolute -bottom-8 left-1/2 h-8 w-8 md:h-10 md:w-10 text-stone-400/60 animate-pulse delay-1000" />
+          </div>
+        </div>
+      </div>
+
+       {/* --- ذرات جادویی پراکنده --- */}
+       <div className="absolute inset-0 overflow-hidden pointer-events-none">
+         {[...Array(8)].map((_, i) => (
+            <Sparkles key={i} className={`absolute h-2 w-2 md:h-3 md:w-3 text-amber-300 animate-pulse`} 
+            style={{
+                top: `${Math.random() * 100}%`,
+                left: `${Math.random() * 100}%`,
+                animationDelay: `${Math.random() * 2}s`,
+                opacity: Math.random() * 0.5 + 0.2
+            }}/>
+         ))}
+       </div>
+
+      {/* --- فید شدن پایین بنر --- */}
+      <div className="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-[#050505] via-[#050505]/80 to-transparent z-20"></div>
+    </div>
+  );
+};
+
+// --- کامپوننت اصلی ---
 export default function Dreaminterpreter() {
   
   const [userDream, setUserDream] = useState("")
@@ -19,7 +91,6 @@ export default function Dreaminterpreter() {
   const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(null)
   const [mounted, setMounted] = useState(false)
 
-  // برای جلوگیری از ارورهای هیدریشن انیمیشن‌ها
   useEffect(() => {
     setMounted(true)
   }, [])
@@ -82,36 +153,32 @@ export default function Dreaminterpreter() {
   ]
 
   return (
-    <main className="min-h-screen bg-[#050505] text-white relative overflow-hidden font-sans selection:bg-amber-500/30 selection:text-amber-100">
+    <main className="min-h-screen bg-[#050505] text-white relative overflow-hidden selection:bg-amber-500/30 selection:text-amber-100">
       
-      {/* --- پس‌زمینه جادویی و متحرک (Aurora Background) --- */}
-      <div className="fixed inset-0 z-0">
-        {/* گرادینت متحرک عظیم */}
-        <div className="absolute top-[-20%] left-[-10%] w-[70%] h-[70%] bg-amber-600/10 rounded-full blur-[120px] animate-pulse"></div>
-        <div className="absolute bottom-[-20%] right-[-10%] w-[70%] h-[70%] bg-orange-600/10 rounded-full blur-[120px] animate-pulse delay-700"></div>
+      {/* 1. بنر بالای صفحه */}
+      <DreamBanner />
+
+      {/* پس‌زمینه جادویی گلوبال (پایین صفحه) */}
+      <div className="fixed inset-0 z-0 pointer-events-none">
         <div className="absolute top-[40%] left-[30%] w-[40%] h-[40%] bg-yellow-600/5 rounded-full blur-[100px] animate-pulse delay-1000"></div>
-        
-        {/* نویز و بافت */}
         <div className="absolute inset-0 bg-[url('/images/neural-bg.svg')] opacity-[0.03] mix-blend-screen"></div>
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]"></div>
         
-        {/* ذرات معلق (Stars/Particles) */}
+        {/* ذرات معلق */}
         {mounted && (
            <>
-             <div className="absolute top-20 left-10 w-1 h-1 bg-white rounded-full animate-ping opacity-20 duration-[3s]"></div>
-             <div className="absolute top-40 right-20 w-1.5 h-1.5 bg-amber-200 rounded-full animate-pulse opacity-30"></div>
+             <div className="absolute top-1/2 left-10 w-1 h-1 bg-white rounded-full animate-ping opacity-20 duration-[3s]"></div>
              <div className="absolute bottom-40 left-1/4 w-1 h-1 bg-orange-200 rounded-full animate-ping opacity-20 duration-[5s]"></div>
            </>
         )}
       </div>
 
-      <div className="container mx-auto px-4 py-16 md:py-24 max-w-4xl relative z-10">
+      {/* 2. کانتینر اصلی محتوا 
+         نکته مهم: کلاس -mt-[100px] باعث می‌شود کارت‌ها کمی روی فید پایین بنر قرار بگیرند 
+      */}
+      <div className="container mx-auto px-4 pb-16 pt-0 md:pb-24 max-w-4xl relative z-10 -mt-[60px] md:-mt-[100px]">
         
-        {/* --- هدر درخشان --- */}
-        <header className="text-center space-y-8 mb-16 relative">
-            {/* درخشش پشت هدر */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] bg-amber-500/20 blur-[100px] rounded-full -z-10"></div>
-
+        {/* هدر متنی */}
+        <header className="text-center space-y-6 mb-12 relative">
             <div className="inline-flex items-center justify-center p-1 rounded-full bg-gradient-to-r from-amber-500/20 to-orange-500/20 backdrop-blur-md border border-amber-500/30 shadow-[0_0_15px_rgba(245,158,11,0.2)]">
                <div className="px-4 py-1.5 rounded-full bg-[#0c0a09]/80 flex items-center gap-2">
                   <Sparkles className="h-4 w-4 text-amber-400 animate-pulse" />
@@ -119,47 +186,43 @@ export default function Dreaminterpreter() {
                </div>
             </div>
 
-            <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight text-white leading-tight">
+            <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight text-white leading-tight">
               تعبیر خواب آنلاین
-              <br className="md:hidden" />
               <span className="block mt-2 text-transparent bg-clip-text bg-gradient-to-r from-amber-200 via-yellow-400 to-amber-200 animate-text-shimmer bg-[length:200%_auto]">
                  با هوش مصنوعی
               </span>
             </h1>
             
-            <p className="text-lg md:text-xl text-stone-400 max-w-2xl mx-auto leading-relaxed">
+            <p className="text-base md:text-lg text-stone-400 max-w-xl mx-auto leading-relaxed">
               سفری به اعماق <strong className="text-amber-100 font-medium border-b border-amber-500/30">ناخودآگاه</strong>. 
-              دقیق‌ترین ابزار تعبیر خواب رایگان، بدون خرافات و مبتنی بر روانشناسی.
+              تحلیل دقیق و روانشناسانه رویاهای شما.
             </p>
         </header>
 
-        {/* --- کارت جادویی (Glassmorphism + Neon Border) --- */}
+        {/* کارت اصلی ورودی */}
         <div className="group relative rounded-3xl p-[1px] bg-gradient-to-br from-amber-500/50 via-transparent to-orange-500/50 shadow-2xl shadow-amber-900/30">
           
-          {/* پس‌زمینه درخشان پشت کارت */}
           <div className="absolute inset-0 bg-gradient-to-br from-amber-500/10 to-orange-500/10 blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
 
           <div className="relative bg-[#0c0a09]/90 backdrop-blur-2xl rounded-[23px] overflow-hidden h-full">
             
-            {/* هدر کارت */}
-            <div className="p-8 border-b border-white/5 flex items-center gap-4 bg-gradient-to-r from-white/5 to-transparent">
+            <div className="p-6 md:p-8 border-b border-white/5 flex items-center gap-4 bg-gradient-to-r from-white/5 to-transparent">
                <div className="p-3 rounded-2xl bg-amber-500/10 border border-amber-500/20 shadow-inner">
                   <Moon className="h-6 w-6 text-amber-400" />
                </div>
-               <h2 className="text-2xl font-bold text-white tracking-wide">
+               <h2 className="text-xl md:text-2xl font-bold text-white tracking-wide">
                  رویاهاتو بنویس...
                </h2>
             </div>
             
-            <div className="p-8 space-y-8">
+            <div className="p-6 md:p-8 space-y-8">
               <div className="relative group/input">
                 <textarea
                   value={userDream}
                   onChange={(e) => setUserDream(e.target.value)}
                   placeholder="دیشب خواب دیدم در یک جنگل طلایی قدم می‌زنم و..."
-                  className="w-full min-h-[200px] bg-black/40 border border-white/10 rounded-2xl p-6 text-lg text-stone-200 placeholder:text-stone-600 focus:outline-none focus:border-amber-500/50 focus:ring-1 focus:ring-amber-500/30 transition-all resize-y shadow-inner"
+                  className="w-full min-h-[200px] bg-black/40 border border-white/10 rounded-2xl p-6 text-base md:text-lg text-stone-200 placeholder:text-stone-600 focus:outline-none focus:border-amber-500/50 focus:ring-1 focus:ring-amber-500/30 transition-all resize-y shadow-inner"
                 />
-                {/* افکت نوری گوشه تکست‌اریا */}
                 <div className="absolute bottom-4 right-4 text-stone-700 text-xs pointer-events-none group-focus-within/input:text-amber-500/50 transition-colors">
                    AI Ready
                 </div>
@@ -172,7 +235,6 @@ export default function Dreaminterpreter() {
                 </div>
               )}
 
-              {/* دکمه اصلی (Cosmic Button) */}
               <button
                 onClick={handleInterpret}
                 disabled={isLoading}
@@ -197,10 +259,8 @@ export default function Dreaminterpreter() {
                  </span>
               </button>
 
-              {/* نمایش نتیجه (The Revelation) */}
               {interpretation && (
                 <div className="relative mt-12 rounded-2xl bg-gradient-to-b from-amber-500/5 to-transparent border border-amber-500/10 p-8 animate-in fade-in slide-in-from-bottom-8 duration-700">
-                  {/* نور پس‌زمینه نتیجه */}
                   <div className="absolute -top-10 left-1/2 -translate-x-1/2 w-40 h-1 bg-gradient-to-r from-transparent via-amber-500 to-transparent blur-sm"></div>
                   
                   <div className="flex items-center justify-between mb-6 border-b border-white/5 pb-4">
@@ -222,7 +282,7 @@ export default function Dreaminterpreter() {
           </div>
         </div>
         
-        {/* --- سوالات متداول --- */}
+        {/* سوالات متداول */}
         <section className="mt-24">
             <div className="text-center mb-12">
                 <div className="inline-block p-3 rounded-2xl bg-white/5 border border-white/5 mb-4">
@@ -253,7 +313,7 @@ export default function Dreaminterpreter() {
             </div>
         </section>
 
-        {/* --- فوتر بنر --- */}
+        {/* فوتر بنر */}
         <section className="mt-24 relative overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-r from-[#1c1917] to-[#0c0a09] p-10 md:p-16 text-center">
           <div className="absolute inset-0 bg-[url('/images/neural-bg.svg')] opacity-5"></div>
           <div className="relative z-10 flex flex-col items-center gap-6">
