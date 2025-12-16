@@ -13,7 +13,6 @@ export const CategoryCard = ({c}:{c: PromptCategory}) => {
 
   const deleteMe = async () => {
     callModal.prompt(`${c.name} خذف شود؟`)
-
     .yes(async() => {
       const {ok} = await deleteCategory(c.id)
         if (ok) {
