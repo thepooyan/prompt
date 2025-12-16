@@ -67,6 +67,7 @@ export const updatePrompt = async (id:number, en: promptEdit) => {
 export const insertCategory = async (c: PromptNewCategory) => {
   try {
     await db.insert(promptCateTable).values(c)
+    revalidateTag(cacheTags.menuItems, "max")
     return {ok: true}
   } catch(e) {
     return {ok: false, error: e}
@@ -76,6 +77,7 @@ export const insertCategory = async (c: PromptNewCategory) => {
 export const deleteCategory = async (id: string) => {
   try {
     await db.delete(promptCateTable).where(eq(promptCateTable.id, id))
+    revalidateTag(cacheTags.menuItems, "max")
     return {ok: true}
   } catch(e) {
     return {ok: false, error: e}
