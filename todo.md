@@ -1,6 +1,6 @@
 fix images
-
-
+http://localhost:3000/Blog/studio-portrait-prompt
+make schema in code
 
 search with query params => make tags searchable
 
