@@ -1,6 +1,7 @@
 fix images
 http://localhost:3000/Blog/studio-portrait-prompt
 make schema in code
+seprate n8n library client => new n8n page? (pend)
 
 search with query params => make tags searchable
 
